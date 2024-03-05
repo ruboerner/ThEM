@@ -12,6 +12,9 @@ book:
     - part: "Introduction"
       chapters:
       - intro.qmd
+      - fourier.qmd
+      - maxwell.qmd
+      - pde.qmd
     - part: "Summary"
       chapters: 
         - summary.qmd
@@ -23,6 +26,9 @@ csl: https://www.zotero.org/styles/geophysical-journal-international
 format:
   html:
     theme: cosmo
+    crossref:
+      chapters: true
+      eq-prefix: ""
   pdf:
     documentclass: scrreprt
     papersize: a4

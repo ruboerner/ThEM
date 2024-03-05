@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods - 2&nbsp; Electromagnetic fields</title>
+<title>Theory of Electromagnetic Methods - 5&nbsp; Partial Differential Equations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./fourier.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./summary.html" rel="next">
+<link href="./maxwell.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -110,7 +110,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">Introduction</a></li><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Electromagnetic fields</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">Introduction</a></li><li class="breadcrumb-item"><a href="./pde.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Partial Differential Equations</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -152,7 +152,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Electromagnetic fields</span></span></a>
   </div>
 </li>
@@ -165,7 +165,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./maxwell.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s equations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s Equations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pde.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Partial Differential Equations</span></span></a>
   </div>
 </li>
       </ul>
@@ -182,7 +188,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -203,17 +209,16 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#material-properties" id="toc-material-properties" class="nav-link active" data-scroll-target="#material-properties"><span class="header-section-number">2.1</span> Material properties</a></li>
-  <li><a href="#simplifications" id="toc-simplifications" class="nav-link" data-scroll-target="#simplifications"><span class="header-section-number">2.2</span> Simplifications</a></li>
+  <li><a href="#the-curl-curl-equation" id="toc-the-curl-curl-equation" class="nav-link active" data-scroll-target="#the-curl-curl-equation"><span class="header-section-number">5.1</span> The curl-curl equation</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">Introduction</a></li><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Electromagnetic fields</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">Introduction</a></li><li class="breadcrumb-item"><a href="./pde.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Partial Differential Equations</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Electromagnetic fields</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Partial Differential Equations</span></h1>
 </div>
 
 
@@ -230,48 +235,97 @@ window.Quarto = {
 </header>
 
 
-<p>In electromagnetics we deal with the following <em>fields</em>:</p>
+<p>As we have seen, Maxwell’s equations can be coupled using the constitutive equations and Ohm’s law.</p>
+<p>After Fourier transform w.r.t. time <span class="math inline">\(t\)</span>, but in a slightly different notation, we obtain <span class="math display">\[
+\begin{bmatrix}
+\nabla \times &amp; -i\omega\varepsilon \mathbf I \\
++i\omega\mu_0 \mathbf I &amp; \nabla \times
+\end{bmatrix}
+\begin{bmatrix}
+\mathbf H \\ \mathbf E
+\end{bmatrix} =
+\begin{bmatrix}
+\mathbf J \\ \mathbf 0
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}
+\nabla \cdot &amp; 0 \\
+0 &amp; \nabla \cdot
+\end{bmatrix}
+\begin{bmatrix}
+\mathbf B \\ \mathbf D
+\end{bmatrix} =
+\begin{bmatrix}
+0 \\ \rho_E
+\end{bmatrix}
+\]</span> Note that the sources of the fields— <span class="math inline">\(\mathbf J\)</span> and <span class="math inline">\(\rho_E\)</span> —always appear on the right-hand side of the equations. <span class="math inline">\(\mathbf I\)</span> denotes the 3-by-3 identity matrix.</p>
+<p>By elimination of one field, e.g., the magnetic field, we are able to cast the system of first-order ODEs into a <em>second-order partial differential equation</em> (PDE).</p>
+<p>As an alternative, a complete solution of the Maxwell system, i.e., <span class="math inline">\(\mathbf E\)</span> and <span class="math inline">\(\mathbf H\)</span>, can be obtained by taking the solution of one of the two vector valued equations and applying the curl.</p>
+<p>We refer to the following <em>types</em> of PDEs:</p>
 <ul>
-<li>electric field <span class="math inline">\(\mathbf E\)</span>, unit <span class="math inline">\(V / m\)</span></li>
-<li>magnetic field <span class="math inline">\(\mathbf H\)</span>, unit <span class="math inline">\(A / m\)</span></li>
-<li>electric displacement field <span class="math inline">\(\mathbf D\)</span>, unit <span class="math inline">\(As / m^2\)</span></li>
-<li>magnetic flux density <span class="math inline">\(\mathbf B\)</span>, unit <span class="math inline">\(Vs / m^2\)</span></li>
-<li>electic current density field <span class="math inline">\(\mathbf J\)</span>, unit <span class="math inline">\(A / m^2\)</span></li>
+<li>elliptic</li>
+<li>parabolic</li>
+<li>hyperbolic</li>
 </ul>
-<p>All considered fields are functions of <em>space</em> <span class="math inline">\(\mathbf r\)</span> and <em>time</em> <span class="math inline">\(t\)</span>, i.e.,</p>
-<p><span id="eq-fields-time"><span class="math display">\[
-\mathbf e(\mathbf r, t), \mathbf h(\mathbf r, t), \mathbf d(\mathbf r, t), \mathbf b(\mathbf r, t),
-\mathbf j(\mathbf r, t)
-\tag{2.1}\]</span></span> or a function of the <em>angular frequency</em> <span class="math inline">\(\omega = 2 \pi f\)</span>, such that <span id="eq-fields-frequency"><span class="math display">\[
-\mathbf E(\mathbf r, \omega), \mathbf H(\mathbf r, \omega), \mathbf D(\mathbf r, \omega), \mathbf B(\mathbf r, \omega),
-\mathbf J(\mathbf r, \omega).
-\tag{2.2}\]</span></span> In the latter case, the time dependency of any field <span class="math inline">\(\mathbf F\)</span> is always defined as <span class="math display">\[
-\mathbf F(\mathbf r, \omega) = \mathbf F_0(\mathbf r) e^{i \omega t},
-\]</span> and the quantity of interest is <span class="math inline">\(\mathbf F_0\)</span>.</p>
-<p><strong>Convention:</strong> Upper case letters: Frequency domain, lower case letters: Time domain.</p>
-<p>See <a href="fourier.html#eq-fourier" class="quarto-xref"><span>3.1</span></a> for a definition of the Fourier transform.</p>
-<section id="material-properties" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="material-properties"><span class="header-section-number">2.1</span> Material properties</h2>
-<p>In electromagnetics we have the following material properties:</p>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Self-study questions
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <ul>
-<li>electrical conductivity <span class="math inline">\(\sigma\)</span></li>
-<li>dielectrical permittivity <span class="math inline">\(\varepsilon\)</span></li>
-<li>magnetic permeability <span class="math inline">\(\mu\)</span>.</li>
+<li>What are the characteristic features of the three types of PDEs?</li>
+<li>What typical (geophysical) applications are associated with the above types?</li>
 </ul>
-<p>In the context of geo-electromagnetics, these parameters are associated with particular rock properties which are studied in <em>petrophysics</em>.</p>
-</section>
-<section id="simplifications" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="simplifications"><span class="header-section-number">2.2</span> Simplifications</h2>
-<p>As we know from theroretical physics, the relations between the fields and the associated parameters are very general and allow, e.g., strong frequency-dependency or non-linearities.</p>
-<p>In geo-electromagnetics, however, we can allow for a few simplifications.</p>
-<p>All rock parameters are supposed to be</p>
-<ul>
-<li>linear with respect to the fields</li>
-<li>stationary, and</li>
-<li>isotropic.</li>
-</ul>
-<p>We will see later that anisotropy is a quite general rock property which needs to be considered in the interpretation of geo-electromagnetic field data.</p>
-<p>Moreover, we will first study the general properties of the EM induction in a uniform full-space by neglecting any spatial inhomogeneities of the parameters.</p>
+</div>
+</div>
+</div>
+<section id="the-curl-curl-equation" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="the-curl-curl-equation"><span class="header-section-number">5.1</span> The curl-curl equation</h2>
+<p>We first eliminate one field from the set of Maxwell’s equations by applying the <em>curl operator</em> (<span class="math inline">\(\nabla \times\)</span>) to one of the equations.</p>
+<p>This results in a second-order PDE because we differentiate twice with respect to spatial coordinates.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{align}
+\nabla \times \mathbf e  &amp; = -\partial_t \mathbf b \\
+\nabla \times \nabla \times \mathbf e &amp; = \nabla \times (-\partial_t \mathbf b) \\
+  &amp; = -\nabla \times (\partial_t \mathbf b) \\
+  &amp; = -\partial_t\nabla \times  \mathbf b \\
+  &amp; = -\partial_t\nabla \times ( \mu \mathbf h) \\
+  &amp; = -\partial_t \mu \nabla \times \mathbf h \\
+  &amp; = -\mu \partial_t \nabla \times \mathbf h \\
+  &amp; = -\mu \partial_t (\mathbf j + \partial_t \mathbf d) \\
+  &amp; = -\mu \partial_t (\sigma \mathbf e + \partial_t \mathbf d) \\
+  &amp; -\mu \partial_t (\sigma \mathbf e + \partial_t \varepsilon \mathbf e) \\
+  &amp; = -\mu \partial_t \sigma \mathbf e -\mu \partial^2_{tt} \varepsilon \mathbf e \\
+  &amp; = -\mu \sigma \partial_t \mathbf e -\mu \varepsilon \partial^2_{tt} \mathbf e
+\end{align}
+\]</span></p>
+</div>
+</div>
+</div>
+<p>Finally, we obtain the <strong>curl-curl equation</strong> for the electric field as <span id="eq-curlcurl"><span class="math display">\[
+\nabla \times \nabla \times \mathbf e  +\mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
+\tag{5.1}\]</span></span></p>
+<p>This is a second-order PDE with first- and second-order time derivatives.</p>
 
 
 </section>
@@ -666,13 +720,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Remarks">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Remarks</span></span>
+      <a href="./maxwell.html" class="pagination-link" aria-label="Maxwell's Equations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s Equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./fourier.html" class="pagination-link" aria-label="Fourier transform">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Fourier transform</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -4,20 +4,20 @@
     "href": "index.html",
     "title": "Theory of Electromagnetic Methods",
     "section": "",
-    "text": "Preface\nThese are the notes for the lecture on “Theory of Electromagnetic Methods”.\nAll materials are stored in the GitHub repo https://github.com/ruboerner/ThEM.\nHave fun!",
+    "text": "1 Remarks\nThese are the notes for the lecture on “Theory of Electromagnetic Methods”.\nAll materials are stored in the GitHub repo https://github.com/ruboerner/ThEM.\nHave fun!",
     "crumbs": [
-      "Preface"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Remarks</span>"
     ]
   },
   {
     "objectID": "intro.html",
     "href": "intro.html",
-    "title": "1  Introduction",
+    "title": "2  Electromagnetic fields",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n1 + 1\n\n2\n\n\n\n\n\n\nKnuth, D.E., 1984. Literate programming. Comput. J., 27, 97–111, Oxford University Press, Inc. doi:10.1093/comjnl/27.2.97",
+    "text": "2.1 Material properties\nIn electromagnetics we have the following material properties:\nIn the context of geo-electromagnetics, these parameters are associated with particular rock properties which are studied in petrophysics.",
     "crumbs": [
       "Introduction",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Electromagnetic fields</span>"
     ]
   },
   {
@@ -38,6 +38,83 @@
     "text": "Knuth, D.E., 1984. Literate programming. Comput. J.,\n27, 97–111, Oxford University Press, Inc. doi:10.1093/comjnl/27.2.97",
     "crumbs": [
       "References"
+    ]
+  },
+  {
+    "objectID": "fourier.html",
+    "href": "fourier.html",
+    "title": "3  Fourier transform",
+    "section": "",
+    "text": "We associate both sets of fields by a Fourier transform: \\[\n\\begin{align}\nF(\\omega) & = \\int\\limits_{-\\infty}^\\infty f(t) e^{-i\\omega t}\\,\\mathrm d t \\\\\nf(t) & = \\frac{1}{2\\pi} \\int\\limits_{-\\infty}^\\infty F(\\omega) e^{i\\omega t}\\,\\mathrm d\\omega\n\\end{align}\n\\tag{3.1}\\]",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Fourier transform</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#material-properties",
+    "href": "intro.html#material-properties",
+    "title": "2  Electromagnetic fields",
+    "section": "",
+    "text": "electrical conductivity \\(\\sigma\\)\ndielectrical permittivity \\(\\varepsilon\\)\nmagnetic permeability \\(\\mu\\).",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Electromagnetic fields</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#simplifications",
+    "href": "intro.html#simplifications",
+    "title": "2  Electromagnetic fields",
+    "section": "2.2 Simplifications",
+    "text": "2.2 Simplifications\nAs we know from theroretical physics, the relations between the fields and the associated parameters are very general and allow, e.g., strong frequency-dependency or non-linearities.\nIn geo-electromagnetics, however, we can allow for a few simplifications.\nAll rock parameters are supposed to be\n\nlinear with respect to the fields\nstationary, and\nisotropic.\n\nWe will see later that anisotropy is a quite general rock property which needs to be considered in the interpretation of geo-electromagnetic field data.\nMoreover, we will first study the general properties of the EM induction in a uniform full-space by neglecting any spatial inhomogeneities of the parameters.",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Electromagnetic fields</span>"
+    ]
+  },
+  {
+    "objectID": "maxwell.html",
+    "href": "maxwell.html",
+    "title": "4  Maxwell’s Equations",
+    "section": "",
+    "text": "4.1 Constitutive equations\nThe goal is to couple these equations. This can be achieved with the use of the constitutive equations, which are\n\\[\n\\begin{align}\n\\mathbf d & = \\varepsilon \\mathbf e \\\\\n\\mathbf b & = \\mu \\mathbf h\n\\end{align}\n\\tag{4.2}\\]\nGenerally, the linear parameters \\(\\varepsilon, \\mu\\) are rank-2 tensors represented as 3-by-3 matrices.",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Maxwell's Equations</span>"
+    ]
+  },
+  {
+    "objectID": "maxwell.html#ohms-law",
+    "href": "maxwell.html#ohms-law",
+    "title": "4  Maxwell’s Equations",
+    "section": "4.2 Ohm’s law",
+    "text": "4.2 Ohm’s law\nIn an electrically conductive medium, any electric field gives rise to an electric current. This current is expressed by its current density as\n\\[\n\\mathbf j = \\sigma \\mathbf e,\n\\tag{4.3}\\]\nwhere \\(\\sigma\\) is a rank-2 tensor.\nThis tensor can be represented in matrix form as\n\\[\n\\sigma =   \\begin{pmatrix}    \\sigma_{11} & \\sigma_{12} & \\sigma_{13} \\\\    \\sigma_{21} & \\sigma_{22} & \\sigma_{23} \\\\    \\sigma_{31} & \\sigma_{32} & \\sigma_{33}   \\end{pmatrix}.\n\\]\nTensors like introduced here cause anisotropy, i.e., the material properties have different values across different spatial directions.\nA typical observation would be the deviation of the induced current density from the direction of the driving electric field.\n\n4.2.1 Remarks about anisotropy\nThe rank-2 tensor of electrical conductivity \\(\\tilde\\sigma\\) may be represented in matrix form as\n\\[\n  \\hat\\sigma =\n  \\begin{pmatrix}\n    \\sigma_{11} & \\sigma_{12} & \\sigma_{13} \\\\\n    \\sigma_{21} & \\sigma_{22} & \\sigma_{23} \\\\\n    \\sigma_{31} & \\sigma_{32} & \\sigma_{33}\n  \\end{pmatrix}.\n\\]\nAny real symmetric (n-by-n) matrix \\(A\\) can be diagonalized (principal axis theorem), such that\n\\[\nD_A = S^\\top A S  \n\\]\nis a diagonal matrix, and \\(S\\) is an orthogonal matrix.\nInterpreting the matrix \\(A\\) as a linear map in \\(\\mathbb {R} ^3\\), then the matrix \\(S\\) can be thought of as a transformation to the new basis. Between the old and new coordinates there is the relation \\(\\mathbf {x}=S \\boldsymbol {\\xi }\\). The action of the matrix \\(A\\) in the new coordinate system is taken over by the diagonal matrix \\(D_{A}\\).\nAfter transformation of the tensor in diagonal form, we have \\[\n  \\tilde\\sigma =\n  \\begin{pmatrix}\n    \\sigma_{xx} & 0 & 0 \\\\\n    0 & \\sigma_{yy} & 0 \\\\\n    0 & 0 & \\sigma_{zz}\n  \\end{pmatrix}.\n\\]\nIf \\(\\sigma_{xx} = \\sigma_{yy} = \\sigma_{zz} = \\sigma\\), then \\[\n  \\tilde\\sigma = \\sigma\n  \\begin{pmatrix}\n    1 & 0 & 0 \\\\\n    0 & 1 & 0 \\\\\n    0 & 0 & 1\n  \\end{pmatrix} = \\sigma.\n\\] In this case, the conductivity does not depend on the spatial direction and hence is labelled isotropic.",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Maxwell's Equations</span>"
+    ]
+  },
+  {
+    "objectID": "pde.html",
+    "href": "pde.html",
+    "title": "5  Partial Differential Equations",
+    "section": "",
+    "text": "5.1 The curl-curl equation\nWe first eliminate one field from the set of Maxwell’s equations by applying the curl operator (\\(\\nabla \\times\\)) to one of the equations.\nThis results in a second-order PDE because we differentiate twice with respect to spatial coordinates.\nFinally, we obtain the curl-curl equation for the electric field as \\[\n\\nabla \\times \\nabla \\times \\mathbf e  +\\mu \\sigma \\partial_t \\mathbf e + \\mu \\varepsilon \\partial^2_{tt} \\mathbf e = \\mathbf 0.\n\\tag{5.1}\\]\nThis is a second-order PDE with first- and second-order time derivatives.",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Partial Differential Equations</span>"
+    ]
+  },
+  {
+    "objectID": "pde.html#the-curl-curl-equation",
+    "href": "pde.html#the-curl-curl-equation",
+    "title": "5  Partial Differential Equations",
+    "section": "",
+    "text": "Tip\n\n\n\n\n\n\\[\n\\begin{align}\n\\nabla \\times \\mathbf e  & = -\\partial_t \\mathbf b \\\\\n\\nabla \\times \\nabla \\times \\mathbf e & = \\nabla \\times (-\\partial_t \\mathbf b) \\\\\n  & = -\\nabla \\times (\\partial_t \\mathbf b) \\\\\n  & = -\\partial_t\\nabla \\times  \\mathbf b \\\\\n  & = -\\partial_t\\nabla \\times ( \\mu \\mathbf h) \\\\\n  & = -\\partial_t \\mu \\nabla \\times \\mathbf h \\\\\n  & = -\\mu \\partial_t \\nabla \\times \\mathbf h \\\\\n  & = -\\mu \\partial_t (\\mathbf j + \\partial_t \\mathbf d) \\\\\n  & = -\\mu \\partial_t (\\sigma \\mathbf e + \\partial_t \\mathbf d) \\\\\n  & -\\mu \\partial_t (\\sigma \\mathbf e + \\partial_t \\varepsilon \\mathbf e) \\\\\n  & = -\\mu \\partial_t \\sigma \\mathbf e -\\mu \\partial^2_{tt} \\varepsilon \\mathbf e \\\\\n  & = -\\mu \\sigma \\partial_t \\mathbf e -\\mu \\varepsilon \\partial^2_{tt} \\mathbf e\n\\end{align}\n\\]",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Partial Differential Equations</span>"
     ]
   }
 ]

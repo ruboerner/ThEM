@@ -1,0 +1,82 @@
+---
+title: "Partial Differential Equations"
+---
+
+As we have seen, Maxwell's equations can be coupled using the constitutive equations and Ohm's law.
+
+After Fourier transform w.r.t. time $t$, but in a slightly different notation, we obtain 
+$$
+\begin{bmatrix}
+\nabla \times & -i\omega\varepsilon \mathbf I \\
++i\omega\mu_0 \mathbf I & \nabla \times
+\end{bmatrix}
+\begin{bmatrix}
+\mathbf H \\ \mathbf E
+\end{bmatrix} = 
+\begin{bmatrix}
+\mathbf J \\ \mathbf 0
+\end{bmatrix}
+$$ 
+
+$$
+\begin{bmatrix}
+\nabla \cdot & 0 \\
+0 & \nabla \cdot
+\end{bmatrix}
+\begin{bmatrix}
+\mathbf B \\ \mathbf D
+\end{bmatrix} = 
+\begin{bmatrix}
+0 \\ \rho_E
+\end{bmatrix}
+$$ 
+Note that the sources of the fields--- $\mathbf J$ and $\rho_E$ ---always appear on the right-hand side of the equations. $\mathbf I$ denotes the 3-by-3 identity matrix.
+
+By elimination of one field, e.g., the magnetic field, we are able to cast the system of first-order ODEs into a *second-order partial differential equation* (PDE).
+
+As an alternative, a complete solution of the Maxwell system, i.e., $\mathbf E$ and $\mathbf H$, can be obtained by taking the solution of one of the two vector valued equations and applying the curl.
+
+We refer to the following *types* of PDEs:
+
+-   elliptic
+-   parabolic
+-   hyperbolic
+
+::: {.callout-note appearance="simple" icon="false" collapse="true"}
+## Self-study questions
+
+-   What are the characteristic features of the three types of PDEs?
+-   What typical (geophysical) applications are associated with the above types?
+:::
+
+## The curl-curl equation
+
+We first eliminate one field from the set of Maxwell's equations by applying the *curl operator* ($\nabla \times$) to one of the equations.
+
+This results in a second-order PDE because we differentiate twice with respect to spatial coordinates.
+
+::: {.callout-tip collapse="true"}
+$$
+\begin{align}
+\nabla \times \mathbf e  & = -\partial_t \mathbf b \\
+\nabla \times \nabla \times \mathbf e & = \nabla \times (-\partial_t \mathbf b) \\
+  & = -\nabla \times (\partial_t \mathbf b) \\
+  & = -\partial_t\nabla \times  \mathbf b \\
+  & = -\partial_t\nabla \times ( \mu \mathbf h) \\
+  & = -\partial_t \mu \nabla \times \mathbf h \\
+  & = -\mu \partial_t \nabla \times \mathbf h \\
+  & = -\mu \partial_t (\mathbf j + \partial_t \mathbf d) \\
+  & = -\mu \partial_t (\sigma \mathbf e + \partial_t \mathbf d) \\
+  & -\mu \partial_t (\sigma \mathbf e + \partial_t \varepsilon \mathbf e) \\
+  & = -\mu \partial_t \sigma \mathbf e -\mu \partial^2_{tt} \varepsilon \mathbf e \\
+  & = -\mu \sigma \partial_t \mathbf e -\mu \varepsilon \partial^2_{tt} \mathbf e
+\end{align}
+$$
+:::
+
+Finally, we obtain the **curl-curl equation** for the electric field as
+$$
+\nabla \times \nabla \times \mathbf e  +\mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
+$$ {#eq-curlcurl}
+
+This is a second-order PDE with first- and second-order time derivatives.
