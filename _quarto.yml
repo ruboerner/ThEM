@@ -9,8 +9,12 @@ book:
   date: today
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - part: "Introduction"
+      chapters:
+      - intro.qmd
+    - part: "Summary"
+      chapters: 
+        - summary.qmd
     - references.qmd
 
 bibliography: references.bib
