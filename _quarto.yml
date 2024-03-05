@@ -1,0 +1,27 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Theory of Electromagnetic Methods"
+  subtitle: "Lecture Notes"
+  author: "Ralph-Uwe Börner"
+  date: today
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+csl: https://www.zotero.org/styles/geophysical-journal-international
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+    papersize: a4
+
+editor: visual
+
