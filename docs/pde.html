@@ -409,7 +409,7 @@ Tip
 <section id="numerical-experiment" class="level4" data-number="5.1.1.1">
 <h4 data-number="5.1.1.1" class="anchored" data-anchor-id="numerical-experiment"><span class="header-section-number">5.1.1.1</span> Numerical experiment</h4>
 <p>To study the decay of a free charge denoted by an electrical charge density, we define as initial condition for <span class="math inline">\(t=0\)</span> that <span class="math inline">\(\rho_E(0) = 1~A\cdot s\cdot m^{-3}\)</span> .</p>
-<div id="eeb68a9c" class="cell" data-execution_count="1">
+<div id="fe776701" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -437,7 +437,7 @@ Tip
 </div>
 </div>
 <p>We can calculate the time at which the charge density decays to a given fraction of the initial value, e.g., to 1 ppm.</p>
-<div id="ac683dbb" class="cell" data-execution_count="2">
+<div id="933ccbdc" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>t, sigma, epsilon, rho0 <span class="op">=</span> symbols(<span class="st">'t sigma epsilon rho_0'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
@@ -455,7 +455,7 @@ Tip
 <p><span class="math display">\[
 \hat{t} = \frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{0}}{\rho_{E}} \right)} = -\frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{E}}{\rho_{0}} \right)}
 \]</span></p>
-<div id="f8c67d78" class="cell" data-execution_count="3">
+<div id="f98009a9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tstar <span class="op">=</span> <span class="op">-</span>epsilon_n <span class="op">/</span> sigma_n <span class="op">*</span> np.log(<span class="fl">1e-6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>With the values given above, the charge density drops to 1 ppm after 1.22e-08.</p>
