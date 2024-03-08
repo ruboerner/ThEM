@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -221,7 +255,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-curl-curl-equation" id="toc-the-curl-curl-equation" class="nav-link active" data-scroll-target="#the-curl-curl-equation"><span class="header-section-number">5.1</span> The curl-curl equation</a></li>
+  <li><a href="#the-curl-curl-equation" id="toc-the-curl-curl-equation" class="nav-link active" data-scroll-target="#the-curl-curl-equation"><span class="header-section-number">5.1</span> The curl-curl equation</a>
+  <ul class="collapse">
+  <li><a href="#decay-of-free-charges" id="toc-decay-of-free-charges" class="nav-link" data-scroll-target="#decay-of-free-charges"><span class="header-section-number">5.1.1</span> Decay of free charges</a></li>
+  </ul></li>
+  <li><a href="#the-telegraph-equation" id="toc-the-telegraph-equation" class="nav-link" data-scroll-target="#the-telegraph-equation"><span class="header-section-number">5.2</span> The Telegraph equation</a></li>
   </ul>
 </nav>
     </div>
@@ -338,6 +376,98 @@ Tip
 \nabla \times \nabla \times \mathbf e  +\mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
 \tag{5.1}\]</span></span></p>
 <p>This is a second-order PDE with first- and second-order time derivatives.</p>
+<p>Often, a slightly different form of <a href="#eq-curlcurl" class="quarto-xref"><span>5.1</span></a> is used.</p>
+<p>The following vector identity is useful: <span id="eq-vector-identity"><span class="math display">\[
+\nabla \times \nabla \times \mathbf f = \nabla \nabla \cdot \mathbf f - \nabla^2 \mathbf f
+\tag{5.2}\]</span></span></p>
+<p>When <span class="math inline">\(\nabla \cdot \mathbf f = 0\)</span>, then the curl-curl operator can be replaced by <span class="math inline">\(-\nabla^2\)</span>.</p>
+<section id="decay-of-free-charges" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="decay-of-free-charges"><span class="header-section-number">5.1.1</span> Decay of free charges</h3>
+<p>When the electric field <span class="math inline">\(\mathbf e\)</span> is considered, the following problem must be discussed. Under which conditions will <span class="math inline">\(\nabla \cdot \mathbf e\)</span> vanish?</p>
+<p>The answer should be clear: When there are no free charges present in the considered domain!</p>
+<p>Let’s check this:</p>
+<p>We want to show that <span class="math inline">\(\nabla \cdot \mathbf e \approx 0\)</span> for a very short time <span class="math inline">\(t&gt;0\)</span>. As long as <span class="math inline">\(t \le 0\)</span>, there is a certain charge density <span class="math inline">\(\rho_E(t)\)</span> concentrated at, e.g., the origin of a uniform fullspace.</p>
+<p>We apply the divergence to Ampere’s law:</p>
+<p><span class="math display">\[
+\begin{align}
+\nabla \cdot \nabla \times \mathbf h &amp; = \nabla \cdot \mathbf j + \partial_t \nabla \cdot \mathbf d \\
+&amp; = 0
+\end{align}
+\]</span></p>
+<p>With <span class="math display">\[
+\nabla \cdot \mathbf d = \rho_E \\
+\nabla \cdot \mathbf j = \nabla \cdot (\sigma \mathbf e) = \nabla\sigma \cdot \mathbf e + \sigma \nabla \cdot \mathbf e \\
+\sigma \nabla \cdot \mathbf e = \sigma \frac{\rho_E}{\varepsilon}
+\]</span> we obtain an initial-value problem for the charge density</p>
+<p><span class="math display">\[
+\frac{\sigma}{\varepsilon} \rho_E + \dot{\rho_E} = 0.
+\]</span></p>
+<p>Its solution is</p>
+<p><span class="math display">\[
+\rho_E(t) = \rho_E(0) e^{-\frac{\sigma}{\varepsilon}t}
+\]</span></p>
+<section id="numerical-experiment" class="level4" data-number="5.1.1.1">
+<h4 data-number="5.1.1.1" class="anchored" data-anchor-id="numerical-experiment"><span class="header-section-number">5.1.1.1</span> Numerical experiment</h4>
+<p>To study the decay of a free charge denoted by an electrical charge density, we define as initial condition for <span class="math inline">\(t=0\)</span> that <span class="math inline">\(\rho_E(0) = 1~A\cdot s\cdot m^{-3}\)</span> .</p>
+<div id="eeb68a9c" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sigma_n <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>epsilon_n <span class="op">=</span> <span class="fl">8.854e-12</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rho(t):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> np.exp(<span class="op">-</span>sigma_n<span class="op">/</span>epsilon_n <span class="op">*</span> t)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>t_n <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">13</span>, <span class="op">-</span><span class="dv">7</span>, num<span class="op">=</span><span class="dv">71</span>, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.semilogx(t_n, rho(t_n))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'t in s'</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$\rho_E(t)/\rho_E(0)$'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pde_files/figure-html/cell-2-output-1.png" width="591" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can calculate the time at which the charge density decays to a given fraction of the initial value, e.g., to 1 ppm.</p>
+<div id="ac683dbb" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>t, sigma, epsilon, rho0 <span class="op">=</span> symbols(<span class="st">'t sigma epsilon rho_0'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>rhoE <span class="op">=</span> symbols(<span class="st">'rho_E'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>expr <span class="op">=</span> rhoE <span class="op">-</span> rho0 <span class="op">*</span> exp(<span class="op">-</span>sigma <span class="op">/</span> epsilon <span class="op">*</span> t)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>tt <span class="op">=</span> solve(expr, t)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tt[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
+<p><span class="math inline">\(\displaystyle \frac{\epsilon \log{\left(\frac{\rho_{0}}{\rho_{E}} \right)}}{\sigma}\)</span></p>
+</div>
+</div>
+<p>We see that the time <span class="math inline">\(t\)</span> at which a certain fraction of the initial charge density is obtained, can be calculated using</p>
+<p><span class="math display">\[
+\hat{t} = \frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{0}}{\rho_{E}} \right)} = -\frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{E}}{\rho_{0}} \right)}
+\]</span></p>
+<div id="f8c67d78" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tstar <span class="op">=</span> <span class="op">-</span>epsilon_n <span class="op">/</span> sigma_n <span class="op">*</span> np.log(<span class="fl">1e-6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>With the values given above, the charge density drops to 1 ppm after 1.22e-08.</p>
+</section>
+</section>
+</section>
+<section id="the-telegraph-equation" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="the-telegraph-equation"><span class="header-section-number">5.2</span> The Telegraph equation</h2>
+<p>By virtue of <a href="#eq-vector-identity" class="quarto-xref"><span>5.2</span></a> we can cast the curl-curl equation <a href="#eq-curlcurl" class="quarto-xref"><span>5.1</span></a> into the telegraph equation of induction, such that</p>
+<p><span id="eq-telegraph-full"><span class="math display">\[
+-\nabla^2 \mathbf e + \mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
+\tag{5.3}\]</span></span></p>
 
 
 </section>
