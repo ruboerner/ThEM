@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Theory of Electromagnetic Methods",
     "section": "",
-    "text": "1 Remarks\nThese are the notes for the lecture on “Theory of Electromagnetic Methods”.\nAll materials are stored in the GitHub repo https://github.com/ruboerner/ThEM.\nHave fun!",
+    "text": "1 Remarks\nThese are the notes for the lecture on Theory of Electromagnetic Methods.\nAll materials are stored in the GitHub repo https://github.com/ruboerner/ThEM.\nHave fun!",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Remarks</span>"
     ]
@@ -18,37 +18,6 @@
     "crumbs": [
       "Introduction",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Electromagnetic fields</span>"
-    ]
-  },
-  {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n2",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
-    ]
-  },
-  {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
-    "section": "",
-    "text": "Knuth, D.E., 1984. Literate programming. Comput. J.,\n27, 97–111, Oxford University Press, Inc. doi:10.1093/comjnl/27.2.97",
-    "crumbs": [
-      "References"
-    ]
-  },
-  {
-    "objectID": "fourier.html",
-    "href": "fourier.html",
-    "title": "3  Fourier transform",
-    "section": "",
-    "text": "We associate both sets of fields by a Fourier transform: \\[\n\\begin{align}\nF(\\omega) & = \\int\\limits_{-\\infty}^\\infty f(t) e^{-i\\omega t}\\,\\mathrm d t \\\\\nf(t) & = \\frac{1}{2\\pi} \\int\\limits_{-\\infty}^\\infty F(\\omega) e^{i\\omega t}\\,\\mathrm d\\omega\n\\end{align}\n\\tag{3.1}\\]",
-    "crumbs": [
-      "Introduction",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Fourier transform</span>"
     ]
   },
   {
@@ -71,6 +40,17 @@
     "crumbs": [
       "Introduction",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Electromagnetic fields</span>"
+    ]
+  },
+  {
+    "objectID": "fourier.html",
+    "href": "fourier.html",
+    "title": "3  Fourier transform",
+    "section": "",
+    "text": "We associate both sets of fields by a Fourier transform: \\[\n\\begin{align}\nF(\\omega) & = \\int\\limits_{-\\infty}^\\infty f(t) e^{-i\\omega t}\\,\\mathrm d t \\\\\nf(t) & = \\frac{1}{2\\pi} \\int\\limits_{-\\infty}^\\infty F(\\omega) e^{i\\omega t}\\,\\mathrm d\\omega\n\\end{align}\n\\tag{3.1}\\]",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Fourier transform</span>"
     ]
   },
   {
@@ -115,6 +95,94 @@
     "crumbs": [
       "Introduction",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Partial Differential Equations</span>"
+    ]
+  },
+  {
+    "objectID": "Differential_Operators_Sympy.html",
+    "href": "Differential_Operators_Sympy.html",
+    "title": "6  Differential operators using sympy",
+    "section": "",
+    "text": "6.1 Gradient\n\\[\n\\nabla f\n\\]",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
+    ]
+  },
+  {
+    "objectID": "Differential_Operators_Sympy.html#divergence",
+    "href": "Differential_Operators_Sympy.html#divergence",
+    "title": "6  Differential operators using sympy",
+    "section": "6.2 Divergence",
+    "text": "6.2 Divergence\n\\[\n\\nabla \\cdot \\mathbf F\n\\]",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
+    ]
+  },
+  {
+    "objectID": "Differential_Operators_Sympy.html#curl",
+    "href": "Differential_Operators_Sympy.html#curl",
+    "title": "6  Differential operators using sympy",
+    "section": "6.3 Curl",
+    "text": "6.3 Curl\n\\[\n\\nabla \\times \\mathbf F\n\\]\n\ndef nabla(f, x, y, z):\n    return Matrix([f.diff(x), f.diff(y), f.diff(z)])\n\ndef nabla_v(f, x, y, z,  v):\n    return nabla(f, x, y, z).dot(v)\n\ndef gradient_op(f, *variables):\n    \"\"\"Return the vector gradient of a scalar function.\"\"\"\n    return Matrix([f.diff(v) for v in variables ])\n\ndef divergence_op(vec_F, *vars):\n    \"\"\"Return the scalar divergence of a vector field.\"\"\"\n    return sum( Matrix( [ vec_F[i].diff(v) for i,v in enumerate(vars)]) )\n\ndef curl_part(vec_F, u, v, *vars):\n    return vec_F[v].diff(vars[u]) - vec_F[u].diff(vars[v])\n    \ndef curl_op(vec_F, *vars):\n    \"\"\"Return the curl of a vector field.\"\"\"\n    return Matrix([curl_part(vec_F, u, v, *vars) for u, v in [(1,2), (2,0), (0,1)]])\n\n\nx, y, z = symbols('x y z', real=True)\n\nCompute the gradient of \\[\nf = \\frac{1}{r},\n\\] where \\(r = \\sqrt{x^2 + y^2 + z^2}\\).\n\nr = sqrt(x**2 + y**2 + z**2)\n\n\ng = gradient_op(1 / r, x, y, z) #subs(sqrt(x**2 + y**2 + z**2), r)\n\n\ndivergence_op(g, x, y, z)\n\n\\(\\displaystyle \\frac{3 x^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} + \\frac{3 y^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} + \\frac{3 z^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} - \\frac{3}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{3}{2}}}\\)\n\n\n\ncurl_op(g, x, y, z)\n\n\\(\\displaystyle \\left[\\begin{matrix}0\\\\0\\\\0\\end{matrix}\\right]\\)",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
+    ]
+  },
+  {
+    "objectID": "Differential_Operators_Sympy.html#curl-formula",
+    "href": "Differential_Operators_Sympy.html#curl-formula",
+    "title": "6  Differential operators using sympy",
+    "section": "6.4 Curl formula",
+    "text": "6.4 Curl formula\n\nP, Q, R = [Function(ch, real = True)(x, y, z) for ch in ['P', 'Q', 'R']]\nP, Q, R\n\n(P(x, y, z), Q(x, y, z), R(x, y, z))\n\n\n\ncurl_op(Matrix([P, Q, R]), x, y, z)\n\n\\(\\displaystyle \\left[\\begin{matrix}- \\frac{\\partial}{\\partial z} Q{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial y} R{\\left(x,y,z \\right)}\\\\\\frac{\\partial}{\\partial z} P{\\left(x,y,z \\right)} - \\frac{\\partial}{\\partial x} R{\\left(x,y,z \\right)}\\\\- \\frac{\\partial}{\\partial y} P{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial x} Q{\\left(x,y,z \\right)}\\end{matrix}\\right]\\)",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
+    ]
+  },
+  {
+    "objectID": "Differential_Operators_Sympy.html#divergence-formula",
+    "href": "Differential_Operators_Sympy.html#divergence-formula",
+    "title": "6  Differential operators using sympy",
+    "section": "6.5 Divergence formula",
+    "text": "6.5 Divergence formula\n\ndivergence_op(Matrix([P, Q, R]), x, y, z)\n\n\\(\\displaystyle \\frac{\\partial}{\\partial x} P{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial y} Q{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial z} R{\\left(x,y,z \\right)}\\)",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
+    ]
+  },
+  {
+    "objectID": "semisphere.html",
+    "href": "semisphere.html",
+    "title": "7  Potential of a point source in a semi-sphere embedded in a uniform halfspace",
+    "section": "",
+    "text": "7.1 Verification\nLet’s check that the potential and the current density are actually continuous at \\(r=a\\).\nWe first form the respective expressions for \\(r=a\\) and check if the results vanish according to .\nD = U1.subs(r,a) - U2.subs(r,a)\nD\n\n\\(\\displaystyle \\frac{I \\rho_{1}}{2 \\pi a} - \\frac{I \\rho_{2}}{2 \\pi a} + \\frac{I \\left(- \\rho_{1} + \\rho_{2}\\right)}{2 \\pi a}\\)\nD.simplify()\n\n\\(\\displaystyle 0\\)\nThis result can be obtained directly by using the expression ex1 for the continuity of the potential:\nex1.subs(r, a).subs(A, A_).subs(B, B_).simplify()\n\n\\(\\displaystyle 0\\)\nIn ex2 we have used the condition for continuity of the radial component of the current densities:\nex2.subs(r, a).subs(B, B_)\n\n\\(\\displaystyle 0\\)\nBoth results indicate that the conditions of continuity are fullfilled.",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Potential of a point source in a semi-sphere embedded in a uniform halfspace</span>"
+    ]
+  },
+  {
+    "objectID": "semisphere.html#visualization-of-the-result",
+    "href": "semisphere.html#visualization-of-the-result",
+    "title": "7  Potential of a point source in a semi-sphere embedded in a uniform halfspace",
+    "section": "7.2 Visualization of the result",
+    "text": "7.2 Visualization of the result\n\nimport matplotlib.pyplot as plt\n\n\nrho1_n = 100.0\nrho2_n = 1000.0\na_n = 3.0\n\n\nU1_f = lambdify([rho1, rho2, r, a, I], U1)\nU2_f = lambdify([rho1, rho2, r, a, I], U2)\n\n\nR1 = np.arange(1.0, a_n + .01, 0.1)\nR2 = np.arange(a_n, 10.0, 0.1)\n\n\nplt.plot(R1, [U1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [U2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Electric Potential\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\nE1_f = lambdify([rho1, rho2, r, a, I], -diff(U1, r))\nE2_f = lambdify([rho1, rho2, r, a, I], -diff(U2, r))\n\nj1_f = lambdify([rho1, rho2, r, a, I], -diff(U1, r) / rho1)\nj2_f = lambdify([rho1, rho2, r, a, I], -diff(U2, r) / rho2)\n\n\nplt.plot(R1, [j1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [j2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Current density\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\nplt.plot(R1, [E1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [E2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Electric Field\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\nThe value of a a is {eval}a_n",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Potential of a point source in a semi-sphere embedded in a uniform halfspace</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "8  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n2",
+    "crumbs": [
+      "Summary",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Summary</span>"
     ]
   }
 ]

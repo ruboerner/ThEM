@@ -15,6 +15,8 @@ book:
       - fourier.qmd
       - maxwell.qmd
       - pde.qmd
+      - Differential_Operators_Sympy.ipynb
+      - semisphere.ipynb
     - part: "Summary"
       chapters: 
         - summary.qmd
@@ -29,9 +31,9 @@ format:
     crossref:
       chapters: true
       eq-prefix: ""
-  pdf:
-    documentclass: scrreprt
-    papersize: a4
+#  pdf:
+#    documentclass: scrreprt
+#    papersize: a4
 
 editor: visual
 
