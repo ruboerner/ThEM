@@ -50,7 +50,7 @@ We refer to the following *types* of PDEs:
 
 ## The curl-curl equation
 
-We first eliminate one field from the set of Maxwell's equations by applying the *curl operator* ($\nabla \times$) to one of the equations.
+We first eliminate one field from the set of Maxwell's equations by applying the *curl operator* ($\nabla \times$) to one of the equations, i.e., Faraday's law.
 
 This results in a second-order PDE because we differentiate twice with respect to spatial coordinates.
 
@@ -73,31 +73,49 @@ $$
 $$
 :::
 
-Finally, we obtain the **curl-curl equation** for the electric field as $$
+Finally, we obtain the **curl-curl equation** for the electric field $\mathbf e$ as $$
 \nabla \times \nabla \times \mathbf e  +\mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
 $$ {#eq-curlcurl}
 
 This is a second-order PDE with first- and second-order time derivatives.
 
+Note that you obtain a similar PDE for the magnetic field $\mathbf h$ if you apply the steps outlined above to Ampere's law.
+
 Often, a slightly different form of @eq-curlcurl is used.
 
-The following vector identity is useful: $$
+The following identity is useful for any vector field $\mathbf f$: $$
 \nabla \times \nabla \times \mathbf f = \nabla \nabla \cdot \mathbf f - \nabla^2 \mathbf f 
 $$ {#eq-vector-identity}
 
-When $\nabla \cdot \mathbf f = 0$, then the curl-curl operator can be replaced by $-\nabla^2$.
+This equation is useful, e.g., when $\nabla \cdot \mathbf f = 0$. In this case the curl-curl operator can be replaced by $-\nabla^2$, the *vector Laplace operator* defined over a vector field.
+
+::: callout-warning
+The vector Laplacian is similar to the scalar Laplacian. The scalar Laplacian applies to a scalar field and returns a scalar quantity, whereas the vector Laplacian applies to a vector field and returns a vector quantity.
+
+In Cartesian coordinates, the returned vector field is equal to the vector field of the scalar Laplacian applied to each vector component.
+:::
+
+Under which conditions can we switch from the *curl-curl* to the *Laplace* operator? Clearly, the term $\nabla \nabla \cdot \mathbf f$ must vanish (or its contribution must be negligible).
 
 ### Decay of free charges
 
-When the electric field $\mathbf e$ is considered, the following problem must be discussed. Under which conditions will $\nabla \cdot \mathbf e$ vanish?
+When the electric field $\mathbf e$ is considered, we are faced with the following problem: Under which conditions $\nabla \cdot \mathbf e$ becomes negligible small?
 
-The answer should be clear: When there are no free charges present in the considered domain!
+The answer should be clear: When there are no free charges present in the considered domain, there is no associated electric field.
 
-Let's check this:
+Recall, that in a uniform dielectric medium there holds *Gauß' s law* for electric charges
 
-We want to show that $\nabla \cdot \mathbf e \approx 0$ for a very short time $t>0$. As long as $t \le 0$, there is a certain charge density $\rho_E(t)$ concentrated at, e.g., the origin of a uniform fullspace.
+$$
+\nabla \cdot \mathbf e = \frac{\rho_E}{\varepsilon},
+$$
 
-We apply the divergence to Ampere's law:
+where $\rho_E$ is the volume charge density and $\varepsilon = \varepsilon_r \varepsilon_0$ is the permittivity.
+
+Let's find out how to solve the problem.
+
+We want to show that $\nabla \cdot \mathbf e \approx 0$ for some time $t>0$. As long as $t \le 0$, there is a certain charge density $\rho_E(t)$ concentrated at, e.g., the origin of a uniform fullspace.
+
+We apply the divergence operator to Ampere's law:
 
 $$
 \begin{align}
@@ -119,12 +137,16 @@ $$
 Its solution is
 
 $$
-\rho_E(t) = \rho_E(0) e^{-\frac{\sigma}{\varepsilon}t}
-$$
+\rho_E(t) = \rho_E(0) \exp\left({-\frac{\sigma}{\varepsilon}t}\right).
+$$ {#eq-decay}
 
 #### Numerical experiment
 
 To study the decay of a free charge denoted by an electrical charge density, we define as initial condition for $t=0$ that $\rho_E(0) = 1~A\cdot s\cdot m^{-3}$ .
+
+Further, the conductivity of the uniform fullspace is 0.01 S/m.
+
+We plot the function @eq-decay for a very small time window:
 
 ```{python}
 #| code-fold: true
@@ -145,7 +167,11 @@ plt.ylabel(r'$\rho_E(t)/\rho_E(0)$')
 plt.show()
 ```
 
-We can calculate the time at which the charge density decays to a given fraction of the initial value, e.g., to 1 ppm.
+By visual inspection, after approx. 10 ns the volume charge density has dropped to zero.
+
+Let's be more precise:
+
+We can calculate the time at which the charge density decays to a given fraction of its initial value, e.g., to 1 ppm.
 
 ```{python}
 from sympy import *
@@ -159,7 +185,7 @@ tt = solve(expr, t)
 tt[0]
 ```
 
-We see that the time $t$ at which a certain fraction of the initial charge density is obtained, can be calculated using
+We find that the time $t$ at which a certain fraction of the initial charge density is obtained, can be calculated using
 
 $$
 \hat{t} = \frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{0}}{\rho_{E}} \right)} = -\frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{E}}{\rho_{0}} \right)}
@@ -169,7 +195,7 @@ $$
 tstar = -epsilon_n / sigma_n * np.log(1e-6)
 ```
 
-With the values given above, the charge density drops to 1 ppm after `{python} '{0:.2e}'.format(tstar)`.
+With the values given above, the charge density drops to 1 ppm of its initial value after `{python} '{0:.2e}'.format(tstar)` seconds.
 
 ## The Telegraph equation
 
@@ -178,3 +204,41 @@ By virtue of @eq-vector-identity we can cast the curl-curl equation @eq-curlcurl
 $$
 -\nabla^2 \mathbf e + \mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
 $$ {#eq-telegraph-full}
+
+::: callout-note
+Note that the same PDE can be derived for the magnetic field!
+:::
+
+Eq. @eq-telegraph-full and @eq-curlcurl are second-order linear PDEs with at most second-order time derivatives. Hence, they describe wave phenomena.
+
+::: callout-note
+A second-order, linear, constant-coefficient PDE for $u$ takes the general form
+
+$$
+A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
+$$
+
+This PDE is classified as being
+
+-   *parabolic,* when $B^2 - AC = 0$
+
+-   *hyperbolic*, when $B^2 - AC > 0$
+
+-   *elliptic*, when $B^2 - AC < 0$.
+
+In our case, $x$ plays the role of any spatial variable, and $t$ plays the role of $y$.
+
+Hence, for @eq-telegraph-full, $A=-1$, $E=\mu\sigma$, $C=\mu\varepsilon$, and the remaining coefficients are zero.
+
+Checks:
+
+$B^2 - AC = 0 - (-1 \cdot \mu\varepsilon) > 0$ $\to$ PDE is *hyperbolic*.
+
+$B^2 - AC = 0 - (-1 \cdot 0) = 0$ $\to$ PDE is *parabolic*
+
+For the elliptic PDE there are no time derivatives, we can therefore let $x$ and $y$ take their roles as Cartesian coordinates.
+
+So, with $A = C = -1$,
+
+$B^2 - AC = 0 - (-1 \cdot -1) < 0$ $\to$ PDE is elliptic.
+:::

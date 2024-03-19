@@ -339,7 +339,7 @@ Self-study questions
 </div>
 <section id="the-curl-curl-equation" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="the-curl-curl-equation"><span class="header-section-number">5.1</span> The curl-curl equation</h2>
-<p>We first eliminate one field from the set of Maxwell’s equations by applying the <em>curl operator</em> (<span class="math inline">\(\nabla \times\)</span>) to one of the equations.</p>
+<p>We first eliminate one field from the set of Maxwell’s equations by applying the <em>curl operator</em> (<span class="math inline">\(\nabla \times\)</span>) to one of the equations, i.e., Faraday’s law.</p>
 <p>This results in a second-order PDE because we differentiate twice with respect to spatial coordinates.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -372,22 +372,43 @@ Tip
 </div>
 </div>
 </div>
-<p>Finally, we obtain the <strong>curl-curl equation</strong> for the electric field as <span id="eq-curlcurl"><span class="math display">\[
+<p>Finally, we obtain the <strong>curl-curl equation</strong> for the electric field <span class="math inline">\(\mathbf e\)</span> as <span id="eq-curlcurl"><span class="math display">\[
 \nabla \times \nabla \times \mathbf e  +\mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
 \tag{5.1}\]</span></span></p>
 <p>This is a second-order PDE with first- and second-order time derivatives.</p>
+<p>Note that you obtain a similar PDE for the magnetic field <span class="math inline">\(\mathbf h\)</span> if you apply the steps outlined above to Ampere’s law.</p>
 <p>Often, a slightly different form of <a href="#eq-curlcurl" class="quarto-xref"><span>5.1</span></a> is used.</p>
-<p>The following vector identity is useful: <span id="eq-vector-identity"><span class="math display">\[
+<p>The following identity is useful for any vector field <span class="math inline">\(\mathbf f\)</span>: <span id="eq-vector-identity"><span class="math display">\[
 \nabla \times \nabla \times \mathbf f = \nabla \nabla \cdot \mathbf f - \nabla^2 \mathbf f
 \tag{5.2}\]</span></span></p>
-<p>When <span class="math inline">\(\nabla \cdot \mathbf f = 0\)</span>, then the curl-curl operator can be replaced by <span class="math inline">\(-\nabla^2\)</span>.</p>
+<p>This equation is useful, e.g., when <span class="math inline">\(\nabla \cdot \mathbf f = 0\)</span>. In this case the curl-curl operator can be replaced by <span class="math inline">\(-\nabla^2\)</span>, the <em>vector Laplace operator</em> defined over a vector field.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The vector Laplacian is similar to the scalar Laplacian. The scalar Laplacian applies to a scalar field and returns a scalar quantity, whereas the vector Laplacian applies to a vector field and returns a vector quantity.</p>
+<p>In Cartesian coordinates, the returned vector field is equal to the vector field of the scalar Laplacian applied to each vector component.</p>
+</div>
+</div>
+<p>Under which conditions can we switch from the <em>curl-curl</em> to the <em>Laplace</em> operator? Clearly, the term <span class="math inline">\(\nabla \nabla \cdot \mathbf f\)</span> must vanish (or its contribution must be negligible).</p>
 <section id="decay-of-free-charges" class="level3" data-number="5.1.1">
 <h3 data-number="5.1.1" class="anchored" data-anchor-id="decay-of-free-charges"><span class="header-section-number">5.1.1</span> Decay of free charges</h3>
-<p>When the electric field <span class="math inline">\(\mathbf e\)</span> is considered, the following problem must be discussed. Under which conditions will <span class="math inline">\(\nabla \cdot \mathbf e\)</span> vanish?</p>
-<p>The answer should be clear: When there are no free charges present in the considered domain!</p>
-<p>Let’s check this:</p>
-<p>We want to show that <span class="math inline">\(\nabla \cdot \mathbf e \approx 0\)</span> for a very short time <span class="math inline">\(t&gt;0\)</span>. As long as <span class="math inline">\(t \le 0\)</span>, there is a certain charge density <span class="math inline">\(\rho_E(t)\)</span> concentrated at, e.g., the origin of a uniform fullspace.</p>
-<p>We apply the divergence to Ampere’s law:</p>
+<p>When the electric field <span class="math inline">\(\mathbf e\)</span> is considered, we are faced with the following problem: Under which conditions <span class="math inline">\(\nabla \cdot \mathbf e\)</span> becomes negligible small?</p>
+<p>The answer should be clear: When there are no free charges present in the considered domain, there is no associated electric field.</p>
+<p>Recall, that in a uniform dielectric medium there holds <em>Gauß’ s law</em> for electric charges</p>
+<p><span class="math display">\[
+\nabla \cdot \mathbf e = \frac{\rho_E}{\varepsilon},
+\]</span></p>
+<p>where <span class="math inline">\(\rho_E\)</span> is the volume charge density and <span class="math inline">\(\varepsilon = \varepsilon_r \varepsilon_0\)</span> is the permittivity.</p>
+<p>Let’s find out how to solve the problem.</p>
+<p>We want to show that <span class="math inline">\(\nabla \cdot \mathbf e \approx 0\)</span> for some time <span class="math inline">\(t&gt;0\)</span>. As long as <span class="math inline">\(t \le 0\)</span>, there is a certain charge density <span class="math inline">\(\rho_E(t)\)</span> concentrated at, e.g., the origin of a uniform fullspace.</p>
+<p>We apply the divergence operator to Ampere’s law:</p>
 <p><span class="math display">\[
 \begin{align}
 \nabla \cdot \nabla \times \mathbf h &amp; = \nabla \cdot \mathbf j + \partial_t \nabla \cdot \mathbf d \\
@@ -403,13 +424,15 @@ Tip
 \frac{\sigma}{\varepsilon} \rho_E + \dot{\rho_E} = 0.
 \]</span></p>
 <p>Its solution is</p>
-<p><span class="math display">\[
-\rho_E(t) = \rho_E(0) e^{-\frac{\sigma}{\varepsilon}t}
-\]</span></p>
+<p><span id="eq-decay"><span class="math display">\[
+\rho_E(t) = \rho_E(0) \exp\left({-\frac{\sigma}{\varepsilon}t}\right).
+\tag{5.3}\]</span></span></p>
 <section id="numerical-experiment" class="level4" data-number="5.1.1.1">
 <h4 data-number="5.1.1.1" class="anchored" data-anchor-id="numerical-experiment"><span class="header-section-number">5.1.1.1</span> Numerical experiment</h4>
 <p>To study the decay of a free charge denoted by an electrical charge density, we define as initial condition for <span class="math inline">\(t=0\)</span> that <span class="math inline">\(\rho_E(0) = 1~A\cdot s\cdot m^{-3}\)</span> .</p>
-<div id="fe776701" class="cell" data-execution_count="1">
+<p>Further, the conductivity of the uniform fullspace is 0.01 S/m.</p>
+<p>We plot the function <a href="#eq-decay" class="quarto-xref"><span>5.3</span></a> for a very small time window:</p>
+<div id="acb1ad80" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -436,8 +459,10 @@ Tip
 </div>
 </div>
 </div>
-<p>We can calculate the time at which the charge density decays to a given fraction of the initial value, e.g., to 1 ppm.</p>
-<div id="933ccbdc" class="cell" data-execution_count="2">
+<p>By visual inspection, after approx. 10 ns the volume charge density has dropped to zero.</p>
+<p>Let’s be more precise:</p>
+<p>We can calculate the time at which the charge density decays to a given fraction of its initial value, e.g., to 1 ppm.</p>
+<div id="9c87ba3d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>t, sigma, epsilon, rho0 <span class="op">=</span> symbols(<span class="st">'t sigma epsilon rho_0'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
@@ -451,14 +476,14 @@ Tip
 <p><span class="math inline">\(\displaystyle \frac{\epsilon \log{\left(\frac{\rho_{0}}{\rho_{E}} \right)}}{\sigma}\)</span></p>
 </div>
 </div>
-<p>We see that the time <span class="math inline">\(t\)</span> at which a certain fraction of the initial charge density is obtained, can be calculated using</p>
+<p>We find that the time <span class="math inline">\(t\)</span> at which a certain fraction of the initial charge density is obtained, can be calculated using</p>
 <p><span class="math display">\[
 \hat{t} = \frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{0}}{\rho_{E}} \right)} = -\frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{E}}{\rho_{0}} \right)}
 \]</span></p>
-<div id="f98009a9" class="cell" data-execution_count="3">
+<div id="83ea9bbe" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tstar <span class="op">=</span> <span class="op">-</span>epsilon_n <span class="op">/</span> sigma_n <span class="op">*</span> np.log(<span class="fl">1e-6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>With the values given above, the charge density drops to 1 ppm after 1.22e-08.</p>
+<p>With the values given above, the charge density drops to 1 ppm of its initial value after 1.22e-08 seconds.</p>
 </section>
 </section>
 </section>
@@ -467,7 +492,51 @@ Tip
 <p>By virtue of <a href="#eq-vector-identity" class="quarto-xref"><span>5.2</span></a> we can cast the curl-curl equation <a href="#eq-curlcurl" class="quarto-xref"><span>5.1</span></a> into the telegraph equation of induction, such that</p>
 <p><span id="eq-telegraph-full"><span class="math display">\[
 -\nabla^2 \mathbf e + \mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
-\tag{5.3}\]</span></span></p>
+\tag{5.4}\]</span></span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that the same PDE can be derived for the magnetic field!</p>
+</div>
+</div>
+<p>Eq. <a href="#eq-telegraph-full" class="quarto-xref"><span>5.4</span></a> and <a href="#eq-curlcurl" class="quarto-xref"><span>5.1</span></a> are second-order linear PDEs with at most second-order time derivatives. Hence, they describe wave phenomena.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A second-order, linear, constant-coefficient PDE for <span class="math inline">\(u\)</span> takes the general form</p>
+<p><span class="math display">\[
+A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
+\]</span></p>
+<p>This PDE is classified as being</p>
+<ul>
+<li><p><em>parabolic,</em> when <span class="math inline">\(B^2 - AC = 0\)</span></p></li>
+<li><p><em>hyperbolic</em>, when <span class="math inline">\(B^2 - AC &gt; 0\)</span></p></li>
+<li><p><em>elliptic</em>, when <span class="math inline">\(B^2 - AC &lt; 0\)</span>.</p></li>
+</ul>
+<p>In our case, <span class="math inline">\(x\)</span> plays the role of any spatial variable, and <span class="math inline">\(t\)</span> plays the role of <span class="math inline">\(y\)</span>.</p>
+<p>Hence, for <a href="#eq-telegraph-full" class="quarto-xref"><span>5.4</span></a>, <span class="math inline">\(A=-1\)</span>, <span class="math inline">\(E=\mu\sigma\)</span>, <span class="math inline">\(C=\mu\varepsilon\)</span>, and the remaining coefficients are zero.</p>
+<p>Checks:</p>
+<p><span class="math inline">\(B^2 - AC = 0 - (-1 \cdot \mu\varepsilon) &gt; 0\)</span> <span class="math inline">\(\to\)</span> PDE is <em>hyperbolic</em>.</p>
+<p><span class="math inline">\(B^2 - AC = 0 - (-1 \cdot 0) = 0\)</span> <span class="math inline">\(\to\)</span> PDE is <em>parabolic</em></p>
+<p>For the elliptic PDE there are no time derivatives, we can therefore let <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> take their roles as Cartesian coordinates.</p>
+<p>So, with <span class="math inline">\(A = C = -1\)</span>,</p>
+<p><span class="math inline">\(B^2 - AC = 0 - (-1 \cdot -1) &lt; 0\)</span> <span class="math inline">\(\to\)</span> PDE is elliptic.</p>
+</div>
+</div>
 
 
 </section>
