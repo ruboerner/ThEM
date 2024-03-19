@@ -1,0 +1,11 @@
+---
+
+---
+
+# Remarks
+
+These are the notes for the lecture on **Theory of Electromagnetic Methods**.
+
+All materials are stored in the GitHub repo <https://github.com/ruboerner/ThEM>.
+
+Have fun!
