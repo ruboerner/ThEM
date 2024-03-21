@@ -565,7 +565,7 @@ The last part of the equation approximates the skin depth. With $\rho$ given in 
 The following animation shows the real and imaginary part of the magnetic field for a frequency of 1 Hz in a uniform halfspace with a resistivity of 100 $\Omega \cdot m$.
 The red and green horizontal lines indicate the skin depth and the wave length, resp.
 
-Check: For $\rho = 100~\Omega \cdot m$ and $f = 1$ s, the skin depth is approximately
+Check: For $\rho = 100~\Omega \cdot m$ and $f = 1$ Hz, the skin depth is approximately
 $$
 \tau = 503 \sqrt{\rho / f} \approx 5.03 \text{ km.}
 $$
