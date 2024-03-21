@@ -283,8 +283,11 @@ window.Quarto = {
 
 
 <div id="ad7a6582-5a62-4edd-8c29-4b0aa1aa5731" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>We consider a uniform halfspace with resistivity <span class="math inline">\(\rho_2\)</span>. There is a point source <span class="math inline">\(I\)</span> located at the origin. The semi-sphere of radius <span class="math inline">\(a\)</span> has a resistivity of <span class="math inline">\(\rho_1\)</span>. The semi-sphere is aligned with the <span class="math inline">\(z\)</span>-axis.</p>
 <p>We make the ansatz:</p>
@@ -303,40 +306,67 @@ U_1 &amp; = U_2 \\
 \end{align}
 \]</span></p>
 <div id="3de24ef4-aa22-4076-a71c-293a2534fb17" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a, r, rho1, rho2, I <span class="op">=</span> symbols(<span class="st">'a r rho_1 rho_2 I'</span>, real<span class="op">=</span><span class="va">True</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>A, B <span class="op">=</span> symbols(<span class="st">"A B"</span>, real<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="4a21415f-c839-461a-b5ed-596ad669dfed" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>U_1 <span class="op">=</span> rho1 <span class="op">*</span> I <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> pi <span class="op">*</span> r) <span class="op">+</span> A</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>U_2 <span class="op">=</span> rho2 <span class="op">*</span> B <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> pi <span class="op">*</span> r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="07ce2daa-9480-4af2-8254-28c55f4cfcc7" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dU1dr <span class="op">=</span> diff(U_1, r)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dU2dr <span class="op">=</span> diff(U_2, r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="476812c6-913c-4ac5-aab7-a8520fba03c5" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ex1 <span class="op">=</span> U_1 <span class="op">-</span> U_2</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ex2 <span class="op">=</span> dU1dr <span class="op">/</span> rho1 <span class="op">-</span> dU2dr <span class="op">/</span> rho2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="5dac4b36-d984-43b1-a5bb-eddb28695c2f" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sols <span class="op">=</span> solve([ex1.subs(r, a), ex2.subs(r, a)], [A, B])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="69e039fb-a880-47ff-afd4-e35927d5062c" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>A_ <span class="op">=</span> sols[A].simplify()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>B_ <span class="op">=</span> sols[B].simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="6923e75c-354c-4e4c-b745-aee42146c883" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>U1 <span class="op">=</span> U_1.subs(A, A_)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>U2 <span class="op">=</span> U_2.subs(B, B_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="52342a46-6ea0-4715-9a70-6db58351c2ee" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>U1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
 <p><span class="math inline">\(\displaystyle \frac{I \rho_{1}}{2 \pi r} + \frac{I \left(- \rho_{1} + \rho_{2}\right)}{2 \pi a}\)</span></p>
 </div>
 </div>
 <div id="1fa0c35d-951d-44c2-9fa8-653598cbf695" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>U2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="10">
 <p><span class="math inline">\(\displaystyle \frac{I \rho_{2}}{2 \pi r}\)</span></p>
 </div>
@@ -353,28 +383,40 @@ U_2(r) = \frac{I \rho_{2}}{2 \pi r}
 <p>Let’s check that the potential and the current density are actually continuous at <span class="math inline">\(r=a\)</span>.</p>
 <p>We first form the respective expressions for <span class="math inline">\(r=a\)</span> and check if the results vanish.</p>
 <div id="4bcf6029-94ea-4326-93cd-fcb1225c1a1c" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> U1.subs(r,a) <span class="op">-</span> U2.subs(r,a)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="11">
 <p><span class="math inline">\(\displaystyle \frac{I \rho_{1}}{2 \pi a} - \frac{I \rho_{2}}{2 \pi a} + \frac{I \left(- \rho_{1} + \rho_{2}\right)}{2 \pi a}\)</span></p>
 </div>
 </div>
 <div id="eebdb1dd-8ca6-4242-a4ef-5f76389ead3a" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>D.simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="12">
 <p><span class="math inline">\(\displaystyle 0\)</span></p>
 </div>
 </div>
 <p>This result can be obtained directly by using the expression <code>ex1</code> for the continuity of the potential:</p>
 <div id="368c4a25-27ac-40b1-b3e6-6366c7cf5600" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ex1.subs(r, a).subs(A, A_).subs(B, B_).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="13">
 <p><span class="math inline">\(\displaystyle 0\)</span></p>
 </div>
 </div>
 <p>In <code>ex2</code> we have used the condition for continuity of the radial component of the current densities:</p>
 <div id="a6539118-9e0f-4c1d-93c5-8264f7bbfaee" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ex2.subs(r, a).subs(B, B_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="14">
 <p><span class="math inline">\(\displaystyle 0\)</span></p>
 </div>
@@ -384,28 +426,43 @@ U_2(r) = \frac{I \rho_{2}}{2 \pi r}
 <section id="visualization-of-the-result" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="visualization-of-the-result"><span class="header-section-number">7.2</span> Visualization of the result</h2>
 <div id="8fdaf749-fda0-4136-be93-0e96c64c4a98" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="ce64a8f5-b8c3-4045-b189-bce16a0fc4d7" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rho1_n <span class="op">=</span> <span class="fl">100.0</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>rho2_n <span class="op">=</span> <span class="fl">1000.0</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>a_n <span class="op">=</span> <span class="fl">3.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="f7c6c8a7-57ee-471a-a7e8-f760c66c560a" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>U1_f <span class="op">=</span> lambdify([rho1, rho2, r, a, I], U1)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>U2_f <span class="op">=</span> lambdify([rho1, rho2, r, a, I], U2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="f41cabc6-5769-4345-969c-50a4e7bad515" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>R1 <span class="op">=</span> np.arange(<span class="fl">1.0</span>, a_n <span class="op">+</span> <span class="fl">.01</span>, <span class="fl">0.1</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>R2 <span class="op">=</span> np.arange(a_n, <span class="fl">10.0</span>, <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="ed43886c-6e1b-4ba3-9d59-21fc6475806e" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.plot(R1, [U1_f(rho1_n, rho2_n, r, a_n, <span class="fl">1.0</span>) <span class="cf">for</span> r <span class="kw">in</span> R1])</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.plot(R2, [U2_f(rho1_n, rho2_n, r, a_n, <span class="fl">1.0</span>) <span class="cf">for</span> r <span class="kw">in</span> R2])</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Electric Potential"</span>)</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"r"</span>)</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -415,19 +472,25 @@ U_2(r) = \frac{I \rho_{2}}{2 \pi r}
 </div>
 </div>
 <div id="f1ca949d-f637-4c75-a1d8-8d61c6771b67" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>E1_f <span class="op">=</span> lambdify([rho1, rho2, r, a, I], <span class="op">-</span>diff(U1, r))</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>E2_f <span class="op">=</span> lambdify([rho1, rho2, r, a, I], <span class="op">-</span>diff(U2, r))</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>j1_f <span class="op">=</span> lambdify([rho1, rho2, r, a, I], <span class="op">-</span>diff(U1, r) <span class="op">/</span> rho1)</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>j2_f <span class="op">=</span> lambdify([rho1, rho2, r, a, I], <span class="op">-</span>diff(U2, r) <span class="op">/</span> rho2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="9a038554-3368-4f9d-bb43-4ccb4cbe2135" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.plot(R1, [j1_f(rho1_n, rho2_n, r, a_n, <span class="fl">1.0</span>) <span class="cf">for</span> r <span class="kw">in</span> R1])</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.plot(R2, [j2_f(rho1_n, rho2_n, r, a_n, <span class="fl">1.0</span>) <span class="cf">for</span> r <span class="kw">in</span> R2])</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Current density"</span>)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"r"</span>)</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -437,12 +500,15 @@ U_2(r) = \frac{I \rho_{2}}{2 \pi r}
 </div>
 </div>
 <div id="20215616-2a8a-4ee5-8aee-5bc05c6518c3" class="cell" data-execution_count="22">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.plot(R1, [E1_f(rho1_n, rho2_n, r, a_n, <span class="fl">1.0</span>) <span class="cf">for</span> r <span class="kw">in</span> R1])</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.plot(R2, [E2_f(rho1_n, rho2_n, r, a_n, <span class="fl">1.0</span>) <span class="cf">for</span> r <span class="kw">in</span> R2])</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Electric Field"</span>)</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"r"</span>)</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

@@ -437,7 +437,7 @@ Warning
 <p>To study the decay of a free charge denoted by an electrical charge density, we define as initial condition for <span class="math inline">\(t=0\)</span> that <span class="math inline">\(\rho_E(0) = 1~A\cdot s\cdot m^{-3}\)</span> .</p>
 <p>Further, the conductivity of the uniform fullspace is 0.01 S/m.</p>
 <p>We plot the function <a href="#eq-decay" class="quarto-xref"><span>5.3</span></a> for a very small time window:</p>
-<div id="a7728175" class="cell" data-execution_count="1">
+<div id="1720102d" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -467,7 +467,7 @@ Warning
 <p>By visual inspection, after approx. 10 ns the volume charge density has dropped to zero.</p>
 <p>Let’s be more precise:</p>
 <p>We can calculate the time at which the charge density decays to a given fraction of its initial value, e.g., to 1 ppm.</p>
-<div id="f514ea00" class="cell" data-execution_count="2">
+<div id="9c2a7664" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> <span class="op">*</span></span>
@@ -480,15 +480,15 @@ Warning
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>tt <span class="op">=</span> solve(expr, t)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tt[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="42">
-<p><span class="math display">\[\begin{equation}\frac{\epsilon \log{\left(\frac{\rho_{0}}{\rho_{E}} \right)}}{\sigma}\end{equation}\]</span></p>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
+<p><span class="math inline">\(\displaystyle \frac{\epsilon \log{\left(\frac{\rho_{0}}{\rho_{E}} \right)}}{\sigma}\)</span></p>
 </div>
 </div>
 <p>We find that the time <span class="math inline">\(t\)</span> at which a certain fraction of the initial charge density is obtained, can be calculated using</p>
 <p><span class="math display">\[
 \hat{t} = \frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{0}}{\rho_{E}} \right)} = -\frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{E}}{\rho_{0}} \right)}
 \]</span></p>
-<div id="d4026d01" class="cell" data-execution_count="3">
+<div id="e66c8bda" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tstar <span class="op">=</span> <span class="op">-</span>epsilon_n <span class="op">/</span> sigma_n <span class="op">*</span> np.log(<span class="fl">1e-6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -589,7 +589,7 @@ A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
 \frac{\eta_1}{\eta_2} = \frac{\mu\sigma}{\mu\varepsilon} T = c_0^2 \mu\sigma T \gg 1.
 \]</span></p>
 <p>We illustrate our findings and calculate meaningful values for the coefficients.</p>
-<div id="a0ca33d2" class="cell" data-execution_count="4">
+<div id="02f55e5a" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eta1(T, L, sigma):</span>
@@ -617,7 +617,7 @@ A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
 </div>
 </div>
 <p>In global investigations for which <span class="math inline">\(L \approx 10^4\)</span> km, we observe that <span class="math inline">\(\eta_2\)</span> is small (less than, e.g., 0.1) for <span class="math inline">\(T &gt; 0.1\)</span> seconds.</p>
-<div id="522924cf" class="cell" data-execution_count="5">
+<div id="18d99669" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(<span class="dv">1</span> <span class="op">/</span> T, [eta1(t, L, <span class="fl">1e-5</span>) <span class="op">/</span> eta2(t, L) <span class="cf">for</span> t <span class="kw">in</span> T])</span>
@@ -733,7 +733,7 @@ H_x(z) = H_x(0) e^{-i k z}.
 <p>We use <code>sympy</code> to exlore the problem:</p>
 <section id="symbolic-representation-of-k2" class="level4" data-number="5.4.1.1">
 <h4 data-number="5.4.1.1" class="anchored" data-anchor-id="symbolic-representation-of-k2"><span class="header-section-number">5.4.1.1</span> Symbolic representation of <span class="math inline">\(k^2\)</span></h4>
-<div id="f85cd096" class="cell" data-execution_count="6">
+<div id="96075aec" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy</span>
@@ -751,17 +751,17 @@ k^2 = (\alpha - i \beta)^2
 \]</span> and <span class="math display">\[
 -2 \alpha \beta = - \omega \mu \sigma.
 \]</span></p>
-<div id="f83719af" class="cell" data-execution_count="7">
+<div id="8ca09754" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>expr <span class="op">=</span> expand((alpha <span class="op">-</span> I <span class="op">*</span> beta)<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>re(expr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="47">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
 <p><span class="math display">\[\begin{equation}\alpha^{2} - \beta^{2}\end{equation}\]</span></p>
 </div>
 </div>
-<div id="03cc4d37" class="cell" data-execution_count="8">
+<div id="ed72b0bc" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>k2 <span class="op">=</span> <span class="op">-</span>I <span class="op">*</span> omega <span class="op">*</span> mu <span class="op">*</span> sigma</span>
@@ -772,7 +772,7 @@ k^2 = (\alpha - i \beta)^2
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> solve(ex, alpha)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>sol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="48">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
 <p><span class="math display">\[\begin{equation}\left[ - \frac{\sqrt{2} \sqrt{\mu} \sqrt{\omega} \sqrt{\sigma}}{2}, \  \frac{\sqrt{2} \sqrt{\mu} \sqrt{\omega} \sqrt{\sigma}}{2}\right]\end{equation}\]</span></p>
 </div>
 </div>
@@ -782,9 +782,52 @@ k^2 = (\alpha - i \beta)^2
 <p>We model the field component <span class="math inline">\(H_x(z)\)</span> as a function of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. With <span class="math inline">\(k = \pm (\alpha - i\beta)\)</span> we get <span class="math display">\[
 H_x(z) = e^{-i k z} e^{+i \omega t} = e^{-i \alpha z} e^{-\beta z} e^{+i \omega t}.
 \]</span></p>
-<p>The following animation shows the real and imaginary part of the magnetic field for a frequency of 1 Hz for a uniform halfspace with a resistivity of 100 <span class="math inline">\(\Omega \cdot m\)</span>. The red and green line display the skin depth and the wave length, resp.</p>
+<p>Only for <span class="math inline">\(\beta &gt; 0\)</span> we observe an exponential decay with depth to assure that <span class="math inline">\(H_x(z) \to 0\)</span> for <span class="math inline">\(z \to \infty\)</span>.</p>
+<p>When <span class="math inline">\(\beta = 0\)</span> (no damping), we observe a pure wave propagation.</p>
+<p>In this case, <span class="math display">\[
+H_x(z) = e^{-i \alpha z} e^{+i \omega t} = e^{-i (\alpha z - \omega t)} = e^{-i \varphi}
+\]</span></p>
+<p>with <span class="math inline">\(\varphi = \alpha z - \omega t\)</span> the phase of the wave.</p>
+<p>To obtain the direction of wave propagation, we form the time dericative of the plane of constant phase, i.e., <span class="math display">\[
+z = \frac{1}{\alpha} (\varphi + \omega t)
+\]</span> and <span class="math display">\[
+c = \dot{z} = \frac{\omega}{\alpha}
+\]</span> The wave propagates in positive <span class="math inline">\(z\)</span>-direction (with a positive wave velocity <span class="math inline">\(c\)</span>) only when <span class="math inline">\(\alpha &gt; 0\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Summary:</p>
+<p><span class="math display">\[
+\alpha = \beta = \sqrt{\frac{\omega \mu \sigma}{2}}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="skin-depth" class="level4" data-number="5.4.1.2">
+<h4 data-number="5.4.1.2" class="anchored" data-anchor-id="skin-depth"><span class="header-section-number">5.4.1.2</span> Skin depth</h4>
+<p>In the previous section we have seen that the electrical conductivity of the halfspace gives rise to an exponential decay of the wave amplitude.</p>
+<p>We are now able to define a typical scale length which helps to understand the physical phenomena in different depths.</p>
+<p>Recall that <span class="math inline">\(\exp(-\beta z) \to 0\)</span> for <span class="math inline">\(z \to +\infty\)</span> for <span class="math inline">\(\beta &gt; 0\)</span>.</p>
+<p>Then there exists a depth <span class="math inline">\(z = \frac{1}{\beta}\)</span> where the amplitude of the wave drops to <span class="math inline">\(\exp(-1)\)</span> of its surface amplitude.</p>
+<p>This depth is called the <em>electromagnetic skin depth</em> <span class="math inline">\(\tau\)</span>.</p>
+<p>At this depth, the wave has lost 63 % of its surface amplitude.</p>
+<p><span class="math display">\[
+\tau = \frac{1}{\beta} = \sqrt{\frac{2}{\omega \mu \sigma}} \approx 503 \sqrt{\rho / f}
+\]</span></p>
+<p>The last part of the equation approximates the skin depth. With <span class="math inline">\(\rho\)</span> given in <span class="math inline">\(\Omega \cdot m\)</span> and <span class="math inline">\(f\)</span> given in Hz, this equation returns the skin depth <span class="math inline">\(\tau\)</span> in meters.</p>
+<p>The following animation shows the real and imaginary part of the magnetic field for a frequency of 1 Hz in a uniform halfspace with a resistivity of 100 <span class="math inline">\(\Omega \cdot m\)</span>. The red and green horizontal lines indicate the skin depth and the wave length, resp.</p>
 <p>Check: For <span class="math inline">\(\rho = 100~\Omega \cdot m\)</span> and <span class="math inline">\(f = 1\)</span> s, the skin depth is approximately <span class="math display">\[
 \tau = 503 \sqrt{\rho / f} \approx 5.03 \text{ km.}
+\]</span></p>
+<p><span class="math display">\[
+\lambda = 2 \pi \tau \approx 31.6 \text{ km.}
 \]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

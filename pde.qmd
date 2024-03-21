@@ -510,12 +510,68 @@ $$
 H_x(z) = e^{-i k z} e^{+i \omega t} = e^{-i \alpha z} e^{-\beta z} e^{+i \omega t}.
 $$
 
-The following animation shows the real and imaginary part of the magnetic field for a frequency of 1 Hz for a uniform halfspace with a resistivity of 100 $\Omega \cdot m$.
-The red and green line display the skin depth and the wave length, resp.
+Only for $\beta > 0$ we observe an exponential decay with depth to assure that $H_x(z) \to 0$ for $z \to \infty$.
+
+When $\beta = 0$ (no damping), we observe a pure wave propagation.
+
+In this case,
+$$
+H_x(z) = e^{-i \alpha z} e^{+i \omega t} = e^{-i (\alpha z - \omega t)} = e^{-i \varphi}
+$$
+
+with $\varphi = \alpha z - \omega t$ the phase of the wave.
+
+To obtain the direction of wave propagation, we form the time dericative of the plane of constant phase, i.e.,
+$$
+z = \frac{1}{\alpha} (\varphi + \omega t)
+$$
+and
+$$
+c = \dot{z} = \frac{\omega}{\alpha}
+$$
+The wave propagates in positive $z$-direction (with a positive wave velocity $c$) only when $\alpha > 0$.
+
+
+
+
+::: {.callout-note}
+Summary:
+
+$$
+\alpha = \beta = \sqrt{\frac{\omega \mu \sigma}{2}}
+$$
+:::
+
+#### Skin depth
+
+In the previous section we have seen that the electrical conductivity of the halfspace gives rise to an exponential decay of the wave amplitude.
+
+We are now able to define a typical scale length which helps to understand the physical phenomena in different depths.
+
+Recall that $\exp(-\beta z) \to 0$ for $z \to +\infty$ for $\beta > 0$.
+
+Then there exists a depth $z = \frac{1}{\beta}$ where the amplitude of the wave drops to $\exp(-1)$ of its surface amplitude.
+
+This depth is called the *electromagnetic skin depth* $\tau$.
+
+At this depth, the wave has lost 63 \% of its surface amplitude. 
+
+$$
+\tau = \frac{1}{\beta} = \sqrt{\frac{2}{\omega \mu \sigma}} \approx 503 \sqrt{\rho / f}
+$$
+
+The last part of the equation approximates the skin depth. With $\rho$ given in $\Omega \cdot m$ and $f$ given in Hz, this equation returns the skin depth $\tau$ in meters.
+
+The following animation shows the real and imaginary part of the magnetic field for a frequency of 1 Hz in a uniform halfspace with a resistivity of 100 $\Omega \cdot m$.
+The red and green horizontal lines indicate the skin depth and the wave length, resp.
 
 Check: For $\rho = 100~\Omega \cdot m$ and $f = 1$ s, the skin depth is approximately
 $$
 \tau = 503 \sqrt{\rho / f} \approx 5.03 \text{ km.}
+$$
+
+$$
+\lambda = 2 \pi \tau \approx 31.6 \text{ km.}
 $$
 
 ![](ani.gif){fig-align="center"}
