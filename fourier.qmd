@@ -1,10 +1,133 @@
 ---
 title: Fourier transform
+jupyter: python3
 ---
 
-We associate both sets of fields by a *Fourier transform*: $$
+We associate both sets of fields @eq-fields-time and @eq-fields-frequency by a *Fourier transform*:
+$$
 \begin{align}
-F(\omega) & = \int\limits_{-\infty}^\infty f(t) e^{-i\omega t}\,\mathrm d t \\
+F(\omega) & = \int\limits_{-\infty}^\infty f(t) e^{-i\omega t}\,\mathrm d t
+\end{align}
+$$ {#eq-fourier-analysis}
+
+$$
+\begin{align}
 f(t) & = \frac{1}{2\pi} \int\limits_{-\infty}^\infty F(\omega) e^{i\omega t}\,\mathrm d\omega
 \end{align}
 $$ {#eq-fourier}
+
+Here $\omega = 2 \pi f$ is the angular frequency.
+
+::: {.callout-warning}
+Note that there exist different definitions of the above transform pair. For a detailed overview see [this Wikipedia page](https://en.wikipedia.org/wiki/Fourier_transform).
+
+We use a positive exponent in the time-dependency expressed by $\exp(+i \omega t)$.
+
+Also note that the normalizing factor $\frac{1}{2 \pi}$ appears in the synthesis.
+:::
+
+The Fourier transform can also be used to transform a function of spatial variables into the wave number domain. In this case, we replace $\omega$ with $k$ and the time $t$ with, e.g., $x$.
+
+The first equation @eq-fourier-analysis is called *harmonic analysis*, whereas the second equation @eq-fourier is called *harmonic synthesis*.
+
+::: {.callout-note}
+In the following, we most often make use of the synthesis to construct field components from their spectral content, the partial or plane waves.
+
+To put it in simple words, we try to combine simple things to create complex things. More precisely, we add many sine and cosine wave harmonics to approximate a function in space or time.
+:::
+
+## Example
+
+In  this example we use a *Fourier series expansion* to approximate the periodic *square function* $u(x)$ of length $2L$.
+
+An analytic formula for a square wave with unit amplitude and period $2L$ is given by 
+$u(x) = \mathrm{sign}(\sin(\frac{\pi x}{L})$.
+
+```{python}
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+```{python}
+x = np.arange(0, 4, 0.001)
+u = [np.sign(np.sin(np.pi * v / 2)) for v in x]
+fig, ax = plt.subplots(figsize=(4, 3))
+ax.plot(x, u)
+ax.fill_between(x, u, np.zeros_like(u), alpha=0.3)
+ax.set_xlabel('x')
+ax.set_ylabel('u(x)')
+ax.set_title('Square wave')
+ax.set_aspect('equal')
+ax.grid(True)
+```
+
+The Fourier series expansion for a periodic square wave $u(x)$ is
+
+$$
+u(x) = \lim_{N \to \infty} \frac{4}{\pi} \sum_{n=1,3,5, \ldots}^{N} \frac{1}{n} \sin \left(\frac{n \pi x}{L}\right).
+$$
+
+A change of the running index $n$ yields a representation which is better suited for numerical implementation:
+
+$$
+u(x) = \lim_{N \to \infty} \frac{4}{\pi} \sum_{k=1}^{N} \frac{1}{2k-1} \sin \left(\frac{(2k-1) \pi x}{L}\right).
+$$
+
+In theory, the sequence of summations is infinite, whereas in general we deal with a _truncated series_, i.e., $N \ll \infty$.
+
+### Implementation
+First we write a `Python` function which calculates the individual _sine_ terms
+
+$$
+u_k(x) =  \frac{1}{2k-1} \sin \left(\frac{(2k-1) \pi x}{L}\right)
+$$
+
+This function is called `uk` and takes the arguments `x` and the index `k`. The window length `L` takes the default setting of `0.5`.
+
+```{python}
+def uk(x, k, L=0.5):
+    return np.sin(np.pi * (2 * k - 1) * x / L) / (2 * k - 1)
+```
+
+Next, we implement the summation over all $k$ sine terms, i.e.,
+$$ 
+u(x) \approx \frac{4}{\pi} \sum_{k=1}^N u_k(x)
+$$
+
+```{python}
+def u(x, k, L):
+    value = 4 / np.pi * \
+        sum(uk(x, i, L) for i in range(1, k+1)) if k > 0 else np.zeros_like(x)
+    return value
+```
+
+```{python}
+L = 2
+order = 4
+x = np.arange(0, 2*L, 0.001)
+u_n = [np.sign(np.sin(np.pi * v / L)) for v in x]
+fig, ax = plt.subplots(nrows=2, ncols=1, sharex=True, layout='constrained')
+ax[0].plot(x, u(x, order, L))
+ax[0].fill_between(x, u_n, np.zeros_like(u_n), alpha=0.3)
+#ax[0].set_xlabel('x')
+ax[0].set_ylabel('u(x)')
+ax[0].set_title(f'Fourier series expansion for order={order}')
+ax[0].set_aspect('equal')
+ax[0].grid(True)
+
+order = 42
+ax[1].plot(x, u(x, order, L))
+ax[1].fill_between(x, u_n, np.zeros_like(u_n), alpha=0.3)
+ax[1].set_xlabel('x')
+ax[1].set_ylabel('u(x)')
+ax[1].set_title(f'Fourier series expansion for order={order}')
+ax[1].set_aspect('equal')
+ax[1].grid(True);
+```
+
+::: {.callout-note}
+Note the _Gibbs phenomenon_ at the jumps of the square wave. This is a typical behaviour of a piecewise differentiable continuous periodic function. As the expansion order gets large, the overshoot does not die out, but approaches a finite limit.
+
+It can be shown that, for sufficiently large $N$, the full overshooting is around **17.9 % larger** than the jump in the original function.
+:::

@@ -73,7 +73,8 @@ $$
 $$
 :::
 
-Finally, we obtain the **curl-curl equation** for the electric field $\mathbf e$ as $$
+Finally, we obtain the **curl-curl equation** for the electric field $\mathbf e$ as 
+$$
 \nabla \times \nabla \times \mathbf e  +\mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
 $$ {#eq-curlcurl}
 
@@ -242,3 +243,279 @@ So, with $A = C = -1$,
 
 $B^2 - AC = 0 - (-1 \cdot -1) < 0$ $\to$ PDE is elliptic.
 :::
+
+## Quasi-static approximation
+
+In geo-electromagnetic applications, the fields vary slowly with frequencies much less than 1 MHz. For Magnetotellurics, e.g., we use frequencies well below 100 Hz. In CSEM applications, frequencies rarely exceed 100 kHz.
+
+The low frequency content of the electromagnetic field variations give reason to assume that the term associated with the second-order time derivative might be dropped.
+
+We now want to provide a justification.
+
+The terms in @eq-curlcurl have very different magnitudes depending on the scale of observation. To quantify the relative importance of the terms to each other, we cast the PDE into a dimensionless form.
+
+This can be achieved by introducing *scale lengths* in space and time.
+
+We introduce a typical scale length $L$ and a typical period $T$ and scale all spatial variables $\ell$ as well as the time $t$.
+
+The dimensionless variables are
+$$
+\ell' = \ell / L \qquad t' = t / T
+$$
+
+With the chain rule we obtain the dimensionless derivatives of a field component $f$
+$$
+\frac{\partial f}{\partial \ell} = \frac{\partial f}{\partial \ell'} \frac{\partial \ell'}{\partial \ell} = \frac{1}{L} \frac{\partial f}{\partial \ell'}
+$$
+
+$$
+\frac{\partial f}{\partial t} = \frac{\partial f}{\partial t'} \frac{\partial t'}{\partial t} = \frac{1}{T} \frac{\partial f}{\partial t'}
+$$
+
+
+This carries over to the differential operators, i.e.,
+$$
+\nabla \times \nabla \times \mathbf f = \frac{1}{L^2} \nabla' \times \nabla' \times \mathbf f.
+$$
+
+We obtain a PDE with scaled coefficients, i.e.,
+$$
+\nabla' \times \nabla' \times \mathbf e + \eta_1 \partial_{t'} \mathbf e + \eta_2 \partial^{2}_{t't'} \mathbf e = \mathbf 0
+$$
+
+The coefficients are
+$$
+\begin{align}
+\eta_1 &= \frac{L^2}{T} \mu \sigma \\
+\eta_2 &= \frac{L^2}{T^2} \mu\varepsilon
+\end{align}
+$$
+
+We assume that $\mu=\mu_0$ and $\varepsilon = \varepsilon_0$.
+
+The exercise is now to show under which conditions there holds that $\eta_1 \gg \eta_2$.
+
+What is the physical interpretation of $\eta_2$?
+
+We see that
+$$
+\eta_2 = \frac{L^2}{T^2} \mu\varepsilon = \left( \frac{L}{T c_0} \right)^2.
+$$
+
+$L/c_0$ is the time an electromagnetic wave needs in free space to travel over the distance $L$. If $\eta_2$ is small, this time is much less than a typical time $T$ during which significant changes in the field occur. Such changes can be regarded as happening instantaneously over the region spanned by $L$.
+
+Until now, we have not considered the conductivities in that region. This can be studied with the ratio of both coefficients.
+We want to show that
+$$
+\frac{\eta_1}{\eta_2} = \frac{\mu\sigma}{\mu\varepsilon} T = c_0^2 \mu\sigma T \gg 1.
+$$
+
+We illustrate our findings and calculate meaningful values for the coefficients.
+```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+def eta1(T, L, sigma):
+  mu0 = np.pi * 4e-7
+  return L**2 / T * mu0 * sigma
+
+def eta2(T, L):
+  mu0 = np.pi * 4e-7
+  epsilon0 = 8.854e-12
+  return L**2 / T**2 * mu0 * epsilon0
+
+T = np.logspace(-6, 3, num=91)
+L = 1e7
+plt.loglog(T, [eta2(t, L) for t in T])
+plt.xlabel('T in s')
+plt.ylabel(r'$\eta_2$')
+plt.grid(True)
+```
+In global investigations for which $L \approx 10^4$ km, we observe that $\eta_2$ is small (less than, e.g., 0.1) for $T > 0.1$ seconds. 
+
+```{python}
+#| code-fold: true
+#| code-summary: "Show the code"
+
+plt.loglog(1 / T, [eta1(t, L, 1e-5) / eta2(t, L) for t in T])
+plt.xlabel('frequency in Hz')
+plt.ylabel(r'$\eta_1 / \eta_2$')
+plt.grid(True)
+```
+
+In the last example we have used a conductivity of $10^{-5}$ S/m as a reasonable low value for minerals. We recognize that the ratio is large for frequencies less than $10^5$ Hz.
+
+To conclude, we can safely assume that the second term, $\eta_2$, can be neglected for frequencies less than $10^5$ Hz for the lowest reasonable value of the conductivity in the Earth. For higher conductivities, the result becomes even more pronounced.
+
+As a consequence, the displacement current density in Ampere's law can be neglected as well, such that
+$$
+\nabla \times \mathbf{h} = \mathbf j
+$$ 
+
+We call  this the *quasi-static approximation* of Maxwell's equations.
+
+Note that this corresponds to the classical formulation of Maxwell's equations, which have later been extended to account for displacement currents.
+
+The quasi-static approximation however comes at a price: The coefficient of the second-order time derivative term of @eq-curlcurl has the physical dimension of the inverse square of the wave velocity, i.e.,
+$$
+\mu\varepsilon = \frac{1}{c_0^2}.
+$$
+
+When we neglect this term, we implicitly assume that
+$$
+ \frac{1}{c_0^2} \to 0,
+$$
+which violates the generally recognized fact that the speed of light is finite.
+On the other hand, this makes it clear that changes in the fields happen everywhere at the same time.
+
+The curl-curl equation for the electric field under quasi-static approximation reads
+$$
+\nabla \times \nabla \times \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
+$$ {#eq-curlcurl-quasistatic}
+
+With the identity introduced earlier, we write
+
+$$
+-\nabla^2 \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
+$$ {#eq-telegraph-quasistatic}
+
+With our definition of the Fourier transform given by @eq-fourier we transform the time-domain expressions into the frequency domain.
+
+By doing so, we decouple the time-dependency from the PDE. For most CSEM applications, this is common practice. 
+
+For time-harmonic fields with an angular frequency of $\omega = 2 \pi f$, we write
+$$
+\mathbf E(\omega) = \mathbf E_0 \exp(i \omega t)
+$$
+and use the properties of the Fourier transform to equivalently formulate time derivatives.
+It holds that
+$$
+\partial_t \mathbf E_0 \exp(i \omega t) = i \omega \mathbf E_0 \exp(i \omega t) = i \omega \mathbf E(\omega).
+$$
+In other words, we simply replace all first-order time-derivatives with $i\omega$, and all second-order time derivatives by $-\omega^2$.
+
+::: {.callout-note title="Time derivatives in the frequency domain"}
+$$
+\partial_t \to i\omega \qquad \partial^2_{tt} \to -\omega^2
+$$
+:::
+
+## The Vector Helmholtz equation
+We use the identity @eq-vector-identity and obtain
+$$
+-\nabla^2 \mathbf E + i \omega \mu \sigma \mathbf E = \mathbf 0
+$$
+
+::: {.callout-note title="Notation"}
+
+In what follows, we use capital letters for fields in the frequency domain, e.g., $\mathbf E$.
+
+In the time domain, the fields are typeset in small letters, e.g., $\mathbf e$.
+
+:::
+
+Many textbooks use the notation
+$$
+\nabla^2 \mathbf e - i \omega \mu \sigma \mathbf e = \mathbf 0
+$$
+with the abbreviation
+$$
+\nabla^2 \mathbf e + k^2 \mathbf e = \mathbf 0,
+$$ {#eq-vector-helmholtz}
+where
+$$
+k^2 = - i \omega \mu \sigma.
+$$
+
+Equation @eq-vector-helmholtz is referred to as the homogeneous *Helmholtz equation*.
+
+The coefficient $k$ is often called the *wave number* or *wave propagation constant*.
+
+::: {.callout-warning}
+Note that $k^2$ is a complex-valued quantity. The roots of $k^2$ must be chosen carefully.
+:::
+
+### The roots of $k^2$
+
+We consider a Helmholtz equation for a plane wave
+$$
+\mathbf H = [1, 0, 0]^\top \text{ in } z < 0
+$$
+with a time dependency of $\exp(i \omega t)$. $\mathbf H$ is a magnetic field, which is uniform in any horizontal plane, and exhibits only a horizontal component.
+
+Inside the conducting Earth, the magnetic field will be attenuated due to energy dissipation. This can be modelled using the Helmholtz equation.
+
+The magnetic field in $z \ge 0$ is a solution of the scalar Helmholtz equation
+$$
+\partial^2_{zz} H_x + k^2 H_x = 0
+$$ {#eq-helmholtz-h}
+where
+$$
+H_x(z) = H_x(0) e^{-i k z}.
+$$ {#eq-solution-h}
+The propagation inside the Earth depends on $k^2$. However, in @eq-solution-h we need the root of $k^2$. 
+
+Physical reasoning gives a hint on which of both signs of $\pm k$ has to be used.
+
+In the following we choose the proper sign by numerical evidence.
+
+We use `sympy` to exlore the problem:
+
+#### Symbolic representation of $k^2$
+
+```{python}
+#| echo: true
+import sympy
+from IPython.display import display, Math 
+init_printing(use_latex='mathjax', latex_mode='equation')
+
+alpha, beta, z = symbols(r'\alpha \beta z', real=True)
+omega, sigma, mu = symbols(r'\omega \sigma \mu', real=True, positive=True)
+```
+We make the ansatz 
+$$
+k^2 = (\alpha - i \beta)^2
+$$
+Expansion and separation of real and imaginary parts yiels the two equations
+$$
+\alpha^2 - \beta^2 = 0
+$$
+and
+$$
+-2 \alpha \beta = - \omega \mu \sigma. 
+$$
+
+```{python}
+expr = expand((alpha - I * beta)**2)
+re(expr)
+```
+
+```{python}
+k2 = -I * omega * mu * sigma
+
+ex = re(expr).subs(beta, solve([im(expr) - im(k2)], beta)[beta])
+# solve([im(expr) - im(k2)], beta)[beta]
+
+sol = solve(ex, alpha)
+sol
+```
+We see, that
+$$
+\alpha = \pm \sqrt{\frac{\omega \mu \sigma}{2}} = \beta
+$$
+It remains to decide on the correct sign of $\alpha$ and $\beta$.
+
+We  model the field component $H_x(z)$ as a function of $\alpha$ and $\beta$.
+With $k = \pm (\alpha - i\beta)$ we get
+$$
+H_x(z) = e^{-i k z} e^{+i \omega t} = e^{-i \alpha z} e^{-\beta z} e^{+i \omega t}.
+$$
+
+The following animation shows the real and imaginary part of the magnetic field for a frequency of 1 Hz for a uniform halfspace with a resistivity of 100 $\Omega \cdot m$.
+The red and green line display the skin depth and the wave length, resp.
+
+Check: For $\rho = 100~\Omega \cdot m$ and $f = 1$ s, the skin depth is approximately
+$$
+\tau = 503 \sqrt{\rho / f} \approx 5.03 \text{ km.}
+$$
+
+![](ani.gif){fig-align="center"}

@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -217,7 +251,16 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#example" id="toc-example" class="nav-link active" data-scroll-target="#example"><span class="header-section-number">3.1</span> Example</a>
+  <ul class="collapse">
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">3.1.1</span> Implementation</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -241,14 +284,160 @@ window.Quarto = {
 </header>
 
 
-<p>We associate both sets of fields by a <em>Fourier transform</em>: <span id="eq-fourier"><span class="math display">\[
+<p>We associate both sets of fields <a href="intro.html#eq-fields-time" class="quarto-xref"><span>2.1</span></a> and <a href="intro.html#eq-fields-frequency" class="quarto-xref"><span>2.2</span></a> by a <em>Fourier transform</em>: <span id="eq-fourier-analysis"><span class="math display">\[
 \begin{align}
-F(\omega) &amp; = \int\limits_{-\infty}^\infty f(t) e^{-i\omega t}\,\mathrm d t \\
-f(t) &amp; = \frac{1}{2\pi} \int\limits_{-\infty}^\infty F(\omega) e^{i\omega t}\,\mathrm d\omega
+F(\omega) &amp; = \int\limits_{-\infty}^\infty f(t) e^{-i\omega t}\,\mathrm d t
 \end{align}
 \tag{3.1}\]</span></span></p>
+<p><span id="eq-fourier"><span class="math display">\[
+\begin{align}
+f(t) &amp; = \frac{1}{2\pi} \int\limits_{-\infty}^\infty F(\omega) e^{i\omega t}\,\mathrm d\omega
+\end{align}
+\tag{3.2}\]</span></span></p>
+<p>Here <span class="math inline">\(\omega = 2 \pi f\)</span> is the angular frequency.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that there exist different definitions of the above transform pair. For a detailed overview see <a href="https://en.wikipedia.org/wiki/Fourier_transform">this Wikipedia page</a>.</p>
+<p>We use a positive exponent in the time-dependency expressed by <span class="math inline">\(\exp(+i \omega t)\)</span>.</p>
+<p>Also note that the normalizing factor <span class="math inline">\(\frac{1}{2 \pi}\)</span> appears in the synthesis.</p>
+</div>
+</div>
+<p>The Fourier transform can also be used to transform a function of spatial variables into the wave number domain. In this case, we replace <span class="math inline">\(\omega\)</span> with <span class="math inline">\(k\)</span> and the time <span class="math inline">\(t\)</span> with, e.g., <span class="math inline">\(x\)</span>.</p>
+<p>The first equation <a href="#eq-fourier-analysis" class="quarto-xref"><span>3.1</span></a> is called <em>harmonic analysis</em>, whereas the second equation <a href="#eq-fourier" class="quarto-xref"><span>3.2</span></a> is called <em>harmonic synthesis</em>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the following, we most often make use of the synthesis to construct field components from their spectral content, the partial or plane waves.</p>
+<p>To put it in simple words, we try to combine simple things to create complex things. More precisely, we add many sine and cosine wave harmonics to approximate a function in space or time.</p>
+</div>
+</div>
+<section id="example" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="example"><span class="header-section-number">3.1</span> Example</h2>
+<p>In this example we use a <em>Fourier series expansion</em> to approximate the periodic <em>square function</em> <span class="math inline">\(u(x)\)</span> of length <span class="math inline">\(2L\)</span>.</p>
+<p>An analytic formula for a square wave with unit amplitude and period <span class="math inline">\(2L\)</span> is given by <span class="math inline">\(u(x) = \mathrm{sign}(\sin(\frac{\pi x}{L})\)</span>.</p>
+<div id="60057036" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.001</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> [np.sign(np.sin(np.pi <span class="op">*</span> v <span class="op">/</span> <span class="dv">2</span>)) <span class="cf">for</span> v <span class="kw">in</span> x]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">3</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>ax.plot(x, u)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ax.fill_between(x, u, np.zeros_like(u), alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'u(x)'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Square wave'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fourier_files/figure-html/cell-3-output-1.png" width="377" height="229" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The Fourier series expansion for a periodic square wave <span class="math inline">\(u(x)\)</span> is</p>
+<p><span class="math display">\[
+u(x) = \lim_{N \to \infty} \frac{4}{\pi} \sum_{n=1,3,5, \ldots}^{N} \frac{1}{n} \sin \left(\frac{n \pi x}{L}\right).
+\]</span></p>
+<p>A change of the running index <span class="math inline">\(n\)</span> yields a representation which is better suited for numerical implementation:</p>
+<p><span class="math display">\[
+u(x) = \lim_{N \to \infty} \frac{4}{\pi} \sum_{k=1}^{N} \frac{1}{2k-1} \sin \left(\frac{(2k-1) \pi x}{L}\right).
+\]</span></p>
+<p>In theory, the sequence of summations is infinite, whereas in general we deal with a <em>truncated series</em>, i.e., <span class="math inline">\(N \ll \infty\)</span>.</p>
+<section id="implementation" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="implementation"><span class="header-section-number">3.1.1</span> Implementation</h3>
+<p>First we write a <code>Python</code> function which calculates the individual <em>sine</em> terms</p>
+<p><span class="math display">\[
+u_k(x) =  \frac{1}{2k-1} \sin \left(\frac{(2k-1) \pi x}{L}\right)
+\]</span></p>
+<p>This function is called <code>uk</code> and takes the arguments <code>x</code> and the index <code>k</code>. The window length <code>L</code> takes the default setting of <code>0.5</code>.</p>
+<div id="f1d75c68" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> uk(x, k, L<span class="op">=</span><span class="fl">0.5</span>):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sin(np.pi <span class="op">*</span> (<span class="dv">2</span> <span class="op">*</span> k <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> x <span class="op">/</span> L) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> k <span class="op">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Next, we implement the summation over all <span class="math inline">\(k\)</span> sine terms, i.e., <span class="math display">\[
+u(x) \approx \frac{4}{\pi} \sum_{k=1}^N u_k(x)
+\]</span></p>
+<div id="518ee171" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> u(x, k, L):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> <span class="dv">4</span> <span class="op">/</span> np.pi <span class="op">*</span> <span class="op">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">sum</span>(uk(x, i, L) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, k<span class="op">+</span><span class="dv">1</span>)) <span class="cf">if</span> k <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> np.zeros_like(x)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="61e80e9e" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>L, <span class="fl">0.001</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>u_n <span class="op">=</span> [np.sign(np.sin(np.pi <span class="op">*</span> v <span class="op">/</span> L)) <span class="cf">for</span> v <span class="kw">in</span> x]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">2</span>, ncols<span class="op">=</span><span class="dv">1</span>, sharex<span class="op">=</span><span class="va">True</span>, layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(x, u(x, order, L))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].fill_between(x, u_n, np.zeros_like(u_n), alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#ax[0].set_xlabel('x')</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'u(x)'</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="ss">f'Fourier series expansion for order=</span><span class="sc">{</span>order<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>order <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(x, u(x, order, L))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].fill_between(x, u_n, np.zeros_like(u_n), alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'u(x)'</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="ss">f'Fourier series expansion for order=</span><span class="sc">{</span>order<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_aspect(<span class="st">'equal'</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].grid(<span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fourier_files/figure-html/cell-6-output-1.png" width="400" height="491" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note the <em>Gibbs phenomenon</em> at the jumps of the square wave. This is a typical behaviour of a piecewise differentiable continuous periodic function. As the expansion order gets large, the overshoot does not die out, but approaches a finite limit.</p>
+<p>It can be shown that, for sufficiently large <span class="math inline">\(N\)</span>, the full overshooting is around <strong>17.9 % larger</strong> than the jump in the original function.</p>
+</div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

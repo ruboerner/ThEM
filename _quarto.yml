@@ -31,6 +31,8 @@ format:
     crossref:
       chapters: true
       eq-prefix: ""
+    code-fold: true
+    code-summary: "Show the code"
 #  pdf:
 #    documentclass: scrreprt
 #    papersize: a4

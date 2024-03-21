@@ -15,12 +15,18 @@ All considered fields are functions of *space* $\mathbf r$ and *time* $t$, i.e.,
 $$
 \mathbf e(\mathbf r, t), \mathbf h(\mathbf r, t), \mathbf d(\mathbf r, t), \mathbf b(\mathbf r, t),
 \mathbf j(\mathbf r, t)
-$$ {#eq-fields-time} or a function of the *angular frequency* $\omega = 2 \pi f$, such that $$
+$$ {#eq-fields-time} 
+or a function of the *angular frequency* $\omega = 2 \pi f$, such that 
+$$
 \mathbf E(\mathbf r, \omega), \mathbf H(\mathbf r, \omega), \mathbf D(\mathbf r, \omega), \mathbf B(\mathbf r, \omega),
 \mathbf J(\mathbf r, \omega).
-$$ {#eq-fields-frequency} In the latter case, the time dependency of any field $\mathbf F$ is always defined as $$ 
+$$ {#eq-fields-frequency} 
+
+In the latter case, the time dependency of any field $\mathbf F$ is always defined as 
+$$ 
 \mathbf F(\mathbf r, \omega) = \mathbf F_0(\mathbf r) e^{i \omega t},
-$$ and the quantity of interest is $\mathbf F_0$.
+$$
+and the quantity of interest is $\mathbf F_0$.
 
 **Convention:** Upper case letters: Frequency domain, lower case letters: Time domain.
 

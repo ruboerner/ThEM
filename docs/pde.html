@@ -260,6 +260,11 @@ window.Quarto = {
   <li><a href="#decay-of-free-charges" id="toc-decay-of-free-charges" class="nav-link" data-scroll-target="#decay-of-free-charges"><span class="header-section-number">5.1.1</span> Decay of free charges</a></li>
   </ul></li>
   <li><a href="#the-telegraph-equation" id="toc-the-telegraph-equation" class="nav-link" data-scroll-target="#the-telegraph-equation"><span class="header-section-number">5.2</span> The Telegraph equation</a></li>
+  <li><a href="#quasi-static-approximation" id="toc-quasi-static-approximation" class="nav-link" data-scroll-target="#quasi-static-approximation"><span class="header-section-number">5.3</span> Quasi-static approximation</a></li>
+  <li><a href="#the-vector-helmholtz-equation" id="toc-the-vector-helmholtz-equation" class="nav-link" data-scroll-target="#the-vector-helmholtz-equation"><span class="header-section-number">5.4</span> The Vector Helmholtz equation</a>
+  <ul class="collapse">
+  <li><a href="#the-roots-of-k2" id="toc-the-roots-of-k2" class="nav-link" data-scroll-target="#the-roots-of-k2"><span class="header-section-number">5.4.1</span> The roots of <span class="math inline">\(k^2\)</span></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -432,9 +437,9 @@ Warning
 <p>To study the decay of a free charge denoted by an electrical charge density, we define as initial condition for <span class="math inline">\(t=0\)</span> that <span class="math inline">\(\rho_E(0) = 1~A\cdot s\cdot m^{-3}\)</span> .</p>
 <p>Further, the conductivity of the uniform fullspace is 0.01 S/m.</p>
 <p>We plot the function <a href="#eq-decay" class="quarto-xref"><span>5.3</span></a> for a very small time window:</p>
-<div id="6045bdc0" class="cell" data-execution_count="1">
+<div id="a7728175" class="cell" data-execution_count="1">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -462,7 +467,9 @@ Warning
 <p>By visual inspection, after approx. 10 ns the volume charge density has dropped to zero.</p>
 <p>Let’s be more precise:</p>
 <p>We can calculate the time at which the charge density decays to a given fraction of its initial value, e.g., to 1 ppm.</p>
-<div id="8bb0b831" class="cell" data-execution_count="2">
+<div id="f514ea00" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>t, sigma, epsilon, rho0 <span class="op">=</span> symbols(<span class="st">'t sigma epsilon rho_0'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
@@ -472,16 +479,20 @@ Warning
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>tt <span class="op">=</span> solve(expr, t)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tt[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
-<p><span class="math inline">\(\displaystyle \frac{\epsilon \log{\left(\frac{\rho_{0}}{\rho_{E}} \right)}}{\sigma}\)</span></p>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="42">
+<p><span class="math display">\[\begin{equation}\frac{\epsilon \log{\left(\frac{\rho_{0}}{\rho_{E}} \right)}}{\sigma}\end{equation}\]</span></p>
 </div>
 </div>
 <p>We find that the time <span class="math inline">\(t\)</span> at which a certain fraction of the initial charge density is obtained, can be calculated using</p>
 <p><span class="math display">\[
 \hat{t} = \frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{0}}{\rho_{E}} \right)} = -\frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{E}}{\rho_{0}} \right)}
 \]</span></p>
-<div id="8f649e11" class="cell" data-execution_count="3">
+<div id="d4026d01" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tstar <span class="op">=</span> <span class="op">-</span>epsilon_n <span class="op">/</span> sigma_n <span class="op">*</span> np.log(<span class="fl">1e-6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>With the values given above, the charge density drops to 1 ppm of its initial value after 1.22e-08 seconds.</p>
 </section>
@@ -537,8 +548,253 @@ A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
 <p><span class="math inline">\(B^2 - AC = 0 - (-1 \cdot -1) &lt; 0\)</span> <span class="math inline">\(\to\)</span> PDE is elliptic.</p>
 </div>
 </div>
+</section>
+<section id="quasi-static-approximation" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="quasi-static-approximation"><span class="header-section-number">5.3</span> Quasi-static approximation</h2>
+<p>In geo-electromagnetic applications, the fields vary slowly with frequencies much less than 1 MHz. For Magnetotellurics, e.g., we use frequencies well below 100 Hz. In CSEM applications, frequencies rarely exceed 100 kHz.</p>
+<p>The low frequency content of the electromagnetic field variations give reason to assume that the term associated with the second-order time derivative might be dropped.</p>
+<p>We now want to provide a justification.</p>
+<p>The terms in <a href="#eq-curlcurl" class="quarto-xref"><span>5.1</span></a> have very different magnitudes depending on the scale of observation. To quantify the relative importance of the terms to each other, we cast the PDE into a dimensionless form.</p>
+<p>This can be achieved by introducing <em>scale lengths</em> in space and time.</p>
+<p>We introduce a typical scale length <span class="math inline">\(L\)</span> and a typical period <span class="math inline">\(T\)</span> and scale all spatial variables <span class="math inline">\(\ell\)</span> as well as the time <span class="math inline">\(t\)</span>.</p>
+<p>The dimensionless variables are <span class="math display">\[
+\ell' = \ell / L \qquad t' = t / T
+\]</span></p>
+<p>With the chain rule we obtain the dimensionless derivatives of a field component <span class="math inline">\(f\)</span> <span class="math display">\[
+\frac{\partial f}{\partial \ell} = \frac{\partial f}{\partial \ell'} \frac{\partial \ell'}{\partial \ell} = \frac{1}{L} \frac{\partial f}{\partial \ell'}
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial f}{\partial t} = \frac{\partial f}{\partial t'} \frac{\partial t'}{\partial t} = \frac{1}{T} \frac{\partial f}{\partial t'}
+\]</span></p>
+<p>This carries over to the differential operators, i.e., <span class="math display">\[
+\nabla \times \nabla \times \mathbf f = \frac{1}{L^2} \nabla' \times \nabla' \times \mathbf f.
+\]</span></p>
+<p>We obtain a PDE with scaled coefficients, i.e., <span class="math display">\[
+\nabla' \times \nabla' \times \mathbf e + \eta_1 \partial_{t'} \mathbf e + \eta_2 \partial^{2}_{t't'} \mathbf e = \mathbf 0
+\]</span></p>
+<p>The coefficients are <span class="math display">\[
+\begin{align}
+\eta_1 &amp;= \frac{L^2}{T} \mu \sigma \\
+\eta_2 &amp;= \frac{L^2}{T^2} \mu\varepsilon
+\end{align}
+\]</span></p>
+<p>We assume that <span class="math inline">\(\mu=\mu_0\)</span> and <span class="math inline">\(\varepsilon = \varepsilon_0\)</span>.</p>
+<p>The exercise is now to show under which conditions there holds that <span class="math inline">\(\eta_1 \gg \eta_2\)</span>.</p>
+<p>What is the physical interpretation of <span class="math inline">\(\eta_2\)</span>?</p>
+<p>We see that <span class="math display">\[
+\eta_2 = \frac{L^2}{T^2} \mu\varepsilon = \left( \frac{L}{T c_0} \right)^2.
+\]</span></p>
+<p><span class="math inline">\(L/c_0\)</span> is the time an electromagnetic wave needs in free space to travel over the distance <span class="math inline">\(L\)</span>. If <span class="math inline">\(\eta_2\)</span> is small, this time is much less than a typical time <span class="math inline">\(T\)</span> during which significant changes in the field occur. Such changes can be regarded as happening instantaneously over the region spanned by <span class="math inline">\(L\)</span>.</p>
+<p>Until now, we have not considered the conductivities in that region. This can be studied with the ratio of both coefficients. We want to show that <span class="math display">\[
+\frac{\eta_1}{\eta_2} = \frac{\mu\sigma}{\mu\varepsilon} T = c_0^2 \mu\sigma T \gg 1.
+\]</span></p>
+<p>We illustrate our findings and calculate meaningful values for the coefficients.</p>
+<div id="a0ca33d2" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eta1(T, L, sigma):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  mu0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> L<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> T <span class="op">*</span> mu0 <span class="op">*</span> sigma</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eta2(T, L):</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  mu0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  epsilon0 <span class="op">=</span> <span class="fl">8.854e-12</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> L<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> T<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> mu0 <span class="op">*</span> epsilon0</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">3</span>, num<span class="op">=</span><span class="dv">91</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="fl">1e7</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.loglog(T, [eta2(t, L) <span class="cf">for</span> t <span class="kw">in</span> T])</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'T in s'</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$\eta_2$'</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pde_files/figure-html/cell-5-output-1.png" width="599" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In global investigations for which <span class="math inline">\(L \approx 10^4\)</span> km, we observe that <span class="math inline">\(\eta_2\)</span> is small (less than, e.g., 0.1) for <span class="math inline">\(T &gt; 0.1\)</span> seconds.</p>
+<div id="522924cf" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(<span class="dv">1</span> <span class="op">/</span> T, [eta1(t, L, <span class="fl">1e-5</span>) <span class="op">/</span> eta2(t, L) <span class="cf">for</span> t <span class="kw">in</span> T])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'frequency in Hz'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$\eta_1 / \eta_2$'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pde_files/figure-html/cell-6-output-1.png" width="593" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the last example we have used a conductivity of <span class="math inline">\(10^{-5}\)</span> S/m as a reasonable low value for minerals. We recognize that the ratio is large for frequencies less than <span class="math inline">\(10^5\)</span> Hz.</p>
+<p>To conclude, we can safely assume that the second term, <span class="math inline">\(\eta_2\)</span>, can be neglected for frequencies less than <span class="math inline">\(10^5\)</span> Hz for the lowest reasonable value of the conductivity in the Earth. For higher conductivities, the result becomes even more pronounced.</p>
+<p>As a consequence, the displacement current density in Ampere’s law can be neglected as well, such that <span class="math display">\[
+\nabla \times \mathbf{h} = \mathbf j
+\]</span></p>
+<p>We call this the <em>quasi-static approximation</em> of Maxwell’s equations.</p>
+<p>Note that this corresponds to the classical formulation of Maxwell’s equations, which have later been extended to account for displacement currents.</p>
+<p>The quasi-static approximation however comes at a price: The coefficient of the second-order time derivative term of <a href="#eq-curlcurl" class="quarto-xref"><span>5.1</span></a> has the physical dimension of the inverse square of the wave velocity, i.e., <span class="math display">\[
+\mu\varepsilon = \frac{1}{c_0^2}.
+\]</span></p>
+<p>When we neglect this term, we implicitly assume that <span class="math display">\[
+\frac{1}{c_0^2} \to 0,
+\]</span> which violates the generally recognized fact that the speed of light is finite. On the other hand, this makes it clear that changes in the fields happen everywhere at the same time.</p>
+<p>The curl-curl equation for the electric field under quasi-static approximation reads <span id="eq-curlcurl-quasistatic"><span class="math display">\[
+\nabla \times \nabla \times \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
+\tag{5.5}\]</span></span></p>
+<p>With the identity introduced earlier, we write</p>
+<p><span id="eq-telegraph-quasistatic"><span class="math display">\[
+-\nabla^2 \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
+\tag{5.6}\]</span></span></p>
+<p>With our definition of the Fourier transform given by <a href="fourier.html#eq-fourier" class="quarto-xref"><span>3.2</span></a> we transform the time-domain expressions into the frequency domain.</p>
+<p>By doing so, we decouple the time-dependency from the PDE. For most CSEM applications, this is common practice.</p>
+<p>For time-harmonic fields with an angular frequency of <span class="math inline">\(\omega = 2 \pi f\)</span>, we write <span class="math display">\[
+\mathbf E(\omega) = \mathbf E_0 \exp(i \omega t)
+\]</span> and use the properties of the Fourier transform to equivalently formulate time derivatives. It holds that <span class="math display">\[
+\partial_t \mathbf E_0 \exp(i \omega t) = i \omega \mathbf E_0 \exp(i \omega t) = i \omega \mathbf E(\omega).
+\]</span> In other words, we simply replace all first-order time-derivatives with <span class="math inline">\(i\omega\)</span>, and all second-order time derivatives by <span class="math inline">\(-\omega^2\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Time derivatives in the frequency domain">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Time derivatives in the frequency domain
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\partial_t \to i\omega \qquad \partial^2_{tt} \to -\omega^2
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="the-vector-helmholtz-equation" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="the-vector-helmholtz-equation"><span class="header-section-number">5.4</span> The Vector Helmholtz equation</h2>
+<p>We use the identity <a href="#eq-vector-identity" class="quarto-xref"><span>5.2</span></a> and obtain <span class="math display">\[
+-\nabla^2 \mathbf E + i \omega \mu \sigma \mathbf E = \mathbf 0
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Notation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Notation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In what follows, we use capital letters for fields in the frequency domain, e.g., <span class="math inline">\(\mathbf E\)</span>.</p>
+<p>In the time domain, the fields are typeset in small letters, e.g., <span class="math inline">\(\mathbf e\)</span>.</p>
+</div>
+</div>
+<p>Many textbooks use the notation <span class="math display">\[
+\nabla^2 \mathbf e - i \omega \mu \sigma \mathbf e = \mathbf 0
+\]</span> with the abbreviation <span id="eq-vector-helmholtz"><span class="math display">\[
+\nabla^2 \mathbf e + k^2 \mathbf e = \mathbf 0,
+\tag{5.7}\]</span></span> where <span class="math display">\[
+k^2 = - i \omega \mu \sigma.
+\]</span></p>
+<p>Equation <a href="#eq-vector-helmholtz" class="quarto-xref"><span>5.7</span></a> is referred to as the homogeneous <em>Helmholtz equation</em>.</p>
+<p>The coefficient <span class="math inline">\(k\)</span> is often called the <em>wave number</em> or <em>wave propagation constant</em>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that <span class="math inline">\(k^2\)</span> is a complex-valued quantity. The roots of <span class="math inline">\(k^2\)</span> must be chosen carefully.</p>
+</div>
+</div>
+<section id="the-roots-of-k2" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="the-roots-of-k2"><span class="header-section-number">5.4.1</span> The roots of <span class="math inline">\(k^2\)</span></h3>
+<p>We consider a Helmholtz equation for a plane wave <span class="math display">\[
+\mathbf H = [1, 0, 0]^\top \text{ in } z &lt; 0
+\]</span> with a time dependency of <span class="math inline">\(\exp(i \omega t)\)</span>. <span class="math inline">\(\mathbf H\)</span> is a magnetic field, which is uniform in any horizontal plane, and exhibits only a horizontal component.</p>
+<p>Inside the conducting Earth, the magnetic field will be attenuated due to energy dissipation. This can be modelled using the Helmholtz equation.</p>
+<p>The magnetic field in <span class="math inline">\(z \ge 0\)</span> is a solution of the scalar Helmholtz equation <span id="eq-helmholtz-h"><span class="math display">\[
+\partial^2_{zz} H_x + k^2 H_x = 0
+\tag{5.8}\]</span></span> where <span id="eq-solution-h"><span class="math display">\[
+H_x(z) = H_x(0) e^{-i k z}.
+\tag{5.9}\]</span></span> The propagation inside the Earth depends on <span class="math inline">\(k^2\)</span>. However, in <a href="#eq-solution-h" class="quarto-xref"><span>5.9</span></a> we need the root of <span class="math inline">\(k^2\)</span>.</p>
+<p>Physical reasoning gives a hint on which of both signs of <span class="math inline">\(\pm k\)</span> has to be used.</p>
+<p>In the following we choose the proper sign by numerical evidence.</p>
+<p>We use <code>sympy</code> to exlore the problem:</p>
+<section id="symbolic-representation-of-k2" class="level4" data-number="5.4.1.1">
+<h4 data-number="5.4.1.1" class="anchored" data-anchor-id="symbolic-representation-of-k2"><span class="header-section-number">5.4.1.1</span> Symbolic representation of <span class="math inline">\(k^2\)</span></h4>
+<div id="f85cd096" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, Math </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>init_printing(use_latex<span class="op">=</span><span class="st">'mathjax'</span>, latex_mode<span class="op">=</span><span class="st">'equation'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>alpha, beta, z <span class="op">=</span> symbols(<span class="vs">r'\alpha \beta z'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>omega, sigma, mu <span class="op">=</span> symbols(<span class="vs">r'\omega \sigma \mu'</span>, real<span class="op">=</span><span class="va">True</span>, positive<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We make the ansatz <span class="math display">\[
+k^2 = (\alpha - i \beta)^2
+\]</span> Expansion and separation of real and imaginary parts yiels the two equations <span class="math display">\[
+\alpha^2 - \beta^2 = 0
+\]</span> and <span class="math display">\[
+-2 \alpha \beta = - \omega \mu \sigma.
+\]</span></p>
+<div id="f83719af" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>expr <span class="op">=</span> expand((alpha <span class="op">-</span> I <span class="op">*</span> beta)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>re(expr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="47">
+<p><span class="math display">\[\begin{equation}\alpha^{2} - \beta^{2}\end{equation}\]</span></p>
+</div>
+</div>
+<div id="03cc4d37" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>k2 <span class="op">=</span> <span class="op">-</span>I <span class="op">*</span> omega <span class="op">*</span> mu <span class="op">*</span> sigma</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ex <span class="op">=</span> re(expr).subs(beta, solve([im(expr) <span class="op">-</span> im(k2)], beta)[beta])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># solve([im(expr) - im(k2)], beta)[beta]</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> solve(ex, alpha)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>sol</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="48">
+<p><span class="math display">\[\begin{equation}\left[ - \frac{\sqrt{2} \sqrt{\mu} \sqrt{\omega} \sqrt{\sigma}}{2}, \  \frac{\sqrt{2} \sqrt{\mu} \sqrt{\omega} \sqrt{\sigma}}{2}\right]\end{equation}\]</span></p>
+</div>
+</div>
+<p>We see, that <span class="math display">\[
+\alpha = \pm \sqrt{\frac{\omega \mu \sigma}{2}} = \beta
+\]</span> It remains to decide on the correct sign of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
+<p>We model the field component <span class="math inline">\(H_x(z)\)</span> as a function of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. With <span class="math inline">\(k = \pm (\alpha - i\beta)\)</span> we get <span class="math display">\[
+H_x(z) = e^{-i k z} e^{+i \omega t} = e^{-i \alpha z} e^{-\beta z} e^{+i \omega t}.
+\]</span></p>
+<p>The following animation shows the real and imaginary part of the magnetic field for a frequency of 1 Hz for a uniform halfspace with a resistivity of 100 <span class="math inline">\(\Omega \cdot m\)</span>. The red and green line display the skin depth and the wave length, resp.</p>
+<p>Check: For <span class="math inline">\(\rho = 100~\Omega \cdot m\)</span> and <span class="math inline">\(f = 1\)</span> s, the skin depth is approximately <span class="math display">\[
+\tau = 503 \sqrt{\rho / f} \approx 5.03 \text{ km.}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ani.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

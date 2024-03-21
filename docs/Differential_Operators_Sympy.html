@@ -287,8 +287,11 @@ window.Quarto = {
 
 
 <div id="0a649503-9e17-4f56-8a20-9f29e8603dc8" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy.vector <span class="im">import</span> CoordSys3D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="gradient" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="gradient"><span class="header-section-number">6.1</span> Gradient</h2>
@@ -308,6 +311,8 @@ window.Quarto = {
 \nabla \times \mathbf F
 \]</span></p>
 <div id="2f1e951b-91b0-44b2-88b3-cd180fb8e55f" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nabla(f, x, y, z):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Matrix([f.diff(x), f.diff(y), f.diff(z)])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -328,35 +333,54 @@ window.Quarto = {
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> curl_op(vec_F, <span class="op">*</span><span class="bu">vars</span>):</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return the curl of a vector field."""</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Matrix([curl_part(vec_F, u, v, <span class="op">*</span><span class="bu">vars</span>) <span class="cf">for</span> u, v <span class="kw">in</span> [(<span class="dv">1</span>,<span class="dv">2</span>), (<span class="dv">2</span>,<span class="dv">0</span>), (<span class="dv">0</span>,<span class="dv">1</span>)]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="dec9c156-58f3-4c25-92a3-1c4659d6c03d" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x, y, z <span class="op">=</span> symbols(<span class="st">'x y z'</span>, real<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Compute the gradient of <span class="math display">\[
 f = \frac{1}{r},
 \]</span> where <span class="math inline">\(r = \sqrt{x^2 + y^2 + z^2}\)</span>.</p>
 <div id="7a5f194f-ad93-46ea-ae92-545e76f001b4" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="d643cf4c-5216-43d9-a6d1-5a72c9f807ef" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> symbols(<span class="st">'a b c'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> a <span class="op">*</span> x <span class="op">+</span> b <span class="op">*</span> y <span class="op">+</span> c <span class="op">*</span> z</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>gradient_op(V, x, y, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <p><span class="math inline">\(\displaystyle \left[\begin{matrix}a\\b\\c\end{matrix}\right]\)</span></p>
 </div>
 </div>
 <div id="1b8f0aac-0fdd-4c86-8baa-a685b0adf637" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> gradient_op(<span class="dv">1</span> <span class="op">/</span> r, x, y, z) <span class="co">#subs(sqrt(x**2 + y**2 + z**2), r)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="9fc138ef-84ab-4e27-8d2c-a92e8570733f" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>divergence_op(g, x, y, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
 <p><span class="math inline">\(\displaystyle \frac{3 x^{2}}{\left(x^{2} + y^{2} + z^{2}\right)^{\frac{5}{2}}} + \frac{3 y^{2}}{\left(x^{2} + y^{2} + z^{2}\right)^{\frac{5}{2}}} + \frac{3 z^{2}}{\left(x^{2} + y^{2} + z^{2}\right)^{\frac{5}{2}}} - \frac{3}{\left(x^{2} + y^{2} + z^{2}\right)^{\frac{3}{2}}}\)</span></p>
 </div>
 </div>
 <div id="62c2ca97-c14d-4b5f-8846-a51e74fefe13" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>curl_op(g, x, y, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
 <p><span class="math inline">\(\displaystyle \left[\begin{matrix}0\\0\\0\end{matrix}\right]\)</span></p>
 </div>
@@ -365,14 +389,20 @@ f = \frac{1}{r},
 <section id="curl-formula" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="curl-formula"><span class="header-section-number">6.4</span> Curl formula</h2>
 <div id="9c088907-bcc0-4454-99a0-d0facc66540e" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>P, Q, R <span class="op">=</span> [Function(ch, real <span class="op">=</span> <span class="va">True</span>)(x, y, z) <span class="cf">for</span> ch <span class="kw">in</span> [<span class="st">'P'</span>, <span class="st">'Q'</span>, <span class="st">'R'</span>]]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>P, Q, R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>(P(x, y, z), Q(x, y, z), R(x, y, z))</code></pre>
 </div>
 </div>
 <div id="d665a2ce-4f7b-47cb-a49a-aa74fc910704" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>curl_op(Matrix([P, Q, R]), x, y, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
 <p><span class="math inline">\(\displaystyle \left[\begin{matrix}- \frac{\partial}{\partial z} Q{\left(x,y,z \right)} + \frac{\partial}{\partial y} R{\left(x,y,z \right)}\\\frac{\partial}{\partial z} P{\left(x,y,z \right)} - \frac{\partial}{\partial x} R{\left(x,y,z \right)}\\- \frac{\partial}{\partial y} P{\left(x,y,z \right)} + \frac{\partial}{\partial x} Q{\left(x,y,z \right)}\end{matrix}\right]\)</span></p>
 </div>
@@ -381,7 +411,10 @@ f = \frac{1}{r},
 <section id="divergence-formula" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="divergence-formula"><span class="header-section-number">6.5</span> Divergence formula</h2>
 <div id="cf209c91-852c-43b6-890f-8f8027ae12f7" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>divergence_op(Matrix([P, Q, R]), x, y, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="10">
 <p><span class="math inline">\(\displaystyle \frac{\partial}{\partial x} P{\left(x,y,z \right)} + \frac{\partial}{\partial y} Q{\left(x,y,z \right)} + \frac{\partial}{\partial z} R{\left(x,y,z \right)}\)</span></p>
 </div>
@@ -390,100 +423,154 @@ f = \frac{1}{r},
 <section id="non-cartesian-coord-systems" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> Non-cartesian coord systems</h1>
 <div id="be14ac15-a100-432f-af2a-ba0bd9adeab9" class="cell" data-execution_count="48">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> CoordSys3D(<span class="st">'C'</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> C.create_new(<span class="st">'S'</span>, transformation<span class="op">=</span><span class="st">'spherical'</span>, vector_names<span class="op">=</span><span class="bu">list</span>(<span class="st">'RTP'</span>))</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> C.create_new(<span class="st">'Y'</span>, transformation<span class="op">=</span><span class="st">'cylindrical'</span>, vector_names<span class="op">=</span><span class="bu">list</span>(<span class="st">'RTZ'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="e127807c-18a7-49ad-94fe-77a7103f0b7b" class="cell" data-execution_count="49">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>transs <span class="op">=</span> Matrix(S.transformation_to_parent())</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>transy <span class="op">=</span> Matrix(Y.transformation_to_parent())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="4b9445b2-b1cb-49f5-ad0b-4155f2978c34" class="cell" data-execution_count="50">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> Matrix([x, y, z])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="57b02dc9-9f2f-42d2-ae15-a2fb835a5743" class="cell" data-execution_count="51">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Y.base_scalars()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="51">
 <pre><code>(Y.r, Y.theta, Y.z)</code></pre>
 </div>
 </div>
 <div id="7073b7d1-25cf-40c4-bdd2-1a67a3979893" class="cell" data-execution_count="52">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>S.base_scalars()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>(S.r, S.theta, S.phi)</code></pre>
 </div>
 </div>
 <div id="2c1872f7-7273-4a41-99a0-9a84085b5612" class="cell" data-execution_count="53">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Js <span class="op">=</span> transs.jacobian([S.r, S.theta, S.phi])</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Jy <span class="op">=</span> transy.jacobian([Y.r, Y.theta, Y.z])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="46ce3789-2275-4441-bc08-ee727c42e005" class="cell" data-execution_count="54">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>transs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="54">
 <p><span class="math inline">\(\displaystyle \left[\begin{matrix}\mathbf{{r}_{S}} \sin{\left(\mathbf{{theta}_{S}} \right)} \cos{\left(\mathbf{{phi}_{S}} \right)}\\\mathbf{{r}_{S}} \sin{\left(\mathbf{{phi}_{S}} \right)} \sin{\left(\mathbf{{theta}_{S}} \right)}\\\mathbf{{r}_{S}} \cos{\left(\mathbf{{theta}_{S}} \right)}\end{matrix}\right]\)</span></p>
 </div>
 </div>
 <div id="7fed6155-f2b6-40ab-af8b-5ad2bd0ad9ff" class="cell" data-execution_count="55">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>transy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="55">
 <p><span class="math inline">\(\displaystyle \left[\begin{matrix}\mathbf{{r}_{Y}} \cos{\left(\mathbf{{theta}_{Y}} \right)}\\\mathbf{{r}_{Y}} \sin{\left(\mathbf{{theta}_{Y}} \right)}\\\mathbf{{z}_{Y}}\end{matrix}\right]\)</span></p>
 </div>
 </div>
 <div id="00934c04-ccc6-4192-99ea-73f17ba2f98d" class="cell" data-execution_count="56">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Js</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="56">
 <p><span class="math inline">\(\displaystyle \left[\begin{matrix}\sin{\left(\mathbf{{theta}_{S}} \right)} \cos{\left(\mathbf{{phi}_{S}} \right)} &amp; \mathbf{{r}_{S}} \cos{\left(\mathbf{{phi}_{S}} \right)} \cos{\left(\mathbf{{theta}_{S}} \right)} &amp; - \mathbf{{r}_{S}} \sin{\left(\mathbf{{phi}_{S}} \right)} \sin{\left(\mathbf{{theta}_{S}} \right)}\\\sin{\left(\mathbf{{phi}_{S}} \right)} \sin{\left(\mathbf{{theta}_{S}} \right)} &amp; \mathbf{{r}_{S}} \sin{\left(\mathbf{{phi}_{S}} \right)} \cos{\left(\mathbf{{theta}_{S}} \right)} &amp; \mathbf{{r}_{S}} \sin{\left(\mathbf{{theta}_{S}} \right)} \cos{\left(\mathbf{{phi}_{S}} \right)}\\\cos{\left(\mathbf{{theta}_{S}} \right)} &amp; - \mathbf{{r}_{S}} \sin{\left(\mathbf{{theta}_{S}} \right)} &amp; 0\end{matrix}\right]\)</span></p>
 </div>
 </div>
 <div id="611a7ae3-dd1d-4119-9841-ad141e3b85ec" class="cell" data-execution_count="57">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Jy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="57">
 <p><span class="math inline">\(\displaystyle \left[\begin{matrix}\cos{\left(\mathbf{{theta}_{Y}} \right)} &amp; - \mathbf{{r}_{Y}} \sin{\left(\mathbf{{theta}_{Y}} \right)} &amp; 0\\\sin{\left(\mathbf{{theta}_{Y}} \right)} &amp; \mathbf{{r}_{Y}} \cos{\left(\mathbf{{theta}_{Y}} \right)} &amp; 0\\0 &amp; 0 &amp; 1\end{matrix}\right]\)</span></p>
 </div>
 </div>
 <div id="8a61c6ed-9cf6-4bbb-b29d-64f0aa022c4a" class="cell" data-execution_count="63">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>det(Jy).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="63">
 <p><span class="math inline">\(\displaystyle \mathbf{{r}_{Y}}\)</span></p>
 </div>
 </div>
 <div id="9b7e3c26-770c-46b6-8639-d807bfd51d3f" class="cell" data-execution_count="60">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>det(Js).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="60">
 <p><span class="math inline">\(\displaystyle \mathbf{{r}_{S}}^{2} \sin{\left(\mathbf{{theta}_{S}} \right)}\)</span></p>
 </div>
 </div>
 <div id="368f3d21-e9bd-4dda-98dc-28c3ba8d3c16" class="cell" data-execution_count="68">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Js.det().simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="68">
 <p><span class="math inline">\(\displaystyle \mathbf{{r}_{S}}^{2} \sin{\left(\mathbf{{theta}_{S}} \right)}\)</span></p>
 </div>
 </div>
 <p><a href="https://mzucker.github.io/2018/04/12/sympy-part-3-moar-derivatives.html"></a></p>
 <div id="e3b62925-ff0a-4289-8710-5a1bdc7c804d" class="cell" data-execution_count="25">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ϕ, θ <span class="op">=</span> symbols(<span class="vs">r'\varphi, \theta'</span>, real<span class="op">=</span><span class="va">True</span>, positive<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="52559ff2-f12e-43d9-8051-cf8368e1d185" class="cell" data-execution_count="26">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> symbols(<span class="st">'r'</span>, real<span class="op">=</span><span class="va">True</span>, positive<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="d814896a-d733-4712-85d5-eb151f68d4ff" class="cell" data-execution_count="27">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>trans <span class="op">=</span> {</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    x: r <span class="op">*</span> sin(θ) <span class="op">*</span> cos(ϕ),</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    y: r <span class="op">*</span> sin(θ) <span class="op">*</span> sin(ϕ),</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    z: r <span class="op">*</span> cos(θ)</span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="fed00ce1-2fec-48b1-887a-56efdcbd98a1" class="cell" data-execution_count="29">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>xyz <span class="op">=</span> Matrix([x, y, z])</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>xyz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="29">
 <p><span class="math inline">\(\displaystyle \left[\begin{matrix}x\\y\\z\end{matrix}\right]\)</span></p>
 </div>
 </div>
 <div id="3c2d89a8-0f69-4b6a-90eb-948013586530" class="cell" data-execution_count="31">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rr <span class="op">=</span> xyz.subs(trans)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>rr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="31">
 <p><span class="math inline">\(\displaystyle \left[\begin{matrix}r \sin{\left(\theta \right)} \cos{\left(\varphi \right)}\\r \sin{\left(\theta \right)} \sin{\left(\varphi \right)}\\r \cos{\left(\theta \right)}\end{matrix}\right]\)</span></p>
 </div>
