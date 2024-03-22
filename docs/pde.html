@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./Differential_Operators_Sympy.html" rel="next">
+<link href="./mtfields.html" rel="next">
 <link href="./maxwell.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -210,14 +210,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./mtfields.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plane waves above and inside a homogeneous Earth</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Differential_Operators_Sympy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./semisphere.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Potential of a point source in a semi-sphere embedded in a uniform halfspace</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Potential of a point source in a semi-sphere embedded in a uniform halfspace</span></span></a>
   </div>
 </li>
       </ul>
@@ -234,7 +240,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -437,7 +443,7 @@ Warning
 <p>To study the decay of a free charge denoted by an electrical charge density, we define as initial condition for <span class="math inline">\(t=0\)</span> that <span class="math inline">\(\rho_E(0) = 1~A\cdot s\cdot m^{-3}\)</span> .</p>
 <p>Further, the conductivity of the uniform fullspace is 0.01 S/m.</p>
 <p>We plot the function <a href="#eq-decay" class="quarto-xref"><span>5.3</span></a> for a very small time window:</p>
-<div id="7e50ac1f" class="cell" data-execution_count="1">
+<div id="3d86fb2a" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -467,7 +473,7 @@ Warning
 <p>By visual inspection, after approx. 10 ns the volume charge density has dropped to zero.</p>
 <p>Let’s be more precise:</p>
 <p>We can calculate the time at which the charge density decays to a given fraction of its initial value, e.g., to 1 ppm.</p>
-<div id="f4e1395a" class="cell" data-execution_count="2">
+<div id="3f1f153e" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> <span class="op">*</span></span>
@@ -488,7 +494,7 @@ Warning
 <p><span class="math display">\[
 \hat{t} = \frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{0}}{\rho_{E}} \right)} = -\frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{E}}{\rho_{0}} \right)}
 \]</span></p>
-<div id="ed0c7434" class="cell" data-execution_count="3">
+<div id="1176dd04" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tstar <span class="op">=</span> <span class="op">-</span>epsilon_n <span class="op">/</span> sigma_n <span class="op">*</span> np.log(<span class="fl">1e-6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -589,7 +595,7 @@ A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
 \frac{\eta_1}{\eta_2} = \frac{\mu\sigma}{\mu\varepsilon} T = c_0^2 \mu\sigma T \gg 1.
 \]</span></p>
 <p>We illustrate our findings and calculate meaningful values for the coefficients.</p>
-<div id="6591d38b" class="cell" data-execution_count="4">
+<div id="1f51d9fb" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eta1(T, L, sigma):</span>
@@ -617,7 +623,7 @@ A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
 </div>
 </div>
 <p>In global investigations for which <span class="math inline">\(L \approx 10^4\)</span> km, we observe that <span class="math inline">\(\eta_2\)</span> is small (less than, e.g., 0.1) for <span class="math inline">\(T &gt; 0.1\)</span> seconds.</p>
-<div id="9bce7dfc" class="cell" data-execution_count="5">
+<div id="283a9d21" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(<span class="dv">1</span> <span class="op">/</span> T, [eta1(t, L, <span class="fl">1e-5</span>) <span class="op">/</span> eta2(t, L) <span class="cf">for</span> t <span class="kw">in</span> T])</span>
@@ -634,7 +640,7 @@ A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
 </div>
 </div>
 <p>In the last example we have used a conductivity of <span class="math inline">\(10^{-5}\)</span> S/m as a reasonable low value for minerals. We recognize that the ratio is large for frequencies less than <span class="math inline">\(10^5\)</span> Hz.</p>
-<p>To conclude, we can safely assume that the second term, <span class="math inline">\(\eta_2\)</span>, can be neglected for frequencies less than <span class="math inline">\(10^5\)</span> Hz for the lowest reasonable value of the conductivity in the Earth. For higher conductivities, the result becomes even more pronounced.</p>
+<p>To conclude, we can safely assume that the second term, <span class="math inline">\(\eta_2\)</span>, and correspondingly the term <span class="math inline">\(\mu\varepsilon\)</span>, can be neglected for frequencies less than <span class="math inline">\(10^5\)</span> Hz for the lowest reasonable value of the conductivity in the Earth. For higher conductivities, the result becomes even more pronounced.</p>
 <p>As a consequence, the displacement current density in Ampere’s law can be neglected as well, such that <span class="math display">\[
 \nabla \times \mathbf{h} = \mathbf j
 \]</span></p>
@@ -733,7 +739,7 @@ H_x(z) = H_x(0) e^{-i k z}.
 <p>We use <code>sympy</code> to exlore the problem:</p>
 <section id="symbolic-representation-of-k2" class="level4" data-number="5.4.1.1">
 <h4 data-number="5.4.1.1" class="anchored" data-anchor-id="symbolic-representation-of-k2"><span class="header-section-number">5.4.1.1</span> Symbolic representation of <span class="math inline">\(k^2\)</span></h4>
-<div id="8ef20cb5" class="cell" data-execution_count="6">
+<div id="63048cae" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy</span>
@@ -751,7 +757,7 @@ k^2 = (\alpha - i \beta)^2
 \]</span> and <span class="math display">\[
 -2 \alpha \beta = - \omega \mu \sigma.
 \]</span></p>
-<div id="f2c0b46a" class="cell" data-execution_count="7">
+<div id="09d4aff4" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>expr <span class="op">=</span> expand((alpha <span class="op">-</span> I <span class="op">*</span> beta)<span class="op">**</span><span class="dv">2</span>)</span>
@@ -761,7 +767,7 @@ k^2 = (\alpha - i \beta)^2
 <p><span class="math display">\[\begin{equation}\alpha^{2} - \beta^{2}\end{equation}\]</span></p>
 </div>
 </div>
-<div id="6f07eddc" class="cell" data-execution_count="8">
+<div id="85758186" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>k2 <span class="op">=</span> <span class="op">-</span>I <span class="op">*</span> omega <span class="op">*</span> mu <span class="op">*</span> sigma</span>
@@ -829,6 +835,64 @@ Note
 <p><span class="math display">\[
 \lambda = 2 \pi \tau \approx 31.6 \text{ km.}
 \]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Python code">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Python code
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is the Python code that you can use to create the following animation:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> h(z, a, b, w, t):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> a <span class="op">*</span> z) <span class="op">*</span> np.exp(<span class="op">-</span>b <span class="op">*</span> z) <span class="op">*</span> np.exp(<span class="ot">1j</span> <span class="op">*</span> w <span class="op">*</span> t)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">/</span> T </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">1e-2</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>kk <span class="op">=</span> np.sqrt(w <span class="op">*</span> mu <span class="op">*</span> sigma <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> kk</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> kk</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>zair <span class="op">=</span> np.arange(start<span class="op">=-</span><span class="dv">10000</span>, stop<span class="op">=</span><span class="dv">0</span>, step<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>zz <span class="op">=</span> np.arange(start<span class="op">=</span><span class="dv">0</span>, stop<span class="op">=</span><span class="fl">6e4</span>, step<span class="op">=</span><span class="dv">600</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> kk</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">6</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(frame):</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    ax.clear()</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> frame <span class="op">*</span> T <span class="op">/</span> <span class="fl">100.0</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    ax.plot([np.real(np.exp(<span class="ot">1j</span> <span class="op">*</span> w <span class="op">*</span> t)) <span class="cf">for</span> _ <span class="kw">in</span> zair], zair, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">''</span>, zorder<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    ax.plot([np.real(h(z, a, b, w, t)) <span class="cf">for</span> z <span class="kw">in</span> zz], zz, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Re'</span>, zorder<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    ax.plot([np.imag(h(z, a, b, w, t)) <span class="cf">for</span> z <span class="kw">in</span> zz], zz, label<span class="op">=</span><span class="st">'Im'</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    ax.fill_betweenx(zz, <span class="op">-</span>np.exp(<span class="op">-</span>b <span class="op">*</span> zz), np.exp(<span class="op">-</span>b <span class="op">*</span> zz), color<span class="op">=</span><span class="st">'grey'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    zp <span class="op">=</span> w <span class="op">*</span> t <span class="op">/</span> a <span class="cf">if</span> a <span class="op">&gt;</span> <span class="fl">0.0</span> <span class="cf">else</span> np.<span class="bu">max</span>(zz) <span class="op">+</span> w <span class="op">*</span> t <span class="op">/</span> a</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    ax.scatter(np.real(h(zp, a, b, w, t)), zp, marker<span class="op">=</span><span class="st">'*'</span>, color<span class="op">=</span><span class="st">'black'</span>, label<span class="op">=</span><span class="st">'phase'</span>)</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    ax.axhline(y<span class="op">=</span>tau, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'τ'</span>)</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    ax.axhline(y<span class="op">=</span><span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> tau, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="st">'λ'</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'Depth in km'</span>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'Normalized amplitude'</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="op">-</span><span class="fl">1.0</span>, <span class="fl">1.0</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="bu">min</span>(zair), <span class="bu">max</span>(zz))</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    ax.invert_yaxis()</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    ax.legend(loc<span class="op">=</span><span class="st">'lower left'</span>)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>ani <span class="op">=</span> FuncAnimation(fig, update, frames<span class="op">=</span><span class="dv">100</span>, interval<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>ani.save(<span class="st">'animation.gif'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ani.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
@@ -1257,8 +1321,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Differential_Operators_Sympy.html" class="pagination-link" aria-label="Differential operators using _sympy_">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./mtfields.html" class="pagination-link" aria-label="Plane waves above and inside a homogeneous Earth">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plane waves above and inside a homogeneous Earth</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

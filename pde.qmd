@@ -342,9 +342,11 @@ plt.ylabel(r'$\eta_1 / \eta_2$')
 plt.grid(True)
 ```
 
-In the last example we have used a conductivity of $10^{-5}$ S/m as a reasonable low value for minerals. We recognize that the ratio is large for frequencies less than $10^5$ Hz.
+In the last example we have used a conductivity of $10^{-5}$ S/m as a reasonable low value for minerals.
+We recognize that the ratio is large for frequencies less than $10^5$ Hz.
 
-To conclude, we can safely assume that the second term, $\eta_2$, can be neglected for frequencies less than $10^5$ Hz for the lowest reasonable value of the conductivity in the Earth. For higher conductivities, the result becomes even more pronounced.
+To conclude, we can safely assume that the second term, $\eta_2$, and correspondingly the term $\mu\varepsilon$, can be neglected for frequencies less than $10^5$ Hz for the lowest reasonable value of the conductivity in the Earth.
+For higher conductivities, the result becomes even more pronounced.
 
 As a consequence, the displacement current density in Ampere's law can be neglected as well, such that
 $$
@@ -573,5 +575,54 @@ $$
 $$
 \lambda = 2 \pi \tau \approx 31.6 \text{ km.}
 $$
+
+::: {.callout-tip title="Python code" collapse="true"}
+This is the Python code that you can use to create the following animation:
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.animation import FuncAnimation
+
+def h(z, a, b, w, t):
+    return np.exp(-1j * a * z) * np.exp(-b * z) * np.exp(1j * w * t)
+
+T = 1.0
+w = 2 * np.pi / T 
+sigma = 1e-2
+mu = np.pi * 4e-7
+
+kk = np.sqrt(w * mu * sigma / 2)
+a = kk
+b = kk
+zair = np.arange(start=-10000, stop=0, step=100)
+zz = np.arange(start=0, stop=6e4, step=600)
+tau = 1.0 / kk
+
+fig, ax = plt.subplots(figsize=(4, 6), layout='constrained')
+
+def update(frame):
+    ax.clear()
+    t = frame * T / 100.0
+    ax.plot([np.real(np.exp(1j * w * t)) for _ in zair], zair, color='blue', label='', zorder=1)
+    ax.plot([np.real(h(z, a, b, w, t)) for z in zz], zz, color='blue', label='Re', zorder=2)
+    ax.plot([np.imag(h(z, a, b, w, t)) for z in zz], zz, label='Im', zorder=3)
+    ax.fill_betweenx(zz, -np.exp(-b * zz), np.exp(-b * zz), color='grey', alpha=0.5, label='')
+    zp = w * t / a if a > 0.0 else np.max(zz) + w * t / a
+    ax.scatter(np.real(h(zp, a, b, w, t)), zp, marker='*', color='black', label='phase')
+    ax.axhline(y=tau, color='red', label='τ')
+    ax.axhline(y=2 * np.pi * tau, color='green', label='λ')
+    ax.set_ylabel('Depth in km')
+    ax.set_xlabel('Normalized amplitude')
+    ax.set_xlim(-1.0, 1.0)
+    ax.set_ylim(min(zair), max(zz))
+    ax.invert_yaxis()
+    ax.legend(loc='lower left')
+
+ani = FuncAnimation(fig, update, frames=100, interval=50)
+
+ani.save('animation.gif')
+```
+:::
 
 ![](ani.gif){fig-align="center"}

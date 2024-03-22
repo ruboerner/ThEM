@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods - 4&nbsp; Maxwell’s Equations</title>
+<title>Theory of Electromagnetic Methods - 6&nbsp; Plane waves above and inside a homogeneous Earth</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./pde.html" rel="next">
-<link href="./fourier.html" rel="prev">
+<link href="./Differential_Operators_Sympy.html" rel="next">
+<link href="./pde.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -110,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">Introduction</a></li><li class="breadcrumb-item"><a href="./maxwell.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s Equations</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">Introduction</a></li><li class="breadcrumb-item"><a href="./mtfields.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plane waves above and inside a homogeneous Earth</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -164,7 +198,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./maxwell.html" class="sidebar-item-text sidebar-link active">
+  <a href="./maxwell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s Equations</span></span></a>
   </div>
 </li>
@@ -176,7 +210,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mtfields.html" class="sidebar-item-text sidebar-link">
+  <a href="./mtfields.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plane waves above and inside a homogeneous Earth</span></span></a>
   </div>
 </li>
@@ -227,20 +261,16 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#constitutive-equations" id="toc-constitutive-equations" class="nav-link active" data-scroll-target="#constitutive-equations"><span class="header-section-number">4.1</span> Constitutive equations</a></li>
-  <li><a href="#ohms-law" id="toc-ohms-law" class="nav-link" data-scroll-target="#ohms-law"><span class="header-section-number">4.2</span> Ohm’s law</a>
-  <ul class="collapse">
-  <li><a href="#remarks-about-anisotropy" id="toc-remarks-about-anisotropy" class="nav-link" data-scroll-target="#remarks-about-anisotropy"><span class="header-section-number">4.2.1</span> Remarks about anisotropy</a></li>
-  </ul></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link active" data-scroll-target="#visualization"><span class="header-section-number">6.1</span> Visualization</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">Introduction</a></li><li class="breadcrumb-item"><a href="./maxwell.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s Equations</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">Introduction</a></li><li class="breadcrumb-item"><a href="./mtfields.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plane waves above and inside a homogeneous Earth</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s Equations</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plane waves above and inside a homogeneous Earth</span></h1>
 </div>
 
 
@@ -257,71 +287,226 @@ window.Quarto = {
 </header>
 
 
-<p>The EM fields <a href="intro.html#eq-fields-time" class="quarto-xref"><span>2.1</span></a> are solutions of <em>Maxwell’s equations</em></p>
-<p><span id="eq-maxwell-time"><span class="math display">\[
-\begin{align}\nabla \times \mathbf h - \partial_t \mathbf d  &amp; = \mathbf j \\\nabla \times \mathbf e + \partial_t \mathbf b &amp; = \mathbf 0 \\\nabla \cdot \mathbf b &amp; = 0 \\\nabla \cdot \mathbf d &amp; = \rho_E.\end{align}
-\tag{4.1}\]</span></span></p>
-<p>In the form presented here, Maxwell’s equations are an <strong>uncoupled set of ordinary differential equations</strong>.</p>
-<section id="constitutive-equations" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="constitutive-equations"><span class="header-section-number">4.1</span> Constitutive equations</h2>
-<p>The goal is to couple these equations. This can be achieved with the use of the <strong>constitutive equations</strong>, which are</p>
-<p><span id="eq-constitutive-equations"><span class="math display">\[
-\begin{align}
-\mathbf d &amp; = \varepsilon \mathbf e \\
-\mathbf b &amp; = \mu \mathbf h
-\end{align}
-\tag{4.2}\]</span></span></p>
-<p>Generally, the linear parameters <span class="math inline">\(\varepsilon, \mu\)</span> are rank-2 <strong>tensors</strong> represented as 3-by-3 matrices.</p>
-</section>
-<section id="ohms-law" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="ohms-law"><span class="header-section-number">4.2</span> Ohm’s law</h2>
-<p>In an electrically conductive medium, any electric field gives rise to an electric current. This current is expressed by its <em>current density</em> as</p>
-<p><span id="eq-ohms-law"><span class="math display">\[
-\mathbf j = \sigma \mathbf e,
-\tag{4.3}\]</span></span></p>
-<p>where <span class="math inline">\(\sigma\)</span> is a rank-2 tensor.</p>
-<p>This tensor can be represented in matrix form as</p>
+<p>In this section we calculate the magnetic and electric fields inside and above a uniform Earth.</p>
+<p>We consider plane electromagnetic waves as they are typically used in Magnetotellurics (MT).</p>
+<p>The conducting Earth is confined to the halfspace in <span class="math inline">\(z \ge 0\)</span>, whereas the Air halfspace is in <span class="math inline">\(z &lt; 0\)</span>. The electrical conductivity <span class="math inline">\(\sigma\)</span> of the conducting halfspace is uniform. We use time-harmonic plane waves with a time dependency of <span class="math inline">\(\exp(i \omega t)\)</span>.</p>
+<p>The source of electromagnetic induction in the lower halfspace is a homogeneous time-harmonic magnetic field in <span class="math inline">\(z&lt;0\)</span> with <span id="eq-hair"><span class="math display">\[
+\mathbf H(z, \omega) = \begin{bmatrix} H_x\\ 0\\ 0 \end{bmatrix} e^{i \omega t}, \quad z &lt; 0
+\tag{6.1}\]</span></span></p>
+<p>where the amplitude is <span class="math inline">\(H_x = 1\)</span> A/m. The inducing field is linear polarized in the <span class="math inline">\(x\)</span>-direction.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the following, we drop the term <span class="math inline">\(e^{i \omega t}\)</span>.</p>
+</div>
+</div>
+<p>What do we know about the magnetic field inside the Earth?</p>
+<p>In <span class="math inline">\(z \ge 0\)</span>, the magnetic field is a solution of thr Helmholtz equation <span id="eq-helm-h"><span class="math display">\[
+\partial^2_{zz} H_x + k^2 H_x = 0, \quad k^2 = - i \omega \mu \sigma
+\tag{6.2}\]</span></span></p>
+<p>The solution inside the Earth is <span id="eq-sol-h"><span class="math display">\[
+H_x(z) = e^{- i k z}
+\tag{6.3}\]</span></span></p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Self study">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Self study
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Show that <a href="#eq-sol-h" class="quarto-xref"><span>6.3</span></a> is the solution to <a href="#eq-helm-h" class="quarto-xref"><span>6.2</span></a>!</p>
+</div>
+</div>
+<p>We now have the complete solution in the entire half-space: <span class="math display">\[
+H_x(z) = \begin{cases}
+1 &amp; \text{ for } z \le 0 \\
+e^{-i k z} &amp; \text{ for } z \ge 0
+\end{cases}
+\]</span> We have assumed the continuity of <span class="math inline">\(H_x\)</span> in <span class="math inline">\(z=0\)</span>.</p>
+<p>To obtain the electric field associated with the magnetic field in both halfspaces, we make use of Maxwell’s equations.</p>
+<p>Recall that in quasi-static approximation, <span class="math display">\[
+\nabla \times \mathbf H = \mathbf j.
+\]</span> More precisely, <span class="math display">\[
+\nabla \times \mathbf H =
+\begin{bmatrix}
+\partial_x \\ \partial_y \\ \partial_z
+\end{bmatrix}
+\times
+\begin{bmatrix}
+H_x \\ H_y \\ H_z
+\end{bmatrix}
+=
+\begin{bmatrix}
+\partial_y H_z - \partial_z H_y \\
+\partial_z H_x - \partial_x H_z \\
+\partial_x H_y - \partial_y H_x
+\end{bmatrix}.
+\]</span> In our case (cf. <a href="#eq-hair" class="quarto-xref"><span>6.1</span></a>), there is only an <span class="math inline">\(x\)</span>-component of <span class="math inline">\(\mathbf H\)</span>,</p>
 <p><span class="math display">\[
-\sigma =   \begin{pmatrix}    \sigma_{11} &amp; \sigma_{12} &amp; \sigma_{13} \\    \sigma_{21} &amp; \sigma_{22} &amp; \sigma_{23} \\    \sigma_{31} &amp; \sigma_{32} &amp; \sigma_{33}   \end{pmatrix}.
+\nabla \times \mathbf H =
+\begin{bmatrix}
+0 \\
+\partial_z H_x \\
+0
+\end{bmatrix} = \sigma
+\begin{bmatrix}
+0 \\ E_y \\ 0
+\end{bmatrix},
+\]</span> which results in a <span class="math inline">\(y\)</span>-component of the associated electric field <span class="math inline">\(\mathbf E\)</span>. The EM waves <span class="math inline">\(\mathbf H\)</span> and <span class="math inline">\(\mathbf E\)</span> are transversal waves, hence mutually orthogonal to the direction of propagation <span class="math inline">\(\mathbf k\)</span>, such that <span class="math display">\[
+\mathbf H \perp \mathbf E \perp \mathbf k.
 \]</span></p>
-<p>Tensors like introduced here cause <em>anisotropy</em>, i.e., the material properties have different values across different spatial directions.</p>
-<p>A typical observation would be the deviation of the induced current density from the direction of the driving electric field.</p>
-<section id="remarks-about-anisotropy" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="remarks-about-anisotropy"><span class="header-section-number">4.2.1</span> Remarks about anisotropy</h3>
-<p>The rank-2 tensor of electrical conductivity <span class="math inline">\(\tilde\sigma\)</span> may be represented in matrix form as</p>
+<p>Now we derive an expression for <span class="math inline">\(E_y\)</span> in <span class="math inline">\(z \ge 0\)</span>:</p>
 <p><span class="math display">\[
-  \hat\sigma =
-  \begin{pmatrix}
-    \sigma_{11} &amp; \sigma_{12} &amp; \sigma_{13} \\
-    \sigma_{21} &amp; \sigma_{22} &amp; \sigma_{23} \\
-    \sigma_{31} &amp; \sigma_{32} &amp; \sigma_{33}
-  \end{pmatrix}.
+E_y(z) = \frac{1}{\sigma} \partial_z H_x(z) = \frac{ 1 }{ \sigma } \partial_z e^{-i k z} = -\frac{ ik }{ \sigma } e^{-i k z} .
+\]</span> The amplitude of the electric field at the surface of the Earth in <span class="math inline">\(z=0\)</span> is <span class="math display">\[
+E_y(0) = -\frac{ ik }{ \sigma }.
 \]</span></p>
-<p>Any real symmetric (n-by-n) matrix <span class="math inline">\(A\)</span> can be diagonalized (principal axis theorem), such that</p>
-<p><span class="math display">\[
-D_A = S^\top A S  
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Self study">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Self study
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Show that <span class="math inline">\(E_y(z)\)</span> satisfies Faraday’s law!</p>
+</div>
+</div>
+<p>Now we turn to the electric field in the Air halfspace, i.e., in <span class="math inline">\(z\le 0\)</span>.</p>
+<p>In <span class="math inline">\(z \le 0\)</span>, the magnetic field is uniform with a field intensity of 1 A/m, so <span class="math display">\[
+\mathbf H = \begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix}
 \]</span></p>
-<p>is a diagonal matrix, and <span class="math inline">\(S\)</span> is an orthogonal matrix.</p>
-<p>Interpreting the matrix <span class="math inline">\(A\)</span> as a linear map in <span class="math inline">\(\mathbb {R} ^3\)</span>, then the matrix <span class="math inline">\(S\)</span> can be thought of as a transformation to the new basis. Between the old and new coordinates there is the relation <span class="math inline">\(\mathbf {x}=S \boldsymbol {\xi }\)</span>. The action of the matrix <span class="math inline">\(A\)</span> in the new coordinate system is taken over by the diagonal matrix <span class="math inline">\(D_{A}\)</span>.</p>
-<p>After transformation of the tensor in diagonal form, we have <span class="math display">\[
-  \tilde\sigma =
-  \begin{pmatrix}
-    \sigma_{xx} &amp; 0 &amp; 0 \\
-    0 &amp; \sigma_{yy} &amp; 0 \\
-    0 &amp; 0 &amp; \sigma_{zz}
-  \end{pmatrix}.
+<p>We feed this into Faraday’s law: <span class="math display">\[
+\nabla \times \mathbf E = \begin{bmatrix}
+-i \omega \mu \\ 0 \\ 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+- \partial_z E_y \\
+0 \\
+0
+\end{bmatrix}
+\]</span> We see, that to obtain <span class="math inline">\(E_y\)</span>, we have to integrate both sides of <span class="math display">\[
+i \omega \mu = \partial_z E_y.
+\]</span> We integrate by parts and get <span class="math display">\[
+\int\limits_0^\xi \partial_z E_y \, \mathrm d z = \left[ E_y \right]_0^\xi = [i \omega \mu]_0^\xi
+\]</span> Therefore, <span class="math display">\[
+E_y(\xi) = E_y(0) + i \omega \mu \xi = -\frac{ ik }{ \sigma } + i \omega \mu \xi =
+-\frac{ ik }{ \sigma } (1 - i k \xi).
 \]</span></p>
-<p>If <span class="math inline">\(\sigma_{xx} = \sigma_{yy} = \sigma_{zz} = \sigma\)</span>, then <span class="math display">\[
-  \tilde\sigma = \sigma
-  \begin{pmatrix}
-    1 &amp; 0 &amp; 0 \\
-    0 &amp; 1 &amp; 0 \\
-    0 &amp; 0 &amp; 1
-  \end{pmatrix} = \sigma.
-\]</span> In this case, the conductivity does not depend on the spatial direction and hence is labelled <em>isotropic</em>.</p>
+<p>Finally, we obtain the result <span class="math display">\[
+E_y(z) =
+\begin{cases}
+-\dfrac{ ik }{ \sigma } (1 - i k z) &amp; z \le 0 \\
+-\dfrac{ ik }{ \sigma } e^{-i k z} &amp; z \ge 0
+\end{cases}
+\]</span></p>
+<section id="visualization" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="visualization"><span class="header-section-number">6.1</span> Visualization</h2>
+<p>We illustrate our results with a simple example of a uniform halfspace with a conductivity of 0.01 S/m and a frequency of 10 Hz.</p>
+<p>Shown are real (<code>Re</code>) and imaginary (<code>Im</code>) part of the fields along with their magnitude (<code>Abs</code>) as a function of depth.</p>
+<p>Clearly visible is the exponential decay with depth.</p>
+<div id="d77ce205" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">1000</span>, <span class="dv">10001</span>, <span class="dv">10</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> h(omega, sigma, z):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> np.sqrt(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span> <span class="op">*</span> sigma)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        H <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> <span class="dv">0</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&gt;=</span> <span class="dv">0</span>:</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        H <span class="op">=</span> np.exp(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> z)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> H</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> e(omega, sigma, z):</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> np.sqrt(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span> <span class="op">*</span> sigma)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        E <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">/</span> sigma <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> <span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> z)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&gt;=</span> <span class="dv">0</span>:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        E <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">/</span> sigma <span class="op">*</span> np.exp(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> z)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> E</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> [h(omega, sigma, zz) <span class="cf">for</span> zz <span class="kw">in</span> z]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> [e(omega, sigma, zz) <span class="cf">for</span> zz <span class="kw">in</span> z]</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>H0 <span class="op">=</span> h(omega, sigma, <span class="fl">0.0</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>E0 <span class="op">=</span> e(omega, sigma, <span class="fl">0.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>In our example, the skin depth is 1590.63 m.</p>
+<div id="b43927ce" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ax.plot(np.real(E <span class="op">/</span> E0), z, label<span class="op">=</span><span class="st">'Re'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ax.plot(np.imag(E <span class="op">/</span> E0), z, label<span class="op">=</span><span class="st">'Im'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>ax.plot(np.<span class="bu">abs</span>(E <span class="op">/</span> E0), z, label<span class="op">=</span><span class="st">'Abs'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ax.axhspan(z[<span class="dv">0</span>], <span class="fl">0.0</span>, facecolor<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>ax.axhspan(<span class="fl">0.0</span>, z[<span class="op">-</span><span class="dv">1</span>], facecolor<span class="op">=</span><span class="st">'lightgreen'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>ax.invert_yaxis()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((z[<span class="op">-</span><span class="dv">1</span>], z[<span class="dv">0</span>]))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'depth in m'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'$E(z)/E(0)$'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Normalized electric field'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="mtfields_files/figure-html/cell-3-output-1.png" width="395" height="395" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="e48844d9" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ax.plot(np.real(H <span class="op">/</span> H0), z, label<span class="op">=</span><span class="st">'Re'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax.plot(np.imag(H <span class="op">/</span> H0), z, label<span class="op">=</span><span class="st">'Im'</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ax.plot(np.<span class="bu">abs</span>(H <span class="op">/</span> H0), z, label<span class="op">=</span><span class="st">'Abs'</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ax.axhspan(z[<span class="dv">0</span>], <span class="fl">0.0</span>, facecolor<span class="op">=</span><span class="st">'lightblue'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ax.axhspan(<span class="fl">0.0</span>, z[<span class="op">-</span><span class="dv">1</span>], facecolor<span class="op">=</span><span class="st">'lightgreen'</span>, alpha<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>ax.invert_yaxis()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((z[<span class="op">-</span><span class="dv">1</span>], z[<span class="dv">0</span>]))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'depth in m'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'$H(z)/H(0)$'</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Normalized magnetic field'</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="mtfields_files/figure-html/cell-4-output-1.png" width="395" height="395" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -736,13 +921,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./fourier.html" class="pagination-link" aria-label="Fourier transform">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Fourier transform</span></span>
+      <a href="./pde.html" class="pagination-link" aria-label="Partial Differential Equations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Partial Differential Equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pde.html" class="pagination-link" aria-label="Partial Differential Equations">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Partial Differential Equations</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Differential_Operators_Sympy.html" class="pagination-link" aria-label="Differential operators using _sympy_">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

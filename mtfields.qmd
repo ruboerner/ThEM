@@ -1,0 +1,221 @@
+---
+title: "Plane waves above and inside a homogeneous Earth"
+jupyter: python3
+---
+In this section we calculate the magnetic and electric fields inside and above a uniform Earth.
+
+We consider plane electromagnetic waves as they are typically used in Magnetotellurics (MT).
+
+The conducting Earth is confined to the halfspace in $z \ge 0$, whereas the Air halfspace is in $z < 0$.
+The electrical conductivity $\sigma$ of the conducting halfspace is uniform.
+We use time-harmonic plane waves with a time dependency of $\exp(i \omega t)$.
+
+The source of electromagnetic induction in the lower halfspace is a homogeneous time-harmonic magnetic field in $z<0$ with
+$$
+\mathbf H(z, \omega) = \begin{bmatrix} H_x\\ 0\\ 0 \end{bmatrix} e^{i \omega t}, \quad z < 0
+$$ {#eq-hair}
+
+where the amplitude is $H_x = 1$ A/m.
+The inducing field is linear polarized in the $x$-direction.
+
+::: {.callout-note}
+In the following, we drop the term $e^{i \omega t}$.
+:::
+
+What do we know about the magnetic field inside the Earth?
+
+In $z \ge 0$, the magnetic field is a solution of thr Helmholtz equation
+$$
+\partial^2_{zz} H_x + k^2 H_x = 0, \quad k^2 = - i \omega \mu \sigma
+$$ {#eq-helm-h}
+
+The solution inside the Earth is
+$$
+H_x(z) = e^{- i k z}
+$$ {#eq-sol-h}
+
+::: {.callout title="Self study"}
+Show that @eq-sol-h is the solution to @eq-helm-h!
+:::
+
+We now have the complete solution in the entire half-space:
+$$
+H_x(z) = \begin{cases}
+1 & \text{ for } z \le 0 \\
+e^{-i k z} & \text{ for } z \ge 0
+\end{cases}
+$$
+We have assumed the continuity of $H_x$ in $z=0$.
+
+To obtain the electric field associated with the magnetic field in both halfspaces, we make use of Maxwell's equations.
+
+Recall that in quasi-static approximation,
+$$
+\nabla \times \mathbf H = \mathbf j.
+$$
+More precisely,
+$$
+\nabla \times \mathbf H = 
+\begin{bmatrix}
+\partial_x \\ \partial_y \\ \partial_z
+\end{bmatrix}
+\times
+\begin{bmatrix}
+H_x \\ H_y \\ H_z
+\end{bmatrix}
+=
+\begin{bmatrix}
+\partial_y H_z - \partial_z H_y \\
+\partial_z H_x - \partial_x H_z \\
+\partial_x H_y - \partial_y H_x
+\end{bmatrix}.
+$$
+In our case (cf. @eq-hair), there is only an $x$-component of $\mathbf H$,
+
+$$
+\nabla \times \mathbf H = 
+\begin{bmatrix}
+0 \\
+\partial_z H_x \\
+0
+\end{bmatrix} = \sigma 
+\begin{bmatrix}
+0 \\ E_y \\ 0
+\end{bmatrix},
+$$
+which results in a $y$-component of the associated electric field $\mathbf E$.
+The EM waves $\mathbf H$ and $\mathbf E$ are transversal waves, hence mutually orthogonal to the direction of propagation $\mathbf k$, such that
+$$
+\mathbf H \perp \mathbf E \perp \mathbf k.
+$$
+
+Now we derive an expression for $E_y$ in $z \ge 0$:
+
+$$
+E_y(z) = \frac{1}{\sigma} \partial_z H_x(z) = \frac{ 1 }{ \sigma } \partial_z e^{-i k z} = -\frac{ ik }{ \sigma } e^{-i k z} .
+$$
+The amplitude of the electric field at the surface of the Earth in $z=0$ is
+$$
+E_y(0) = -\frac{ ik }{ \sigma }.
+$$
+
+::: {.callout title="Self study"}
+Show that $E_y(z)$ satisfies Faraday's law!
+:::
+
+Now we turn to the electric field in the Air halfspace, i.e., in $z\le 0$.
+
+In $z \le 0$, the magnetic field is uniform with a field intensity of 1 A/m, so
+$$
+\mathbf H = \begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix}
+$$
+
+We feed this into Faraday's law:
+$$
+\nabla \times \mathbf E = \begin{bmatrix}
+-i \omega \mu \\ 0 \\ 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+- \partial_z E_y \\
+0 \\
+0
+\end{bmatrix}
+$$
+We see, that to obtain $E_y$, we have to integrate both sides of
+$$
+i \omega \mu = \partial_z E_y.
+$$
+We integrate by parts and get
+$$
+\int\limits_0^\xi \partial_z E_y \, \mathrm d z = \left[ E_y \right]_0^\xi = [i \omega \mu]_0^\xi
+$$
+Therefore,
+$$
+E_y(\xi) = E_y(0) + i \omega \mu \xi = -\frac{ ik }{ \sigma } + i \omega \mu \xi =
+-\frac{ ik }{ \sigma } (1 - i k \xi).
+$$
+
+Finally, we obtain the result
+$$
+E_y(z) = 
+\begin{cases}
+-\dfrac{ ik }{ \sigma } (1 - i k z) & z \le 0 \\
+-\dfrac{ ik }{ \sigma } e^{-i k z} & z \ge 0
+\end{cases}
+$$
+
+## Visualization
+
+We illustrate our results with a simple example of a uniform halfspace with a conductivity of 0.01 S/m and a frequency of 10 Hz.
+
+Shown are real (`Re`) and imaginary (`Im`) part of the fields along with their magnitude (`Abs`) as a function of depth.
+
+Clearly visible is the exponential decay with depth.
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+f = 10
+omega = 2 * np.pi * f
+sigma = 0.01
+
+z = np.arange(-1000, 10001, 10)
+
+def h(omega, sigma, z):
+    k = np.sqrt(-1j * omega * np.pi * 4e-7 * sigma)
+    if z < 0:
+        H = 1 + 1j * 0
+    if z >= 0:
+        H = np.exp(-1j * k * z)
+    return H
+
+def e(omega, sigma, z):
+    k = np.sqrt(-1j * omega * np.pi * 4e-7 * sigma)
+    if z < 0:
+        E = -1j * k / sigma * (1 - 1j * k * z)
+    if z >= 0:
+        E = -1j * k / sigma * np.exp(-1j * k * z)
+    return E
+
+H = [h(omega, sigma, zz) for zz in z]
+E = [e(omega, sigma, zz) for zz in z]
+H0 = h(omega, sigma, 0.0)
+E0 = e(omega, sigma, 0.0)
+```
+
+In our example, the skin depth is `{python} round(503 * np.sqrt(1 / sigma / f), 2)` m.
+
+```{python}
+fig, ax = plt.subplots(figsize=(4, 4), layout='constrained')
+ax.plot(np.real(E / E0), z, label='Re')
+ax.plot(np.imag(E / E0), z, label='Im')
+ax.plot(np.abs(E / E0), z, label='Abs')
+ax.axhspan(z[0], 0.0, facecolor='lightblue', alpha=0.4)
+ax.axhspan(0.0, z[-1], facecolor='lightgreen', alpha=0.4)
+ax.invert_yaxis()
+ax.set_ylim((z[-1], z[0]))
+ax.set_ylabel('depth in m')
+ax.set_xlabel(r'$E(z)/E(0)$')
+ax.set_title('Normalized electric field')
+ax.grid(True)
+ax.legend(loc='lower right')
+```
+```{python}
+fig, ax = plt.subplots(figsize=(4, 4), layout='constrained')
+ax.plot(np.real(H / H0), z, label='Re')
+ax.plot(np.imag(H / H0), z, label='Im')
+ax.plot(np.abs(H / H0), z, label='Abs')
+ax.axhspan(z[0], 0.0, facecolor='lightblue', alpha=0.4)
+ax.axhspan(0.0, z[-1], facecolor='lightgreen', alpha=0.4)
+ax.invert_yaxis()
+ax.set_ylim((z[-1], z[0]))
+ax.set_ylabel('depth in m')
+ax.set_xlabel(r'$H(z)/H(0)$')
+ax.set_title('Normalized magnetic field')
+ax.grid(True)
+ax.legend(loc='lower right')
+```
