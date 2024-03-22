@@ -13,9 +13,13 @@ book:
       chapters:
       - intro.qmd
       - fourier.qmd
+    - part: "Maxwell's equations"
+      chapters:
       - maxwell.qmd
       - pde.qmd
       - mtfields.qmd
+    - part: "Incomplete chapters"
+      chapters:
       - Differential_Operators_Sympy.ipynb
       - semisphere.ipynb
     - part: "Summary"
