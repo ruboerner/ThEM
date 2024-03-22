@@ -36,7 +36,7 @@ csl: https://www.zotero.org/styles/geophysical-journal-international
 
 format:
   html:
-    theme: cosmo
+    theme: lumen
     crossref:
       chapters: true
       eq-prefix: ""
