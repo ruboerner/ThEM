@@ -4,9 +4,20 @@
     "href": "index.html",
     "title": "Theory of Electromagnetic Methods",
     "section": "",
-    "text": "1 Remarks\nThese are the notes for the lecture on Theory of Electromagnetic Methods.\nAll materials are stored in the GitHub repo https://github.com/ruboerner/ThEM.\nHave fun!",
+    "text": "Remarks\nThese are the notes for the lecture on Theory of Electromagnetic Methods.\nAll materials are stored in the GitHub repo https://github.com/ruboerner/ThEM.\nHave fun!",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Remarks</span>"
+      "Remarks"
+    ]
+  },
+  {
+    "objectID": "preface.html",
+    "href": "preface.html",
+    "title": "1  Preface",
+    "section": "",
+    "text": "Links: - Maxwell",
+    "crumbs": [
+      "Introduction",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Preface</span>"
     ]
   },
   {
@@ -153,91 +164,179 @@
     ]
   },
   {
+    "objectID": "potentials.html",
+    "href": "potentials.html",
+    "title": "7  Sources in unbounded media",
+    "section": "",
+    "text": "7.1 Polarization vectors\nIn the absence of matter, we observe that \\[\n\\mathbf d - \\varepsilon_0 \\mathbf e = \\mathbf 0\n\\] and \\[\n\\mu_0^{-1} \\mathbf b - \\mathbf h = \\mathbf 0.\n\\] When the differences are non-zero, then we observe the response of matter. We define the electrical polarization \\(\\mathbf p\\) \\[\n\\mathbf p = \\mathbf d - \\varepsilon_0 \\mathbf e\n\\] and the magnetic polaization or magnetization \\(\\mathbf m\\) \\[\n\\mathbf m = \\mu_0^{-1} \\mathbf b - \\mathbf h\n\\] The polarization vectors \\(\\mathbf p\\) and \\(\\mathbf m\\) are parallel and proportional to \\(\\mathbf e\\) and \\(\\mathbf h\\), resp.\nWe are able to quantify the polarization properties by the electrical susceptibility \\(\\chi_e\\) and magnetic susceptibility \\(\\chi_m\\). The latter is often referred to as the magnetic susceptibility \\(\\kappa\\).\nWe define \\[\n\\mathbf p := \\chi_e \\varepsilon_0 \\mathbf e = \\mathbf d - \\varepsilon_0 \\mathbf e\n\\] and likewise \\[\n\\mathbf m := \\chi_m \\mathbf h = \\mu_0^{-1} \\mathbf b - \\mathbf h.\n\\] It follows for the relative dielectric permittivity \\[\n\\varepsilon_r = 1 + \\chi_e\n\\] and for the relative magnetic permeability \\[\n\\mu_r = 1 + \\chi_m = 1 + \\kappa.\n\\]\nTo implement technical sources, we separate the polarization into induced (superscript \\(i\\)) and external (superscript \\(s\\)) contributions to the observed fields: \\[\n\\mathbf p = \\mathbf p^i + \\mathbf p^s = \\mathbf d - \\varepsilon_0 \\mathbf e.\n\\] Then, \\[\n\\mathbf d = [\\underbrace{\\varepsilon_0 \\mathbf e}_\\text{free space} + \\underbrace{\\mathbf p^i}_\\text{matter}] + \\mathbf p^s\n\\] and \\[\n\\mathbf b = [\\underbrace{\\mu_0 \\mathbf h}_\\text{free space} + \\underbrace{\\mu_0 \\mathbf m^i}_\\text{matter}] + \\mu_0 \\mathbf m^s\n\\]\nWith the introduction of the polarization vectors, we are now able to augment Maxwell’s equations, such that \\[\n\\begin{align}\n\\nabla \\times \\mathbf h & = \\mathbf j + \\varepsilon \\partial_t \\mathbf e + \\partial_t \\mathbf p^s \\\\\n\\nabla \\times \\mathbf e & = \\phantom{\\mathbf j} -\\mu \\partial_t \\mathbf h - \\mu_0 \\partial_t \\mathbf m^s\n\\end{align}\n\\]\nWe define the source current densities in the magnetic and electric case as \\[\n\\mathbf j_m^s := \\mu_0 \\partial_t \\mathbf m^s\n\\] and \\[\n\\mathbf j_e^s := \\phantom{\\mu_0} \\partial_t \\mathbf p^s .\n\\]\nNow, we extend our definitions to the frequency domain: \\[\n\\mathbf J_m^s := i \\omega \\mu_0 \\mathbf M^s\n\\] and \\[\n\\mathbf J_e^s := i \\omega \\mathbf P^s .\n\\]",
+    "crumbs": [
+      "Dipole induction",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Sources in unbounded media</span>"
+    ]
+  },
+  {
+    "objectID": "potentials.html#polarization-vectors",
+    "href": "potentials.html#polarization-vectors",
+    "title": "7  Sources in unbounded media",
+    "section": "",
+    "text": "Example\n\n\n\nWe consider a magnetic dipole at the point \\(\\mathbf r_0 = [0, 0, -h]^\\top, h &gt; 0\\).\nThe point of observation is at \\(\\mathbf r = [x, y, z]^\\top\\).\nThe loaction of the dipole can now be pinned to \\(\\mathbf r_0\\) using a Dirac delta function.\nWe obtain \\[\n\\mathbf M^s(\\mathbf r) = \\mathbf m \\, \\delta(\\mathbf r - \\mathbf r_0)\n\\] with \\(\\mathbf m\\) the oriented magnetic dipole moment. The dipole moment has the physical dimension of \\([\\mathbf m] =\\) A\\(\\cdot m^2\\). It can be interpreted as a current \\(I\\) measured in A enclosing a surface measured in \\(m^2\\).\nAs a vector quantity, the dipole moment has a direction. Its direction is given by the unit vector normal to the surface of the enclosed area.\nA useful special case arises when the dipole is aligned with one of the Cartesian axes.\nThis way, we can define a vertical or horizontal dipole.",
+    "crumbs": [
+      "Dipole induction",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Sources in unbounded media</span>"
+    ]
+  },
+  {
+    "objectID": "potentials.html#electromagnetic-potentials",
+    "href": "potentials.html#electromagnetic-potentials",
+    "title": "7  Sources in unbounded media",
+    "section": "7.2 Electromagnetic potentials",
+    "text": "7.2 Electromagnetic potentials\nLet’s assume that electric and magnetic fields originate from either a magnetic or an electric source, i.e., \\[\n\\begin{align}\n\\mathbf E & = \\mathbf E_m + \\mathbf E_e \\\\\n\\mathbf H & = \\mathbf H_m + \\mathbf H_e\n\\end{align}\n\\] When \\(\\mathbf J_e \\equiv 0\\), then we only observe the set of fields \\([\\mathbf E_m, \\mathbf H_m]\\).\nWhen \\(\\mathbf J_m \\equiv 0\\), then we only observe the set of fields \\([\\mathbf E_e, \\mathbf H_e]\\).\nThe two sets are disjoint. We insert into Maxwell’s equations \\[\n\\begin{align}\n\\nabla \\times \\mathbf E_m & = -i \\omega \\mu \\mathbf H_m \\textcolor{red}{- \\mathbf J_m^s} \\\\\n\\nabla \\times \\mathbf H_m & = (\\sigma + i \\omega \\varepsilon) \\mathbf E_m\n\\end{align}\n\\]\n\\[\n\\begin{align}\n\\nabla \\times \\mathbf E_e & = -i \\omega \\mu \\mathbf H_e  \\\\\n\\nabla \\times \\mathbf H_e & = (\\sigma + i \\omega \\varepsilon) \\mathbf E_e \\textcolor{red}{+ \\mathbf J_e^s}\n\\end{align}\n\\]\nNow we apply the divergence to all of the above equations. Here we employ the identity \\[\n\\nabla \\cdot (\\nabla \\times \\mathbf F) = 0,\n\\tag{7.1}\\] such that, e.g., \\[\n\\underbrace{\\nabla \\cdot (\\nabla \\times \\mathbf E_m)}_{=0}  = -i \\omega \\mu \\nabla \\cdot \\mathbf H_m - \\nabla \\cdot \\mathbf J_m^s.\n\\] We obtain \\[\n\\begin{align}\n\\nabla \\cdot \\mathbf H_m & = -\\frac{ \\nabla \\cdot \\mathbf J_m^s }{i \\omega \\mu } \\\\\n\\nabla \\cdot \\mathbf E_e & = -\\frac{ \\nabla \\cdot \\mathbf J_e^s }{\\sigma + i \\omega \\varepsilon } \\\\\n\\nabla \\cdot \\mathbf H_e & = 0 \\\\\n\\nabla \\cdot \\mathbf E_m & = 0.\n\\end{align}\n\\] Since the divergence of \\(\\mathbf H_e\\) and \\(\\mathbf E_m\\) are zero, we can express both fields by the curl of an arbitrary vector field according to 7.1. However, this vector field must fulfill Maxwell’s equations. The following ansatz employing the vector potentials \\(\\mathbf F\\) and \\(\\mathbf A\\) meets this requirement: \\[\n\\begin{align}\n\\mathbf E_m & = -\\nabla \\times \\mathbf F \\\\\n\\mathbf H_e & = \\phantom{-} \\nabla \\times \\mathbf A.\n\\end{align}\n\\] It follows \\[\n\\begin{align}\n\\nabla \\times \\mathbf H_m & = -(\\sigma + i \\omega \\varepsilon) \\nabla \\times \\mathbf F \\\\\n\\nabla \\times \\mathbf E_e & = -i \\omega \\mu \\nabla \\times \\mathbf A\n\\end{align}\n\\] from which we obtain \\[\n\\begin{align}\n\\mathbf H_m & = -(\\sigma + i \\omega \\varepsilon) \\mathbf F - \\nabla V \\\\\n\\mathbf E_e & = -i \\omega \\mu \\mathbf A - \\nabla U\n\\end{align}\n\\] because of \\[\n\\nabla \\times \\nabla u = \\mathbf 0.\n\\] The scalar potentials \\(V\\) and \\(U\\) are referred to as magnetic and electrical scalar potential, resp.",
+    "crumbs": [
+      "Dipole induction",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Sources in unbounded media</span>"
+    ]
+  },
+  {
+    "objectID": "potentials.html#the-curl-curl-equation-for-the-potentials",
+    "href": "potentials.html#the-curl-curl-equation-for-the-potentials",
+    "title": "7  Sources in unbounded media",
+    "section": "7.3 The curl-curl equation for the potentials",
+    "text": "7.3 The curl-curl equation for the potentials",
+    "crumbs": [
+      "Dipole induction",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Sources in unbounded media</span>"
+    ]
+  },
+  {
+    "objectID": "potentials.html#the-lorenz-gauge-condition",
+    "href": "potentials.html#the-lorenz-gauge-condition",
+    "title": "7  Sources in unbounded media",
+    "section": "7.4 The Lorenz gauge condition",
+    "text": "7.4 The Lorenz gauge condition",
+    "crumbs": [
+      "Dipole induction",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Sources in unbounded media</span>"
+    ]
+  },
+  {
+    "objectID": "potentials.html#the-vector-helmholtz-equations-for-the-potentials",
+    "href": "potentials.html#the-vector-helmholtz-equations-for-the-potentials",
+    "title": "7  Sources in unbounded media",
+    "section": "7.5 The vector Helmholtz equations for the potentials",
+    "text": "7.5 The vector Helmholtz equations for the potentials",
+    "crumbs": [
+      "Dipole induction",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Sources in unbounded media</span>"
+    ]
+  },
+  {
+    "objectID": "potentials.html#the-greens-function",
+    "href": "potentials.html#the-greens-function",
+    "title": "7  Sources in unbounded media",
+    "section": "7.6 The Green’s function",
+    "text": "7.6 The Green’s function",
+    "crumbs": [
+      "Dipole induction",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Sources in unbounded media</span>"
+    ]
+  },
+  {
+    "objectID": "potentials.html#the-fields-of-a-dipole-source-in-full-space",
+    "href": "potentials.html#the-fields-of-a-dipole-source-in-full-space",
+    "title": "7  Sources in unbounded media",
+    "section": "7.7 The fields of a dipole source in full-space",
+    "text": "7.7 The fields of a dipole source in full-space",
+    "crumbs": [
+      "Dipole induction",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Sources in unbounded media</span>"
+    ]
+  },
+  {
     "objectID": "Differential_Operators_Sympy.html",
     "href": "Differential_Operators_Sympy.html",
-    "title": "7  Differential operators using sympy",
+    "title": "8  Differential operators using sympy",
     "section": "",
-    "text": "7.1 Gradient\n\\[\n\\nabla f\n\\]",
+    "text": "8.1 Gradient\n\\[\n\\nabla f\n\\]",
     "crumbs": [
       "Incomplete chapters",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
     ]
   },
   {
     "objectID": "Differential_Operators_Sympy.html#divergence",
     "href": "Differential_Operators_Sympy.html#divergence",
-    "title": "7  Differential operators using sympy",
-    "section": "7.2 Divergence",
-    "text": "7.2 Divergence\n\\[\n\\nabla \\cdot \\mathbf F\n\\]",
+    "title": "8  Differential operators using sympy",
+    "section": "8.2 Divergence",
+    "text": "8.2 Divergence\n\\[\n\\nabla \\cdot \\mathbf F\n\\]",
     "crumbs": [
       "Incomplete chapters",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
     ]
   },
   {
     "objectID": "Differential_Operators_Sympy.html#curl",
     "href": "Differential_Operators_Sympy.html#curl",
-    "title": "7  Differential operators using sympy",
-    "section": "7.3 Curl",
-    "text": "7.3 Curl\n\\[\n\\nabla \\times \\mathbf F\n\\]\n\n\nShow the code\ndef nabla(f, x, y, z):\n    return Matrix([f.diff(x), f.diff(y), f.diff(z)])\n\ndef nabla_v(f, x, y, z,  v):\n    return nabla(f, x, y, z).dot(v)\n\ndef gradient_op(f, *variables):\n    \"\"\"Return the vector gradient of a scalar function.\"\"\"\n    return Matrix([f.diff(v) for v in variables ])\n\ndef divergence_op(vec_F, *vars):\n    \"\"\"Return the scalar divergence of a vector field.\"\"\"\n    return sum( Matrix( [ vec_F[i].diff(v) for i,v in enumerate(vars)]) )\n\ndef curl_part(vec_F, u, v, *vars):\n    return vec_F[v].diff(vars[u]) - vec_F[u].diff(vars[v])\n    \ndef curl_op(vec_F, *vars):\n    \"\"\"Return the curl of a vector field.\"\"\"\n    return Matrix([curl_part(vec_F, u, v, *vars) for u, v in [(1,2), (2,0), (0,1)]])\n\n\n\n\nShow the code\nx, y, z = symbols('x y z', real=True)\n\n\nCompute the gradient of \\[\nf = \\frac{1}{r},\n\\] where \\(r = \\sqrt{x^2 + y^2 + z^2}\\).\n\n\nShow the code\nr = sqrt(x**2 + y**2 + z**2)\n\n\n\n\nShow the code\na, b, c = symbols('a b c', real=True)\nV = a * x + b * y + c * z\ngradient_op(V, x, y, z)\n\n\n\\(\\displaystyle \\left[\\begin{matrix}a\\\\b\\\\c\\end{matrix}\\right]\\)\n\n\n\n\nShow the code\ng = gradient_op(1 / r, x, y, z) #subs(sqrt(x**2 + y**2 + z**2), r)\n\n\n\n\nShow the code\ndivergence_op(g, x, y, z)\n\n\n\\(\\displaystyle \\frac{3 x^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} + \\frac{3 y^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} + \\frac{3 z^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} - \\frac{3}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{3}{2}}}\\)\n\n\n\n\nShow the code\ncurl_op(g, x, y, z)\n\n\n\\(\\displaystyle \\left[\\begin{matrix}0\\\\0\\\\0\\end{matrix}\\right]\\)",
+    "title": "8  Differential operators using sympy",
+    "section": "8.3 Curl",
+    "text": "8.3 Curl\n\\[\n\\nabla \\times \\mathbf F\n\\]\n\n\nShow the code\ndef nabla(f, x, y, z):\n    return Matrix([f.diff(x), f.diff(y), f.diff(z)])\n\ndef nabla_v(f, x, y, z,  v):\n    return nabla(f, x, y, z).dot(v)\n\ndef gradient_op(f, *variables):\n    \"\"\"Return the vector gradient of a scalar function.\"\"\"\n    return Matrix([f.diff(v) for v in variables ])\n\ndef divergence_op(vec_F, *vars):\n    \"\"\"Return the scalar divergence of a vector field.\"\"\"\n    return sum( Matrix( [ vec_F[i].diff(v) for i,v in enumerate(vars)]) )\n\ndef curl_part(vec_F, u, v, *vars):\n    return vec_F[v].diff(vars[u]) - vec_F[u].diff(vars[v])\n    \ndef curl_op(vec_F, *vars):\n    \"\"\"Return the curl of a vector field.\"\"\"\n    return Matrix([curl_part(vec_F, u, v, *vars) for u, v in [(1,2), (2,0), (0,1)]])\n\n\n\n\nShow the code\nx, y, z = symbols('x y z', real=True)\n\n\nCompute the gradient of \\[\nf = \\frac{1}{r},\n\\] where \\(r = \\sqrt{x^2 + y^2 + z^2}\\).\n\n\nShow the code\nr = sqrt(x**2 + y**2 + z**2)\n\n\n\n\nShow the code\na, b, c = symbols('a b c', real=True)\nV = a * x + b * y + c * z\ngradient_op(V, x, y, z)\n\n\n\\(\\displaystyle \\left[\\begin{matrix}a\\\\b\\\\c\\end{matrix}\\right]\\)\n\n\n\n\nShow the code\ng = gradient_op(1 / r, x, y, z) #subs(sqrt(x**2 + y**2 + z**2), r)\n\n\n\n\nShow the code\ndivergence_op(g, x, y, z)\n\n\n\\(\\displaystyle \\frac{3 x^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} + \\frac{3 y^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} + \\frac{3 z^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} - \\frac{3}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{3}{2}}}\\)\n\n\n\n\nShow the code\ncurl_op(g, x, y, z)\n\n\n\\(\\displaystyle \\left[\\begin{matrix}0\\\\0\\\\0\\end{matrix}\\right]\\)",
     "crumbs": [
       "Incomplete chapters",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
     ]
   },
   {
     "objectID": "Differential_Operators_Sympy.html#curl-formula",
     "href": "Differential_Operators_Sympy.html#curl-formula",
-    "title": "7  Differential operators using sympy",
-    "section": "7.4 Curl formula",
-    "text": "7.4 Curl formula\n\n\nShow the code\nP, Q, R = [Function(ch, real = True)(x, y, z) for ch in ['P', 'Q', 'R']]\nP, Q, R\n\n\n(P(x, y, z), Q(x, y, z), R(x, y, z))\n\n\n\n\nShow the code\ncurl_op(Matrix([P, Q, R]), x, y, z)\n\n\n\\(\\displaystyle \\left[\\begin{matrix}- \\frac{\\partial}{\\partial z} Q{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial y} R{\\left(x,y,z \\right)}\\\\\\frac{\\partial}{\\partial z} P{\\left(x,y,z \\right)} - \\frac{\\partial}{\\partial x} R{\\left(x,y,z \\right)}\\\\- \\frac{\\partial}{\\partial y} P{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial x} Q{\\left(x,y,z \\right)}\\end{matrix}\\right]\\)",
+    "title": "8  Differential operators using sympy",
+    "section": "8.4 Curl formula",
+    "text": "8.4 Curl formula\n\n\nShow the code\nP, Q, R = [Function(ch, real = True)(x, y, z) for ch in ['P', 'Q', 'R']]\nP, Q, R\n\n\n(P(x, y, z), Q(x, y, z), R(x, y, z))\n\n\n\n\nShow the code\ncurl_op(Matrix([P, Q, R]), x, y, z)\n\n\n\\(\\displaystyle \\left[\\begin{matrix}- \\frac{\\partial}{\\partial z} Q{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial y} R{\\left(x,y,z \\right)}\\\\\\frac{\\partial}{\\partial z} P{\\left(x,y,z \\right)} - \\frac{\\partial}{\\partial x} R{\\left(x,y,z \\right)}\\\\- \\frac{\\partial}{\\partial y} P{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial x} Q{\\left(x,y,z \\right)}\\end{matrix}\\right]\\)",
     "crumbs": [
       "Incomplete chapters",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
     ]
   },
   {
     "objectID": "Differential_Operators_Sympy.html#divergence-formula",
     "href": "Differential_Operators_Sympy.html#divergence-formula",
-    "title": "7  Differential operators using sympy",
-    "section": "7.5 Divergence formula",
-    "text": "7.5 Divergence formula\n\n\nShow the code\ndivergence_op(Matrix([P, Q, R]), x, y, z)\n\n\n\\(\\displaystyle \\frac{\\partial}{\\partial x} P{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial y} Q{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial z} R{\\left(x,y,z \\right)}\\)",
+    "title": "8  Differential operators using sympy",
+    "section": "8.5 Divergence formula",
+    "text": "8.5 Divergence formula\n\n\nShow the code\ndivergence_op(Matrix([P, Q, R]), x, y, z)\n\n\n\\(\\displaystyle \\frac{\\partial}{\\partial x} P{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial y} Q{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial z} R{\\left(x,y,z \\right)}\\)",
     "crumbs": [
       "Incomplete chapters",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
     ]
   },
   {
     "objectID": "semisphere.html",
     "href": "semisphere.html",
-    "title": "8  Potential of a point source in a semi-sphere embedded in a uniform halfspace",
+    "title": "9  Potential of a point source in a semi-sphere embedded in a uniform halfspace",
     "section": "",
-    "text": "8.1 Verification\nLet’s check that the potential and the current density are actually continuous at \\(r=a\\).\nWe first form the respective expressions for \\(r=a\\) and check if the results vanish.\nShow the code\nD = U1.subs(r,a) - U2.subs(r,a)\nD\n\n\n\\(\\displaystyle \\frac{I \\rho_{1}}{2 \\pi a} - \\frac{I \\rho_{2}}{2 \\pi a} + \\frac{I \\left(- \\rho_{1} + \\rho_{2}\\right)}{2 \\pi a}\\)\nShow the code\nD.simplify()\n\n\n\\(\\displaystyle 0\\)\nThis result can be obtained directly by using the expression ex1 for the continuity of the potential:\nShow the code\nex1.subs(r, a).subs(A, A_).subs(B, B_).simplify()\n\n\n\\(\\displaystyle 0\\)\nIn ex2 we have used the condition for continuity of the radial component of the current densities:\nShow the code\nex2.subs(r, a).subs(B, B_)\n\n\n\\(\\displaystyle 0\\)\nBoth results indicate that the conditions of continuity are fullfilled.",
+    "text": "9.1 Verification\nLet’s check that the potential and the current density are actually continuous at \\(r=a\\).\nWe first form the respective expressions for \\(r=a\\) and check if the results vanish.\nShow the code\nD = U1.subs(r,a) - U2.subs(r,a)\nD\n\n\n\\(\\displaystyle \\frac{I \\rho_{1}}{2 \\pi a} - \\frac{I \\rho_{2}}{2 \\pi a} + \\frac{I \\left(- \\rho_{1} + \\rho_{2}\\right)}{2 \\pi a}\\)\nShow the code\nD.simplify()\n\n\n\\(\\displaystyle 0\\)\nThis result can be obtained directly by using the expression ex1 for the continuity of the potential:\nShow the code\nex1.subs(r, a).subs(A, A_).subs(B, B_).simplify()\n\n\n\\(\\displaystyle 0\\)\nIn ex2 we have used the condition for continuity of the radial component of the current densities:\nShow the code\nex2.subs(r, a).subs(B, B_)\n\n\n\\(\\displaystyle 0\\)\nBoth results indicate that the conditions of continuity are fullfilled.",
     "crumbs": [
       "Incomplete chapters",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Potential of a point source in a semi-sphere embedded in a uniform halfspace</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Potential of a point source in a semi-sphere embedded in a uniform halfspace</span>"
     ]
   },
   {
     "objectID": "semisphere.html#visualization-of-the-result",
     "href": "semisphere.html#visualization-of-the-result",
-    "title": "8  Potential of a point source in a semi-sphere embedded in a uniform halfspace",
-    "section": "8.2 Visualization of the result",
-    "text": "8.2 Visualization of the result\n\n\nShow the code\nimport matplotlib.pyplot as plt\n\n\n\n\nShow the code\nrho1_n = 100.0\nrho2_n = 1000.0\na_n = 3.0\n\n\n\n\nShow the code\nU1_f = lambdify([rho1, rho2, r, a, I], U1)\nU2_f = lambdify([rho1, rho2, r, a, I], U2)\n\n\n\n\nShow the code\nR1 = np.arange(1.0, a_n + .01, 0.1)\nR2 = np.arange(a_n, 10.0, 0.1)\n\n\n\n\nShow the code\nplt.plot(R1, [U1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [U2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Electric Potential\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nE1_f = lambdify([rho1, rho2, r, a, I], -diff(U1, r))\nE2_f = lambdify([rho1, rho2, r, a, I], -diff(U2, r))\n\nj1_f = lambdify([rho1, rho2, r, a, I], -diff(U1, r) / rho1)\nj2_f = lambdify([rho1, rho2, r, a, I], -diff(U2, r) / rho2)\n\n\n\n\nShow the code\nplt.plot(R1, [j1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [j2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Current density\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nplt.plot(R1, [E1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [E2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Electric Field\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\nThe value of a a is {eval}a_n",
+    "title": "9  Potential of a point source in a semi-sphere embedded in a uniform halfspace",
+    "section": "9.2 Visualization of the result",
+    "text": "9.2 Visualization of the result\n\n\nShow the code\nimport matplotlib.pyplot as plt\n\n\n\n\nShow the code\nrho1_n = 100.0\nrho2_n = 1000.0\na_n = 3.0\n\n\n\n\nShow the code\nU1_f = lambdify([rho1, rho2, r, a, I], U1)\nU2_f = lambdify([rho1, rho2, r, a, I], U2)\n\n\n\n\nShow the code\nR1 = np.arange(1.0, a_n + .01, 0.1)\nR2 = np.arange(a_n, 10.0, 0.1)\n\n\n\n\nShow the code\nplt.plot(R1, [U1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [U2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Electric Potential\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nE1_f = lambdify([rho1, rho2, r, a, I], -diff(U1, r))\nE2_f = lambdify([rho1, rho2, r, a, I], -diff(U2, r))\n\nj1_f = lambdify([rho1, rho2, r, a, I], -diff(U1, r) / rho1)\nj2_f = lambdify([rho1, rho2, r, a, I], -diff(U2, r) / rho2)\n\n\n\n\nShow the code\nplt.plot(R1, [j1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [j2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Current density\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nplt.plot(R1, [E1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [E2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Electric Field\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\nThe value of a a is {eval}a_n",
     "crumbs": [
       "Incomplete chapters",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Potential of a point source in a semi-sphere embedded in a uniform halfspace</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Potential of a point source in a semi-sphere embedded in a uniform halfspace</span>"
     ]
   },
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "9  Summary",
+    "title": "10  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.",
     "crumbs": [
       "Summary",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
     ]
   }
 ]

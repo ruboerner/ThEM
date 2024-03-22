@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods - References</title>
+<title>Theory of Electromagnetic Methods - 7&nbsp; Sources in unbounded media</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="prev">
+<link href="./Differential_Operators_Sympy.html" rel="next">
+<link href="./mtfields.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -87,6 +69,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -99,7 +110,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./potentials.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sources in unbounded media</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -199,7 +210,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./potentials.html" class="sidebar-item-text sidebar-link">
+  <a href="./potentials.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sources in unbounded media</span></span></a>
   </div>
 </li>
@@ -247,7 +258,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -257,14 +268,26 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#polarization-vectors" id="toc-polarization-vectors" class="nav-link active" data-scroll-target="#polarization-vectors"><span class="header-section-number">7.1</span> Polarization vectors</a></li>
+  <li><a href="#electromagnetic-potentials" id="toc-electromagnetic-potentials" class="nav-link" data-scroll-target="#electromagnetic-potentials"><span class="header-section-number">7.2</span> Electromagnetic potentials</a></li>
+  <li><a href="#the-curl-curl-equation-for-the-potentials" id="toc-the-curl-curl-equation-for-the-potentials" class="nav-link" data-scroll-target="#the-curl-curl-equation-for-the-potentials"><span class="header-section-number">7.3</span> The curl-curl equation for the potentials</a></li>
+  <li><a href="#the-lorenz-gauge-condition" id="toc-the-lorenz-gauge-condition" class="nav-link" data-scroll-target="#the-lorenz-gauge-condition"><span class="header-section-number">7.4</span> The Lorenz gauge condition</a></li>
+  <li><a href="#the-vector-helmholtz-equations-for-the-potentials" id="toc-the-vector-helmholtz-equations-for-the-potentials" class="nav-link" data-scroll-target="#the-vector-helmholtz-equations-for-the-potentials"><span class="header-section-number">7.5</span> The vector Helmholtz equations for the potentials</a></li>
+  <li><a href="#the-greens-function" id="toc-the-greens-function" class="nav-link" data-scroll-target="#the-greens-function"><span class="header-section-number">7.6</span> The Green’s function</a></li>
+  <li><a href="#the-fields-of-a-dipole-source-in-full-space" id="toc-the-fields-of-a-dipole-source-in-full-space" class="nav-link" data-scroll-target="#the-fields-of-a-dipole-source-in-full-space"><span class="header-section-number">7.7</span> The fields of a dipole source in full-space</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./potentials.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sources in unbounded media</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sources in unbounded media</span></h1>
 </div>
 
 
@@ -281,11 +304,150 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<p>In this chapter, we will consider finite sources in unbounded media. In geo-electromagnetic applications, magnetic dipoles, electric dipoles, long grounded cables, and large loops are used as sources.</p>
+<p>However, until now, we have studied induction in a source-free, uniform region, where we have coupled the source current contribution by boundary conditions, such as an inducing uniform, plane wave magnetic field in the Air halfspace.</p>
+<p>We will address the following topics:</p>
+<ul>
+<li>Polarization vectors</li>
+<li>Potentials</li>
+<li>Gauge conditions</li>
+<li>Green’s function of the uniform full-space</li>
+<li>Electric and magnetic dipole sources in full-space.</li>
+</ul>
+<section id="polarization-vectors" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="polarization-vectors"><span class="header-section-number">7.1</span> Polarization vectors</h2>
+<p>In the absence of matter, we observe that <span class="math display">\[
+\mathbf d - \varepsilon_0 \mathbf e = \mathbf 0
+\]</span> and <span class="math display">\[
+\mu_0^{-1} \mathbf b - \mathbf h = \mathbf 0.
+\]</span> When the differences are non-zero, then we observe the response of matter. We define the <em>electrical polarization</em> <span class="math inline">\(\mathbf p\)</span> <span class="math display">\[
+\mathbf p = \mathbf d - \varepsilon_0 \mathbf e
+\]</span> and the magnetic polaization or magnetization <span class="math inline">\(\mathbf m\)</span> <span class="math display">\[
+\mathbf m = \mu_0^{-1} \mathbf b - \mathbf h
+\]</span> The polarization vectors <span class="math inline">\(\mathbf p\)</span> and <span class="math inline">\(\mathbf m\)</span> are parallel and proportional to <span class="math inline">\(\mathbf e\)</span> and <span class="math inline">\(\mathbf h\)</span>, resp.</p>
+<p>We are able to quantify the polarization properties by the electrical susceptibility <span class="math inline">\(\chi_e\)</span> and magnetic susceptibility <span class="math inline">\(\chi_m\)</span>. The latter is often referred to as the magnetic susceptibility <span class="math inline">\(\kappa\)</span>.</p>
+<p>We define <span class="math display">\[
+\mathbf p := \chi_e \varepsilon_0 \mathbf e = \mathbf d - \varepsilon_0 \mathbf e
+\]</span> and likewise <span class="math display">\[
+\mathbf m := \chi_m \mathbf h = \mu_0^{-1} \mathbf b - \mathbf h.
+\]</span> It follows for the relative dielectric permittivity <span class="math display">\[
+\varepsilon_r = 1 + \chi_e
+\]</span> and for the relative magnetic permeability <span class="math display">\[
+\mu_r = 1 + \chi_m = 1 + \kappa.
+\]</span></p>
+<p>To implement technical sources, we separate the polarization into induced (superscript <span class="math inline">\(i\)</span>) and external (superscript <span class="math inline">\(s\)</span>) contributions to the observed fields: <span class="math display">\[
+\mathbf p = \mathbf p^i + \mathbf p^s = \mathbf d - \varepsilon_0 \mathbf e.
+\]</span> Then, <span class="math display">\[
+\mathbf d = [\underbrace{\varepsilon_0 \mathbf e}_\text{free space} + \underbrace{\mathbf p^i}_\text{matter}] + \mathbf p^s
+\]</span> and <span class="math display">\[
+\mathbf b = [\underbrace{\mu_0 \mathbf h}_\text{free space} + \underbrace{\mu_0 \mathbf m^i}_\text{matter}] + \mu_0 \mathbf m^s
+\]</span></p>
+<p>With the introduction of the polarization vectors, we are now able to augment Maxwell’s equations, such that <span class="math display">\[
+\begin{align}
+\nabla \times \mathbf h &amp; = \mathbf j + \varepsilon \partial_t \mathbf e + \partial_t \mathbf p^s \\
+\nabla \times \mathbf e &amp; = \phantom{\mathbf j} -\mu \partial_t \mathbf h - \mu_0 \partial_t \mathbf m^s
+\end{align}
+\]</span></p>
+<p>We define the <em>source current densities</em> in the magnetic and electric case as <span class="math display">\[
+\mathbf j_m^s := \mu_0 \partial_t \mathbf m^s
+\]</span> and <span class="math display">\[
+\mathbf j_e^s := \phantom{\mu_0} \partial_t \mathbf p^s .
+\]</span></p>
+<p>Now, we extend our definitions to the frequency domain: <span class="math display">\[
+\mathbf J_m^s := i \omega \mu_0 \mathbf M^s
+\]</span> and <span class="math display">\[
+\mathbf J_e^s := i \omega \mathbf P^s .
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Example">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We consider a magnetic dipole at the point <span class="math inline">\(\mathbf r_0 = [0, 0, -h]^\top, h &gt; 0\)</span>.</p>
+<p>The point of observation is at <span class="math inline">\(\mathbf r = [x, y, z]^\top\)</span>.</p>
+<p>The loaction of the dipole can now be pinned to <span class="math inline">\(\mathbf r_0\)</span> using a Dirac delta function.</p>
+<p>We obtain <span class="math display">\[
+\mathbf M^s(\mathbf r) = \mathbf m \, \delta(\mathbf r - \mathbf r_0)
+\]</span> with <span class="math inline">\(\mathbf m\)</span> the oriented <em>magnetic dipole moment</em>. The dipole moment has the physical dimension of <span class="math inline">\([\mathbf m] =\)</span> A<span class="math inline">\(\cdot m^2\)</span>. It can be interpreted as a current <span class="math inline">\(I\)</span> measured in A enclosing a surface measured in <span class="math inline">\(m^2\)</span>.</p>
+<p>As a vector quantity, the dipole moment has a direction. Its direction is given by the unit vector normal to the surface of the enclosed area.</p>
+<p>A useful special case arises when the dipole is aligned with one of the Cartesian axes.</p>
+<p>This way, we can define a vertical or horizontal dipole.</p>
+</div>
+</div>
+</section>
+<section id="electromagnetic-potentials" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="electromagnetic-potentials"><span class="header-section-number">7.2</span> Electromagnetic potentials</h2>
+<p>Let’s assume that electric and magnetic fields originate from <em>either</em> a magnetic or an electric source, i.e., <span class="math display">\[
+\begin{align}
+\mathbf E &amp; = \mathbf E_m + \mathbf E_e \\
+\mathbf H &amp; = \mathbf H_m + \mathbf H_e
+\end{align}
+\]</span> When <span class="math inline">\(\mathbf J_e \equiv 0\)</span>, then we only observe the set of fields <span class="math inline">\([\mathbf E_m, \mathbf H_m]\)</span>.</p>
+<p>When <span class="math inline">\(\mathbf J_m \equiv 0\)</span>, then we only observe the set of fields <span class="math inline">\([\mathbf E_e, \mathbf H_e]\)</span>.</p>
+<p>The two sets are disjoint. We insert into Maxwell’s equations <span class="math display">\[
+\begin{align}
+\nabla \times \mathbf E_m &amp; = -i \omega \mu \mathbf H_m \textcolor{red}{- \mathbf J_m^s} \\
+\nabla \times \mathbf H_m &amp; = (\sigma + i \omega \varepsilon) \mathbf E_m
+\end{align}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+\nabla \times \mathbf E_e &amp; = -i \omega \mu \mathbf H_e  \\
+\nabla \times \mathbf H_e &amp; = (\sigma + i \omega \varepsilon) \mathbf E_e \textcolor{red}{+ \mathbf J_e^s}
+\end{align}
+\]</span></p>
+<p>Now we apply the divergence to all of the above equations. Here we employ the identity <span id="eq-divrot"><span class="math display">\[
+\nabla \cdot (\nabla \times \mathbf F) = 0,
+\tag{7.1}\]</span></span> such that, e.g., <span class="math display">\[
+\underbrace{\nabla \cdot (\nabla \times \mathbf E_m)}_{=0}  = -i \omega \mu \nabla \cdot \mathbf H_m - \nabla \cdot \mathbf J_m^s.
+\]</span> We obtain <span class="math display">\[
+\begin{align}
+\nabla \cdot \mathbf H_m &amp; = -\frac{ \nabla \cdot \mathbf J_m^s }{i \omega \mu } \\
+\nabla \cdot \mathbf E_e &amp; = -\frac{ \nabla \cdot \mathbf J_e^s }{\sigma + i \omega \varepsilon } \\
+\nabla \cdot \mathbf H_e &amp; = 0 \\
+\nabla \cdot \mathbf E_m &amp; = 0.
+\end{align}
+\]</span> Since the divergence of <span class="math inline">\(\mathbf H_e\)</span> and <span class="math inline">\(\mathbf E_m\)</span> are zero, we can express both fields by the curl of an arbitrary vector field according to <a href="#eq-divrot" class="quarto-xref"><span>7.1</span></a>. However, this vector field must fulfill Maxwell’s equations. The following ansatz employing the vector potentials <span class="math inline">\(\mathbf F\)</span> and <span class="math inline">\(\mathbf A\)</span> meets this requirement: <span class="math display">\[
+\begin{align}
+\mathbf E_m &amp; = -\nabla \times \mathbf F \\
+\mathbf H_e &amp; = \phantom{-} \nabla \times \mathbf A.
+\end{align}
+\]</span> It follows <span class="math display">\[
+\begin{align}
+\nabla \times \mathbf H_m &amp; = -(\sigma + i \omega \varepsilon) \nabla \times \mathbf F \\
+\nabla \times \mathbf E_e &amp; = -i \omega \mu \nabla \times \mathbf A
+\end{align}
+\]</span> from which we obtain <span class="math display">\[
+\begin{align}
+\mathbf H_m &amp; = -(\sigma + i \omega \varepsilon) \mathbf F - \nabla V \\
+\mathbf E_e &amp; = -i \omega \mu \mathbf A - \nabla U
+\end{align}
+\]</span> because of <span class="math display">\[
+\nabla \times \nabla u = \mathbf 0.
+\]</span> The scalar potentials <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span> are referred to as magnetic and electrical scalar potential, resp.</p>
+</section>
+<section id="the-curl-curl-equation-for-the-potentials" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="the-curl-curl-equation-for-the-potentials"><span class="header-section-number">7.3</span> The curl-curl equation for the potentials</h2>
+</section>
+<section id="the-lorenz-gauge-condition" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="the-lorenz-gauge-condition"><span class="header-section-number">7.4</span> The Lorenz gauge condition</h2>
+</section>
+<section id="the-vector-helmholtz-equations-for-the-potentials" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="the-vector-helmholtz-equations-for-the-potentials"><span class="header-section-number">7.5</span> The vector Helmholtz equations for the potentials</h2>
+</section>
+<section id="the-greens-function" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="the-greens-function"><span class="header-section-number">7.6</span> The Green’s function</h2>
+</section>
+<section id="the-fields-of-a-dipole-source-in-full-space" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="the-fields-of-a-dipole-source-in-full-space"><span class="header-section-number">7.7</span> The fields of a dipole source in full-space</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -699,11 +861,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summary</span></span>
+      <a href="./mtfields.html" class="pagination-link" aria-label="Plane waves above and inside a homogeneous Earth">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plane waves above and inside a homogeneous Earth</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./Differential_Operators_Sympy.html" class="pagination-link" aria-label="Differential operators using _sympy_">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

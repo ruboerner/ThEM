@@ -1,0 +1,204 @@
+---
+title: "Sources in unbounded media"
+---
+
+In this chapter, we will consider finite sources in unbounded media.
+In geo-electromagnetic applications, magnetic dipoles, electric dipoles, long grounded cables, and large loops are used as sources.
+
+However, until now, we have studied induction in a source-free, uniform region, where we have coupled the source current contribution by boundary conditions, such as an inducing uniform, plane wave magnetic field in the Air halfspace.
+
+We will address the following topics:
+
+- Polarization vectors
+- Potentials
+- Gauge conditions
+- Green's function of the uniform full-space
+- Electric and magnetic dipole sources in full-space.
+
+## Polarization vectors
+
+In the absence of matter, we observe that
+$$
+\mathbf d - \varepsilon_0 \mathbf e = \mathbf 0
+$$
+and
+$$
+\mu_0^{-1} \mathbf b - \mathbf h = \mathbf 0.
+$$ 
+When the differences are non-zero, then we observe the response of matter.
+We define the _electrical polarization_ $\mathbf p$
+$$
+\mathbf p = \mathbf d - \varepsilon_0 \mathbf e
+$$
+and the magnetic polaization or magnetization $\mathbf m$
+$$
+\mathbf m = \mu_0^{-1} \mathbf b - \mathbf h
+$$
+The polarization vectors $\mathbf p$ and $\mathbf m$ are parallel and proportional to $\mathbf e$ and $\mathbf h$, resp.
+
+We are able to quantify the polarization properties by the electrical susceptibility $\chi_e$ and magnetic susceptibility $\chi_m$.
+The latter is often referred to as the magnetic susceptibility $\kappa$.
+
+We define
+$$
+\mathbf p := \chi_e \varepsilon_0 \mathbf e = \mathbf d - \varepsilon_0 \mathbf e
+$$
+and likewise
+$$
+\mathbf m := \chi_m \mathbf h = \mu_0^{-1} \mathbf b - \mathbf h.
+$$
+It follows for the relative dielectric permittivity
+$$
+\varepsilon_r = 1 + \chi_e
+$$
+and for the relative magnetic permeability
+$$
+\mu_r = 1 + \chi_m = 1 + \kappa.
+$$
+
+To implement technical sources, we separate the polarization into induced (superscript $i$) and external (superscript $s$) contributions to the observed fields:
+$$
+\mathbf p = \mathbf p^i + \mathbf p^s = \mathbf d - \varepsilon_0 \mathbf e.
+$$
+Then,
+$$
+\mathbf d = [\underbrace{\varepsilon_0 \mathbf e}_\text{free space} + \underbrace{\mathbf p^i}_\text{matter}] + \mathbf p^s
+$$
+and
+$$
+\mathbf b = [\underbrace{\mu_0 \mathbf h}_\text{free space} + \underbrace{\mu_0 \mathbf m^i}_\text{matter}] + \mu_0 \mathbf m^s
+$$
+
+With the introduction of the polarization vectors, we are now able to augment Maxwell's equations, such that
+$$
+\begin{align}
+\nabla \times \mathbf h & = \mathbf j + \varepsilon \partial_t \mathbf e + \partial_t \mathbf p^s \\
+\nabla \times \mathbf e & = \phantom{\mathbf j} -\mu \partial_t \mathbf h - \mu_0 \partial_t \mathbf m^s
+\end{align}
+$$
+
+We define the _source current densities_ in the magnetic and electric case as
+$$
+\mathbf j_m^s := \mu_0 \partial_t \mathbf m^s 
+$$
+and
+$$
+\mathbf j_e^s := \phantom{\mu_0} \partial_t \mathbf p^s .
+$$
+
+Now, we extend our definitions to the frequency domain:
+$$
+\mathbf J_m^s := i \omega \mu_0 \mathbf M^s 
+$$
+and
+$$
+\mathbf J_e^s := i \omega \mathbf P^s .
+$$
+
+::: {.callout-note title="Example"}
+
+We consider a magnetic dipole at the point $\mathbf r_0 = [0, 0, -h]^\top, h > 0$.
+
+The point of observation is at $\mathbf r = [x, y, z]^\top$.
+
+The loaction of the dipole can now be pinned to $\mathbf r_0$ using a Dirac delta function.
+
+We obtain
+$$
+\mathbf M^s(\mathbf r) = \mathbf m \, \delta(\mathbf r - \mathbf r_0)
+$$
+with $\mathbf m$ the oriented _magnetic dipole moment_.
+The dipole moment has the physical dimension of $[\mathbf m] =$ A$\cdot m^2$. 
+It can be interpreted as a current $I$ measured in A enclosing a surface measured in $m^2$.
+
+As a vector quantity, the dipole moment has a direction. Its direction is given by the unit vector normal to the surface of the enclosed area.
+
+A useful special case arises when the dipole is aligned with one of the Cartesian axes.
+
+This way, we can define a vertical or horizontal dipole.
+:::
+
+## Electromagnetic potentials
+
+Let's assume that electric and magnetic fields  originate from _either_ a magnetic or an electric source, i.e.,
+$$
+\begin{align}
+\mathbf E & = \mathbf E_m + \mathbf E_e \\
+\mathbf H & = \mathbf H_m + \mathbf H_e
+\end{align}
+$$
+When $\mathbf J_e \equiv 0$, then we only observe the set of fields $[\mathbf E_m, \mathbf H_m]$.
+
+When $\mathbf J_m \equiv 0$, then we only observe the set of fields $[\mathbf E_e, \mathbf H_e]$.
+
+The two sets are disjoint. We insert into Maxwell's equations
+$$
+\begin{align}
+\nabla \times \mathbf E_m & = -i \omega \mu \mathbf H_m \textcolor{red}{- \mathbf J_m^s} \\
+\nabla \times \mathbf H_m & = (\sigma + i \omega \varepsilon) \mathbf E_m
+\end{align}
+$$
+
+
+$$
+\begin{align}
+\nabla \times \mathbf E_e & = -i \omega \mu \mathbf H_e  \\
+\nabla \times \mathbf H_e & = (\sigma + i \omega \varepsilon) \mathbf E_e \textcolor{red}{+ \mathbf J_e^s}
+\end{align}
+$$
+
+Now we apply the divergence to all of the above equations. Here we employ the identity
+$$
+\nabla \cdot (\nabla \times \mathbf F) = 0,
+$$ {#eq-divrot}
+such that, e.g.,
+$$
+\underbrace{\nabla \cdot (\nabla \times \mathbf E_m)}_{=0}  = -i \omega \mu \nabla \cdot \mathbf H_m - \nabla \cdot \mathbf J_m^s.
+$$
+We obtain
+$$
+\begin{align}
+\nabla \cdot \mathbf H_m & = -\frac{ \nabla \cdot \mathbf J_m^s }{i \omega \mu } \\
+\nabla \cdot \mathbf E_e & = -\frac{ \nabla \cdot \mathbf J_e^s }{\sigma + i \omega \varepsilon } \\
+\nabla \cdot \mathbf H_e & = 0 \\
+\nabla \cdot \mathbf E_m & = 0.
+\end{align}
+$$
+Since the divergence of $\mathbf H_e$ and $\mathbf E_m$ are zero, we can express both fields by the curl of an arbitrary vector field according to @eq-divrot.
+However, this vector field must fulfill Maxwell's equations.
+The following ansatz employing the vector potentials $\mathbf F$ and $\mathbf A$ meets this requirement:
+$$
+\begin{align}
+\mathbf E_m & = -\nabla \times \mathbf F \\
+\mathbf H_e & = \phantom{-} \nabla \times \mathbf A.
+\end{align}
+$$
+It follows
+$$
+\begin{align}
+\nabla \times \mathbf H_m & = -(\sigma + i \omega \varepsilon) \nabla \times \mathbf F \\
+\nabla \times \mathbf E_e & = -i \omega \mu \nabla \times \mathbf A 
+\end{align}
+$$
+from which we obtain
+$$
+\begin{align}
+\mathbf H_m & = -(\sigma + i \omega \varepsilon) \mathbf F - \nabla V \\
+\mathbf E_e & = -i \omega \mu \mathbf A - \nabla U
+\end{align}
+$$
+because of 
+$$
+\nabla \times \nabla u = \mathbf 0.
+$$
+The scalar potentials $V$ and $U$ are referred to as magnetic and electrical scalar potential, resp.
+
+## The curl-curl equation for the potentials
+
+## The Lorenz gauge condition
+
+## The vector Helmholtz equations for the potentials
+
+## The Green's function
+
+## The fields of a dipole source in full-space

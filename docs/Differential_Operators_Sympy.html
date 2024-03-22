@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods - 7&nbsp; Differential operators using sympy</title>
+<title>Theory of Electromagnetic Methods - 8&nbsp; Differential operators using sympy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./semisphere.html" rel="next">
-<link href="./mtfields.html" rel="prev">
+<link href="./potentials.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Differential_Operators_Sympy.html">Incomplete chapters</a></li><li class="breadcrumb-item"><a href="./Differential_Operators_Sympy.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Differential_Operators_Sympy.html">Incomplete chapters</a></li><li class="breadcrumb-item"><a href="./Differential_Operators_Sympy.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -172,7 +172,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Remarks</span></span></a>
+ <span class="menu-text">Remarks</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -184,6 +184,12 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./intro.html" class="sidebar-item-text sidebar-link">
@@ -230,7 +236,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Incomplete chapters</span></a>
+ <span class="menu-text">Dipole induction</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -238,14 +244,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Differential_Operators_Sympy.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./semisphere.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Potential of a point source in a semi-sphere embedded in a uniform halfspace</span></span></a>
+  <a href="./potentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sources in unbounded media</span></span></a>
   </div>
 </li>
       </ul>
@@ -253,7 +253,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Summary</span></a>
+ <span class="menu-text">Incomplete chapters</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -261,8 +261,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Differential_Operators_Sympy.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./semisphere.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Potential of a point source in a semi-sphere embedded in a uniform halfspace</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Summary</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -283,21 +306,21 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#gradient" id="toc-gradient" class="nav-link active" data-scroll-target="#gradient"><span class="header-section-number">7.1</span> Gradient</a></li>
-  <li><a href="#divergence" id="toc-divergence" class="nav-link" data-scroll-target="#divergence"><span class="header-section-number">7.2</span> Divergence</a></li>
-  <li><a href="#curl" id="toc-curl" class="nav-link" data-scroll-target="#curl"><span class="header-section-number">7.3</span> Curl</a></li>
-  <li><a href="#curl-formula" id="toc-curl-formula" class="nav-link" data-scroll-target="#curl-formula"><span class="header-section-number">7.4</span> Curl formula</a></li>
-  <li><a href="#divergence-formula" id="toc-divergence-formula" class="nav-link" data-scroll-target="#divergence-formula"><span class="header-section-number">7.5</span> Divergence formula</a></li>
-  <li><a href="#non-cartesian-coord-systems" id="toc-non-cartesian-coord-systems" class="nav-link" data-scroll-target="#non-cartesian-coord-systems"><span class="header-section-number">8</span> Non-cartesian coord systems</a></li>
+  <li><a href="#gradient" id="toc-gradient" class="nav-link active" data-scroll-target="#gradient"><span class="header-section-number">8.1</span> Gradient</a></li>
+  <li><a href="#divergence" id="toc-divergence" class="nav-link" data-scroll-target="#divergence"><span class="header-section-number">8.2</span> Divergence</a></li>
+  <li><a href="#curl" id="toc-curl" class="nav-link" data-scroll-target="#curl"><span class="header-section-number">8.3</span> Curl</a></li>
+  <li><a href="#curl-formula" id="toc-curl-formula" class="nav-link" data-scroll-target="#curl-formula"><span class="header-section-number">8.4</span> Curl formula</a></li>
+  <li><a href="#divergence-formula" id="toc-divergence-formula" class="nav-link" data-scroll-target="#divergence-formula"><span class="header-section-number">8.5</span> Divergence formula</a></li>
+  <li><a href="#non-cartesian-coord-systems" id="toc-non-cartesian-coord-systems" class="nav-link" data-scroll-target="#non-cartesian-coord-systems"><span class="header-section-number">9</span> Non-cartesian coord systems</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Differential_Operators_Sympy.html">Incomplete chapters</a></li><li class="breadcrumb-item"><a href="./Differential_Operators_Sympy.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Differential_Operators_Sympy.html">Incomplete chapters</a></li><li class="breadcrumb-item"><a href="./Differential_Operators_Sympy.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></h1>
 </div>
 
 
@@ -321,20 +344,20 @@ window.Quarto = {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy.vector <span class="im">import</span> CoordSys3D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="gradient" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="gradient"><span class="header-section-number">7.1</span> Gradient</h2>
+<section id="gradient" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="gradient"><span class="header-section-number">8.1</span> Gradient</h2>
 <p><span class="math display">\[
 \nabla f
 \]</span></p>
 </section>
-<section id="divergence" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="divergence"><span class="header-section-number">7.2</span> Divergence</h2>
+<section id="divergence" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="divergence"><span class="header-section-number">8.2</span> Divergence</h2>
 <p><span class="math display">\[
 \nabla \cdot \mathbf F
 \]</span></p>
 </section>
-<section id="curl" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="curl"><span class="header-section-number">7.3</span> Curl</h2>
+<section id="curl" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="curl"><span class="header-section-number">8.3</span> Curl</h2>
 <p><span class="math display">\[
 \nabla \times \mathbf F
 \]</span></p>
@@ -414,8 +437,8 @@ f = \frac{1}{r},
 </div>
 </div>
 </section>
-<section id="curl-formula" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="curl-formula"><span class="header-section-number">7.4</span> Curl formula</h2>
+<section id="curl-formula" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="curl-formula"><span class="header-section-number">8.4</span> Curl formula</h2>
 <div id="9c088907-bcc0-4454-99a0-d0facc66540e" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
@@ -436,8 +459,8 @@ f = \frac{1}{r},
 </div>
 </div>
 </section>
-<section id="divergence-formula" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="divergence-formula"><span class="header-section-number">7.5</span> Divergence formula</h2>
+<section id="divergence-formula" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="divergence-formula"><span class="header-section-number">8.5</span> Divergence formula</h2>
 <div id="cf209c91-852c-43b6-890f-8f8027ae12f7" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
@@ -448,8 +471,8 @@ f = \frac{1}{r},
 </div>
 </div>
 </section>
-<section id="non-cartesian-coord-systems" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Non-cartesian coord systems</h1>
+<section id="non-cartesian-coord-systems" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Non-cartesian coord systems</h1>
 <div id="be14ac15-a100-432f-af2a-ba0bd9adeab9" class="cell" data-execution_count="48">
 <details class="code-fold">
 <summary>Show the code</summary>
@@ -1019,13 +1042,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./mtfields.html" class="pagination-link" aria-label="Plane waves above and inside a homogeneous Earth">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plane waves above and inside a homogeneous Earth</span></span>
+      <a href="./potentials.html" class="pagination-link" aria-label="Sources in unbounded media">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sources in unbounded media</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./semisphere.html" class="pagination-link" aria-label="Potential of a point source in a semi-sphere embedded in a uniform halfspace">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Potential of a point source in a semi-sphere embedded in a uniform halfspace</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Potential of a point source in a semi-sphere embedded in a uniform halfspace</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

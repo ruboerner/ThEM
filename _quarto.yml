@@ -11,6 +11,7 @@ book:
     - index.qmd
     - part: "Introduction"
       chapters:
+      - preface.qmd
       - intro.qmd
       - fourier.qmd
     - part: "Maxwell's equations"
@@ -18,6 +19,9 @@ book:
       - maxwell.qmd
       - pde.qmd
       - mtfields.qmd
+    - part: "Dipole induction"
+      chapters:
+      - potentials.qmd
     - part: "Incomplete chapters"
       chapters:
       - Differential_Operators_Sympy.ipynb

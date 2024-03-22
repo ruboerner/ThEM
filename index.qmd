@@ -2,7 +2,7 @@
 
 ---
 
-# Remarks
+# Remarks {.unnumbered}
 
 These are the notes for the lecture on **Theory of Electromagnetic Methods**.
 
