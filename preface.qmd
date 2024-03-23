@@ -2,6 +2,8 @@
 title: "Preface"
 ---
 
+![](images/them-animation-intro.gif)
+
 Links:
 - [Maxwell](maxwell.qmd)
 
