@@ -2,6 +2,8 @@
 title: "Electromagnetic fields"
 ---
 
+![](images/them-animation-intro.gif)
+
 In electromagnetics we deal with the following *fields*:
 
 -   electric field $\mathbf E$, unit $V / m$

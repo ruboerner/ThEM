@@ -2,7 +2,7 @@
 title: "Preface"
 ---
 
-![](images/them-animation-intro.gif)
+![](images/ThEM-overview.gif)
 
 Links:
 - [Maxwell](maxwell.qmd)

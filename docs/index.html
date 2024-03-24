@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ralph-Uwe Börner">
-<meta name="dcterms.date" content="2024-03-22">
+<meta name="dcterms.date" content="2024-03-24">
 
 <title>Theory of Electromagnetic Methods</title>
 <style>
@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -82,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Remarks</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Prerequisites</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -110,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Remarks</span></a>
+ <span class="menu-text">Prerequisites</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -244,7 +264,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#remarks" id="toc-remarks" class="nav-link active" data-scroll-target="#remarks">Remarks</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  <li><a href="#recommended-reading" id="toc-recommended-reading" class="nav-link" data-scroll-target="#recommended-reading">Recommended Reading</a></li>
   </ul>
 </nav>
     </div>
@@ -271,7 +294,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 22, 2024</p>
+      <p class="date">March 24, 2024</p>
     </div>
   </div>
   
@@ -285,13 +308,41 @@ ul.task-list li input[type="checkbox"] {
 
 <hr>
 <hr>
-<section id="remarks" class="level1 unnumbered">
-<h1 class="unnumbered">Remarks</h1>
-<p>These are the notes for the lecture on <strong>Theory of Electromagnetic Methods</strong>.</p>
+<section id="prerequisites" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<p>These are the lecture notes for the 2024 module on <strong>Theory of Electromagnetic Methods</strong> for students of Geophysics in the Masters course at the <a href="https://tu-freiberg.de/geophysik">Institute of Geophysics and Geoinformatics, TU Bergakademie Freiberg</a>.</p>
 <p>All materials are stored in the GitHub repo <a href="https://github.com/ruboerner/ThEM" class="uri">https://github.com/ruboerner/ThEM</a>.</p>
 <p>Have fun!</p>
+</section>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p>This lecture is aimed at Master’s students in the 2nd semester. It is advisable to know the basics of electromagnetic applications.</p>
+<p>Furthermore, successful completion of the course on Theoretical Physics - Electrodynamics - is a highly recommended prerequisite for this lecture.</p>
+</section>
+<section id="code" class="level2">
+<h2 class="anchored" data-anchor-id="code">Code</h2>
+<p>This course material contains lots of Python code immersed in the sections.</p>
+<p>You can always copy the code and run it in a suitable Python runtime environment.</p>
+<p>It is recommended to the Python installer which comes with <a href="https://docs.anaconda.com/free/miniconda/index.html"><em>miniconda</em></a>.</p>
+<p>Further, you can develop own ideas and dive deeper into the course material when you create your own <em>Jupyter notebooks</em>. To this end, you can use any of</p>
+<ul>
+<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+<li><a href="https://jupyter.org">Jupyterlab</a></li>
+<li><a href="https://quarto.org">Quarto</a></li>
+<li><a href="https://mystmd.org">mystMD</a>.</li>
+</ul>
+<p>Working with Jupter Notebooks in Visual Studio Code is <a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">very easy</a>.</p>
+</section>
+<section id="recommended-reading" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-reading">Recommended Reading</h2>
+<p><span class="citation" data-cites="ward1988electromagnetic">Ward &amp; Hohmann (<a href="references.html#ref-ward1988electromagnetic" role="doc-biblioref">1988</a>)</span></p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-ward1988electromagnetic" class="csl-entry" role="listitem">
+Ward, S.H. &amp; Hohmann, G.W., 1988. Electromagnetic theory for geophysical applications. <em>Electromagnetic methods in applied geophysics</em>, Vol. 1, pp. 131–311.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

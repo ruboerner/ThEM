@@ -4,9 +4,9 @@
     "href": "index.html",
     "title": "Theory of Electromagnetic Methods",
     "section": "",
-    "text": "Remarks\nThese are the notes for the lecture on Theory of Electromagnetic Methods.\nAll materials are stored in the GitHub repo https://github.com/ruboerner/ThEM.\nHave fun!",
+    "text": "Prerequisites\nThese are the lecture notes for the 2024 module on Theory of Electromagnetic Methods for students of Geophysics in the Masters course at the Institute of Geophysics and Geoinformatics, TU Bergakademie Freiberg.\nAll materials are stored in the GitHub repo https://github.com/ruboerner/ThEM.\nHave fun!",
     "crumbs": [
-      "Remarks"
+      "Prerequisites"
     ]
   },
   {
@@ -337,6 +337,66 @@
     "crumbs": [
       "Summary",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#prerequisites",
+    "href": "index.html#prerequisites",
+    "title": "Theory of Electromagnetic Methods",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nThis course material contains lots of Python code immersed in the sections.\nYou can always copy the code and run it in a suitable Python runtime environment.\nIt is recommended to the Python installer which comes with miniconda.\nFurther, you can develop own ideas and dive deeper into the course material when you create your own Jupyter notebooks. To this end, you can use any of\n\nVisual Studio Code\nJupyterlab\nQuarto\nmystMD.\n\nWorking with Jupter Notebooks in Visual Studio Code is very easy.",
+    "crumbs": [
+      "Remarks"
+    ]
+  },
+  {
+    "objectID": "index.html#prerequisites-1",
+    "href": "index.html#prerequisites-1",
+    "title": "Theory of Electromagnetic Methods",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nThis course material contains lots of Python code immersed in the sections.\nYou can always copy the code and run it in a suitable Python runtime environment.\nIt is recommended to the Python installer which comes with miniconda.\nFurther, you can develop own ideas and dive deeper into the course material when you create your own Jupyter notebooks. To this end, you can use any of\n\nVisual Studio Code\nJupyterlab\nQuarto\nmystMD.\n\nWorking with Jupter Notebooks in Visual Studio Code is very easy.",
+    "crumbs": [
+      "Prerequisites"
+    ]
+  },
+  {
+    "objectID": "index.html#background",
+    "href": "index.html#background",
+    "title": "Theory of Electromagnetic Methods",
+    "section": "Background",
+    "text": "Background\nThis lecture is aimed at Master’s students in the 2nd semester. It is advisable to know the basics of electromagnetic applications.\nFurthermore, successful completion of the course on Theoretical Physics - Electrodynamics - is a highly recommended prerequisite for this lecture.",
+    "crumbs": [
+      "Prerequisites"
+    ]
+  },
+  {
+    "objectID": "index.html#code",
+    "href": "index.html#code",
+    "title": "Theory of Electromagnetic Methods",
+    "section": "Code",
+    "text": "Code\nThis course material contains lots of Python code immersed in the sections.\nYou can always copy the code and run it in a suitable Python runtime environment.\nIt is recommended to the Python installer which comes with miniconda.\nFurther, you can develop own ideas and dive deeper into the course material when you create your own Jupyter notebooks. To this end, you can use any of\n\nVisual Studio Code\nJupyterlab\nQuarto\nmystMD.\n\nWorking with Jupter Notebooks in Visual Studio Code is very easy.",
+    "crumbs": [
+      "Prerequisites"
+    ]
+  },
+  {
+    "objectID": "index.html#recommended-reading",
+    "href": "index.html#recommended-reading",
+    "title": "Theory of Electromagnetic Methods",
+    "section": "Recommended Reading",
+    "text": "Recommended Reading\nWard & Hohmann (1988)\n\n\n\n\nWard, S.H. & Hohmann, G.W., 1988. Electromagnetic theory for geophysical applications. Electromagnetic methods in applied geophysics, Vol. 1, pp. 131–311.",
+    "crumbs": [
+      "Prerequisites"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Ward, S.H. & Hohmann, G.W., 1988. Electromagnetic theory for\ngeophysical applications. Electromagnetic methods in applied\ngeophysics, Vol. 1, pp. 131–311.",
+    "crumbs": [
+      "References"
     ]
   }
 ]
