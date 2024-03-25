@@ -1,5 +1,6 @@
 ---
 title: "Sources in unbounded media"
+jupyter: python3
 ---
 
 In this chapter, we will consider finite sources in unbounded media.
@@ -195,10 +196,378 @@ The scalar potentials $V$ and $U$ are referred to as magnetic and electrical sca
 
 ## The curl-curl equation for the potentials
 
-## The Lorenz gauge condition
+Let's insert the potentials into Maxwell's equations.
+
+$$
+\begin{align}
+\mathbf E_m & = - \nabla \times \mathbf F \\
+\nabla \times \mathbf E_m & = - \nabla \times \nabla \times \mathbf F && = -i \omega \mu \textcolor{red}{\mathbf H_m} - \mathbf J^s_m \\
+ &   && = i \omega \mu \textcolor{red}{(\sigma + i \omega \varepsilon) \mathbf F} + i \omega \mu \textcolor{red}{\nabla V} - \mathbf J^s_m
+\end{align}
+$$
+
+$$
+\begin{align}
+\mathbf H_e & = \phantom{-} \nabla \times \mathbf A \\
+\nabla \times \mathbf H_e & = \phantom{-} \nabla \times \nabla \times \mathbf A && = (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf E_e} + \mathbf J^s_e \\
+ &   && = \textcolor{red}{-i \omega \mu} (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf A} - i \omega \mu \textcolor{red}{\nabla U} + \mathbf J^s_e
+\end{align}
+$$
+
+We use the vector identity @eq-vector-identity and obtain
+
+$$
+\begin{align}
+-\nabla^2 \mathbf F + \nabla \nabla \cdot \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F + i \omega \mu \nabla V & = + \mathbf J^s_m \\
+-\nabla^2 \mathbf A + \nabla \nabla \cdot \mathbf A + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf A + i \omega \mu \nabla U & = + \mathbf J^s_e
+\end{align}
+$$
+
+
 
 ## The vector Helmholtz equations for the potentials
 
+Question: How to get rid of $V$ and $U$?
+
+We choose the arbitrary scalar potential $V, U$ such that it cancels with the expression $\nabla \cdot \mathbf F$ and $\nabla \cdot \mathbf A$, resp. 
+$$
+\begin{align}
+\nabla \nabla \cdot \mathbf F & = - i \omega \mu \nabla V \\
+\nabla \cdot \mathbf F & = - i \omega \mu V
+\end{align}
+$$
+and obtain
+$$
+-\nabla^2 \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F = + \mathbf J^s_m.
+$$
+or short
+$$
+\nabla^2 \mathbf F + k^2 \mathbf F = -\mathbf J^s_m, \qquad k^2 = -i \omega \mu (\sigma + i \omega \varepsilon).
+$$
+
+::: {.callout title="Self study"}
+
+Repeat the steps above for the case of $\mathbf A$.
+
+:::
+
+::: {.callout-note title="Summary"}
+
+We have eliminated the scalar potentials $V$ and $U$ by use of the _Lorenz gauge_.
+
+The vector potentials are solutions to
+$$
+\nabla^2 \mathbf F + k^2 \mathbf F  = -\mathbf J^s_m
+$$ {#eq-inhomogeneous-helmholtz-F}
+and
+$$
+\nabla^2 \mathbf A + k^2 \mathbf A = -\mathbf J^s_e.
+$$ {#eq-inhomogeneous-helmholtz-A}
+
+These equations are called _inhomogeneous Helmholtz equations_.
+
+Note that the vector potentials are _aligned_ with the direction of the source current densities!
+
+:::
+
+## Solutions of the inhomogeneous Helmholtz equation
+
+We now want to find solutions to the inhomogeneous vector Helmholtz equations.
+
+Let's consider the potential $\mathbf A$ @eq-inhomogeneous-helmholtz-A.
+
+To obtain a solution, we take the following steps:
+
+1. transform the expressions into the Fourier wave number domain
+2. solve the algebraic equation
+3. transform back into space domain
+
+First, we need a useful definition of the Fourier transform.
+We follow a similar notation like that given in @eq-fourier, but instead of time and angular frequency we choose as variables the Cartesian coordinates $x, y, z$ and the corresponding wave numbers $k_x, k_y, k_z$.
+
+We define the _3-D Fourier transform pair_
+$$
+\begin{align}
+\tilde{\mathbf A}(k_x, k_y, k_z) 
+    & = \iiint\limits_{-\infty}^\infty \mathbf A(x,y,z) e^{-i(k_x x + k_y y + k_z z)}\, \mathrm d x \mathrm d y \mathrm d z \\
+\mathbf A(x,y,z)  & = \frac{ 1 }{(2 \pi)^3 } \iiint\limits_{-\infty}^\infty \tilde{\mathbf A}(k_x, k_y, k_z) e^{+i(k_x x + k_y y + k_z z)} \, \mathrm d k_x \mathrm d k_y \mathrm d k_z
+\end{align}
+$$
+
+Also required are the differentiation, convolution, and linearity properties of the Fourier transform.
+
+We recognize that in a Cartesian coordinate system
+$$
+\nabla^2 := \partial^2_{xx} + \partial^2_{yy} + \partial^2_{zz}
+$$
+and therefore
+$$
+\partial^2_{xx} e^{-i k_x x} = -k_x^2 e^{-i k_x x} \text{ etc.}
+$$
+
+After transformation of @eq-inhomogeneous-helmholtz-F into the wave number domain, we have
+$$
+(-k_x^2 - k_y^2 - k_z^2 + k^2) \tilde{\mathbf A} = -\tilde{\mathbf J}^s_m.
+$$
+Recall that $k^2 = -i \omega \mu (\sigma + i \omega \varepsilon)$.
+
+After rearranging we obtain
+$$
+\tilde{\mathbf A} = \tilde{\tilde{G}} \tilde{\mathbf J}^s_m
+$$ {#eq-AGJ}
+with the scalar function
+$$
+\tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
+$$
+$\tilde{\tilde{G}}$ is the 3-D Fourier transform of what we will later refer to as _Green's function_.
+
+We can obtain $\mathbf A$ directly in the spatial domain by evaluating a 3-D convolutional integral, since @eq-AGJ is a multiplication in the wave number domain by exploiting the convolution property of the Fourier transform.
+Unfortunately, we still have not found an expression for $G$.
+
+To this end, let's consider a PDE similar to @eq-inhomogeneous-helmholtz-A.
+The differences are important: First, the solution to the PDE is a scalar function $G$, second, the right-hand side of gthe equation is a Dirac impulse in space.
+
+We depart from
+$$
+\nabla^2 G + k^2 G = -\delta(x) \delta(y) \delta(z)
+$$ {#eq-pde-G}
+
+We take steps 1 and 2 as outlined above and obtain
+$$
+\tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
+$$
+To find $G$, we first transform back into spce domain w.r.t. $z$ and obtain
+$$
+\tilde{G(k_x, k_y, z)} = \frac{ 1 }{ 2 \pi} \int\limits_{-\infty}^{\infty}
+\tilde{\tilde{G}} e^{i k_z z} \, \mathrm d k_z = \frac{ e^{-u|z|} }{ 2 u}
+ $$
+ with $u = \sqrt{k_x^2 + k_y^2 - k^2}$.
+
+ Next, we carry out a 2-D Fourier transform w.r.t. $x$ and $y$:
+$$
+G(x,y,z) = \frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} \frac{ e^{-u|z|} }{ 2 u}
+e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y
+$$
+
+Since $u$ is an axisymmetric function of $k_x$ and $k_y$, we use of the following _Hankel transform_:
+$$
+\frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} F(k_x^2 + k_y^2) 
+e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y 
+=
+2 \pi \int\limits_0^\infty F(\lambda) J_0(\lambda R) \lambda \, \mathrm d \lambda,
+$$
+where
+$$
+\lambda^2 = k_x^2 + k_y^2
+$$
+the horizontal wave number,
+$$
+R^2 = x^2 + y^2
+$$
+the radial distance from the $z$-axis, and
+$$
+F :=   \frac{ e^{-u|z|} }{ 2 u}, \quad u^2 = \lambda^2 - k^2.
+$$
+
+Finally, we obtain the integral
+$$
+G(R, z) = \frac{ 1 }{ 4 \pi } \int\limits_0^\infty \frac{ \lambda  }{ u} e^{-u|z|} J_0(\lambda R) \, \mathrm d \lambda
+$$
+This is the _Sommerfeld integral_, from which we get with $r^2 = R^2 + z^2$ the function
+$$
+G(r) = \frac{ 1 }{ 4 \pi r} e^{- i k r}.
+$$
+
+This is the _Green's function for the uniform conductive fullspace in the frequenccy domain_.
+
 ## The Green's function
 
+The Green's function or the _impulse response_ of the conductive fullspace in the frequency domain is
+
+$$
+G(r, \omega) = \frac{1}{4 \pi r} e^{- i k r} = \frac{1}{4 \pi r} e^{- i r \sqrt{\omega^2 \mu \varepsilon - i \omega \mu \sigma}}.
+$$
+To obtain the time-domain response $g(r,t)$, we apply the inverse Fourier transform, i.e.,
+$$
+g(r, t) = \frac{1}{2 \pi} \frac{1}{4 \pi r} \int\limits_{-\infty}^\infty
+e^{- i r \sqrt{\omega^2 \mu \varepsilon - i \omega \mu \sigma}}
+e^{i \omega t}
+\mathrm{d}\omega.
+$$
+
+### Free space
+
+First, let's restrict to the free space case, where $\sigma=0$. We obtain
+$$ 
+g(r,t) = \frac{1}{8 \pi^2 r} \int \limits_{-\infty}^\infty
+e^{i \omega (t \pm r \sqrt{\mu \varepsilon}) } \mathrm{d}\omega.
+$$
+To obtain $g$, we need the _shifting propertiy_ of the Fourier transform:
+$$ 
+\delta(t \pm t') =  \frac{1}{2 \pi} \int \limits_{-\infty}^\infty
+e^{i \omega (t \pm t')}
+\mathrm{d}\omega
+$$
+It follows that
+$$
+g(r, t) = \frac{1 }{4 \pi r}  \delta(t - r / c)
+$$
+The sign is chosen such that causality is guaranteed, i.e.,
+$$
+g(r, t) = 0 \text{ for } t < 0.
+$$
+The result obtained above is called the _retarded potential_.
+
+### Quasi-static approximation
+
+For moderate to high conductivities and/or low frequencies, we have introduced the _quasi-static approximation_, which justifies that displacement currents may safely be neglegted in geo-electromagnetic applications.
+
+We start from the Green's function under quasi-static approximation:
+$$ 
+G(r, \omega) = \frac{1}{4 \pi r} e^{-i r \sqrt{-i \omega \mu \sigma}} =
+\frac{1}{4 \pi r} e^{-r \sqrt{i \omega \mu \sigma}}
+$$
+To obtain the time-domain Green's function, we apply the Laplace transform, which is as an integral transform similar to the Fourier transform, except that the former is restricted to transformations of functions of $t$ with $t \ge 0$. This is in accordance to the causality requirement stated above.
+
+With the Laplace variable $s := i \omega$ we rewrite
+$$ 
+G(r, s) = \frac{1}{4 \pi r} e^{-r \sqrt{s \mu \sigma}}
+$$
+From @Abramowitz1972 we obtain
+$$ 
+g(r, t) = \frac{(\mu \sigma)^{1/2}}{(2 \pi t)^{3/2}}
+e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
+$$
+
+$u(t)$ is the Heaviside  step function
+
+$$
+    u(t) = \begin{cases} 0 & t < 0 \\ 1 & t > 0. \end{cases}
+$$
+
+### Numerical experiments with the time-domain Green's function
+We implement the Green's function in `Python` and plot it as a function of time or source-receiver-offset, resp. 
+
+At first, let's calculate the Green's function at a fixed distance of $r=100$ m for a time range of $t \in [10^{-6}, 10^{-2}]$ seconds.
+
+The late time asymptotic $g(r,t) \sim t^{-3/2}$ as $t \to \infty$ is indicated as a straight line in the log-log plot.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def green(sigma, r, t):
+    mu = np.pi * 4e-7
+    g = np.sqrt(mu * sigma) / (2 * np.pi * t)**1.5 * \
+        np.exp(-0.25 * mu * sigma * r**2 / t)
+    return g
+
+sigma = 0.01
+r = np.logspace(start=0, stop=4, num=41, endpoint=True)
+t = np.logspace(start=-6, stop=-2, num=41, endpoint=True)
+
+rfix = 100
+tfix = 1e-6
+g_t = [green(sigma, rfix, tt) for tt in t]
+g_r = [green(sigma, rr, tfix) for rr in r]
+
+fig, ax = plt.subplots(1, 1, figsize=(4,4), layout='constrained')
+ax.loglog(t, g_t, label=r'$g(r,t)$')
+ax.loglog(t, 1e-6 * t**(-1.5), label=r'$t^{-3/2}$')
+ax.set_ylim((1e-4, 1e2))
+ax.set_xlabel('t in s')
+ax.set_ylabel(r'$g(r,t)$')
+ax.set_title("r = " + str(rfix) + " m")
+ax.grid(True)
+ax.legend()
+```
+
+The following animation shows the interplay between the spatial decay of the Green's function with time on the left, and the evolution of the Green's function evaluated at a fixed point in space on the left.
+
+Note the red dots and the red horizontal lines which links both subfigures to each other.
+
+![](green_animation.gif)
+
 ## The fields of a dipole source in full-space
+
+If we compare @eq-pde-G and @eq-inhomogeneous-helmholtz-F, we recognize the similarity of both PDEs. More specifically, if we would be able to orientate $\mathbf J$ in such a way that it would be aligned to one of the Cartesian axis, then
+$$
+\mathbf J_m^s(\mathbf r) = i \omega \mu \mathbf m \delta^3(\mathbf r)
+$$
+would simplify for a vertically aligned dipole to
+$$
+\mathbf J_m^s(\mathbf r) = i \omega \mu \begin{bmatrix}
+0 \\ 0 \\ m
+\end{bmatrix} \delta^3(\mathbf r) = 
+\begin{bmatrix}
+0 \\ 0 \\ J_m^s
+\end{bmatrix}
+$$
+The vector-valued PDE @eq-inhomogeneous-helmholtz-F would turn into
+$$
+\nabla^2 \mathbf F + k^2 \mathbf F = -i \omega \mu m \delta^3(\mathbf r) \mathbf e_z,
+$$
+hence, the scalar potential for a magnetic dipole aligned with the $z$-axis is
+$$
+F_z = \mathbf F \cdot \mathbf e_z = \frac{ i \omega \mu m }{ 4 \pi r } e^{-i k r}.
+$$
+
+::: {.callout-tip}
+
+The potential of a dipole embedded in a uniform fullspace can be calculated with the help of the Green's function.
+
+Dipole induction problems become particularly easy to solve when the dipole axis is aligned with a Cartesian axis.
+:::
+
+With the ansatz  defined above
+$$
+\mathbf E_m = - \nabla \times \mathbf F
+$$
+and
+$$
+\mathbf H_m = \frac{ 1 }{ i \omega \mu } (\nabla \nabla \cdot \mathbf F + k^2 \mathbf F)
+$$
+we can calculate the components of the electric and magnetic fields in a straightforward manner.
+
+Note that there are just spatial derivatives involved.
+
+However, the symmetry of the problem suggests using cylindrical coordinates.
+
+$$
+\begin{align}
+    \nabla \times \mathbf F = & \left(
+        \frac{1}{r}
+    \frac{\partial F_z}{\partial \varphi}-
+    \frac{\partial F_\varphi}{\partial z}
+    \right){\boldsymbol e_r} + \\
+    & \left(\frac{\partial F_r}{\partial z}-
+    \frac{\partial F_z}{\partial r}
+    \right) {\boldsymbol e_\varphi} + \\
+    & \frac{1}{r} \left(
+        \frac{\partial \left(r F_\varphi\right)}{\partial r}-
+    \frac{\partial F_r}{\partial \varphi}
+    \right){\boldsymbol e_z}.
+\end{align}
+$$
+
+In the case of a dipole oriented in $z$-direction, the curl simplifies to
+$$
+\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \boldsymbol e_\varphi
+$$
+
+With the definition
+$$
+ \mathbf E = -\nabla \times \mathbf F
+$$
+we find
+$$
+    E_\varphi = \frac{\partial F_z}{\partial r}.
+$$
+
+For the magnetic field, we need
+$$
+    \mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \nabla\nabla\cdot\mathbf F = \frac{1}{i\omega\mu} \left(
+    k^2 \mathbf F + \nabla\nabla\cdot\mathbf F
+    \right).
+$$
+The $\nabla\cdot$-operator requires $\partial_z F_z$, whereas the gradient requires all partial derivatives of $\partial_z F_z$.

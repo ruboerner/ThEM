@@ -20,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -138,7 +192,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Remarks</span></a>
+ <span class="menu-text">Prerequisites</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -275,9 +329,14 @@ window.Quarto = {
   <li><a href="#polarization-vectors" id="toc-polarization-vectors" class="nav-link active" data-scroll-target="#polarization-vectors"><span class="header-section-number">7.1</span> Polarization vectors</a></li>
   <li><a href="#electromagnetic-potentials" id="toc-electromagnetic-potentials" class="nav-link" data-scroll-target="#electromagnetic-potentials"><span class="header-section-number">7.2</span> Electromagnetic potentials</a></li>
   <li><a href="#the-curl-curl-equation-for-the-potentials" id="toc-the-curl-curl-equation-for-the-potentials" class="nav-link" data-scroll-target="#the-curl-curl-equation-for-the-potentials"><span class="header-section-number">7.3</span> The curl-curl equation for the potentials</a></li>
-  <li><a href="#the-lorenz-gauge-condition" id="toc-the-lorenz-gauge-condition" class="nav-link" data-scroll-target="#the-lorenz-gauge-condition"><span class="header-section-number">7.4</span> The Lorenz gauge condition</a></li>
-  <li><a href="#the-vector-helmholtz-equations-for-the-potentials" id="toc-the-vector-helmholtz-equations-for-the-potentials" class="nav-link" data-scroll-target="#the-vector-helmholtz-equations-for-the-potentials"><span class="header-section-number">7.5</span> The vector Helmholtz equations for the potentials</a></li>
-  <li><a href="#the-greens-function" id="toc-the-greens-function" class="nav-link" data-scroll-target="#the-greens-function"><span class="header-section-number">7.6</span> The Green’s function</a></li>
+  <li><a href="#the-vector-helmholtz-equations-for-the-potentials" id="toc-the-vector-helmholtz-equations-for-the-potentials" class="nav-link" data-scroll-target="#the-vector-helmholtz-equations-for-the-potentials"><span class="header-section-number">7.4</span> The vector Helmholtz equations for the potentials</a></li>
+  <li><a href="#solutions-of-the-inhomogeneous-helmholtz-equation" id="toc-solutions-of-the-inhomogeneous-helmholtz-equation" class="nav-link" data-scroll-target="#solutions-of-the-inhomogeneous-helmholtz-equation"><span class="header-section-number">7.5</span> Solutions of the inhomogeneous Helmholtz equation</a></li>
+  <li><a href="#the-greens-function" id="toc-the-greens-function" class="nav-link" data-scroll-target="#the-greens-function"><span class="header-section-number">7.6</span> The Green’s function</a>
+  <ul class="collapse">
+  <li><a href="#free-space" id="toc-free-space" class="nav-link" data-scroll-target="#free-space"><span class="header-section-number">7.6.1</span> Free space</a></li>
+  <li><a href="#quasi-static-approximation" id="toc-quasi-static-approximation" class="nav-link" data-scroll-target="#quasi-static-approximation"><span class="header-section-number">7.6.2</span> Quasi-static approximation</a></li>
+  <li><a href="#numerical-experiments-with-the-time-domain-greens-function" id="toc-numerical-experiments-with-the-time-domain-greens-function" class="nav-link" data-scroll-target="#numerical-experiments-with-the-time-domain-greens-function"><span class="header-section-number">7.6.3</span> Numerical experiments with the time-domain Green’s function</a></li>
+  </ul></li>
   <li><a href="#the-fields-of-a-dipole-source-in-full-space" id="toc-the-fields-of-a-dipole-source-in-full-space" class="nav-link" data-scroll-target="#the-fields-of-a-dipole-source-in-full-space"><span class="header-section-number">7.7</span> The fields of a dipole source in full-space</a></li>
   </ul>
 </nav>
@@ -433,20 +492,308 @@ Example
 </section>
 <section id="the-curl-curl-equation-for-the-potentials" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="the-curl-curl-equation-for-the-potentials"><span class="header-section-number">7.3</span> The curl-curl equation for the potentials</h2>
+<p>Let’s insert the potentials into Maxwell’s equations.</p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf E_m &amp; = - \nabla \times \mathbf F \\
+\nabla \times \mathbf E_m &amp; = - \nabla \times \nabla \times \mathbf F &amp;&amp; = -i \omega \mu \textcolor{red}{\mathbf H_m} - \mathbf J^s_m \\
+&amp;   &amp;&amp; = i \omega \mu \textcolor{red}{(\sigma + i \omega \varepsilon) \mathbf F} + i \omega \mu \textcolor{red}{\nabla V} - \mathbf J^s_m
+\end{align}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+\mathbf H_e &amp; = \phantom{-} \nabla \times \mathbf A \\
+\nabla \times \mathbf H_e &amp; = \phantom{-} \nabla \times \nabla \times \mathbf A &amp;&amp; = (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf E_e} + \mathbf J^s_e \\
+&amp;   &amp;&amp; = \textcolor{red}{-i \omega \mu} (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf A} - i \omega \mu \textcolor{red}{\nabla U} + \mathbf J^s_e
+\end{align}
+\]</span></p>
+<p>We use the vector identity <a href="pde.html#eq-vector-identity" class="quarto-xref"><span>5.2</span></a> and obtain</p>
+<p><span class="math display">\[
+\begin{align}
+-\nabla^2 \mathbf F + \nabla \nabla \cdot \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F + i \omega \mu \nabla V &amp; = + \mathbf J^s_m \\
+-\nabla^2 \mathbf A + \nabla \nabla \cdot \mathbf A + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf A + i \omega \mu \nabla U &amp; = + \mathbf J^s_e
+\end{align}
+\]</span></p>
 </section>
-<section id="the-lorenz-gauge-condition" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="the-lorenz-gauge-condition"><span class="header-section-number">7.4</span> The Lorenz gauge condition</h2>
+<section id="the-vector-helmholtz-equations-for-the-potentials" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="the-vector-helmholtz-equations-for-the-potentials"><span class="header-section-number">7.4</span> The vector Helmholtz equations for the potentials</h2>
+<p>Question: How to get rid of <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span>?</p>
+<p>We choose the arbitrary scalar potential <span class="math inline">\(V, U\)</span> such that it cancels with the expression <span class="math inline">\(\nabla \cdot \mathbf F\)</span> and <span class="math inline">\(\nabla \cdot \mathbf A\)</span>, resp. <span class="math display">\[
+\begin{align}
+\nabla \nabla \cdot \mathbf F &amp; = - i \omega \mu \nabla V \\
+\nabla \cdot \mathbf F &amp; = - i \omega \mu V
+\end{align}
+\]</span> and obtain <span class="math display">\[
+-\nabla^2 \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F = + \mathbf J^s_m.
+\]</span> or short <span class="math display">\[
+\nabla^2 \mathbf F + k^2 \mathbf F = -\mathbf J^s_m, \qquad k^2 = -i \omega \mu (\sigma + i \omega \varepsilon).
+\]</span></p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Self study">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Self study
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Repeat the steps above for the case of <span class="math inline">\(\mathbf A\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Summary">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Summary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We have eliminated the scalar potentials <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span> by use of the <em>Lorenz gauge</em>.</p>
+<p>The vector potentials are solutions to <span id="eq-inhomogeneous-helmholtz-F"><span class="math display">\[
+\nabla^2 \mathbf F + k^2 \mathbf F  = -\mathbf J^s_m
+\tag{7.2}\]</span></span> and <span id="eq-inhomogeneous-helmholtz-A"><span class="math display">\[
+\nabla^2 \mathbf A + k^2 \mathbf A = -\mathbf J^s_e.
+\tag{7.3}\]</span></span></p>
+<p>These equations are called <em>inhomogeneous Helmholtz equations</em>.</p>
+<p>Note that the vector potentials are <em>aligned</em> with the direction of the source current densities!</p>
+</div>
+</div>
 </section>
-<section id="the-vector-helmholtz-equations-for-the-potentials" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="the-vector-helmholtz-equations-for-the-potentials"><span class="header-section-number">7.5</span> The vector Helmholtz equations for the potentials</h2>
+<section id="solutions-of-the-inhomogeneous-helmholtz-equation" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="solutions-of-the-inhomogeneous-helmholtz-equation"><span class="header-section-number">7.5</span> Solutions of the inhomogeneous Helmholtz equation</h2>
+<p>We now want to find solutions to the inhomogeneous vector Helmholtz equations.</p>
+<p>Let’s consider the potential <span class="math inline">\(\mathbf A\)</span> <a href="#eq-inhomogeneous-helmholtz-A" class="quarto-xref"><span>7.3</span></a>.</p>
+<p>To obtain a solution, we take the following steps:</p>
+<ol type="1">
+<li>transform the expressions into the Fourier wave number domain</li>
+<li>solve the algebraic equation</li>
+<li>transform back into space domain</li>
+</ol>
+<p>First, we need a useful definition of the Fourier transform. We follow a similar notation like that given in <a href="fourier.html#eq-fourier" class="quarto-xref"><span>3.2</span></a>, but instead of time and angular frequency we choose as variables the Cartesian coordinates <span class="math inline">\(x, y, z\)</span> and the corresponding wave numbers <span class="math inline">\(k_x, k_y, k_z\)</span>.</p>
+<p>We define the <em>3-D Fourier transform pair</em> <span class="math display">\[
+\begin{align}
+\tilde{\mathbf A}(k_x, k_y, k_z)
+    &amp; = \iiint\limits_{-\infty}^\infty \mathbf A(x,y,z) e^{-i(k_x x + k_y y + k_z z)}\, \mathrm d x \mathrm d y \mathrm d z \\
+\mathbf A(x,y,z)  &amp; = \frac{ 1 }{(2 \pi)^3 } \iiint\limits_{-\infty}^\infty \tilde{\mathbf A}(k_x, k_y, k_z) e^{+i(k_x x + k_y y + k_z z)} \, \mathrm d k_x \mathrm d k_y \mathrm d k_z
+\end{align}
+\]</span></p>
+<p>Also required are the differentiation, convolution, and linearity properties of the Fourier transform.</p>
+<p>We recognize that in a Cartesian coordinate system <span class="math display">\[
+\nabla^2 := \partial^2_{xx} + \partial^2_{yy} + \partial^2_{zz}
+\]</span> and therefore <span class="math display">\[
+\partial^2_{xx} e^{-i k_x x} = -k_x^2 e^{-i k_x x} \text{ etc.}
+\]</span></p>
+<p>After transformation of <a href="#eq-inhomogeneous-helmholtz-F" class="quarto-xref"><span>7.2</span></a> into the wave number domain, we have <span class="math display">\[
+(-k_x^2 - k_y^2 - k_z^2 + k^2) \tilde{\mathbf A} = -\tilde{\mathbf J}^s_m.
+\]</span> Recall that <span class="math inline">\(k^2 = -i \omega \mu (\sigma + i \omega \varepsilon)\)</span>.</p>
+<p>After rearranging we obtain <span id="eq-AGJ"><span class="math display">\[
+\tilde{\mathbf A} = \tilde{\tilde{G}} \tilde{\mathbf J}^s_m
+\tag{7.4}\]</span></span> with the scalar function <span class="math display">\[
+\tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
+\]</span> <span class="math inline">\(\tilde{\tilde{G}}\)</span> is the 3-D Fourier transform of what we will later refer to as <em>Green’s function</em>.</p>
+<p>We can obtain <span class="math inline">\(\mathbf A\)</span> directly in the spatial domain by evaluating a 3-D convolutional integral, since <a href="#eq-AGJ" class="quarto-xref"><span>7.4</span></a> is a multiplication in the wave number domain by exploiting the convolution property of the Fourier transform. Unfortunately, we still have not found an expression for <span class="math inline">\(G\)</span>.</p>
+<p>To this end, let’s consider a PDE similar to <a href="#eq-inhomogeneous-helmholtz-A" class="quarto-xref"><span>7.3</span></a>. The differences are important: First, the solution to the PDE is a scalar function <span class="math inline">\(G\)</span>, second, the right-hand side of gthe equation is a Dirac impulse in space.</p>
+<p>We depart from <span id="eq-pde-G"><span class="math display">\[
+\nabla^2 G + k^2 G = -\delta(x) \delta(y) \delta(z)
+\tag{7.5}\]</span></span></p>
+<p>We take steps 1 and 2 as outlined above and obtain <span class="math display">\[
+\tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
+\]</span> To find <span class="math inline">\(G\)</span>, we first transform back into spce domain w.r.t. <span class="math inline">\(z\)</span> and obtain <span class="math display">\[
+\tilde{G(k_x, k_y, z)} = \frac{ 1 }{ 2 \pi} \int\limits_{-\infty}^{\infty}
+\tilde{\tilde{G}} e^{i k_z z} \, \mathrm d k_z = \frac{ e^{-u|z|} }{ 2 u}
+\]</span> with <span class="math inline">\(u = \sqrt{k_x^2 + k_y^2 - k^2}\)</span>.</p>
+<p>Next, we carry out a 2-D Fourier transform w.r.t. <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>: <span class="math display">\[
+G(x,y,z) = \frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} \frac{ e^{-u|z|} }{ 2 u}
+e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y
+\]</span></p>
+<p>Since <span class="math inline">\(u\)</span> is an axisymmetric function of <span class="math inline">\(k_x\)</span> and <span class="math inline">\(k_y\)</span>, we use of the following <em>Hankel transform</em>: <span class="math display">\[
+\frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} F(k_x^2 + k_y^2)
+e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y
+=
+2 \pi \int\limits_0^\infty F(\lambda) J_0(\lambda R) \lambda \, \mathrm d \lambda,
+\]</span> where <span class="math display">\[
+\lambda^2 = k_x^2 + k_y^2
+\]</span> the horizontal wave number, <span class="math display">\[
+R^2 = x^2 + y^2
+\]</span> the radial distance from the <span class="math inline">\(z\)</span>-axis, and <span class="math display">\[
+F :=   \frac{ e^{-u|z|} }{ 2 u}, \quad u^2 = \lambda^2 - k^2.
+\]</span></p>
+<p>Finally, we obtain the integral <span class="math display">\[
+G(R, z) = \frac{ 1 }{ 4 \pi } \int\limits_0^\infty \frac{ \lambda  }{ u} e^{-u|z|} J_0(\lambda R) \, \mathrm d \lambda
+\]</span> This is the <em>Sommerfeld integral</em>, from which we get with <span class="math inline">\(r^2 = R^2 + z^2\)</span> the function <span class="math display">\[
+G(r) = \frac{ 1 }{ 4 \pi r} e^{- i k r}.
+\]</span></p>
+<p>This is the <em>Green’s function for the uniform conductive fullspace in the frequenccy domain</em>.</p>
 </section>
 <section id="the-greens-function" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="the-greens-function"><span class="header-section-number">7.6</span> The Green’s function</h2>
+<p>The Green’s function or the <em>impulse response</em> of the conductive fullspace in the frequency domain is</p>
+<p><span class="math display">\[
+G(r, \omega) = \frac{1}{4 \pi r} e^{- i k r} = \frac{1}{4 \pi r} e^{- i r \sqrt{\omega^2 \mu \varepsilon - i \omega \mu \sigma}}.
+\]</span> To obtain the time-domain response <span class="math inline">\(g(r,t)\)</span>, we apply the inverse Fourier transform, i.e., <span class="math display">\[
+g(r, t) = \frac{1}{2 \pi} \frac{1}{4 \pi r} \int\limits_{-\infty}^\infty
+e^{- i r \sqrt{\omega^2 \mu \varepsilon - i \omega \mu \sigma}}
+e^{i \omega t}
+\mathrm{d}\omega.
+\]</span></p>
+<section id="free-space" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="free-space"><span class="header-section-number">7.6.1</span> Free space</h3>
+<p>First, let’s restrict to the free space case, where <span class="math inline">\(\sigma=0\)</span>. We obtain <span class="math display">\[
+g(r,t) = \frac{1}{8 \pi^2 r} \int \limits_{-\infty}^\infty
+e^{i \omega (t \pm r \sqrt{\mu \varepsilon}) } \mathrm{d}\omega.
+\]</span> To obtain <span class="math inline">\(g\)</span>, we need the <em>shifting propertiy</em> of the Fourier transform: <span class="math display">\[
+\delta(t \pm t') =  \frac{1}{2 \pi} \int \limits_{-\infty}^\infty
+e^{i \omega (t \pm t')}
+\mathrm{d}\omega
+\]</span> It follows that <span class="math display">\[
+g(r, t) = \frac{1 }{4 \pi r}  \delta(t - r / c)
+\]</span> The sign is chosen such that causality is guaranteed, i.e., <span class="math display">\[
+g(r, t) = 0 \text{ for } t &lt; 0.
+\]</span> The result obtained above is called the <em>retarded potential</em>.</p>
+</section>
+<section id="quasi-static-approximation" class="level3" data-number="7.6.2">
+<h3 data-number="7.6.2" class="anchored" data-anchor-id="quasi-static-approximation"><span class="header-section-number">7.6.2</span> Quasi-static approximation</h3>
+<p>For moderate to high conductivities and/or low frequencies, we have introduced the <em>quasi-static approximation</em>, which justifies that displacement currents may safely be neglegted in geo-electromagnetic applications.</p>
+<p>We start from the Green’s function under quasi-static approximation: <span class="math display">\[
+G(r, \omega) = \frac{1}{4 \pi r} e^{-i r \sqrt{-i \omega \mu \sigma}} =
+\frac{1}{4 \pi r} e^{-r \sqrt{i \omega \mu \sigma}}
+\]</span> To obtain the time-domain Green’s function, we apply the Laplace transform, which is as an integral transform similar to the Fourier transform, except that the former is restricted to transformations of functions of <span class="math inline">\(t\)</span> with <span class="math inline">\(t \ge 0\)</span>. This is in accordance to the causality requirement stated above.</p>
+<p>With the Laplace variable <span class="math inline">\(s := i \omega\)</span> we rewrite <span class="math display">\[
+G(r, s) = \frac{1}{4 \pi r} e^{-r \sqrt{s \mu \sigma}}
+\]</span> From <span class="citation" data-cites="Abramowitz1972">Abramowitz &amp; Stegun (<a href="references.html#ref-Abramowitz1972" role="doc-biblioref">1972</a>)</span> we obtain <span class="math display">\[
+g(r, t) = \frac{(\mu \sigma)^{1/2}}{(2 \pi t)^{3/2}}
+e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
+\]</span></p>
+<p><span class="math inline">\(u(t)\)</span> is the Heaviside step function</p>
+<p><span class="math display">\[
+    u(t) = \begin{cases} 0 &amp; t &lt; 0 \\ 1 &amp; t &gt; 0. \end{cases}
+\]</span></p>
+</section>
+<section id="numerical-experiments-with-the-time-domain-greens-function" class="level3" data-number="7.6.3">
+<h3 data-number="7.6.3" class="anchored" data-anchor-id="numerical-experiments-with-the-time-domain-greens-function"><span class="header-section-number">7.6.3</span> Numerical experiments with the time-domain Green’s function</h3>
+<p>We implement the Green’s function in <code>Python</code> and plot it as a function of time or source-receiver-offset, resp.</p>
+<p>At first, let’s calculate the Green’s function at a fixed distance of <span class="math inline">\(r=100\)</span> m for a time range of <span class="math inline">\(t \in [10^{-6}, 10^{-2}]\)</span> seconds.</p>
+<p>The late time asymptotic <span class="math inline">\(g(r,t) \sim t^{-3/2}\)</span> as <span class="math inline">\(t \to \infty\)</span> is indicated as a straight line in the log-log plot.</p>
+<div id="e3e9db73" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> green(sigma, r, t):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> np.sqrt(mu <span class="op">*</span> sigma) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> t)<span class="op">**</span><span class="fl">1.5</span> <span class="op">*</span> <span class="op">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        np.exp(<span class="op">-</span><span class="fl">0.25</span> <span class="op">*</span> mu <span class="op">*</span> sigma <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> t)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> g</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.logspace(start<span class="op">=</span><span class="dv">0</span>, stop<span class="op">=</span><span class="dv">4</span>, num<span class="op">=</span><span class="dv">41</span>, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.logspace(start<span class="op">=-</span><span class="dv">6</span>, stop<span class="op">=-</span><span class="dv">2</span>, num<span class="op">=</span><span class="dv">41</span>, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>rfix <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>tfix <span class="op">=</span> <span class="fl">1e-6</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>g_t <span class="op">=</span> [green(sigma, rfix, tt) <span class="cf">for</span> tt <span class="kw">in</span> t]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>g_r <span class="op">=</span> [green(sigma, rr, tfix) <span class="cf">for</span> rr <span class="kw">in</span> r]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>ax.loglog(t, g_t, label<span class="op">=</span><span class="vs">r'$g(r,t)$'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>ax.loglog(t, <span class="fl">1e-6</span> <span class="op">*</span> t<span class="op">**</span>(<span class="op">-</span><span class="fl">1.5</span>), label<span class="op">=</span><span class="vs">r'$t^{-3/2}$'</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((<span class="fl">1e-4</span>, <span class="fl">1e2</span>))</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'t in s'</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$g(r,t)$'</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"r = "</span> <span class="op">+</span> <span class="bu">str</span>(rfix) <span class="op">+</span> <span class="st">" m"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>ax.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="potentials_files/figure-html/cell-2-output-1.png" width="395" height="395" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The following animation shows the interplay between the spatial decay of the Green’s function with time on the left, and the evolution of the Green’s function evaluated at a fixed point in space on the left.</p>
+<p>Note the red dots and the red horizontal lines which links both subfigures to each other.</p>
+<p><img src="green_animation.gif" class="img-fluid"></p>
+</section>
 </section>
 <section id="the-fields-of-a-dipole-source-in-full-space" class="level2" data-number="7.7">
 <h2 data-number="7.7" class="anchored" data-anchor-id="the-fields-of-a-dipole-source-in-full-space"><span class="header-section-number">7.7</span> The fields of a dipole source in full-space</h2>
+<p>If we compare <a href="#eq-pde-G" class="quarto-xref"><span>7.5</span></a> and <a href="#eq-inhomogeneous-helmholtz-F" class="quarto-xref"><span>7.2</span></a>, we recognize the similarity of both PDEs. More specifically, if we would be able to orientate <span class="math inline">\(\mathbf J\)</span> in such a way that it would be aligned to one of the Cartesian axis, then <span class="math display">\[
+\mathbf J_m^s(\mathbf r) = i \omega \mu \mathbf m \delta^3(\mathbf r)
+\]</span> would simplify for a vertically aligned dipole to <span class="math display">\[
+\mathbf J_m^s(\mathbf r) = i \omega \mu \begin{bmatrix}
+0 \\ 0 \\ m
+\end{bmatrix} \delta^3(\mathbf r) =
+\begin{bmatrix}
+0 \\ 0 \\ J_m^s
+\end{bmatrix}
+\]</span> The vector-valued PDE <a href="#eq-inhomogeneous-helmholtz-F" class="quarto-xref"><span>7.2</span></a> would turn into <span class="math display">\[
+\nabla^2 \mathbf F + k^2 \mathbf F = -i \omega \mu m \delta^3(\mathbf r) \mathbf e_z,
+\]</span> hence, the scalar potential for a magnetic dipole aligned with the <span class="math inline">\(z\)</span>-axis is <span class="math display">\[
+F_z = \mathbf F \cdot \mathbf e_z = \frac{ i \omega \mu m }{ 4 \pi r } e^{-i k r}.
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The potential of a dipole embedded in a uniform fullspace can be calculated with the help of the Green’s function.</p>
+<p>Dipole induction problems become particularly easy to solve when the dipole axis is aligned with a Cartesian axis.</p>
+</div>
+</div>
+<p>With the ansatz defined above <span class="math display">\[
+\mathbf E_m = - \nabla \times \mathbf F
+\]</span> and <span class="math display">\[
+\mathbf H_m = \frac{ 1 }{ i \omega \mu } (\nabla \nabla \cdot \mathbf F + k^2 \mathbf F)
+\]</span> we can calculate the components of the electric and magnetic fields in a straightforward manner.</p>
+<p>Note that there are just spatial derivatives involved.</p>
+<p>However, the symmetry of the problem suggests using cylindrical coordinates.</p>
+<p><span class="math display">\[
+\begin{align}
+    \nabla \times \mathbf F = &amp; \left(
+        \frac{1}{r}
+    \frac{\partial F_z}{\partial \varphi}-
+    \frac{\partial F_\varphi}{\partial z}
+    \right){\boldsymbol e_r} + \\
+    &amp; \left(\frac{\partial F_r}{\partial z}-
+    \frac{\partial F_z}{\partial r}
+    \right) {\boldsymbol e_\varphi} + \\
+    &amp; \frac{1}{r} \left(
+        \frac{\partial \left(r F_\varphi\right)}{\partial r}-
+    \frac{\partial F_r}{\partial \varphi}
+    \right){\boldsymbol e_z}.
+\end{align}
+\]</span></p>
+<p>In the case of a dipole oriented in <span class="math inline">\(z\)</span>-direction, the curl simplifies to <span class="math display">\[
+\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \boldsymbol e_\varphi
+\]</span></p>
+<p>With the definition <span class="math display">\[
+\mathbf E = -\nabla \times \mathbf F
+\]</span> we find <span class="math display">\[
+    E_\varphi = \frac{\partial F_z}{\partial r}.
+\]</span></p>
+<p>For the magnetic field, we need <span class="math display">\[
+    \mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \nabla\nabla\cdot\mathbf F = \frac{1}{i\omega\mu} \left(
+    k^2 \mathbf F + \nabla\nabla\cdot\mathbf F
+    \right).
+\]</span> The <span class="math inline">\(\nabla\cdot\)</span>-operator requires <span class="math inline">\(\partial_z F_z\)</span>, whereas the gradient requires all partial derivatives of <span class="math inline">\(\partial_z F_z\)</span>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-Abramowitz1972" class="csl-entry" role="listitem">
+Abramowitz, M. &amp; Stegun, I.A., 1972. <em>Handbook of mathematical functions with formulas, graphs, and mathematical tables</em>, Tenth., <span>Dover Publications</span>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
