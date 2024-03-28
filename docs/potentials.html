@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -381,7 +381,7 @@ window.Quarto = {
 \mu_0^{-1} \mathbf b - \mathbf h = \mathbf 0.
 \]</span> When the differences are non-zero, then we observe the response of matter. We define the <em>electrical polarization</em> <span class="math inline">\(\mathbf p\)</span> <span class="math display">\[
 \mathbf p = \mathbf d - \varepsilon_0 \mathbf e
-\]</span> and the magnetic polaization or magnetization <span class="math inline">\(\mathbf m\)</span> <span class="math display">\[
+\]</span> and the magnetic polarization or magnetization <span class="math inline">\(\mathbf m\)</span> <span class="math display">\[
 \mathbf m = \mu_0^{-1} \mathbf b - \mathbf h
 \]</span> The polarization vectors <span class="math inline">\(\mathbf p\)</span> and <span class="math inline">\(\mathbf m\)</span> are parallel and proportional to <span class="math inline">\(\mathbf e\)</span> and <span class="math inline">\(\mathbf h\)</span>, resp.</p>
 <p>We are able to quantify the polarization properties by the electrical susceptibility <span class="math inline">\(\chi_e\)</span> and magnetic susceptibility <span class="math inline">\(\chi_m\)</span>. The latter is often referred to as the magnetic susceptibility <span class="math inline">\(\kappa\)</span>.</p>
@@ -429,7 +429,7 @@ Example
 <div class="callout-body-container callout-body">
 <p>We consider a magnetic dipole at the point <span class="math inline">\(\mathbf r_0 = [0, 0, -h]^\top, h &gt; 0\)</span>.</p>
 <p>The point of observation is at <span class="math inline">\(\mathbf r = [x, y, z]^\top\)</span>.</p>
-<p>The loaction of the dipole can now be pinned to <span class="math inline">\(\mathbf r_0\)</span> using a Dirac delta function.</p>
+<p>The location of the dipole can now be pinned to <span class="math inline">\(\mathbf r_0\)</span> using a Dirac delta function.</p>
 <p>We obtain <span class="math display">\[
 \mathbf M^s(\mathbf r) = \mathbf m \, \delta(\mathbf r - \mathbf r_0)
 \]</span> with <span class="math inline">\(\mathbf m\)</span> the oriented <em>magnetic dipole moment</em>. The dipole moment has the physical dimension of <span class="math inline">\([\mathbf m] =\)</span> A<span class="math inline">\(\cdot m^2\)</span>. It can be interpreted as a current <span class="math inline">\(I\)</span> measured in A enclosing a surface measured in <span class="math inline">\(m^2\)</span>.</p>
@@ -594,14 +594,14 @@ Summary
 \tag{7.4}\]</span></span> with the scalar function <span class="math display">\[
 \tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
 \]</span> <span class="math inline">\(\tilde{\tilde{G}}\)</span> is the 3-D Fourier transform of what we will later refer to as <em>Green’s function</em>.</p>
-<p>We can obtain <span class="math inline">\(\mathbf A\)</span> directly in the spatial domain by evaluating a 3-D convolutional integral, since <a href="#eq-AGJ" class="quarto-xref"><span>7.4</span></a> is a multiplication in the wave number domain by exploiting the convolution property of the Fourier transform. Unfortunately, we still have not found an expression for <span class="math inline">\(G\)</span>.</p>
-<p>To this end, let’s consider a PDE similar to <a href="#eq-inhomogeneous-helmholtz-A" class="quarto-xref"><span>7.3</span></a>. The differences are important: First, the solution to the PDE is a scalar function <span class="math inline">\(G\)</span>, second, the right-hand side of gthe equation is a Dirac impulse in space.</p>
+<p>We can obtain <span class="math inline">\(\mathbf A\)</span> directly in the spatial domain by evaluating a 3-D convolution integral, since <a href="#eq-AGJ" class="quarto-xref"><span>7.4</span></a> is a multiplication in the wave number domain by exploiting the convolution property of the Fourier transform. Unfortunately, we still have not found an expression for <span class="math inline">\(G\)</span>.</p>
+<p>To this end, let’s consider a PDE similar to <a href="#eq-inhomogeneous-helmholtz-A" class="quarto-xref"><span>7.3</span></a>. The differences are important: First, the solution to the PDE is a scalar function <span class="math inline">\(G\)</span>, second, the right-hand side of the equation is a Dirac impulse in space.</p>
 <p>We depart from <span id="eq-pde-G"><span class="math display">\[
 \nabla^2 G + k^2 G = -\delta(x) \delta(y) \delta(z)
 \tag{7.5}\]</span></span></p>
 <p>We take steps 1 and 2 as outlined above and obtain <span class="math display">\[
 \tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
-\]</span> To find <span class="math inline">\(G\)</span>, we first transform back into spce domain w.r.t. <span class="math inline">\(z\)</span> and obtain <span class="math display">\[
+\]</span> To find <span class="math inline">\(G\)</span>, we first transform back into space domain w.r.t. <span class="math inline">\(z\)</span> and obtain <span class="math display">\[
 \tilde{G(k_x, k_y, z)} = \frac{ 1 }{ 2 \pi} \int\limits_{-\infty}^{\infty}
 \tilde{\tilde{G}} e^{i k_z z} \, \mathrm d k_z = \frac{ e^{-u|z|} }{ 2 u}
 \]</span> with <span class="math inline">\(u = \sqrt{k_x^2 + k_y^2 - k^2}\)</span>.</p>
@@ -644,7 +644,7 @@ e^{i \omega t}
 <p>First, let’s restrict to the free space case, where <span class="math inline">\(\sigma=0\)</span>. We obtain <span class="math display">\[
 g(r,t) = \frac{1}{8 \pi^2 r} \int \limits_{-\infty}^\infty
 e^{i \omega (t \pm r \sqrt{\mu \varepsilon}) } \mathrm{d}\omega.
-\]</span> To obtain <span class="math inline">\(g\)</span>, we need the <em>shifting propertiy</em> of the Fourier transform: <span class="math display">\[
+\]</span> To obtain <span class="math inline">\(g\)</span>, we need the <em>shifting property</em> of the Fourier transform: <span class="math display">\[
 \delta(t \pm t') =  \frac{1}{2 \pi} \int \limits_{-\infty}^\infty
 e^{i \omega (t \pm t')}
 \mathrm{d}\omega
@@ -656,7 +656,7 @@ g(r, t) = 0 \text{ for } t &lt; 0.
 </section>
 <section id="quasi-static-approximation" class="level3" data-number="7.6.2">
 <h3 data-number="7.6.2" class="anchored" data-anchor-id="quasi-static-approximation"><span class="header-section-number">7.6.2</span> Quasi-static approximation</h3>
-<p>For moderate to high conductivities and/or low frequencies, we have introduced the <em>quasi-static approximation</em>, which justifies that displacement currents may safely be neglegted in geo-electromagnetic applications.</p>
+<p>For moderate to high conductivities and/or low frequencies, we have introduced the <em>quasi-static approximation</em>, which justifies that displacement currents may safely be neglected in geo-electromagnetic applications.</p>
 <p>We start from the Green’s function under quasi-static approximation: <span class="math display">\[
 G(r, \omega) = \frac{1}{4 \pi r} e^{-i r \sqrt{-i \omega \mu \sigma}} =
 \frac{1}{4 \pi r} e^{-r \sqrt{i \omega \mu \sigma}}
@@ -677,7 +677,7 @@ e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
 <p>We implement the Green’s function in <code>Python</code> and plot it as a function of time or source-receiver-offset, resp.</p>
 <p>At first, let’s calculate the Green’s function at a fixed distance of <span class="math inline">\(r=100\)</span> m for a time range of <span class="math inline">\(t \in [10^{-6}, 10^{-2}]\)</span> seconds.</p>
 <p>The late time asymptotic <span class="math inline">\(g(r,t) \sim t^{-3/2}\)</span> as <span class="math inline">\(t \to \infty\)</span> is indicated as a straight line in the log-log plot.</p>
-<div id="e3e9db73" class="cell" data-execution_count="1">
+<div id="1e113a0d" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -764,18 +764,18 @@ Tip
         \frac{1}{r}
     \frac{\partial F_z}{\partial \varphi}-
     \frac{\partial F_\varphi}{\partial z}
-    \right){\boldsymbol e_r} + \\
+    \right){\mathbf e_r} + \\
     &amp; \left(\frac{\partial F_r}{\partial z}-
     \frac{\partial F_z}{\partial r}
-    \right) {\boldsymbol e_\varphi} + \\
+    \right) {\mathbf e_\varphi} + \\
     &amp; \frac{1}{r} \left(
         \frac{\partial \left(r F_\varphi\right)}{\partial r}-
     \frac{\partial F_r}{\partial \varphi}
-    \right){\boldsymbol e_z}.
+    \right){\mathbf e_z}.
 \end{align}
 \]</span></p>
 <p>In the case of a dipole oriented in <span class="math inline">\(z\)</span>-direction, the curl simplifies to <span class="math display">\[
-\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \boldsymbol e_\varphi
+\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi
 \]</span></p>
 <p>With the definition <span class="math display">\[
 \mathbf E = -\nabla \times \mathbf F
@@ -787,6 +787,80 @@ Tip
     k^2 \mathbf F + \nabla\nabla\cdot\mathbf F
     \right).
 \]</span> The <span class="math inline">\(\nabla\cdot\)</span>-operator requires <span class="math inline">\(\partial_z F_z\)</span>, whereas the gradient requires all partial derivatives of <span class="math inline">\(\partial_z F_z\)</span>.</p>
+<p><span class="math display">\[
+E_\varphi = \partial_r F_z = \frac{-i \omega \mu m }{4 \pi r^2} (1 + i k r) \exp(-i k r)
+\]</span></p>
+<p>The change of the basis from cylindrical to Cartesian coordinates requires for the horizontal components <span class="math display">\[
+\mathbf E = E_\varphi \mathbf e_\varphi = E_\varphi
+\begin{pmatrix}
+-\sin\varphi \\
+\cos\varphi
+\end{pmatrix},
+\]</span></p>
+<p>since</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+\mathbf e_r \\ \mathbf e_\varphi \\ \mathbf e_z
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cos\varphi &amp; \sin\varphi &amp; 0 \\
+-\sin\varphi &amp; \cos\varphi &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+\mathbf e_x \\ \mathbf e_y \\ \mathbf e_z
+\end{bmatrix}.
+\]</span></p>
+<p>With the angle <span class="math inline">\(\varphi\)</span> counting positive from the <span class="math inline">\(x\)</span>-axis in the direction of <span class="math inline">\(y\)</span>, we can use the relations</p>
+<p><span class="math display">\[
+\cos\varphi = \frac{x}{r}, \quad \sin\varphi = \frac{y}{r}.
+\]</span></p>
+<p>Hence, <span class="math display">\[
+\begin{align}
+E_x &amp; = +i \omega \mu m \frac{\sin\varphi}{4 \pi r^2}(1 + i k r) \exp(-i k r) \\
+E_y &amp; = -i \omega \mu m \frac{\cos\varphi}{4 \pi r^2}(1 + i k r) \exp(-i k r)
+\end{align}
+\]</span></p>
+<p>A useful expression for an arbitrary orientation of the dipole is given by</p>
+<p><span class="math display">\[
+\mathbf E(\mathbf r) = -\frac{i \omega \mu}{4 \pi r^3} (1 + i k r) \exp(-i k r) \mathbf m \times \mathbf r,
+\]</span></p>
+<p>where the components of <span class="math inline">\(\mathbf E\)</span> depend on both the direction of the dipole moment and the direction to the source.</p>
+<p>Check:</p>
+<p>With <span class="math display">\[
+\mathbf m =
+\begin{bmatrix}
+0 \\ 0 \\ m
+\end{bmatrix}
+\]</span> and <span class="math display">\[
+\mathbf r =
+\begin{bmatrix}
+x \\ y \\ z
+\end{bmatrix}
+\]</span> we obtain <span class="math display">\[
+- \mathbf m \times \mathbf r =
+\begin{bmatrix}
+my \\ -mx \\ 0
+\end{bmatrix} =
+\begin{bmatrix}
+m r \sin\varphi \\ -m r \cos\varphi \\ 0
+\end{bmatrix}
+.
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Looking in the direction of the positive <span class="math inline">\(z\)</span>-axis of a right-handed coordinate system, the induced electric field is oriented counter-clockwise, when <span class="math inline">\(\mathbf m\)</span> is oriented in positive <span class="math inline">\(z\)</span>-direction.</p>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">

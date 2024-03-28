@@ -3,114 +3,79 @@ title: "Sources in unbounded media"
 jupyter: python3
 ---
 
-In this chapter, we will consider finite sources in unbounded media.
-In geo-electromagnetic applications, magnetic dipoles, electric dipoles, long grounded cables, and large loops are used as sources.
+In this chapter, we will consider finite sources in unbounded media. In geo-electromagnetic applications, magnetic dipoles, electric dipoles, long grounded cables, and large loops are used as sources.
 
 However, until now, we have studied induction in a source-free, uniform region, where we have coupled the source current contribution by boundary conditions, such as an inducing uniform, plane wave magnetic field in the Air halfspace.
 
 We will address the following topics:
 
-- Polarization vectors
-- Potentials
-- Gauge conditions
-- Green's function of the uniform full-space
-- Electric and magnetic dipole sources in full-space.
+-   Polarization vectors
+-   Potentials
+-   Gauge conditions
+-   Green's function of the uniform full-space
+-   Electric and magnetic dipole sources in full-space.
 
 ## Polarization vectors
 
-In the absence of matter, we observe that
-$$
+In the absence of matter, we observe that $$
 \mathbf d - \varepsilon_0 \mathbf e = \mathbf 0
-$$
-and
-$$
+$$ and $$
 \mu_0^{-1} \mathbf b - \mathbf h = \mathbf 0.
-$$ 
-When the differences are non-zero, then we observe the response of matter.
-We define the _electrical polarization_ $\mathbf p$
-$$
+$$ When the differences are non-zero, then we observe the response of matter. We define the *electrical polarization* $\mathbf p$ $$
 \mathbf p = \mathbf d - \varepsilon_0 \mathbf e
-$$
-and the magnetic polaization or magnetization $\mathbf m$
-$$
+$$ and the magnetic polarization or magnetization $\mathbf m$ $$
 \mathbf m = \mu_0^{-1} \mathbf b - \mathbf h
-$$
-The polarization vectors $\mathbf p$ and $\mathbf m$ are parallel and proportional to $\mathbf e$ and $\mathbf h$, resp.
+$$ The polarization vectors $\mathbf p$ and $\mathbf m$ are parallel and proportional to $\mathbf e$ and $\mathbf h$, resp.
 
-We are able to quantify the polarization properties by the electrical susceptibility $\chi_e$ and magnetic susceptibility $\chi_m$.
-The latter is often referred to as the magnetic susceptibility $\kappa$.
+We are able to quantify the polarization properties by the electrical susceptibility $\chi_e$ and magnetic susceptibility $\chi_m$. The latter is often referred to as the magnetic susceptibility $\kappa$.
 
-We define
-$$
+We define $$
 \mathbf p := \chi_e \varepsilon_0 \mathbf e = \mathbf d - \varepsilon_0 \mathbf e
-$$
-and likewise
-$$
+$$ and likewise $$
 \mathbf m := \chi_m \mathbf h = \mu_0^{-1} \mathbf b - \mathbf h.
-$$
-It follows for the relative dielectric permittivity
-$$
+$$ It follows for the relative dielectric permittivity $$
 \varepsilon_r = 1 + \chi_e
-$$
-and for the relative magnetic permeability
-$$
+$$ and for the relative magnetic permeability $$
 \mu_r = 1 + \chi_m = 1 + \kappa.
 $$
 
-To implement technical sources, we separate the polarization into induced (superscript $i$) and external (superscript $s$) contributions to the observed fields:
-$$
+To implement technical sources, we separate the polarization into induced (superscript $i$) and external (superscript $s$) contributions to the observed fields: $$
 \mathbf p = \mathbf p^i + \mathbf p^s = \mathbf d - \varepsilon_0 \mathbf e.
-$$
-Then,
-$$
+$$ Then, $$
 \mathbf d = [\underbrace{\varepsilon_0 \mathbf e}_\text{free space} + \underbrace{\mathbf p^i}_\text{matter}] + \mathbf p^s
-$$
-and
-$$
+$$ and $$
 \mathbf b = [\underbrace{\mu_0 \mathbf h}_\text{free space} + \underbrace{\mu_0 \mathbf m^i}_\text{matter}] + \mu_0 \mathbf m^s
 $$
 
-With the introduction of the polarization vectors, we are now able to augment Maxwell's equations, such that
-$$
+With the introduction of the polarization vectors, we are now able to augment Maxwell's equations, such that $$
 \begin{align}
 \nabla \times \mathbf h & = \mathbf j + \varepsilon \partial_t \mathbf e + \partial_t \mathbf p^s \\
 \nabla \times \mathbf e & = \phantom{\mathbf j} -\mu \partial_t \mathbf h - \mu_0 \partial_t \mathbf m^s
 \end{align}
 $$
 
-We define the _source current densities_ in the magnetic and electric case as
-$$
+We define the *source current densities* in the magnetic and electric case as $$
 \mathbf j_m^s := \mu_0 \partial_t \mathbf m^s 
-$$
-and
-$$
+$$ and $$
 \mathbf j_e^s := \phantom{\mu_0} \partial_t \mathbf p^s .
 $$
 
-Now, we extend our definitions to the frequency domain:
-$$
+Now, we extend our definitions to the frequency domain: $$
 \mathbf J_m^s := i \omega \mu_0 \mathbf M^s 
-$$
-and
-$$
+$$ and $$
 \mathbf J_e^s := i \omega \mathbf P^s .
 $$
 
 ::: {.callout-note title="Example"}
-
 We consider a magnetic dipole at the point $\mathbf r_0 = [0, 0, -h]^\top, h > 0$.
 
 The point of observation is at $\mathbf r = [x, y, z]^\top$.
 
-The loaction of the dipole can now be pinned to $\mathbf r_0$ using a Dirac delta function.
+The location of the dipole can now be pinned to $\mathbf r_0$ using a Dirac delta function.
 
-We obtain
-$$
+We obtain $$
 \mathbf M^s(\mathbf r) = \mathbf m \, \delta(\mathbf r - \mathbf r_0)
-$$
-with $\mathbf m$ the oriented _magnetic dipole moment_.
-The dipole moment has the physical dimension of $[\mathbf m] =$ A$\cdot m^2$. 
-It can be interpreted as a current $I$ measured in A enclosing a surface measured in $m^2$.
+$$ with $\mathbf m$ the oriented *magnetic dipole moment*. The dipole moment has the physical dimension of $[\mathbf m] =$ A$\cdot m^2$. It can be interpreted as a current $I$ measured in A enclosing a surface measured in $m^2$.
 
 As a vector quantity, the dipole moment has a direction. Its direction is given by the unit vector normal to the surface of the enclosed area.
 
@@ -121,25 +86,21 @@ This way, we can define a vertical or horizontal dipole.
 
 ## Electromagnetic potentials
 
-Let's assume that electric and magnetic fields  originate from _either_ a magnetic or an electric source, i.e.,
-$$
+Let's assume that electric and magnetic fields originate from *either* a magnetic or an electric source, i.e., $$
 \begin{align}
 \mathbf E & = \mathbf E_m + \mathbf E_e \\
 \mathbf H & = \mathbf H_m + \mathbf H_e
 \end{align}
-$$
-When $\mathbf J_e \equiv 0$, then we only observe the set of fields $[\mathbf E_m, \mathbf H_m]$.
+$$ When $\mathbf J_e \equiv 0$, then we only observe the set of fields $[\mathbf E_m, \mathbf H_m]$.
 
 When $\mathbf J_m \equiv 0$, then we only observe the set of fields $[\mathbf E_e, \mathbf H_e]$.
 
-The two sets are disjoint. We insert into Maxwell's equations
-$$
+The two sets are disjoint. We insert into Maxwell's equations $$
 \begin{align}
 \nabla \times \mathbf E_m & = -i \omega \mu \mathbf H_m \textcolor{red}{- \mathbf J_m^s} \\
 \nabla \times \mathbf H_m & = (\sigma + i \omega \varepsilon) \mathbf E_m
 \end{align}
 $$
-
 
 $$
 \begin{align}
@@ -148,51 +109,35 @@ $$
 \end{align}
 $$
 
-Now we apply the divergence to all of the above equations. Here we employ the identity
-$$
+Now we apply the divergence to all of the above equations. Here we employ the identity $$
 \nabla \cdot (\nabla \times \mathbf F) = 0,
-$$ {#eq-divrot}
-such that, e.g.,
-$$
+$$ {#eq-divrot} such that, e.g., $$
 \underbrace{\nabla \cdot (\nabla \times \mathbf E_m)}_{=0}  = -i \omega \mu \nabla \cdot \mathbf H_m - \nabla \cdot \mathbf J_m^s.
-$$
-We obtain
-$$
+$$ We obtain $$
 \begin{align}
 \nabla \cdot \mathbf H_m & = -\frac{ \nabla \cdot \mathbf J_m^s }{i \omega \mu } \\
 \nabla \cdot \mathbf E_e & = -\frac{ \nabla \cdot \mathbf J_e^s }{\sigma + i \omega \varepsilon } \\
 \nabla \cdot \mathbf H_e & = 0 \\
 \nabla \cdot \mathbf E_m & = 0.
 \end{align}
-$$
-Since the divergence of $\mathbf H_e$ and $\mathbf E_m$ are zero, we can express both fields by the curl of an arbitrary vector field according to @eq-divrot.
-However, this vector field must fulfill Maxwell's equations.
-The following ansatz employing the vector potentials $\mathbf F$ and $\mathbf A$ meets this requirement:
-$$
+$$ Since the divergence of $\mathbf H_e$ and $\mathbf E_m$ are zero, we can express both fields by the curl of an arbitrary vector field according to @eq-divrot. However, this vector field must fulfill Maxwell's equations. The following ansatz employing the vector potentials $\mathbf F$ and $\mathbf A$ meets this requirement: $$
 \begin{align}
 \mathbf E_m & = -\nabla \times \mathbf F \\
 \mathbf H_e & = \phantom{-} \nabla \times \mathbf A.
 \end{align}
-$$
-It follows
-$$
+$$ It follows $$
 \begin{align}
 \nabla \times \mathbf H_m & = -(\sigma + i \omega \varepsilon) \nabla \times \mathbf F \\
 \nabla \times \mathbf E_e & = -i \omega \mu \nabla \times \mathbf A 
 \end{align}
-$$
-from which we obtain
-$$
+$$ from which we obtain $$
 \begin{align}
 \mathbf H_m & = -(\sigma + i \omega \varepsilon) \mathbf F - \nabla V \\
 \mathbf E_e & = -i \omega \mu \mathbf A - \nabla U
 \end{align}
-$$
-because of 
-$$
+$$ because of $$
 \nabla \times \nabla u = \mathbf 0.
-$$
-The scalar potentials $V$ and $U$ are referred to as magnetic and electrical scalar potential, resp.
+$$ The scalar potentials $V$ and $U$ are referred to as magnetic and electrical scalar potential, resp.
 
 ## The curl-curl equation for the potentials
 
@@ -223,51 +168,37 @@ $$
 \end{align}
 $$
 
-
-
 ## The vector Helmholtz equations for the potentials
 
 Question: How to get rid of $V$ and $U$?
 
-We choose the arbitrary scalar potential $V, U$ such that it cancels with the expression $\nabla \cdot \mathbf F$ and $\nabla \cdot \mathbf A$, resp. 
-$$
+We choose the arbitrary scalar potential $V, U$ such that it cancels with the expression $\nabla \cdot \mathbf F$ and $\nabla \cdot \mathbf A$, resp. $$
 \begin{align}
 \nabla \nabla \cdot \mathbf F & = - i \omega \mu \nabla V \\
 \nabla \cdot \mathbf F & = - i \omega \mu V
 \end{align}
-$$
-and obtain
-$$
+$$ and obtain $$
 -\nabla^2 \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F = + \mathbf J^s_m.
-$$
-or short
-$$
+$$ or short $$
 \nabla^2 \mathbf F + k^2 \mathbf F = -\mathbf J^s_m, \qquad k^2 = -i \omega \mu (\sigma + i \omega \varepsilon).
 $$
 
 ::: {.callout title="Self study"}
-
 Repeat the steps above for the case of $\mathbf A$.
-
 :::
 
 ::: {.callout-note title="Summary"}
+We have eliminated the scalar potentials $V$ and $U$ by use of the *Lorenz gauge*.
 
-We have eliminated the scalar potentials $V$ and $U$ by use of the _Lorenz gauge_.
-
-The vector potentials are solutions to
-$$
+The vector potentials are solutions to $$
 \nabla^2 \mathbf F + k^2 \mathbf F  = -\mathbf J^s_m
-$$ {#eq-inhomogeneous-helmholtz-F}
-and
-$$
+$$ {#eq-inhomogeneous-helmholtz-F} and $$
 \nabla^2 \mathbf A + k^2 \mathbf A = -\mathbf J^s_e.
 $$ {#eq-inhomogeneous-helmholtz-A}
 
-These equations are called _inhomogeneous Helmholtz equations_.
+These equations are called *inhomogeneous Helmholtz equations*.
 
-Note that the vector potentials are _aligned_ with the direction of the source current densities!
-
+Note that the vector potentials are *aligned* with the direction of the source current densities!
 :::
 
 ## Solutions of the inhomogeneous Helmholtz equation
@@ -278,15 +209,13 @@ Let's consider the potential $\mathbf A$ @eq-inhomogeneous-helmholtz-A.
 
 To obtain a solution, we take the following steps:
 
-1. transform the expressions into the Fourier wave number domain
-2. solve the algebraic equation
-3. transform back into space domain
+1.  transform the expressions into the Fourier wave number domain
+2.  solve the algebraic equation
+3.  transform back into space domain
 
-First, we need a useful definition of the Fourier transform.
-We follow a similar notation like that given in @eq-fourier, but instead of time and angular frequency we choose as variables the Cartesian coordinates $x, y, z$ and the corresponding wave numbers $k_x, k_y, k_z$.
+First, we need a useful definition of the Fourier transform. We follow a similar notation like that given in @eq-fourier, but instead of time and angular frequency we choose as variables the Cartesian coordinates $x, y, z$ and the corresponding wave numbers $k_x, k_y, k_z$.
 
-We define the _3-D Fourier transform pair_
-$$
+We define the *3-D Fourier transform pair* $$
 \begin{align}
 \tilde{\mathbf A}(k_x, k_y, k_z) 
     & = \iiint\limits_{-\infty}^\infty \mathbf A(x,y,z) e^{-i(k_x x + k_y y + k_z z)}\, \mathrm d x \mathrm d y \mathrm d z \\
@@ -296,99 +225,70 @@ $$
 
 Also required are the differentiation, convolution, and linearity properties of the Fourier transform.
 
-We recognize that in a Cartesian coordinate system
-$$
+We recognize that in a Cartesian coordinate system $$
 \nabla^2 := \partial^2_{xx} + \partial^2_{yy} + \partial^2_{zz}
-$$
-and therefore
-$$
+$$ and therefore $$
 \partial^2_{xx} e^{-i k_x x} = -k_x^2 e^{-i k_x x} \text{ etc.}
 $$
 
-After transformation of @eq-inhomogeneous-helmholtz-F into the wave number domain, we have
-$$
+After transformation of @eq-inhomogeneous-helmholtz-F into the wave number domain, we have $$
 (-k_x^2 - k_y^2 - k_z^2 + k^2) \tilde{\mathbf A} = -\tilde{\mathbf J}^s_m.
-$$
-Recall that $k^2 = -i \omega \mu (\sigma + i \omega \varepsilon)$.
+$$ Recall that $k^2 = -i \omega \mu (\sigma + i \omega \varepsilon)$.
 
-After rearranging we obtain
-$$
+After rearranging we obtain $$
 \tilde{\mathbf A} = \tilde{\tilde{G}} \tilde{\mathbf J}^s_m
-$$ {#eq-AGJ}
-with the scalar function
-$$
+$$ {#eq-AGJ} with the scalar function $$
 \tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
-$$
-$\tilde{\tilde{G}}$ is the 3-D Fourier transform of what we will later refer to as _Green's function_.
+$$ $\tilde{\tilde{G}}$ is the 3-D Fourier transform of what we will later refer to as *Green's function*.
 
-We can obtain $\mathbf A$ directly in the spatial domain by evaluating a 3-D convolutional integral, since @eq-AGJ is a multiplication in the wave number domain by exploiting the convolution property of the Fourier transform.
-Unfortunately, we still have not found an expression for $G$.
+We can obtain $\mathbf A$ directly in the spatial domain by evaluating a 3-D convolution integral, since @eq-AGJ is a multiplication in the wave number domain by exploiting the convolution property of the Fourier transform. Unfortunately, we still have not found an expression for $G$.
 
-To this end, let's consider a PDE similar to @eq-inhomogeneous-helmholtz-A.
-The differences are important: First, the solution to the PDE is a scalar function $G$, second, the right-hand side of gthe equation is a Dirac impulse in space.
+To this end, let's consider a PDE similar to @eq-inhomogeneous-helmholtz-A. The differences are important: First, the solution to the PDE is a scalar function $G$, second, the right-hand side of the equation is a Dirac impulse in space.
 
-We depart from
-$$
+We depart from $$
 \nabla^2 G + k^2 G = -\delta(x) \delta(y) \delta(z)
 $$ {#eq-pde-G}
 
-We take steps 1 and 2 as outlined above and obtain
-$$
+We take steps 1 and 2 as outlined above and obtain $$
 \tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
-$$
-To find $G$, we first transform back into spce domain w.r.t. $z$ and obtain
-$$
+$$ To find $G$, we first transform back into space domain w.r.t. $z$ and obtain $$
 \tilde{G(k_x, k_y, z)} = \frac{ 1 }{ 2 \pi} \int\limits_{-\infty}^{\infty}
 \tilde{\tilde{G}} e^{i k_z z} \, \mathrm d k_z = \frac{ e^{-u|z|} }{ 2 u}
- $$
- with $u = \sqrt{k_x^2 + k_y^2 - k^2}$.
+ $$ with $u = \sqrt{k_x^2 + k_y^2 - k^2}$.
 
- Next, we carry out a 2-D Fourier transform w.r.t. $x$ and $y$:
-$$
+Next, we carry out a 2-D Fourier transform w.r.t. $x$ and $y$: $$
 G(x,y,z) = \frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} \frac{ e^{-u|z|} }{ 2 u}
 e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y
 $$
 
-Since $u$ is an axisymmetric function of $k_x$ and $k_y$, we use of the following _Hankel transform_:
-$$
+Since $u$ is an axisymmetric function of $k_x$ and $k_y$, we use of the following *Hankel transform*: $$
 \frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} F(k_x^2 + k_y^2) 
 e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y 
 =
 2 \pi \int\limits_0^\infty F(\lambda) J_0(\lambda R) \lambda \, \mathrm d \lambda,
-$$
-where
-$$
+$$ where $$
 \lambda^2 = k_x^2 + k_y^2
-$$
-the horizontal wave number,
-$$
+$$ the horizontal wave number, $$
 R^2 = x^2 + y^2
-$$
-the radial distance from the $z$-axis, and
-$$
+$$ the radial distance from the $z$-axis, and $$
 F :=   \frac{ e^{-u|z|} }{ 2 u}, \quad u^2 = \lambda^2 - k^2.
 $$
 
-Finally, we obtain the integral
-$$
+Finally, we obtain the integral $$
 G(R, z) = \frac{ 1 }{ 4 \pi } \int\limits_0^\infty \frac{ \lambda  }{ u} e^{-u|z|} J_0(\lambda R) \, \mathrm d \lambda
-$$
-This is the _Sommerfeld integral_, from which we get with $r^2 = R^2 + z^2$ the function
-$$
+$$ This is the *Sommerfeld integral*, from which we get with $r^2 = R^2 + z^2$ the function $$
 G(r) = \frac{ 1 }{ 4 \pi r} e^{- i k r}.
 $$
 
-This is the _Green's function for the uniform conductive fullspace in the frequenccy domain_.
+This is the *Green's function for the uniform conductive fullspace in the frequenccy domain*.
 
 ## The Green's function
 
-The Green's function or the _impulse response_ of the conductive fullspace in the frequency domain is
+The Green's function or the *impulse response* of the conductive fullspace in the frequency domain is
 
 $$
 G(r, \omega) = \frac{1}{4 \pi r} e^{- i k r} = \frac{1}{4 \pi r} e^{- i r \sqrt{\omega^2 \mu \varepsilon - i \omega \mu \sigma}}.
-$$
-To obtain the time-domain response $g(r,t)$, we apply the inverse Fourier transform, i.e.,
-$$
+$$ To obtain the time-domain response $g(r,t)$, we apply the inverse Fourier transform, i.e., $$
 g(r, t) = \frac{1}{2 \pi} \frac{1}{4 \pi r} \int\limits_{-\infty}^\infty
 e^{- i r \sqrt{\omega^2 \mu \varepsilon - i \omega \mu \sigma}}
 e^{i \omega t}
@@ -397,56 +297,44 @@ $$
 
 ### Free space
 
-First, let's restrict to the free space case, where $\sigma=0$. We obtain
-$$ 
+First, let's restrict to the free space case, where $\sigma=0$. We obtain $$ 
 g(r,t) = \frac{1}{8 \pi^2 r} \int \limits_{-\infty}^\infty
 e^{i \omega (t \pm r \sqrt{\mu \varepsilon}) } \mathrm{d}\omega.
-$$
-To obtain $g$, we need the _shifting propertiy_ of the Fourier transform:
-$$ 
+$$ To obtain $g$, we need the *shifting property* of the Fourier transform: $$ 
 \delta(t \pm t') =  \frac{1}{2 \pi} \int \limits_{-\infty}^\infty
 e^{i \omega (t \pm t')}
 \mathrm{d}\omega
-$$
-It follows that
-$$
+$$ It follows that $$
 g(r, t) = \frac{1 }{4 \pi r}  \delta(t - r / c)
-$$
-The sign is chosen such that causality is guaranteed, i.e.,
-$$
+$$ The sign is chosen such that causality is guaranteed, i.e., $$
 g(r, t) = 0 \text{ for } t < 0.
-$$
-The result obtained above is called the _retarded potential_.
+$$ The result obtained above is called the *retarded potential*.
 
 ### Quasi-static approximation
 
-For moderate to high conductivities and/or low frequencies, we have introduced the _quasi-static approximation_, which justifies that displacement currents may safely be neglegted in geo-electromagnetic applications.
+For moderate to high conductivities and/or low frequencies, we have introduced the *quasi-static approximation*, which justifies that displacement currents may safely be neglected in geo-electromagnetic applications.
 
-We start from the Green's function under quasi-static approximation:
-$$ 
+We start from the Green's function under quasi-static approximation: $$ 
 G(r, \omega) = \frac{1}{4 \pi r} e^{-i r \sqrt{-i \omega \mu \sigma}} =
 \frac{1}{4 \pi r} e^{-r \sqrt{i \omega \mu \sigma}}
-$$
-To obtain the time-domain Green's function, we apply the Laplace transform, which is as an integral transform similar to the Fourier transform, except that the former is restricted to transformations of functions of $t$ with $t \ge 0$. This is in accordance to the causality requirement stated above.
+$$ To obtain the time-domain Green's function, we apply the Laplace transform, which is as an integral transform similar to the Fourier transform, except that the former is restricted to transformations of functions of $t$ with $t \ge 0$. This is in accordance to the causality requirement stated above.
 
-With the Laplace variable $s := i \omega$ we rewrite
-$$ 
+With the Laplace variable $s := i \omega$ we rewrite $$ 
 G(r, s) = \frac{1}{4 \pi r} e^{-r \sqrt{s \mu \sigma}}
-$$
-From @Abramowitz1972 we obtain
-$$ 
+$$ From @Abramowitz1972 we obtain $$ 
 g(r, t) = \frac{(\mu \sigma)^{1/2}}{(2 \pi t)^{3/2}}
 e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
 $$
 
-$u(t)$ is the Heaviside  step function
+$u(t)$ is the Heaviside step function
 
 $$
     u(t) = \begin{cases} 0 & t < 0 \\ 1 & t > 0. \end{cases}
 $$
 
 ### Numerical experiments with the time-domain Green's function
-We implement the Green's function in `Python` and plot it as a function of time or source-receiver-offset, resp. 
+
+We implement the Green's function in `Python` and plot it as a function of time or source-receiver-offset, resp.
 
 At first, let's calculate the Green's function at a fixed distance of $r=100$ m for a time range of $t \in [10^{-6}, 10^{-2}]$ seconds.
 
@@ -490,44 +378,32 @@ Note the red dots and the red horizontal lines which links both subfigures to ea
 
 ## The fields of a dipole source in full-space
 
-If we compare @eq-pde-G and @eq-inhomogeneous-helmholtz-F, we recognize the similarity of both PDEs. More specifically, if we would be able to orientate $\mathbf J$ in such a way that it would be aligned to one of the Cartesian axis, then
-$$
+If we compare @eq-pde-G and @eq-inhomogeneous-helmholtz-F, we recognize the similarity of both PDEs. More specifically, if we would be able to orientate $\mathbf J$ in such a way that it would be aligned to one of the Cartesian axis, then $$
 \mathbf J_m^s(\mathbf r) = i \omega \mu \mathbf m \delta^3(\mathbf r)
-$$
-would simplify for a vertically aligned dipole to
-$$
+$$ would simplify for a vertically aligned dipole to $$
 \mathbf J_m^s(\mathbf r) = i \omega \mu \begin{bmatrix}
 0 \\ 0 \\ m
 \end{bmatrix} \delta^3(\mathbf r) = 
 \begin{bmatrix}
 0 \\ 0 \\ J_m^s
 \end{bmatrix}
-$$
-The vector-valued PDE @eq-inhomogeneous-helmholtz-F would turn into
-$$
+$$ The vector-valued PDE @eq-inhomogeneous-helmholtz-F would turn into $$
 \nabla^2 \mathbf F + k^2 \mathbf F = -i \omega \mu m \delta^3(\mathbf r) \mathbf e_z,
-$$
-hence, the scalar potential for a magnetic dipole aligned with the $z$-axis is
-$$
+$$ hence, the scalar potential for a magnetic dipole aligned with the $z$-axis is $$
 F_z = \mathbf F \cdot \mathbf e_z = \frac{ i \omega \mu m }{ 4 \pi r } e^{-i k r}.
 $$
 
-::: {.callout-tip}
-
+::: callout-tip
 The potential of a dipole embedded in a uniform fullspace can be calculated with the help of the Green's function.
 
 Dipole induction problems become particularly easy to solve when the dipole axis is aligned with a Cartesian axis.
 :::
 
-With the ansatz  defined above
-$$
+With the ansatz defined above $$
 \mathbf E_m = - \nabla \times \mathbf F
-$$
-and
-$$
+$$ and $$
 \mathbf H_m = \frac{ 1 }{ i \omega \mu } (\nabla \nabla \cdot \mathbf F + k^2 \mathbf F)
-$$
-we can calculate the components of the electric and magnetic fields in a straightforward manner.
+$$ we can calculate the components of the electric and magnetic fields in a straightforward manner.
 
 Note that there are just spatial derivatives involved.
 
@@ -539,35 +415,111 @@ $$
         \frac{1}{r}
     \frac{\partial F_z}{\partial \varphi}-
     \frac{\partial F_\varphi}{\partial z}
-    \right){\boldsymbol e_r} + \\
+    \right){\mathbf e_r} + \\
     & \left(\frac{\partial F_r}{\partial z}-
     \frac{\partial F_z}{\partial r}
-    \right) {\boldsymbol e_\varphi} + \\
+    \right) {\mathbf e_\varphi} + \\
     & \frac{1}{r} \left(
         \frac{\partial \left(r F_\varphi\right)}{\partial r}-
     \frac{\partial F_r}{\partial \varphi}
-    \right){\boldsymbol e_z}.
+    \right){\mathbf e_z}.
 \end{align}
 $$
 
-In the case of a dipole oriented in $z$-direction, the curl simplifies to
-$$
-\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \boldsymbol e_\varphi
+In the case of a dipole oriented in $z$-direction, the curl simplifies to $$
+\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi
 $$
 
-With the definition
-$$
+With the definition $$
  \mathbf E = -\nabla \times \mathbf F
-$$
-we find
-$$
+$$ we find $$
     E_\varphi = \frac{\partial F_z}{\partial r}.
 $$
 
-For the magnetic field, we need
-$$
+For the magnetic field, we need $$
     \mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \nabla\nabla\cdot\mathbf F = \frac{1}{i\omega\mu} \left(
     k^2 \mathbf F + \nabla\nabla\cdot\mathbf F
     \right).
+$$ The $\nabla\cdot$-operator requires $\partial_z F_z$, whereas the gradient requires all partial derivatives of $\partial_z F_z$.
+
 $$
-The $\nabla\cdot$-operator requires $\partial_z F_z$, whereas the gradient requires all partial derivatives of $\partial_z F_z$.
+E_\varphi = \partial_r F_z = \frac{-i \omega \mu m }{4 \pi r^2} (1 + i k r) \exp(-i k r)
+$$
+
+The change of the basis from cylindrical to Cartesian coordinates requires for the horizontal components $$
+\mathbf E = E_\varphi \mathbf e_\varphi = E_\varphi 
+\begin{pmatrix}
+-\sin\varphi \\
+\cos\varphi
+\end{pmatrix},
+$$
+
+since
+
+$$
+\begin{bmatrix}
+\mathbf e_r \\ \mathbf e_\varphi \\ \mathbf e_z
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cos\varphi & \sin\varphi & 0 \\
+-\sin\varphi & \cos\varphi & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+\mathbf e_x \\ \mathbf e_y \\ \mathbf e_z
+\end{bmatrix}.
+$$
+
+With the angle $\varphi$ counting positive from the $x$-axis in the direction of $y$, we can use the relations
+
+$$
+\cos\varphi = \frac{x}{r}, \quad \sin\varphi = \frac{y}{r}.
+$$
+
+Hence, $$
+\begin{align}
+E_x & = +i \omega \mu m \frac{\sin\varphi}{4 \pi r^2}(1 + i k r) \exp(-i k r) \\
+E_y & = -i \omega \mu m \frac{\cos\varphi}{4 \pi r^2}(1 + i k r) \exp(-i k r)
+\end{align}
+$$
+
+A useful expression for an arbitrary orientation of the dipole is given by
+
+$$
+\mathbf E(\mathbf r) = -\frac{i \omega \mu}{4 \pi r^3} (1 + i k r) \exp(-i k r) \mathbf m \times \mathbf r,
+$$
+
+where the components of $\mathbf E$ depend on both the direction of the dipole moment and the direction to the source.
+
+Check:
+
+With 
+$$
+\mathbf m = 
+\begin{bmatrix}
+0 \\ 0 \\ m
+\end{bmatrix}
+$$
+and
+$$
+\mathbf r = 
+\begin{bmatrix}
+x \\ y \\ z
+\end{bmatrix}
+$$
+we obtain
+$$
+- \mathbf m \times \mathbf r = 
+\begin{bmatrix}
+my \\ -mx \\ 0
+\end{bmatrix} = 
+\begin{bmatrix}
+m r \sin\varphi \\ -m r \cos\varphi \\ 0 
+\end{bmatrix}
+.
+$$
+
+::: {.callout-tip}
+Looking in the direction of the positive $z$-axis of a right-handed coordinate system, the induced electric field is oriented counter-clockwise, when $\mathbf m$ is oriented in positive $z$-direction.
+:::
