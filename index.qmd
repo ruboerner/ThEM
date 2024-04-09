@@ -31,9 +31,17 @@ Moreover, you have the freedom to explore your own concepts and delve deeper int
 
 Working with Jupyter Notebooks in Visual Studio Code is [exceptionally straightforward](https://code.visualstudio.com/docs/datascience/jupyter-notebooks).
 
+## Self study
+
+There are individual small tasks for self-study that are scattered throughout the lecture.
+
+::: {.callout title="Self study"}
+You can easily identify these callouts.
+:::
+
 ## Recommended Reading
 
-@ward1988electromagnetic
+The most important source of supplementary information is the book by @ward1988electromagnetic. 
 
 ## License
 

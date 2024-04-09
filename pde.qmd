@@ -50,7 +50,7 @@ We refer to the following *types* of PDEs:
 
 ## The curl-curl equation
 
-We first eliminate one field from the set of Maxwell's equations by applying the *curl operator* ($\nabla \times$) to one of the equations, i.e., Faraday's law.
+We first eliminate one field from the set of Maxwell's equations by applying the *curl operator* ($\nabla \times$) to one of the equations, i.e., Faraday's law @eq-faraday.
 
 This results in a second-order PDE because we differentiate twice with respect to spatial coordinates.
 

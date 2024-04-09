@@ -424,27 +424,45 @@ $$
     \frac{\partial F_r}{\partial \varphi}
     \right){\mathbf e_z}.
 \end{align}
+$$ {#eq-rot-cylindrical}
+
+In the case of a dipole oriented in $z$-direction, the curl simplifies to 
+$$
+\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi,
+$$ {#eq-rot-F}
+where $\mathbf e_\varphi$ is the unit coordinate vector in $\varphi$-direction.
+
+::: {.callout-note}
+Since the dipole axis is aligned with the $z$-axis, we expect axisymmetric field components.
+
+The magnetic field forms closed field lines which are uniform in the azimuthal $\varphi$-direction.
+
+For a magnetic dipole aligned with the $z$-direction we observe the field components
+$$
+E_\varphi,\quad H_r,\quad H_z.
 $$
 
-In the case of a dipole oriented in $z$-direction, the curl simplifies to $$
-\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi
-$$
+The components are mutual orthogonal!
+:::
 
-With the definition $$
+### Electric field
+
+With the definition 
+$$
  \mathbf E = -\nabla \times \mathbf F
-$$ we find $$
-    E_\varphi = \frac{\partial F_z}{\partial r}.
+$$ 
+we find using @eq-rot-F that
+$$
+E_\varphi = \frac{\partial F_z}{\partial r}.
+$$
+Hence,
+$$
+E_\varphi = \partial_r F_z = -\frac{i \omega \mu m }{4 \pi r^2} (1 + i k r) \exp(-i k r).
 $$
 
-For the magnetic field, we need $$
-    \mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \nabla\nabla\cdot\mathbf F = \frac{1}{i\omega\mu} \left(
-    k^2 \mathbf F + \nabla\nabla\cdot\mathbf F
-    \right).
-$$ The $\nabla\cdot$-operator requires $\partial_z F_z$, whereas the gradient requires all partial derivatives of $\partial_z F_z$.
-
-$$
-E_\varphi = \partial_r F_z = \frac{-i \omega \mu m }{4 \pi r^2} (1 + i k r) \exp(-i k r)
-$$
+::: {.callout title="Self study"}
+Do the derivation by yourself.
+:::
 
 The change of the basis from cylindrical to Cartesian coordinates requires for the horizontal components $$
 \mathbf E = E_\varphi \mathbf e_\varphi = E_\varphi 
@@ -494,22 +512,17 @@ where the components of $\mathbf E$ depend on both the direction of the dipole m
 
 Check:
 
-With 
-$$
+With $$
 \mathbf m = 
 \begin{bmatrix}
 0 \\ 0 \\ m
 \end{bmatrix}
-$$
-and
-$$
+$$ and $$
 \mathbf r = 
 \begin{bmatrix}
 x \\ y \\ z
 \end{bmatrix}
-$$
-we obtain
-$$
+$$ we obtain $$
 - \mathbf m \times \mathbf r = 
 \begin{bmatrix}
 my \\ -mx \\ 0
@@ -520,6 +533,332 @@ m r \sin\varphi \\ -m r \cos\varphi \\ 0
 .
 $$
 
-::: {.callout-tip}
+::: callout-note
 Looking in the direction of the positive $z$-axis of a right-handed coordinate system, the induced electric field is oriented counter-clockwise, when $\mathbf m$ is oriented in positive $z$-direction.
 :::
+
+### Magnetic field
+
+For the magnetic field, we need 
+$$
+\mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \nabla\nabla\cdot\mathbf F = \frac{1}{i\omega\mu} \left(
+    k^2 \mathbf F + \nabla\nabla\cdot\mathbf F
+\right).
+$$ 
+
+The $\nabla\cdot$-operator requires the calculation of $\partial_z F_z$, whereas the gradient requires to provide all partial derivatives of $\partial_z F_z$ with respect to $r$ and $z$.
+
+We recall that
+$$
+r = \sqrt{x^2 + y^2 + z^2}
+$$
+and use the chain rule to obtain
+$$
+\partial_z F_z = \partial_r F_z \cdot \partial_z r,
+$$
+where
+$$
+\partial_z r = \frac{ z }{ r}.
+$$
+
+Further, the divergence and gradient operators generally read in cylindrical coordinates for a vector field $\mathbf F$ and  a scalar field $f$
+$$
+\nabla \cdot \mathbf F = \frac{1}{r} \partial_r(r F_r) + 
+\frac{1}{r} \partial_\varphi F_\varphi +
+\partial_z F_z
+$$
+and
+$$
+\nabla f = \partial_r f \mathbf e_r +
+\frac{1}{r} \partial_\varphi f \mathbf e_\varphi +
+\partial_z f \mathbf e_z.
+$$
+
+In our case we need to calculate
+$$
+\nabla \cdot \mathbf F = \partial_z F_z.
+$$
+
+To compute the derivatives, we use `sympy`:
+
+```{python}
+from sympy import diff, symbols, sqrt, pi, exp, I, simplify, Derivative, Matrix
+x, y, z, r, omega, mu, sigma, m = symbols('x y z r omega mu_0 sigma m', real=True)
+k = symbols('k')
+
+Fz = I * omega * mu * m / (4 * pi * r) * exp(-I * k * r)
+print('Fz = ')
+Fz
+```
+Next, we implement an expression for $\nabla \cdot \mathbf F$:
+
+```{python}
+divF = diff(Fz.subs(r, sqrt(x**2 + y**2 + z**2)), z).subs(sqrt(x**2 + y**2 + z**2), r).simplify()
+print('divF = ')
+divF
+```
+The chain rule can be implemented by a `lambda` function `chain` which first substitutes $r$ by the square root, forms the derivative, and finally substitutes all square root expressions by $r$ or powers thereof.
+
+```{python}
+chain = lambda F, v: diff(F.subs(r, sqrt(x**2 + y**2 + z**2)), v).subs(sqrt(x**2 + y**2 + z**2), r).simplify()
+```
+
+A call to `chain`, i.e., the implementation of $\partial_z \partial_z F_z$ would simply look as follows:
+```python
+chain(Fz, z)
+```
+However, to get the magentic field components, we need to divide by the term $i \omega \mu_0$.
+
+```{python}
+Hx = chain(divF, x).factor() / (I * omega * mu)
+print('Hx =')
+Hx
+```
+```{python}
+Hy = chain(divF, y).factor() / (I * omega * mu)
+print('Hy =')
+Hy
+```
+
+To get $H_z$ we have to add the term $k^2 F_z$ as
+```{python}
+Hz = (chain(divF, z) + k**2 * Fz) / (I * omega * mu)
+print('Hz =')
+Hz.factor().simplify()
+```
+
+We can generalize using the following notation:
+$$
+\mathbf H(\mathbf r) = \frac{1}{4 \pi r^3} \left[
+    \frac{\mathbf m \cdot \mathbf r}{r^2} (3 + 3 i k r - k^2 r^2) \mathbf r - (1 + i k r - k^2 r^2) \mathbf m
+    \right] e^{-i k r}.
+$$
+
+Let's check the validity on our example.
+
+We introduce the symbolic vector quantities `M` and `R`, and implement a `lambda` function to express the magnetic field with respect to the orientation of the magnetic dipole moment: 
+```{python}
+M = Matrix([0, 0, m])
+R = Matrix([x, y, z])
+H = lambda M: (M.dot(R) * (3 + I * k * r - k**2 * r**2) * R / r**2 - (1 + I * k * r - k**2 * r**2) * M) * exp(-I * k * r) / (4 * pi * r**3)
+print('H(M) =')
+H(M)
+```
+This confirms the correctness of our derivation.
+
+## Apparent resistivity
+
+However, geophysics is primarily interested in reconstructing the spatial distribution of electrical conductivity from measured field quantities (inversion). 
+This step is based on a model conception of the spatial conductivity distribution. 
+In general, the conductivity is a function of location with $\sigma=\sigma(x,y,z)>0$.
+In the simplest case, we assume that the halfspace or fullspace is a uniform conductor, i.e., $\sigma= const$. 
+The model of the homogeneous halfspace or fullspace can therefore be completely described by a single number.
+We now try to determine this number mathematically from the measured field quantities.
+
+This is the simplest form of a geophysical inversion!
+
+We use the _impedance_ to solve the problem. 
+From this we then determine the apparent resistivity.
+
+The following questions will be answered:
+
+* Can the concept of impedance be transferred to dipole excitation?
+* Is it possible to reconstruct the electrical resistivity from the impedance?
+* What are the differences compared to homogeneous excitation (MT)?
+
+We implement the general equations for the electric and magnetic fields as `Python` functions `E` and `H`, resp.:
+
+```{python}
+def E(r, m, f, sigma):
+    mu = np.pi * 4e-7
+    omega = 2 * np.pi * f
+    iwm = 1j * omega * mu
+    alpha = iwm / (4 * np.pi)
+    k = np.sqrt(-iwm * sigma)
+    x = r[0]
+    y = r[1]
+    z = r[2]
+    R = np.linalg.norm(r)
+    ikr = 1j * k * R
+    E = -alpha / R**3 * (1.0 + ikr) * np.exp(-ikr) * np.cross(m, r)
+    return E
+
+def H(r, m, f, sigma):
+    mu = np.pi * 4e-7
+    omega = 2 * np.pi * f
+    iwm = 1j * omega * mu
+    k = np.sqrt(-iwm * sigma)
+    x = r[0]
+    y = r[1]
+    z = r[2]
+    R = np.linalg.norm(r)
+    ikr = 1j * k * R
+    k2r2 = k**2 * R**2
+    H = np.exp(-ikr) / (4 * np.pi * R**3) * (
+        
+            np.dot(m, r) / R**2 * (3 + 3 * ikr - k2r2) * r
+            -
+            (1 + ikr - k2r2) * m
+        )
+    return H
+
+```
+
+We check with the following parameters:
+
+* $\mathbf r = [100, 0, 0]^\top$ m
+* $\mathbf m = [0, 0, 1]^\top$ A$\cdot m^2$
+* $f = 100$ Hz
+* $\sigma = 0.01$ S/m.
+
+```{python}
+r = np.array([100.0, 0.0, 0.0])
+m = np.array([0.0, 0.0, 1.0])
+f = 100.0
+sigma = 0.01
+e = E(r, m, f, sigma)
+Ey = e[1]
+e
+```
+
+```{python}
+h = H(r, m, f, sigma)
+Hz = h[2]
+h
+```
+We recognize that for a vertically aligned dipole, when observed at the $x$-axis, only the $y$-component of $\mathbf E$ and the $z$-component of $\mathbf H$ are non-zero.
+
+Now we try to calculate the _impedance_ from the ratio of two mutually orthogonal components of $\mathbf E$ and $\mathbf H$, e.g.,
+$$
+Z = \frac{ E_y }{ H_z}.
+$$
+
+```{python}
+Z = Ey / Hz
+Z
+```
+
+For the calculation of the apparent resistivity, we use
+$$
+\rho_a = \frac{ 1 }{ \omega \mu_0} |Z|^2
+$$
+
+```{python}
+def rhoa(Z, f):
+    mu = np.pi * 4e-7
+    omega = 2 * np.pi * f
+    return np.abs(Z)**2 / (omega * mu)
+```
+
+```{python}
+rhoa(Z, f)
+```
+
+This does not meet our expectations.
+We are therefore investigating whether the impedance depends on the frequency and/or the distance to the dipole.
+
+We vary the frequencies and observe $\rho_a$ as a function of frequency.
+
+```{python}
+nf = 41
+freq = np.logspace(1, 5, nf, endpoint=True)
+Rhoa_f = [rhoa(E(r,m,v,sigma)[1] / H(r,m,v,sigma)[2], v) for v in freq]
+```
+
+```{python}
+import matplotlib.pyplot as plt
+
+plt.loglog(freq, Rhoa_f)
+plt.grid(True)
+plt.xlabel('f in Hz')
+plt.ylabel(r'$\rho_a~in~\Omega\cdot m$')
+plt.title('Dipole offset ' + str(np.linalg.norm(r)) + ' m')
+plt.show()
+```
+
+Obviously, the value of $\rho_a$ depends on the frequency and asymptotically approaches the expected full-space value of the resistivity as $f \to \infty$.
+
+We gain more insight, when we vary the distance to the dipole while keeping the frequency fixed.
+
+```{python}
+nr = 41
+x = np.logspace(0, 4, nr, endpoint=True)
+Rhoa_x = np.array([rhoa(E(np.array([v, 0, 0]),m,f,sigma)[1] / H(np.array([v, 0, 0]),m,f,sigma)[2], f) for v in x])
+```
+
+```{python}
+plt.loglog(x, Rhoa_x)
+plt.grid(True)
+plt.xlabel('r in m')
+plt.ylabel(r'$\rho_a~in~\Omega\cdot m$')
+plt.title('Frequency ' + str(np.linalg.norm(f)) + ' Hz')
+plt.show()
+```
+
+Is there a consistent explanation for these observations?
+We look at the induction parameter $|k|r$ and revisit the parameters from the previous examples.
+
+```{python}
+def kr(f, sigma, r):
+    mu = np.pi * 4e-7
+    omega = 2 * np.pi * f
+    return r * np.abs(np.sqrt(-1j * omega * mu * sigma))
+
+def pos(data, threshold):
+    return np.where(np.array(data) > threshold, data, np.nan)
+```
+
+```{python}
+KR = np.array([kr(v, sigma, np.linalg.norm(r)) for v in freq])
+plt.loglog(freq, KR, color='C1', label=r'|k|r > 1')
+iind = np.argwhere(KR < 1)
+plt.loglog(freq[iind], KR[iind], color='C0', label=r'|k|r < 1')
+plt.legend()
+plt.grid(True)
+plt.ylabel(r'$|k|r$')
+plt.xlabel('f in Hz')
+plt.title('Dipole offset ' + str(np.linalg.norm(r)) + ' m')
+plt.show()
+```
+
+With the indicator $|k|r$ just introduced, it is easier to determine which branch of the asymptotic we are on.
+
+```{python}
+KR = np.array([kr(f, sigma, v) for v in x])
+plt.loglog(x, Rhoa_x, color='C1', label=r'$|k|r > 1$')
+iind = np.argwhere(KR < 1)
+plt.loglog(x[iind], Rhoa_x[iind], color='C0', label=r'$|k|r < 1$')
+plt.legend()
+plt.grid(True)
+plt.xlabel('r in m')
+plt.ylabel(r'$\rho_a~in~\Omega\cdot m$')
+plt.title('Frequency ' + str(np.linalg.norm(f)) + ' Hz')
+plt.show()
+```
+
+In contrast to homogeneous excitation, the impedance and thus the apparent resistivity for dipole excitation depends not only on the frequency but also on the distance between the dipole source and the receiver.
+At $|k|r \gg 1$ we speak of the far zone. 
+The impedance relationships there are similar to those for the MT.
+At $|k|r \ll 1$ we are in the near zone. 
+The induction parameter is small. 
+The low induction number (LIN) methods work in this regime. With the Geonics EM-34, for example, a coil distance of around 10 m is selected at a frequency of 6,400 Hz. 
+The induction parameter for this configuration is less than 1 if the conductivity is sufficiently low.
+
+We check these findings for a range of conductivities.
+
+```{python}
+ns = 41
+sigma = np.logspace(-4, 0, ns, endpoint=True)
+r = 100.0
+f = 100.0
+KR = np.array([kr(f, v, r) for v in sigma])
+
+Hz = np.array([H(np.array([r, 0, 0]), np.array([0, 0, 1]), f, v)[2] for v in sigma])
+
+plt.semilogx(KR, np.real(Hz), label='Re')
+plt.semilogx(KR, np.imag(Hz), label='Im')
+plt.legend()
+plt.grid(True)
+plt.xlabel(r'$|k|r$')
+plt.ylabel(r'$H_z$')
+```

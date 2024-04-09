@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -303,9 +303,18 @@ window.Quarto = {
 
 
 <p>The EM fields <a href="intro.html#eq-fields-time" class="quarto-xref"><span>2.1</span></a> are solutions of <em>Maxwell’s equations</em></p>
-<p><span id="eq-maxwell-time"><span class="math display">\[
-\begin{align}\nabla \times \mathbf h - \partial_t \mathbf d  &amp; = \mathbf j \\\nabla \times \mathbf e + \partial_t \mathbf b &amp; = \mathbf 0 \\\nabla \cdot \mathbf b &amp; = 0 \\\nabla \cdot \mathbf d &amp; = \rho_E.\end{align}
+<p><span id="eq-ampere"><span class="math display">\[
+\nabla \times \mathbf h - \partial_t \mathbf d   = \mathbf j
 \tag{4.1}\]</span></span></p>
+<p><span id="eq-faraday"><span class="math display">\[
+\nabla \times \mathbf e + \partial_t \mathbf b  = \mathbf 0
+\tag{4.2}\]</span></span></p>
+<p><span id="eq-gauss-b"><span class="math display">\[
+\nabla \cdot \mathbf b  = 0
+\tag{4.3}\]</span></span></p>
+<p><span id="eq-gauss-d"><span class="math display">\[
+\nabla \cdot \mathbf d  = \rho_E
+\tag{4.4}\]</span></span></p>
 <p>In the form presented here, Maxwell’s equations are an <strong>uncoupled set of ordinary differential equations</strong>.</p>
 <section id="constitutive-equations" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="constitutive-equations"><span class="header-section-number">4.1</span> Constitutive equations</h2>
@@ -315,7 +324,7 @@ window.Quarto = {
 \mathbf d &amp; = \varepsilon \mathbf e \\
 \mathbf b &amp; = \mu \mathbf h
 \end{align}
-\tag{4.2}\]</span></span></p>
+\tag{4.5}\]</span></span></p>
 <p>Generally, the linear parameters <span class="math inline">\(\varepsilon, \mu\)</span> are rank-2 <strong>tensors</strong> represented as 3-by-3 matrices.</p>
 </section>
 <section id="ohms-law" class="level2" data-number="4.2">
@@ -323,7 +332,7 @@ window.Quarto = {
 <p>In an electrically conductive medium, any electric field gives rise to an electric current. This current is expressed by its <em>current density</em> as</p>
 <p><span id="eq-ohms-law"><span class="math display">\[
 \mathbf j = \sigma \mathbf e,
-\tag{4.3}\]</span></span></p>
+\tag{4.6}\]</span></span></p>
 <p>where <span class="math inline">\(\sigma\)</span> is a rank-2 tensor.</p>
 <p>This tensor can be represented in matrix form as</p>
 <p><span class="math display">\[

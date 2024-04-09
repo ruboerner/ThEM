@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -337,7 +337,12 @@ window.Quarto = {
   <li><a href="#quasi-static-approximation" id="toc-quasi-static-approximation" class="nav-link" data-scroll-target="#quasi-static-approximation"><span class="header-section-number">7.6.2</span> Quasi-static approximation</a></li>
   <li><a href="#numerical-experiments-with-the-time-domain-greens-function" id="toc-numerical-experiments-with-the-time-domain-greens-function" class="nav-link" data-scroll-target="#numerical-experiments-with-the-time-domain-greens-function"><span class="header-section-number">7.6.3</span> Numerical experiments with the time-domain Green’s function</a></li>
   </ul></li>
-  <li><a href="#the-fields-of-a-dipole-source-in-full-space" id="toc-the-fields-of-a-dipole-source-in-full-space" class="nav-link" data-scroll-target="#the-fields-of-a-dipole-source-in-full-space"><span class="header-section-number">7.7</span> The fields of a dipole source in full-space</a></li>
+  <li><a href="#the-fields-of-a-dipole-source-in-full-space" id="toc-the-fields-of-a-dipole-source-in-full-space" class="nav-link" data-scroll-target="#the-fields-of-a-dipole-source-in-full-space"><span class="header-section-number">7.7</span> The fields of a dipole source in full-space</a>
+  <ul class="collapse">
+  <li><a href="#electric-field" id="toc-electric-field" class="nav-link" data-scroll-target="#electric-field"><span class="header-section-number">7.7.1</span> Electric field</a></li>
+  <li><a href="#magnetic-field" id="toc-magnetic-field" class="nav-link" data-scroll-target="#magnetic-field"><span class="header-section-number">7.7.2</span> Magnetic field</a></li>
+  </ul></li>
+  <li><a href="#apparent-resistivity" id="toc-apparent-resistivity" class="nav-link" data-scroll-target="#apparent-resistivity"><span class="header-section-number">7.8</span> Apparent resistivity</a></li>
   </ul>
 </nav>
     </div>
@@ -677,7 +682,7 @@ e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
 <p>We implement the Green’s function in <code>Python</code> and plot it as a function of time or source-receiver-offset, resp.</p>
 <p>At first, let’s calculate the Green’s function at a fixed distance of <span class="math inline">\(r=100\)</span> m for a time range of <span class="math inline">\(t \in [10^{-6}, 10^{-2}]\)</span> seconds.</p>
 <p>The late time asymptotic <span class="math inline">\(g(r,t) \sim t^{-3/2}\)</span> as <span class="math inline">\(t \to \infty\)</span> is indicated as a straight line in the log-log plot.</p>
-<div id="339c2679" class="cell" data-execution_count="1">
+<div id="a753eaf7" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -758,7 +763,7 @@ Tip
 \]</span> we can calculate the components of the electric and magnetic fields in a straightforward manner.</p>
 <p>Note that there are just spatial derivatives involved.</p>
 <p>However, the symmetry of the problem suggests using cylindrical coordinates.</p>
-<p><span class="math display">\[
+<p><span id="eq-rot-cylindrical"><span class="math display">\[
 \begin{align}
     \nabla \times \mathbf F = &amp; \left(
         \frac{1}{r}
@@ -773,23 +778,50 @@ Tip
     \frac{\partial F_r}{\partial \varphi}
     \right){\mathbf e_z}.
 \end{align}
+\tag{7.6}\]</span></span></p>
+<p>In the case of a dipole oriented in <span class="math inline">\(z\)</span>-direction, the curl simplifies to <span id="eq-rot-F"><span class="math display">\[
+\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi,
+\tag{7.7}\]</span></span> where <span class="math inline">\(\mathbf e_\varphi\)</span> is the unit coordinate vector in <span class="math inline">\(\varphi\)</span>-direction.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Since the dipole axis is aligned with the <span class="math inline">\(z\)</span>-axis, we expect axisymmetric field components.</p>
+<p>The magnetic field forms closed field lines which are uniform in the azimuthal <span class="math inline">\(\varphi\)</span>-direction.</p>
+<p>For a magnetic dipole aligned with the <span class="math inline">\(z\)</span>-direction we observe the field components <span class="math display">\[
+E_\varphi,\quad H_r,\quad H_z.
 \]</span></p>
-<p>In the case of a dipole oriented in <span class="math inline">\(z\)</span>-direction, the curl simplifies to <span class="math display">\[
-\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi
-\]</span></p>
+<p>The components are mutual orthogonal!</p>
+</div>
+</div>
+<section id="electric-field" class="level3" data-number="7.7.1">
+<h3 data-number="7.7.1" class="anchored" data-anchor-id="electric-field"><span class="header-section-number">7.7.1</span> Electric field</h3>
 <p>With the definition <span class="math display">\[
 \mathbf E = -\nabla \times \mathbf F
-\]</span> we find <span class="math display">\[
-    E_\varphi = \frac{\partial F_z}{\partial r}.
+\]</span> we find using <a href="#eq-rot-F" class="quarto-xref"><span>7.7</span></a> that <span class="math display">\[
+E_\varphi = \frac{\partial F_z}{\partial r}.
+\]</span> Hence, <span class="math display">\[
+E_\varphi = \partial_r F_z = -\frac{i \omega \mu m }{4 \pi r^2} (1 + i k r) \exp(-i k r).
 \]</span></p>
-<p>For the magnetic field, we need <span class="math display">\[
-    \mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \nabla\nabla\cdot\mathbf F = \frac{1}{i\omega\mu} \left(
-    k^2 \mathbf F + \nabla\nabla\cdot\mathbf F
-    \right).
-\]</span> The <span class="math inline">\(\nabla\cdot\)</span>-operator requires <span class="math inline">\(\partial_z F_z\)</span>, whereas the gradient requires all partial derivatives of <span class="math inline">\(\partial_z F_z\)</span>.</p>
-<p><span class="math display">\[
-E_\varphi = \partial_r F_z = \frac{-i \omega \mu m }{4 \pi r^2} (1 + i k r) \exp(-i k r)
-\]</span></p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Self study">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Self study
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do the derivation by yourself.</p>
+</div>
+</div>
 <p>The change of the basis from cylindrical to Cartesian coordinates requires for the horizontal components <span class="math display">\[
 \mathbf E = E_\varphi \mathbf e_\varphi = E_\varphi
 \begin{pmatrix}
@@ -848,17 +880,424 @@ m r \sin\varphi \\ -m r \cos\varphi \\ 0
 \end{bmatrix}
 .
 \]</span></p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Looking in the direction of the positive <span class="math inline">\(z\)</span>-axis of a right-handed coordinate system, the induced electric field is oriented counter-clockwise, when <span class="math inline">\(\mathbf m\)</span> is oriented in positive <span class="math inline">\(z\)</span>-direction.</p>
+</div>
+</div>
+</section>
+<section id="magnetic-field" class="level3" data-number="7.7.2">
+<h3 data-number="7.7.2" class="anchored" data-anchor-id="magnetic-field"><span class="header-section-number">7.7.2</span> Magnetic field</h3>
+<p>For the magnetic field, we need <span class="math display">\[
+\mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \nabla\nabla\cdot\mathbf F = \frac{1}{i\omega\mu} \left(
+    k^2 \mathbf F + \nabla\nabla\cdot\mathbf F
+\right).
+\]</span></p>
+<p>The <span class="math inline">\(\nabla\cdot\)</span>-operator requires the calculation of <span class="math inline">\(\partial_z F_z\)</span>, whereas the gradient requires to provide all partial derivatives of <span class="math inline">\(\partial_z F_z\)</span> with respect to <span class="math inline">\(r\)</span> and <span class="math inline">\(z\)</span>.</p>
+<p>We recall that <span class="math display">\[
+r = \sqrt{x^2 + y^2 + z^2}
+\]</span> and use the chain rule to obtain <span class="math display">\[
+\partial_z F_z = \partial_r F_z \cdot \partial_z r,
+\]</span> where <span class="math display">\[
+\partial_z r = \frac{ z }{ r}.
+\]</span></p>
+<p>Further, the divergence and gradient operators generally read in cylindrical coordinates for a vector field <span class="math inline">\(\mathbf F\)</span> and a scalar field <span class="math inline">\(f\)</span> <span class="math display">\[
+\nabla \cdot \mathbf F = \frac{1}{r} \partial_r(r F_r) +
+\frac{1}{r} \partial_\varphi F_\varphi +
+\partial_z F_z
+\]</span> and <span class="math display">\[
+\nabla f = \partial_r f \mathbf e_r +
+\frac{1}{r} \partial_\varphi f \mathbf e_\varphi +
+\partial_z f \mathbf e_z.
+\]</span></p>
+<p>In our case we need to calculate <span class="math display">\[
+\nabla \cdot \mathbf F = \partial_z F_z.
+\]</span></p>
+<p>To compute the derivatives, we use <code>sympy</code>:</p>
+<div id="c2de7c41" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> diff, symbols, sqrt, pi, exp, I, simplify, Derivative, Matrix</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x, y, z, r, omega, mu, sigma, m <span class="op">=</span> symbols(<span class="st">'x y z r omega mu_0 sigma m'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> symbols(<span class="st">'k'</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Fz <span class="op">=</span> I <span class="op">*</span> omega <span class="op">*</span> mu <span class="op">*</span> m <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> pi <span class="op">*</span> r) <span class="op">*</span> exp(<span class="op">-</span>I <span class="op">*</span> k <span class="op">*</span> r)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Fz = '</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Fz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fz = </code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
+<p><span class="math inline">\(\displaystyle \frac{i m \mu_{0} \omega e^{- i k r}}{4 \pi r}\)</span></p>
+</div>
+</div>
+<p>Next, we implement an expression for <span class="math inline">\(\nabla \cdot \mathbf F\)</span>:</p>
+<div id="6873653e" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>divF <span class="op">=</span> diff(Fz.subs(r, sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>)), z).subs(sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>), r).simplify()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'divF = '</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>divF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>divF = </code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<p><span class="math inline">\(\displaystyle \frac{m \mu_{0} \omega z \left(k r - i\right) e^{- i k r}}{4 \pi r^{3}}\)</span></p>
+</div>
+</div>
+<p>The chain rule can be implemented by a <code>lambda</code> function <code>chain</code> which first substitutes <span class="math inline">\(r\)</span> by the square root, forms the derivative, and finally substitutes all square root expressions by <span class="math inline">\(r\)</span> or powers thereof.</p>
+<div id="248d2861" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> <span class="kw">lambda</span> F, v: diff(F.subs(r, sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>)), v).subs(sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>), r).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>A call to <code>chain</code>, i.e., the implementation of <span class="math inline">\(\partial_z \partial_z F_z\)</span> would simply look as follows:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>chain(Fz, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, to get the magentic field components, we need to divide by the term <span class="math inline">\(i \omega \mu_0\)</span>.</p>
+<div id="9f578e55" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Hx <span class="op">=</span> chain(divF, x).factor() <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hx ='</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Hx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hx =</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
+<p><span class="math inline">\(\displaystyle - \frac{m x z \left(k^{2} r^{2} - 3 i k r - 3\right) e^{- i k r}}{4 \pi r^{5}}\)</span></p>
+</div>
+</div>
+<div id="0790cdc1" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Hy <span class="op">=</span> chain(divF, y).factor() <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hy ='</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Hy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hy =</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
+<p><span class="math inline">\(\displaystyle - \frac{m y z \left(k^{2} r^{2} - 3 i k r - 3\right) e^{- i k r}}{4 \pi r^{5}}\)</span></p>
+</div>
+</div>
+<p>To get <span class="math inline">\(H_z\)</span> we have to add the term <span class="math inline">\(k^2 F_z\)</span> as</p>
+<div id="27f5bff2" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Hz <span class="op">=</span> (chain(divF, z) <span class="op">+</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> Fz) <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hz ='</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Hz.factor().simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hz =</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
+<p><span class="math inline">\(\displaystyle \frac{m \left(k^{2} r^{4} - k^{2} r^{2} z^{2} - i k r^{3} + 3 i k r z^{2} - r^{2} + 3 z^{2}\right) e^{- i k r}}{4 \pi r^{5}}\)</span></p>
+</div>
+</div>
+<p>We can generalize using the following notation: <span class="math display">\[
+\mathbf H(\mathbf r) = \frac{1}{4 \pi r^3} \left[
+    \frac{\mathbf m \cdot \mathbf r}{r^2} (3 + 3 i k r - k^2 r^2) \mathbf r - (1 + i k r - k^2 r^2) \mathbf m
+    \right] e^{-i k r}.
+\]</span></p>
+<p>Let’s check the validity on our example.</p>
+<p>We introduce the symbolic vector quantities <code>M</code> and <code>R</code>, and implement a <code>lambda</code> function to express the magnetic field with respect to the orientation of the magnetic dipole moment:</p>
+<div id="a3b6677f" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> Matrix([<span class="dv">0</span>, <span class="dv">0</span>, m])</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> Matrix([x, y, z])</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> <span class="kw">lambda</span> M: (M.dot(R) <span class="op">*</span> (<span class="dv">3</span> <span class="op">+</span> I <span class="op">*</span> k <span class="op">*</span> r <span class="op">-</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> R <span class="op">/</span> r<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> (<span class="dv">1</span> <span class="op">+</span> I <span class="op">*</span> k <span class="op">*</span> r <span class="op">-</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> M) <span class="op">*</span> exp(<span class="op">-</span>I <span class="op">*</span> k <span class="op">*</span> r) <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> pi <span class="op">*</span> r<span class="op">**</span><span class="dv">3</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'H(M) ='</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>H(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>H(M) =</code></pre>
+</div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
+<p><span class="math inline">\(\displaystyle \left[\begin{matrix}\frac{m x z \left(- k^{2} r^{2} + i k r + 3\right) e^{- i k r}}{4 \pi r^{5}}\\\frac{m y z \left(- k^{2} r^{2} + i k r + 3\right) e^{- i k r}}{4 \pi r^{5}}\\\frac{\left(- m \left(- k^{2} r^{2} + i k r + 1\right) + \frac{m z^{2} \left(- k^{2} r^{2} + i k r + 3\right)}{r^{2}}\right) e^{- i k r}}{4 \pi r^{3}}\end{matrix}\right]\)</span></p>
+</div>
+</div>
+<p>This confirms the correctness of our derivation.</p>
+</section>
+</section>
+<section id="apparent-resistivity" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="apparent-resistivity"><span class="header-section-number">7.8</span> Apparent resistivity</h2>
+<p>However, geophysics is primarily interested in reconstructing the spatial distribution of electrical conductivity from measured field quantities (inversion). This step is based on a model conception of the spatial conductivity distribution. In general, the conductivity is a function of location with <span class="math inline">\(\sigma=\sigma(x,y,z)&gt;0\)</span>. In the simplest case, we assume that the halfspace or fullspace is a uniform conductor, i.e., <span class="math inline">\(\sigma= const\)</span>. The model of the homogeneous halfspace or fullspace can therefore be completely described by a single number. We now try to determine this number mathematically from the measured field quantities.</p>
+<p>This is the simplest form of a geophysical inversion!</p>
+<p>We use the <em>impedance</em> to solve the problem. From this we then determine the apparent resistivity.</p>
+<p>The following questions will be answered:</p>
+<ul>
+<li>Can the concept of impedance be transferred to dipole excitation?</li>
+<li>Is it possible to reconstruct the electrical resistivity from the impedance?</li>
+<li>What are the differences compared to homogeneous excitation (MT)?</li>
+</ul>
+<p>We implement the general equations for the electric and magnetic fields as <code>Python</code> functions <code>E</code> and <code>H</code>, resp.:</p>
+<div id="0478e4e8" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> E(r, m, f, sigma):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    iwm <span class="op">=</span> <span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> mu</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> iwm <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> np.sqrt(<span class="op">-</span>iwm <span class="op">*</span> sigma)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> r[<span class="dv">0</span>]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> r[<span class="dv">1</span>]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> r[<span class="dv">2</span>]</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> np.linalg.norm(r)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    ikr <span class="op">=</span> <span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> R</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    E <span class="op">=</span> <span class="op">-</span>alpha <span class="op">/</span> R<span class="op">**</span><span class="dv">3</span> <span class="op">*</span> (<span class="fl">1.0</span> <span class="op">+</span> ikr) <span class="op">*</span> np.exp(<span class="op">-</span>ikr) <span class="op">*</span> np.cross(m, r)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> E</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> H(r, m, f, sigma):</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    iwm <span class="op">=</span> <span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> mu</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> np.sqrt(<span class="op">-</span>iwm <span class="op">*</span> sigma)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> r[<span class="dv">0</span>]</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> r[<span class="dv">1</span>]</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> r[<span class="dv">2</span>]</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> np.linalg.norm(r)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    ikr <span class="op">=</span> <span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> R</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>    k2r2 <span class="op">=</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> R<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>    H <span class="op">=</span> np.exp(<span class="op">-</span>ikr) <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> R<span class="op">**</span><span class="dv">3</span>) <span class="op">*</span> (</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>            np.dot(m, r) <span class="op">/</span> R<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> (<span class="dv">3</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> ikr <span class="op">-</span> k2r2) <span class="op">*</span> r</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>            (<span class="dv">1</span> <span class="op">+</span> ikr <span class="op">-</span> k2r2) <span class="op">*</span> m</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> H</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We check with the following parameters:</p>
+<ul>
+<li><span class="math inline">\(\mathbf r = [100, 0, 0]^\top\)</span> m</li>
+<li><span class="math inline">\(\mathbf m = [0, 0, 1]^\top\)</span> A<span class="math inline">\(\cdot m^2\)</span></li>
+<li><span class="math inline">\(f = 100\)</span> Hz</li>
+<li><span class="math inline">\(\sigma = 0.01\)</span> S/m.</li>
+</ul>
+<div id="ef7aec92" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.array([<span class="fl">100.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>])</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> np.array([<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>])</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">100.0</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> E(r, m, f, sigma)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>Ey <span class="op">=</span> e[<span class="dv">1</span>]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>e</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>array([ 0.00000000e+00-0.00000000e+00j, -2.15431872e-10-6.25496586e-09j,
+        0.00000000e+00-0.00000000e+00j])</code></pre>
+</div>
+</div>
+<div id="1d8f8256" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> H(r, m, f, sigma)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Hz <span class="op">=</span> h[<span class="dv">2</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>array([ 0.00000000e+00+0.00000000e+00j,  0.00000000e+00+0.00000000e+00j,
+       -8.02368029e-08-2.32115274e-09j])</code></pre>
+</div>
+</div>
+<p>We recognize that for a vertically aligned dipole, when observed at the <span class="math inline">\(x\)</span>-axis, only the <span class="math inline">\(y\)</span>-component of <span class="math inline">\(\mathbf E\)</span> and the <span class="math inline">\(z\)</span>-component of <span class="math inline">\(\mathbf H\)</span> are non-zero.</p>
+<p>Now we try to calculate the <em>impedance</em> from the ratio of two mutually orthogonal components of <span class="math inline">\(\mathbf E\)</span> and <span class="math inline">\(\mathbf H\)</span>, e.g., <span class="math display">\[
+Z = \frac{ E_y }{ H_z}.
+\]</span></p>
+<div id="6fcff6fc" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> Ey <span class="op">/</span> Hz</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>(0.004936001185549236+0.07781352726165937j)</code></pre>
+</div>
+</div>
+<p>For the calculation of the apparent resistivity, we use <span class="math display">\[
+\rho_a = \frac{ 1 }{ \omega \mu_0} |Z|^2
+\]</span></p>
+<div id="981a193b" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhoa(Z, f):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">abs</span>(Z)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (omega <span class="op">*</span> mu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="95f9c7c1" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>rhoa(Z, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>7.699534963039838</code></pre>
+</div>
+</div>
+<p>This does not meet our expectations. We are therefore investigating whether the impedance depends on the frequency and/or the distance to the dipole.</p>
+<p>We vary the frequencies and observe <span class="math inline">\(\rho_a\)</span> as a function of frequency.</p>
+<div id="6e44faf8" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>nf <span class="op">=</span> <span class="dv">41</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> np.logspace(<span class="dv">1</span>, <span class="dv">5</span>, nf, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>Rhoa_f <span class="op">=</span> [rhoa(E(r,m,v,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(r,m,v,sigma)[<span class="dv">2</span>], v) <span class="cf">for</span> v <span class="kw">in</span> freq]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="0d85e081" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>plt.loglog(freq, Rhoa_f)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'f in Hz'</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$\rho_a~in~\Omega\cdot m$'</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Dipole offset '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(r)) <span class="op">+</span> <span class="st">' m'</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="potentials_files/figure-html/cell-17-output-1.png" width="593" height="451" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Obviously, the value of <span class="math inline">\(\rho_a\)</span> depends on the frequency and asymptotically approaches the expected full-space value of the resistivity as <span class="math inline">\(f \to \infty\)</span>.</p>
+<p>We gain more insight, when we vary the distance to the dipole while keeping the frequency fixed.</p>
+<div id="59d9c070" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>nr <span class="op">=</span> <span class="dv">41</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.logspace(<span class="dv">0</span>, <span class="dv">4</span>, nr, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>Rhoa_x <span class="op">=</span> np.array([rhoa(E(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">2</span>], f) <span class="cf">for</span> v <span class="kw">in</span> x])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="1bdc8b5c" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(x, Rhoa_x)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'r in m'</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$\rho_a~in~\Omega\cdot m$'</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Frequency '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(f)) <span class="op">+</span> <span class="st">' Hz'</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="potentials_files/figure-html/cell-19-output-1.png" width="601" height="451" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Is there a consistent explanation for these observations? We look at the induction parameter <span class="math inline">\(|k|r\)</span> and revisit the parameters from the previous examples.</p>
+<div id="cc8b4e11" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kr(f, sigma, r):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r <span class="op">*</span> np.<span class="bu">abs</span>(np.sqrt(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> mu <span class="op">*</span> sigma))</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pos(data, threshold):</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.where(np.array(data) <span class="op">&gt;</span> threshold, data, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="4c93da1d" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(v, sigma, np.linalg.norm(r)) <span class="cf">for</span> v <span class="kw">in</span> freq])</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>plt.loglog(freq, KR, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="vs">r'|k|r &gt; 1'</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>iind <span class="op">=</span> np.argwhere(KR <span class="op">&lt;</span> <span class="dv">1</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>plt.loglog(freq[iind], KR[iind], color<span class="op">=</span><span class="st">'C0'</span>, label<span class="op">=</span><span class="vs">r'|k|r &lt; 1'</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$|k|r$'</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'f in Hz'</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Dipole offset '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(r)) <span class="op">+</span> <span class="st">' m'</span>)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="potentials_files/figure-html/cell-21-output-1.png" width="601" height="451" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>With the indicator <span class="math inline">\(|k|r\)</span> just introduced, it is easier to determine which branch of the asymptotic we are on.</p>
+<div id="c4ff9c1f" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(f, sigma, v) <span class="cf">for</span> v <span class="kw">in</span> x])</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.loglog(x, Rhoa_x, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="vs">r'$|k|r &gt; 1$'</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>iind <span class="op">=</span> np.argwhere(KR <span class="op">&lt;</span> <span class="dv">1</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>plt.loglog(x[iind], Rhoa_x[iind], color<span class="op">=</span><span class="st">'C0'</span>, label<span class="op">=</span><span class="vs">r'$|k|r &lt; 1$'</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'r in m'</span>)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$\rho_a~in~\Omega\cdot m$'</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Frequency '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(f)) <span class="op">+</span> <span class="st">' Hz'</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="potentials_files/figure-html/cell-22-output-1.png" width="601" height="451" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In contrast to homogeneous excitation, the impedance and thus the apparent resistivity for dipole excitation depends not only on the frequency but also on the distance between the dipole source and the receiver. At <span class="math inline">\(|k|r \gg 1\)</span> we speak of the far zone. The impedance relationships there are similar to those for the MT. At <span class="math inline">\(|k|r \ll 1\)</span> we are in the near zone. The induction parameter is small. The low induction number (LIN) methods work in this regime. With the Geonics EM-34, for example, a coil distance of around 10 m is selected at a frequency of 6,400 Hz. The induction parameter for this configuration is less than 1 if the conductivity is sufficiently low.</p>
+<p>We check these findings for a range of conductivities.</p>
+<div id="ac02467a" class="cell" data-execution_count="22">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ns <span class="op">=</span> <span class="dv">41</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">0</span>, ns, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">100.0</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">100.0</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(f, v, r) <span class="cf">for</span> v <span class="kw">in</span> sigma])</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>Hz <span class="op">=</span> np.array([H(np.array([r, <span class="dv">0</span>, <span class="dv">0</span>]), np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]), f, v)[<span class="dv">2</span>] <span class="cf">for</span> v <span class="kw">in</span> sigma])</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>plt.semilogx(KR, np.real(Hz), label<span class="op">=</span><span class="st">'Re'</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>plt.semilogx(KR, np.imag(Hz), label<span class="op">=</span><span class="st">'Im'</span>)</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'$|k|r$'</span>)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$H_z$'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>Text(0, 0.5, '$H_z$')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="potentials_files/figure-html/cell-23-output-2.png" width="610" height="447" class="figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 
