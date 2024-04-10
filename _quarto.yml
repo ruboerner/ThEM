@@ -22,6 +22,7 @@ book:
     - part: "Dipole induction"
       chapters:
       - potentials.qmd
+      - timedomain_fullspace.qmd
       - halfspace.qmd
     - part: "Summary"
       chapters: 

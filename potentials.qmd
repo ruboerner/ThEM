@@ -847,18 +847,74 @@ The induction parameter for this configuration is less than 1 if the conductivit
 We check these findings for a range of conductivities.
 
 ```{python}
+#| label: fig-lin-response
+#| fig-cap: "Real and imaginary part of the magnetic field of an oscillating magnetic dipole. The green and red shading indicates the regime for $|k|r < 1$ and $|k|r > 1$, resp."
 ns = 41
 sigma = np.logspace(-4, 0, ns, endpoint=True)
-r = 100.0
-f = 100.0
+r = 10.0
+f = 6400.0
 KR = np.array([kr(f, v, r) for v in sigma])
 
 Hz = np.array([H(np.array([r, 0, 0]), np.array([0, 0, 1]), f, v)[2] for v in sigma])
 
-plt.semilogx(KR, np.real(Hz), label='Re')
-plt.semilogx(KR, np.imag(Hz), label='Im')
-plt.legend()
-plt.grid(True)
-plt.xlabel(r'$|k|r$')
-plt.ylabel(r'$H_z$')
+fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
+
+ax1.loglog(KR, np.abs(np.real(Hz)))
+ax1.axvspan(KR[0], 1.0, facecolor='lightgreen', alpha=0.4)
+ax1.axvspan(1.0, KR[-1], facecolor='red', alpha=0.4)
+ax1.grid(True)
+ax1.set_ylabel(r'$|Re(H_z)|$')
+ax2.loglog(KR, np.abs(np.imag(Hz)))
+ax2.axvspan(KR[0], 1.0, facecolor='lightgreen', alpha=0.4)
+ax2.axvspan(1.0, KR[-1], facecolor='red', alpha=0.4)
+ax2.grid(True)
+ax2.set_xlabel(r'$|k|r$')
+ax2.set_ylabel(r'$|Im(H_z)|$')
+plt.show()
 ```
+
+As we can see from Fig. @fig-lin-response, the real part of the magnetic field goes to a constant value for $|k|r \to 0$, whereas the imaginary part shows a straight line in the log-log plot.
+
+For $|k|r \to 0$, i.e., for very small conductivities, we approach free-space conditions.
+The magnetic field of a vertical dipole in horizontal co-planar configuration is
+$$
+H_z = -\frac{ m }{4 \pi r^3 }.
+$$
+
+We evaluate this equation with the given values of $r$ and $m$.
+We obtain
+```{python}
+print('H_z   = ' + str(-1 / (4 * np.pi * r**3)))
+print('Hz[0] = ' + str(np.real(Hz[0])))
+```
+
+These numbers match very well.
+
+On the other hand, for fixed values of $r$ and $f$ it is possible to calibrate the instrument such that the reading of the imaginary part of $H_z$ for low induction numbers yields the desired apparent resistivity. 
+
+### Instrument error
+
+What about the uncertainty of the readings of such an instrument?
+
+Frequency stability in the instrument is not a problem.
+The situation is different when measuring the distance between the coils.
+We therefore finally examine the sensitivity of the magnetic field measurement to inaccuracies in the distance measurement.
+To do this, we consider the error according to the linear error propagation law
+
+$$
+\Delta H_z = \left| \frac{\partial H_z}{\partial r} \right| \Delta r.
+$$
+
+For the magnetic field in the coplanar coil configuration in free space, we obtain
+$$
+\Delta H_z = \frac{3 m}{4 \pi r^4} \Delta r,
+$$
+
+which results in an estimate of the relative error
+
+$$
+\frac{\Delta H_z}{H_z} = 3 \frac{\Delta r}{r} .
+$$
+
+Accordingly, the relative error in the magnetic field measurement is three times as large as the relative error in the distance measurement.
+

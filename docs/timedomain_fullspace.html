@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ralph-Uwe Börner">
-<meta name="dcterms.date" content="2024-04-10">
 
-<title>Theory of Electromagnetic Methods</title>
+<title>Theory of Electromagnetic Methods - 8&nbsp; Fields in the time domain</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,27 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -52,7 +64,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./preface.html" rel="next">
+<link href="./halfspace.html" rel="next">
+<link href="./potentials.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -90,6 +103,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -102,7 +144,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Prerequisites</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./timedomain_fullspace.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Fields in the time domain</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -129,7 +171,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prerequisites</span></a>
   </div>
 </li>
@@ -208,7 +250,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./timedomain_fullspace.html" class="sidebar-item-text sidebar-link">
+  <a href="./timedomain_fullspace.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Fields in the time domain</span></span></a>
   </div>
 </li>
@@ -253,41 +295,29 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites">Prerequisites</a></li>
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#self-study" id="toc-self-study" class="nav-link" data-scroll-target="#self-study">Self study</a></li>
-  <li><a href="#recommended-reading" id="toc-recommended-reading" class="nav-link" data-scroll-target="#recommended-reading">Recommended Reading</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">8.1</span> Introduction</a></li>
+  <li><a href="#terms" id="toc-terms" class="nav-link" data-scroll-target="#terms"><span class="header-section-number">8.2</span> Terms</a>
+  <ul class="collapse">
+  <li><a href="#step-function-response" id="toc-step-function-response" class="nav-link" data-scroll-target="#step-function-response"><span class="header-section-number">8.2.1</span> Step function response</a></li>
+  <li><a href="#impulse-response" id="toc-impulse-response" class="nav-link" data-scroll-target="#impulse-response"><span class="header-section-number">8.2.2</span> Impulse response</a></li>
+  <li><a href="#differentiation-integration-convolution" id="toc-differentiation-integration-convolution" class="nav-link" data-scroll-target="#differentiation-integration-convolution"><span class="header-section-number">8.2.3</span> Differentiation, integration, convolution</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./timedomain_fullspace.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Fields in the time domain</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Theory of Electromagnetic Methods</h1>
-<p class="subtitle lead">Lecture Notes</p>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Fields in the time domain</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ralph-Uwe Börner </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 10, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -297,61 +327,175 @@ div.csl-indent {
 </header>
 
 
-<section id="prerequisites" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="prerequisites">Prerequisites</h2>
-<p>Here are the lecture notes for the 2024 module covering the <strong>Theory of Electromagnetic Methods.</strong> These notes are tailored for Master’s students of Geophysics and Geoinformatics at the <a href="https://tu-freiberg.de/geophysik">Institute of Geophysics and Geoinformatics, TU Bergakademie Freiberg</a>.</p>
-<p>You can access all the materials on the GitHub repository <a href="https://github.com/ruboerner/ThEM" class="uri">https://github.com/ruboerner/ThEM</a>.</p>
-<p>Enjoy studying!</p>
+<section id="introduction" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">8.1</span> Introduction</h2>
+<p>So far, we have investigated fields as a function of location and frequency. This is adequate as long as we consider time-harmonic dipole excitation with a time dependency of the dipole moment of <span class="math inline">\(e^{i\omega t}\)</span>, i.e.</p>
+<p><span class="math display">\[
+\mathbf m(\mathbf r, \omega) = \mathbf m(\mathbf r) e^{i\omega t}.
+\]</span></p>
+<p>The relationships immediately become different if we allow abrupt changes in the dipole moment instead, e.g.,</p>
+<p><span class="math display">\[
+\mathbf m(\mathbf r, t) = \mathbf m(\mathbf r) \delta(t)
+\]</span> or <span class="math display">\[
+\mathbf m(\mathbf r, t) = \mathbf m(\mathbf r) u(t).
+\]</span></p>
+<p><span class="math inline">\(u(t)\)</span> is the <em>Heaviside step function</em> <span class="math display">\[
+\begin{equation}
+u(t) =
+\begin{cases}
+0 &amp; t &lt; 0 \\
+1 &amp; t &gt; 0.
+\end{cases}
+\end{equation}
+\]</span></p>
+<p>The following figures show the Heaviside function <span class="math inline">\(u(t)\)</span> and the result of the time integration of the Dirac delta function <span class="math inline">\(\delta(t)\)</span>.</p>
+<p>We use the symbolic expressions <code>t</code> for the time as well as <code>Heaviside</code> and <code>DiracDelta</code> for step function and Dirac’s delta function respectively. Furthermore, we use the function <code>integrate</code> for symbolic integration.</p>
+<div id="31be4533" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, diff, Heaviside, DiracDelta, integrate, plot, exp</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> symbols(<span class="st">'t'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plot(Heaviside(t), (t, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>), title<span class="op">=</span><span class="st">'Heaviside'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="timedomain_fullspace_files/figure-html/cell-2-output-1.png" width="566" height="277" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The following figure shows the result of the time integration of the Dirac delta function, where the integral over <span class="math inline">\(\delta(t)\)</span> from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(t\)</span> is assigned to the value of a function at time <span class="math inline">\(t\)</span>.</p>
+<div id="fb46c06c" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plot(integrate(DiracDelta(t), t), (t, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>), title<span class="op">=</span><span class="vs">r'$\int_{-\infty}^t\delta(\tau) d\tau$'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="timedomain_fullspace_files/figure-html/cell-3-output-1.png" width="566" height="276" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Both figures obviously show the same result. So the following applies <span class="math display">\[
+u(t) = \int\limits_{-\infty}^t \delta(\tau) \, \mathrm d \tau.
+\]</span></p>
+<p>We can reproduce the result using symbolic mathematics.</p>
+<p>(In <code>sympy</code> the Heaviside function has the symbol <span class="math inline">\(\theta\)</span>).</p>
+<div id="ee0e7663" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>integrate(DiracDelta(t), t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<p><span class="math inline">\(\displaystyle \theta\left(t\right)\)</span></p>
+</div>
+</div>
+<p>Conversely, the following applies to the time derivative of the Heaviside function <span class="math display">\[
+\frac{\mathrm d}{\mathrm dt} u(t) = \delta(t),
+\]</span> of which we can convince ourselves by symbolic differentiation:</p>
+<div id="a617b5e9" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diff(Heaviside(t), t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<p><span class="math inline">\(\displaystyle \delta\left(t\right)\)</span></p>
+</div>
+</div>
 </section>
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>This course targets Master’s students in their second semester, with a recommended understanding of fundamental geoelectromagnetic applications. Additionally, prior completion of the Theoretical Physics - Electrodynamics course is strongly advised as a prerequisite for this lecture.</p>
+<section id="terms" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="terms"><span class="header-section-number">8.2</span> Terms</h2>
+<p>We will use two important terms in the time domain, namely * step function response * impulse response.</p>
+<p>These terms are related to the time dependence of the current function of the dipole moment.</p>
+<p>In general, the dipole moment is a function of location and time, i.e., <span class="math inline">\(\mathbf m(\mathbf r, t) = \mathbf q(\mathbf r) I(t)\)</span>. Here, <span class="math inline">\(\mathbf q(\mathbf r)\)</span> describes the exact position of the current-carrying cable (e.g., a large horizontal coil on the Earth’s surface) and <span class="math inline">\(I(t)\)</span> the time dependence of the current in this coil.</p>
+<p>In the following, we only consider the time dependence of the dipole moment, i.e., <span class="math inline">\(I(t)\)</span>.</p>
+<section id="step-function-response" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="step-function-response"><span class="header-section-number">8.2.1</span> Step function response</h3>
+<p>The fields that we can measure anywhere in the full space as a direct result of switching the source current on or off are called the <em>step function response</em> of the electrically conductive full space</p>
+<p>A current function of the form</p>
+<p><span class="math display">\[
+I(t) = I_0 u(t)
+\]</span></p>
+<p>describes the switching on of a current in the source at the time <span class="math inline">\(t=0\)</span> in the form of a step function. The fields <span class="math inline">\(\mathbf e(t)\)</span> and <span class="math inline">\(\mathbf b(t)\)</span> observed for <span class="math inline">\(t &gt; 0\)</span> are called step function response. These fields are measured with electrodes or magnetometers.</p>
 </section>
-<section id="code" class="level2">
-<h2 class="anchored" data-anchor-id="code">Code</h2>
-<p>The website’s course material includes sections with embedded Python code.</p>
-<p>You can easily copy the code and execute it in a compatible Python runtime environment.</p>
-<p>For an optimal experience, we recommend installing Python via <a href="https://docs.anaconda.com/free/miniconda/index.html"><em>miniconda</em></a>.</p>
-<p>Moreover, you have the freedom to explore your own concepts and delve deeper into the course content by creating your personalized Jupyter notebooks. You can utilize any of the following platforms:</p>
-<ul>
-<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
-<li><a href="https://jupyter.org">Jupyterlab</a></li>
-<li><a href="https://quarto.org">Quarto</a></li>
-<li><a href="https://mystmd.org">mystMD</a>.</li>
-</ul>
-<p>Working with Jupyter Notebooks in Visual Studio Code is <a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">exceptionally straightforward</a>.</p>
+<section id="impulse-response" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="impulse-response"><span class="header-section-number">8.2.2</span> Impulse response</h3>
+<p>The current function</p>
+<p><span class="math display">\[
+I(t) = I_0 \delta(t)
+\]</span></p>
+<p>describes an impulse-like source current (“lightning”), which, however, cannot be realized in an instrument and is difficult to measure.</p>
+<p>How can we measure the impulse response?</p>
+<p>The following idea is interesting: If you measure magnetic fields with induction coils, the physical measured variable is the electrical voltage induced in the measuring coil, which is proportional to the change in the magnetic field over time.</p>
+<p>Induction coils measure <span class="math inline">\(\partial_t b(t)\)</span>, i.e.&nbsp;the time derivative of the step function response <span class="math inline">\(b(t)\)</span>!</p>
+<p>How can this relationship be described?</p>
+<p>We have already seen above that the integration of the Dirac delta function with respect to time yields the Heaviside jump function. Conversely, the time derivative of the step function yields the delta function, i.e.&nbsp;a <em>Dirac impulse</em>.</p>
+<p>We transfer this concept to the fields:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>field size</th>
+<th>time dependence of the source</th>
+<th>term</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathbf e(t),\mathbf b(t)\)</span></td>
+<td><span class="math inline">\(u(t)\)</span></td>
+<td>Step function response</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\frac{d}{dt} \mathbf b(t)\)</span></td>
+<td><span class="math inline">\(\frac{d}{dt} u(t)\)</span></td>
+<td>impulse response</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\frac{d}{dt} \mathbf b(t)\)</span></td>
+<td><span class="math inline">\(\delta(t)\)</span></td>
+<td>impulse response</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="self-study" class="level2">
-<h2 class="anchored" data-anchor-id="self-study">Self study</h2>
-<p>There are individual small tasks for self-study that are scattered throughout the lecture.</p>
-<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Self study">
+<section id="differentiation-integration-convolution" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="differentiation-integration-convolution"><span class="header-section-number">8.2.3</span> Differentiation, integration, convolution</h3>
+<p>We now derive an important relationship between the impulse response and the step function response.</p>
+<p>Let <span class="math inline">\(h(t)\)</span> be the impulse response.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Self study
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You can easily identify these callouts.</p>
+<p>The impulse response <span class="math inline">\(h(t)\)</span> used here a physically unspecified function of time, <strong>not the magnetic field</strong>!</p>
 </div>
 </div>
-</section>
-<section id="recommended-reading" class="level2">
-<h2 class="anchored" data-anchor-id="recommended-reading">Recommended Reading</h2>
-<p>The most important source of supplementary information is the book by <span class="citation" data-cites="ward1988electromagnetic">Ward &amp; Hohmann (<a href="references.html#ref-ward1988electromagnetic" role="doc-biblioref">1988</a>)</span>.</p>
-</section>
-<section id="license" class="level2">
-<h2 class="anchored" data-anchor-id="license">License</h2>
-<p>This material is licensed under a Creative Commons License.</p>
+<p>We then obtain the <a href="https://de.wikipedia.org/wiki/Sprungantwort">step function response</a> <span class="math inline">\(f(t)\)</span> from the <em>convolution</em> of the impulse response <span class="math inline">\(h(t)\)</span> with the Heaviside function <span class="math inline">\(u(t)\)</span>:</p>
+<p><span class="math display">\[
+f(t)=h * u(t)=u * h(t)=\int_{-\infty}^{\infty} h(t') u(t-t') d t' =\int_{-\infty}^{t} h(t') d t'
+\]</span></p>
+<p>The step function response at time <span class="math inline">\(t\)</span> is therefore the result of the time integration over the impulse response from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(t\)</span>.</p>
+<p>In the following example, we assume that the impulse response is <span class="math inline">\(h(t) = e^{-t^2}\)</span>.</p>
+<div id="e6d61086" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> h(t):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     <span class="cf">return</span> exp(<span class="op">-</span>t<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plot(h(t), (t, <span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>), size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>), ylabel<span class="op">=</span><span class="st">'h(t)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="timedomain_fullspace_files/figure-html/cell-6-output-1.png" width="566" height="276" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-ward1988electromagnetic" class="csl-entry" role="listitem">
-Ward, S.H. &amp; Hohmann, G.W., 1988. Electromagnetic theory for geophysical applications. <em>Electromagnetic methods in applied geophysics</em>, Vol. 1, pp. 131–311.
-</div>
-</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -766,10 +910,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./potentials.html" class="pagination-link" aria-label="Sources in unbounded media">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sources in unbounded media</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./preface.html" class="pagination-link" aria-label="Preface">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./halfspace.html" class="pagination-link" aria-label="Dipole sources above a halfspace">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a halfspace</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
