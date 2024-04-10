@@ -35,7 +35,7 @@ The following figures show the Heaviside function $u(t)$ and the result of the t
 We use the symbolic expressions `t` for the time as well as `Heaviside` and `DiracDelta` for step function and Dirac's delta function respectively. Furthermore, we use the function `integrate` for symbolic integration.
 
 ```{python}
-from sympy import symbols, diff, Heaviside, DiracDelta, integrate, plot, exp, oo
+from sympy import symbols, diff, Heaviside, DiracDelta, integrate, plot, exp, oo, erf, erfc
 t = symbols('t', real=True)
 plot(Heaviside(t), (t, -1, 1), size=(6,3), title='Heaviside')
 ```
@@ -191,6 +191,7 @@ Both integrals involve the _complementary error function_ _erfc_, which will be 
 :::
 
 ### Causal systems
+
 Only causal systems occur in geophysics.
 In causal processes, no fields (or changes in the fields) can be measured before the source has been switched on (or changed).
 The effect is observed as a consequence of one of the causes.
@@ -200,3 +201,220 @@ The step function response for *causal systems* is
 $$
 f_{\mathrm{on}}(t)=\int_{0}^{t} h(t') \, \mathrm d t', \quad t \geq 0.
 $$
+
+```{python}
+def f_on(tau):
+    return integrate(h(t), (t, 0, tau))
+
+plot(f_on(t), (t, 0, 10), ylim=(0, 1), size=(6,3), title=r'$f_\text{on}(t)$')
+```
+
+With $u(-t) = 1 - u(t)$ we obtain the step function response for the *switch-off* process, which plays a major role in transient electromagnetics in particular, but also in the induced polarization method in the time domain.
+
+$$
+f_{\text {off }}(t) =\int_{t}^{\infty} h(t') d t' = \int_{0}^{\infty} h(t') d t' - \int_{0}^{t} h(t') d t', \quad t \geq 0
+$$
+
+The integrals can be expressed by the step function response for causal systems $f_{\text {on }}(t)$:
+
+$$
+f_{\text {off }}(t) = f_{\text {on }}(\infty) - f_{\text {on }}(t), \quad t \geq 0
+$$
+
+This means that all we need to calculate the step function response of transient electromagnetics is a routine that can calculate the step response for the switch-on process!
+
+```{python}
+def f_off(tau):
+    return f_on(oo) - f_on(tau)
+
+plot(f_off(t), (t, 0, 10), ylim=(0, 1), size=(6,3), title=r'$f_\text{off}(t)$')
+```
+
+
+::: {.callout-note}
+The figure for $f_\text{on}(t)$ shows the typical behaviour of a field build-up after the source is switched on. We observe an increase in the field and a transition to a stationary state for $t \to \infty$.
+
+$f_\text{off}(t)$ shows the decay of the field, where the initial value at $t=0$ decreases monotonically for $t > 0$ to disappear for $t \to \infty$.
+:::
+
+We will now deal with the transformation between the time and frequency domains.
+To do this, we need the **Laplace transformation** (LT) and its properties.
+
+The starting point is the comparison of the curl-curl equation in the time domain and in the frequency domain.
+
+
+In the **frequency domain** we require $F$ to be a solution to the PDE
+
+$$
+\begin{equation}
+-\partial_{xx}^2 F + i\omega\mu\sigma F = -i\omega J^{e}
+\end{equation}
+$$
+with
+$$
+\begin{equation}
+J^e(\mathbf r, \omega) = q(\mathbf r).
+\end{equation}
+$$
+
+In the **time domain**, the field $f$ solves the PDE
+
+$$
+\begin{equation}
+-\partial_{xx}^2 f + \mu\sigma \partial_{t} f = -\partial_{t} j^{e}
+\end{equation}
+$$
+with
+$$
+\begin{equation}
+j^e(\mathbf r, t) = q(\mathbf r) \delta(t).
+\end{equation}
+$$
+
+Observations:
+
+In the frequency domain, there is no explicit dependence of the source current density $J^e(\mathbf r, \omega)$ on the frequency.
+
+We conclude from this that in the time domain, the source current function $j^e$ can be explicitly represented by a Dirac impulse on the time axis.
+The solution of this curl-curl equation is the impulse response.
+
+The solution of the curl-curl equation in the frequency domain is then obtained from the Fourier transform of the impulse response in the time domain.
+
+To calculate the step function response in the frequency domain, we must calculate the explicit time dependence of $j^e$ using the step function $u(t)$
+
+$$
+j^e_s(t) = q(\mathbf r) u(t).
+$$
+
+We obtain the Fourier transform of the source term with step function excitation:
+
+$$
+J^e_s(\omega) = q(\mathbf r) \left(\pi \delta(\omega) + \frac{1}{i \omega}\right)
+$$
+
+The step function response in the frequency domain, $F_s(\omega)$, is thus obtained formally by multiplying the Fourier transform of the impulse response by the Fourier transform of the step function as
+$$
+F_s(\omega) = F(\omega) \left(\pi \delta(\omega) + \frac{1}{i \omega}\right) .
+$$
+
+The inverse Fourier transformation finally provides the desired step function response in the time domain,
+
+$$
+\begin{align}
+f_s(t) & = \frac{1}{2\pi} \int\limits_{-\infty}^\infty 
+\left(\pi \delta(\omega) + \frac{1}{i \omega}\right) F(\omega) e^{i\omega t} \, \mathrm d\omega \\ & = \frac{F(0)}{2} + 
+\frac{1}{2\pi} \int\limits_{-\infty}^\infty 
+\frac{F(\omega)}{i\omega}
+e^{i\omega t} \, \mathrm d\omega
+\end{align}
+$$
+
+Formally, the Fourier transform must be added to half the value of the field at $\omega = 0$, 
+where the values of $F$ to be transformed are multiplied by $\frac{1}{i\omega}$.
+
+This corresponds to the known integration rule of integral transforms.
+
+Mathematical problems in connection with switch-on or switch-off processes can be solved elegantly with the Laplace transform.
+
+### Laplace transform
+
+Consider a function $f(t)$, $t > 0$.
+
+The Laplace transform can be applied to $f(t)$ as follows:
+$$
+\mathcal L(f(x, t))=\int_{0}^{\infty} e^{-s t} f(x, t) d t \equiv F(x, s)
+$$
+with $x$ as parameter.
+
+The Laplace parameter $s$ is complex and extends the imaginary frequency term $i\omega$ of the FT by the real part $a$, so that with $s = a + i\omega$ we have a complex-valued "frequency". In this way, the Laplace transform can also deal with unstable signals $f$, since for $t \to \infty$ the real part of $s$ ensures that the integrand is limited. 
+
+In connection with PDEs, we also need the LT of the 
+time derivative of $f(t)$ ($f_t(x, t) = \partial_t f(x, t)$)
+
+$$
+\mathcal L(f_t(x, t)),
+$$
+
+which we calculate using the Laplace integral introduced above via partial integration:
+$$
+\begin{align}
+\mathcal L(f_t(x, t) & = \int\limits_{0}^{\infty} e^{-s t} f_{t}(x, t) d t \\ & = \left.e^{-s t} f(x, t)\right|_{0} ^{\infty}+s \int\limits_{0}^{\infty} e^{-s t} f(x, t) d t \\ & = s F(x, s)-f(x, 0).
+\end{align}
+$$
+
+The following table contains some important Laplace transform pairs:
+
+| $f(t)$ | $\mathcal L(f(t))$ |
+|-----------------|---------------|
+| $u(t-a)$ | $\frac{e^{-as}}{s}$ |
+| $\delta(t-a)$ | $e^{-as}$ |
+| $1$ | $\frac{1}{s}$ |
+
+### Inverse transform of the electric field with step function excitation
+
+The starting point is the equation for the electric field of a magnetic dipole in full space.
+
+With $r = |\mathbf r|$ it holds
+
+$$
+    \mathbf E(\mathbf r, \omega) = - \frac{i \omega \mu}{4 \pi r^3} \left(1 + i k r\right) e^{-i k r} \mathbf m \times \mathbf r
+$$
+
+All terms that depend on the frequency are relevant for the transformation. Apart from the factor $i\omega$, which we will deal with later, these are
+
+$$
+e^{-ikr}, \quad ikr e^{-ikr}
+$$
+
+and additionally
+
+$$
+\quad k^2 r^2 e^{-ikr}
+$$
+
+for the magnetic field.
+
+With the function $\Theta(t) = \sqrt{\frac{\mu\sigma}{4 t}}$ we obtain the following expressions for the inverse Laplace transform (see [Abramowitz & Stegun](https://secure.math.ubc.ca/~cbm/aands/page_1021.htm)):
+
+$$
+\mathcal L^{-1} \left( \frac{1}{s} e^{-ikr} \right) = \mathrm{erfc}(\Theta r)
+$$
+
+$$
+\mathcal L^{-1} \left( \frac{ikr}{s} e^{-ikr} \right) = \frac{2}{\sqrt{\pi}} \Theta r e^{-\Theta^2 r^2}
+$$
+
+$$
+\mathcal L^{-1} \left( \frac{k^2 r^2}{s} e^{-ikr} \right) = 
+-\frac{4}{\sqrt{\pi}} \Theta^3 r^3 e^{-\Theta^2 r^2}
+$$
+
+## Error function
+
+The [error function](https://en.wikipedia.org/wiki/Error_function) erf$(t)$ plays an important role. Its definition is
+$$
+\mathrm{erf}(t) = \frac{2}{\sqrt{\pi}} \int_0^t e^{-\tau^2} d\tau.
+$$
+The *complementary error function* erfc$(t)$ is
+$$
+\mathrm{erfc}(t) = 1 - \mathrm{erf}(t).
+$$
+
+We implement the error function again with `sympy`.
+
+```{python}
+plot(erf(t), (t,0,2), size=(6,3), title='erf(t)')
+plot(erfc(t), (t,0,2), size=(6,3), title='erfc(t)')
+
+```
+### Summary of all terms
+
+After the LT we first have
+
+$$
+\mathbf e(\mathbf r, t) = -\partial_t \frac{\mu}{4 \pi r^3} \left(
+\mathrm{erfc}(\Theta r) + \frac{2}{\sqrt{\pi}} \Theta r e^{-\Theta^2 r^2}
+\right) \mathbf m \times \mathbf r.
+$$
+
+We now carry out the derivative with respect to time. To do this, we need the chain rule again, since $\Theta = \Theta(t)$.
