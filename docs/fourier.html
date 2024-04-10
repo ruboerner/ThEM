@@ -248,12 +248,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sources in unbounded media</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./halfspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dipole sources above a halfspace</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Incomplete chapters</span></a>
+ <span class="menu-text">Summary</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -261,31 +267,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Differential_Operators_Sympy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Differential operators using <em>sympy</em></span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./semisphere.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Potential of a point source in a semi-sphere embedded in a uniform halfspace</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Summary</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -381,7 +364,7 @@ Note
 <h2 data-number="3.1" class="anchored" data-anchor-id="example"><span class="header-section-number">3.1</span> Example</h2>
 <p>In this example we use a <em>Fourier series expansion</em> to approximate the periodic <em>square function</em> <span class="math inline">\(u(x)\)</span> of length <span class="math inline">\(2L\)</span>.</p>
 <p>An analytic formula for a square wave with unit amplitude and period <span class="math inline">\(2L\)</span> is given by <span class="math inline">\(u(x) = \mathrm{sign}(\sin(\frac{\pi x}{L})\)</span>.</p>
-<div id="30737965" class="cell" data-execution_count="2">
+<div id="a5526499" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.001</span>)</span>
@@ -419,7 +402,7 @@ u(x) = \lim_{N \to \infty} \frac{4}{\pi} \sum_{k=1}^{N} \frac{1}{2k-1} \sin \lef
 u_k(x) =  \frac{1}{2k-1} \sin \left(\frac{(2k-1) \pi x}{L}\right)
 \]</span></p>
 <p>This function is called <code>uk</code> and takes the arguments <code>x</code> and the index <code>k</code>. The window length <code>L</code> takes the default setting of <code>0.5</code>.</p>
-<div id="e93215b0" class="cell" data-execution_count="3">
+<div id="8bd1d0b8" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> uk(x, k, L<span class="op">=</span><span class="fl">0.5</span>):</span>
@@ -429,7 +412,7 @@ u_k(x) =  \frac{1}{2k-1} \sin \left(\frac{(2k-1) \pi x}{L}\right)
 <p>Next, we implement the summation over all <span class="math inline">\(k\)</span> sine terms, i.e., <span class="math display">\[
 u(x) \approx \frac{4}{\pi} \sum_{k=1}^N u_k(x)
 \]</span></p>
-<div id="4166bc3c" class="cell" data-execution_count="4">
+<div id="3f26a6c8" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> u(x, k, L):</span>
@@ -438,7 +421,7 @@ u(x) \approx \frac{4}{\pi} \sum_{k=1}^N u_k(x)
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="3815ba2e" class="cell" data-execution_count="5">
+<div id="c40a2b93" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="dv">2</span></span>

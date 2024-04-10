@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ralph-Uwe Börner">
-<meta name="dcterms.date" content="2024-04-10">
 
-<title>Theory of Electromagnetic Methods</title>
+<title>Theory of Electromagnetic Methods - 8&nbsp; Dipole sources above a halfspace</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -52,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./preface.html" rel="next">
+<link href="./summary.html" rel="next">
+<link href="./potentials.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,7 +81,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Prerequisites</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./halfspace.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dipole sources above a halfspace</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -129,7 +108,7 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Prerequisites</span></a>
   </div>
 </li>
@@ -208,7 +187,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./halfspace.html" class="sidebar-item-text sidebar-link">
+  <a href="./halfspace.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dipole sources above a halfspace</span></span></a>
   </div>
 </li>
@@ -247,41 +226,24 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites">Prerequisites</a></li>
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#self-study" id="toc-self-study" class="nav-link" data-scroll-target="#self-study">Self study</a></li>
-  <li><a href="#recommended-reading" id="toc-recommended-reading" class="nav-link" data-scroll-target="#recommended-reading">Recommended Reading</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
+  <li><a href="#uniform-halfspace" id="toc-uniform-halfspace" class="nav-link active" data-scroll-target="#uniform-halfspace"><span class="header-section-number">8.1</span> Uniform halfspace</a></li>
+  <li><a href="#layered-halfspace" id="toc-layered-halfspace" class="nav-link" data-scroll-target="#layered-halfspace"><span class="header-section-number">8.2</span> Layered halfspace</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./halfspace.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dipole sources above a halfspace</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Theory of Electromagnetic Methods</h1>
-<p class="subtitle lead">Lecture Notes</p>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dipole sources above a halfspace</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ralph-Uwe Börner </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 10, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -291,61 +253,13 @@ div.csl-indent {
 </header>
 
 
-<section id="prerequisites" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="prerequisites">Prerequisites</h2>
-<p>Here are the lecture notes for the 2024 module covering the <strong>Theory of Electromagnetic Methods.</strong> These notes are tailored for Master’s students of Geophysics and Geoinformatics at the <a href="https://tu-freiberg.de/geophysik">Institute of Geophysics and Geoinformatics, TU Bergakademie Freiberg</a>.</p>
-<p>You can access all the materials on the GitHub repository <a href="https://github.com/ruboerner/ThEM" class="uri">https://github.com/ruboerner/ThEM</a>.</p>
-<p>Enjoy studying!</p>
+<section id="uniform-halfspace" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="uniform-halfspace"><span class="header-section-number">8.1</span> Uniform halfspace</h2>
 </section>
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>This course targets Master’s students in their second semester, with a recommended understanding of fundamental geoelectromagnetic applications. Additionally, prior completion of the Theoretical Physics - Electrodynamics course is strongly advised as a prerequisite for this lecture.</p>
-</section>
-<section id="code" class="level2">
-<h2 class="anchored" data-anchor-id="code">Code</h2>
-<p>The website’s course material includes sections with embedded Python code.</p>
-<p>You can easily copy the code and execute it in a compatible Python runtime environment.</p>
-<p>For an optimal experience, we recommend installing Python via <a href="https://docs.anaconda.com/free/miniconda/index.html"><em>miniconda</em></a>.</p>
-<p>Moreover, you have the freedom to explore your own concepts and delve deeper into the course content by creating your personalized Jupyter notebooks. You can utilize any of the following platforms:</p>
-<ul>
-<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
-<li><a href="https://jupyter.org">Jupyterlab</a></li>
-<li><a href="https://quarto.org">Quarto</a></li>
-<li><a href="https://mystmd.org">mystMD</a>.</li>
-</ul>
-<p>Working with Jupyter Notebooks in Visual Studio Code is <a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">exceptionally straightforward</a>.</p>
-</section>
-<section id="self-study" class="level2">
-<h2 class="anchored" data-anchor-id="self-study">Self study</h2>
-<p>There are individual small tasks for self-study that are scattered throughout the lecture.</p>
-<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Self study">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Self study
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You can easily identify these callouts.</p>
-</div>
-</div>
-</section>
-<section id="recommended-reading" class="level2">
-<h2 class="anchored" data-anchor-id="recommended-reading">Recommended Reading</h2>
-<p>The most important source of supplementary information is the book by <span class="citation" data-cites="ward1988electromagnetic">Ward &amp; Hohmann (<a href="references.html#ref-ward1988electromagnetic" role="doc-biblioref">1988</a>)</span>.</p>
-</section>
-<section id="license" class="level2">
-<h2 class="anchored" data-anchor-id="license">License</h2>
-<p>This material is licensed under a Creative Commons License.</p>
+<section id="layered-halfspace" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="layered-halfspace"><span class="header-section-number">8.2</span> Layered halfspace</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
-<div id="ref-ward1988electromagnetic" class="csl-entry" role="listitem">
-Ward, S.H. &amp; Hohmann, G.W., 1988. Electromagnetic theory for geophysical applications. <em>Electromagnetic methods in applied geophysics</em>, Vol. 1, pp. 131–311.
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
@@ -760,10 +674,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./potentials.html" class="pagination-link" aria-label="Sources in unbounded media">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sources in unbounded media</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./preface.html" class="pagination-link" aria-label="Preface">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

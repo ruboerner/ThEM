@@ -313,91 +313,36 @@
     ]
   },
   {
-    "objectID": "Differential_Operators_Sympy.html",
-    "href": "Differential_Operators_Sympy.html",
-    "title": "8  Differential operators using sympy",
+    "objectID": "halfspace.html",
+    "href": "halfspace.html",
+    "title": "8  Dipole sources above a halfspace",
     "section": "",
-    "text": "8.1 Gradient\n\\[\n\\nabla f\n\\]",
+    "text": "8.1 Uniform halfspace",
     "crumbs": [
-      "Incomplete chapters",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
+      "Dipole induction",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Dipole sources above a halfspace</span>"
     ]
   },
   {
-    "objectID": "Differential_Operators_Sympy.html#divergence",
-    "href": "Differential_Operators_Sympy.html#divergence",
-    "title": "8  Differential operators using sympy",
-    "section": "8.2 Divergence",
-    "text": "8.2 Divergence\n\\[\n\\nabla \\cdot \\mathbf F\n\\]",
+    "objectID": "halfspace.html#layered-halfspace",
+    "href": "halfspace.html#layered-halfspace",
+    "title": "8  Dipole sources above a halfspace",
+    "section": "8.2 Layered halfspace",
+    "text": "8.2 Layered halfspace",
     "crumbs": [
-      "Incomplete chapters",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
-    ]
-  },
-  {
-    "objectID": "Differential_Operators_Sympy.html#curl",
-    "href": "Differential_Operators_Sympy.html#curl",
-    "title": "8  Differential operators using sympy",
-    "section": "8.3 Curl",
-    "text": "8.3 Curl\n\\[\n\\nabla \\times \\mathbf F\n\\]\n\n\nShow the code\ndef nabla(f, x, y, z):\n    return Matrix([f.diff(x), f.diff(y), f.diff(z)])\n\ndef nabla_v(f, x, y, z,  v):\n    return nabla(f, x, y, z).dot(v)\n\ndef gradient_op(f, *variables):\n    \"\"\"Return the vector gradient of a scalar function.\"\"\"\n    return Matrix([f.diff(v) for v in variables ])\n\ndef divergence_op(vec_F, *vars):\n    \"\"\"Return the scalar divergence of a vector field.\"\"\"\n    return sum( Matrix( [ vec_F[i].diff(v) for i,v in enumerate(vars)]) )\n\ndef curl_part(vec_F, u, v, *vars):\n    return vec_F[v].diff(vars[u]) - vec_F[u].diff(vars[v])\n    \ndef curl_op(vec_F, *vars):\n    \"\"\"Return the curl of a vector field.\"\"\"\n    return Matrix([curl_part(vec_F, u, v, *vars) for u, v in [(1,2), (2,0), (0,1)]])\n\n\n\n\nShow the code\nx, y, z = symbols('x y z', real=True)\n\n\nCompute the gradient of \\[\nf = \\frac{1}{r},\n\\] where \\(r = \\sqrt{x^2 + y^2 + z^2}\\).\n\n\nShow the code\nr = sqrt(x**2 + y**2 + z**2)\n\n\n\n\nShow the code\na, b, c = symbols('a b c', real=True)\nV = a * x + b * y + c * z\ngradient_op(V, x, y, z)\n\n\n\\(\\displaystyle \\left[\\begin{matrix}a\\\\b\\\\c\\end{matrix}\\right]\\)\n\n\n\n\nShow the code\ng = gradient_op(1 / r, x, y, z) #subs(sqrt(x**2 + y**2 + z**2), r)\n\n\n\n\nShow the code\ndivergence_op(g, x, y, z)\n\n\n\\(\\displaystyle \\frac{3 x^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} + \\frac{3 y^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} + \\frac{3 z^{2}}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{5}{2}}} - \\frac{3}{\\left(x^{2} + y^{2} + z^{2}\\right)^{\\frac{3}{2}}}\\)\n\n\n\n\nShow the code\ncurl_op(g, x, y, z)\n\n\n\\(\\displaystyle \\left[\\begin{matrix}0\\\\0\\\\0\\end{matrix}\\right]\\)",
-    "crumbs": [
-      "Incomplete chapters",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
-    ]
-  },
-  {
-    "objectID": "Differential_Operators_Sympy.html#curl-formula",
-    "href": "Differential_Operators_Sympy.html#curl-formula",
-    "title": "8  Differential operators using sympy",
-    "section": "8.4 Curl formula",
-    "text": "8.4 Curl formula\n\n\nShow the code\nP, Q, R = [Function(ch, real = True)(x, y, z) for ch in ['P', 'Q', 'R']]\nP, Q, R\n\n\n(P(x, y, z), Q(x, y, z), R(x, y, z))\n\n\n\n\nShow the code\ncurl_op(Matrix([P, Q, R]), x, y, z)\n\n\n\\(\\displaystyle \\left[\\begin{matrix}- \\frac{\\partial}{\\partial z} Q{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial y} R{\\left(x,y,z \\right)}\\\\\\frac{\\partial}{\\partial z} P{\\left(x,y,z \\right)} - \\frac{\\partial}{\\partial x} R{\\left(x,y,z \\right)}\\\\- \\frac{\\partial}{\\partial y} P{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial x} Q{\\left(x,y,z \\right)}\\end{matrix}\\right]\\)",
-    "crumbs": [
-      "Incomplete chapters",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
-    ]
-  },
-  {
-    "objectID": "Differential_Operators_Sympy.html#divergence-formula",
-    "href": "Differential_Operators_Sympy.html#divergence-formula",
-    "title": "8  Differential operators using sympy",
-    "section": "8.5 Divergence formula",
-    "text": "8.5 Divergence formula\n\n\nShow the code\ndivergence_op(Matrix([P, Q, R]), x, y, z)\n\n\n\\(\\displaystyle \\frac{\\partial}{\\partial x} P{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial y} Q{\\left(x,y,z \\right)} + \\frac{\\partial}{\\partial z} R{\\left(x,y,z \\right)}\\)",
-    "crumbs": [
-      "Incomplete chapters",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Differential operators using _sympy_</span>"
-    ]
-  },
-  {
-    "objectID": "semisphere.html",
-    "href": "semisphere.html",
-    "title": "9  Potential of a point source in a semi-sphere embedded in a uniform halfspace",
-    "section": "",
-    "text": "9.1 Verification\nLet’s check that the potential and the current density are actually continuous at \\(r=a\\).\nWe first form the respective expressions for \\(r=a\\) and check if the results vanish.\nShow the code\nD = U1.subs(r,a) - U2.subs(r,a)\nD\n\n\n\\(\\displaystyle \\frac{I \\rho_{1}}{2 \\pi a} - \\frac{I \\rho_{2}}{2 \\pi a} + \\frac{I \\left(- \\rho_{1} + \\rho_{2}\\right)}{2 \\pi a}\\)\nShow the code\nD.simplify()\n\n\n\\(\\displaystyle 0\\)\nThis result can be obtained directly by using the expression ex1 for the continuity of the potential:\nShow the code\nex1.subs(r, a).subs(A, A_).subs(B, B_).simplify()\n\n\n\\(\\displaystyle 0\\)\nIn ex2 we have used the condition for continuity of the radial component of the current densities:\nShow the code\nex2.subs(r, a).subs(B, B_)\n\n\n\\(\\displaystyle 0\\)\nBoth results indicate that the conditions of continuity are fullfilled.",
-    "crumbs": [
-      "Incomplete chapters",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Potential of a point source in a semi-sphere embedded in a uniform halfspace</span>"
-    ]
-  },
-  {
-    "objectID": "semisphere.html#visualization-of-the-result",
-    "href": "semisphere.html#visualization-of-the-result",
-    "title": "9  Potential of a point source in a semi-sphere embedded in a uniform halfspace",
-    "section": "9.2 Visualization of the result",
-    "text": "9.2 Visualization of the result\n\n\nShow the code\nimport matplotlib.pyplot as plt\n\n\n\n\nShow the code\nrho1_n = 100.0\nrho2_n = 1000.0\na_n = 3.0\n\n\n\n\nShow the code\nU1_f = lambdify([rho1, rho2, r, a, I], U1)\nU2_f = lambdify([rho1, rho2, r, a, I], U2)\n\n\n\n\nShow the code\nR1 = np.arange(1.0, a_n + .01, 0.1)\nR2 = np.arange(a_n, 10.0, 0.1)\n\n\n\n\nShow the code\nplt.plot(R1, [U1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [U2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Electric Potential\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nE1_f = lambdify([rho1, rho2, r, a, I], -diff(U1, r))\nE2_f = lambdify([rho1, rho2, r, a, I], -diff(U2, r))\n\nj1_f = lambdify([rho1, rho2, r, a, I], -diff(U1, r) / rho1)\nj2_f = lambdify([rho1, rho2, r, a, I], -diff(U2, r) / rho2)\n\n\n\n\nShow the code\nplt.plot(R1, [j1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [j2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Current density\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nplt.plot(R1, [E1_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R1])\nplt.plot(R2, [E2_f(rho1_n, rho2_n, r, a_n, 1.0) for r in R2])\nplt.title(\"Electric Field\")\nplt.xlabel(\"r\")\nplt.grid(True)\nplt.show()\n\n\n\n\n\n\n\n\n\nThe value of a a is {eval}a_n",
-    "crumbs": [
-      "Incomplete chapters",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Potential of a point source in a semi-sphere embedded in a uniform halfspace</span>"
+      "Dipole induction",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Dipole sources above a halfspace</span>"
     ]
   },
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "10  Summary",
+    "title": "9  Summary",
     "section": "",
     "text": "In summary, this book has no content whatsoever.",
     "crumbs": [
       "Summary",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Summary</span>"
     ]
   },
   {

@@ -1,0 +1,7 @@
+---
+title: "Dipole sources above a halfspace"
+---
+
+## Uniform halfspace
+
+## Layered halfspace

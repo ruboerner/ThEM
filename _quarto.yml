@@ -22,10 +22,7 @@ book:
     - part: "Dipole induction"
       chapters:
       - potentials.qmd
-    - part: "Incomplete chapters"
-      chapters:
-      - Differential_Operators_Sympy.ipynb
-      - semisphere.ipynb
+      - halfspace.qmd
     - part: "Summary"
       chapters: 
         - summary.qmd
