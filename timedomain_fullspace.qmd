@@ -35,7 +35,7 @@ The following figures show the Heaviside function $u(t)$ and the result of the t
 We use the symbolic expressions `t` for the time as well as `Heaviside` and `DiracDelta` for step function and Dirac's delta function respectively. Furthermore, we use the function `integrate` for symbolic integration.
 
 ```{python}
-from sympy import symbols, diff, Heaviside, DiracDelta, integrate, plot, exp
+from sympy import symbols, diff, Heaviside, DiracDelta, integrate, plot, exp, oo
 t = symbols('t', real=True)
 plot(Heaviside(t), (t, -1, 1), size=(6,3), title='Heaviside')
 ```
@@ -135,7 +135,7 @@ Let $h(t)$ be the impulse response.
 The impulse response $h(t)$ used here a physically unspecified function of time, **not the magnetic field**!
 :::
 
-We then obtain the [step function response](https://de.wikipedia.org/wiki/Sprungantwort) $f(t)$ from the *convolution* of the impulse response $h(t)$ with the Heaviside function $u(t)$:
+We then obtain the [step function response](https://en.wikipedia.org/wiki/Step_response) $f(t)$ from the *convolution* of the impulse response $h(t)$ with the Heaviside function $u(t)$:
 
 $$
 f(t)=h * u(t)=u * h(t)=\int_{-\infty}^{\infty} h(t') u(t-t') d t' =\int_{-\infty}^{t} h(t') d t'
@@ -150,3 +150,53 @@ def h(t):
      return exp(-t**2)
 plot(h(t), (t, -10, 10), size=(6,3), ylabel='h(t)')
 ```
+
+We define symbolic expressions for the integrals introduced above to calculate $f(t)$:
+
+$$
+f_1(\tau) = \int_{-\infty}^{\infty} h(t) u(\tau-t) \mathrm d t
+$$
+$$
+f_2(\tau) = \int_{-\infty}^{\tau} h(t') d t'
+$$
+
+```{python}
+#| code-fold: False
+tau = symbols('tau', real=True)
+def f1(tau):
+    return integrate(h(t) * Heaviside(tau - t), (t, -oo, oo))
+
+def f2(tau):
+    return integrate(h(t), (t, -oo, tau))
+```
+
+```{python}
+#| code-fold: False
+f1(tau)
+```
+
+```{python}
+#| code-fold: False
+f2(tau)
+```
+
+We see that both integrals yield the same result, so $f(t) = f_1(t) = f_2(t)$. For further calculations, it is sufficient to use the integral
+
+$$
+f(t) = \int_{-\infty}^t h(t') \, \mathrm dt'.
+$$
+
+::: {.callout-note}
+Both integrals involve the _complementary error function_ _erfc_, which will be discussed later in more detail.
+:::
+
+### Causal systems
+Only causal systems occur in geophysics.
+In causal processes, no fields (or changes in the fields) can be measured before the source has been switched on (or changed).
+The effect is observed as a consequence of one of the causes.
+
+The step function response for *causal systems* is
+
+$$
+f_{\mathrm{on}}(t)=\int_{0}^{t} h(t') \, \mathrm d t', \quad t \geq 0.
+$$

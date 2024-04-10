@@ -301,6 +301,7 @@ window.Quarto = {
   <li><a href="#step-function-response" id="toc-step-function-response" class="nav-link" data-scroll-target="#step-function-response"><span class="header-section-number">8.2.1</span> Step function response</a></li>
   <li><a href="#impulse-response" id="toc-impulse-response" class="nav-link" data-scroll-target="#impulse-response"><span class="header-section-number">8.2.2</span> Impulse response</a></li>
   <li><a href="#differentiation-integration-convolution" id="toc-differentiation-integration-convolution" class="nav-link" data-scroll-target="#differentiation-integration-convolution"><span class="header-section-number">8.2.3</span> Differentiation, integration, convolution</a></li>
+  <li><a href="#causal-systems" id="toc-causal-systems" class="nav-link" data-scroll-target="#causal-systems"><span class="header-section-number">8.2.4</span> Causal systems</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -350,10 +351,10 @@ u(t) =
 \]</span></p>
 <p>The following figures show the Heaviside function <span class="math inline">\(u(t)\)</span> and the result of the time integration of the Dirac delta function <span class="math inline">\(\delta(t)\)</span>.</p>
 <p>We use the symbolic expressions <code>t</code> for the time as well as <code>Heaviside</code> and <code>DiracDelta</code> for step function and Dirac’s delta function respectively. Furthermore, we use the function <code>integrate</code> for symbolic integration.</p>
-<div id="31be4533" class="cell" data-execution_count="1">
+<div id="2f0ebb2e" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, diff, Heaviside, DiracDelta, integrate, plot, exp</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, diff, Heaviside, DiracDelta, integrate, plot, exp, oo</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> symbols(<span class="st">'t'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plot(Heaviside(t), (t, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>), title<span class="op">=</span><span class="st">'Heaviside'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -366,7 +367,7 @@ u(t) =
 </div>
 </div>
 <p>The following figure shows the result of the time integration of the Dirac delta function, where the integral over <span class="math inline">\(\delta(t)\)</span> from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(t\)</span> is assigned to the value of a function at time <span class="math inline">\(t\)</span>.</p>
-<div id="fb46c06c" class="cell" data-execution_count="2">
+<div id="078402ed" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plot(integrate(DiracDelta(t), t), (t, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>), title<span class="op">=</span><span class="vs">r'$\int_{-\infty}^t\delta(\tau) d\tau$'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -384,7 +385,7 @@ u(t) = \int\limits_{-\infty}^t \delta(\tau) \, \mathrm d \tau.
 \]</span></p>
 <p>We can reproduce the result using symbolic mathematics.</p>
 <p>(In <code>sympy</code> the Heaviside function has the symbol <span class="math inline">\(\theta\)</span>).</p>
-<div id="ee0e7663" class="cell" data-execution_count="3">
+<div id="a234f3c5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>integrate(DiracDelta(t), t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
 <p><span class="math inline">\(\displaystyle \theta\left(t\right)\)</span></p>
@@ -393,7 +394,7 @@ u(t) = \int\limits_{-\infty}^t \delta(\tau) \, \mathrm d \tau.
 <p>Conversely, the following applies to the time derivative of the Heaviside function <span class="math display">\[
 \frac{\mathrm d}{\mathrm dt} u(t) = \delta(t),
 \]</span> of which we can convince ourselves by symbolic differentiation:</p>
-<div id="a617b5e9" class="cell" data-execution_count="4">
+<div id="f1d43c97" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diff(Heaviside(t), t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <p><span class="math inline">\(\displaystyle \delta\left(t\right)\)</span></p>
@@ -472,13 +473,13 @@ Note
 <p>The impulse response <span class="math inline">\(h(t)\)</span> used here a physically unspecified function of time, <strong>not the magnetic field</strong>!</p>
 </div>
 </div>
-<p>We then obtain the <a href="https://de.wikipedia.org/wiki/Sprungantwort">step function response</a> <span class="math inline">\(f(t)\)</span> from the <em>convolution</em> of the impulse response <span class="math inline">\(h(t)\)</span> with the Heaviside function <span class="math inline">\(u(t)\)</span>:</p>
+<p>We then obtain the <a href="https://en.wikipedia.org/wiki/Step_response">step function response</a> <span class="math inline">\(f(t)\)</span> from the <em>convolution</em> of the impulse response <span class="math inline">\(h(t)\)</span> with the Heaviside function <span class="math inline">\(u(t)\)</span>:</p>
 <p><span class="math display">\[
 f(t)=h * u(t)=u * h(t)=\int_{-\infty}^{\infty} h(t') u(t-t') d t' =\int_{-\infty}^{t} h(t') d t'
 \]</span></p>
 <p>The step function response at time <span class="math inline">\(t\)</span> is therefore the result of the time integration over the impulse response from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(t\)</span>.</p>
 <p>In the following example, we assume that the impulse response is <span class="math inline">\(h(t) = e^{-t^2}\)</span>.</p>
-<div id="e6d61086" class="cell" data-execution_count="5">
+<div id="b99a2276" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> h(t):</span>
@@ -493,6 +494,57 @@ f(t)=h * u(t)=u * h(t)=\int_{-\infty}^{\infty} h(t') u(t-t') d t' =\int_{-\infty
 </div>
 </div>
 </div>
+<p>We define symbolic expressions for the integrals introduced above to calculate <span class="math inline">\(f(t)\)</span>:</p>
+<p><span class="math display">\[
+f_1(\tau) = \int_{-\infty}^{\infty} h(t) u(\tau-t) \mathrm d t
+\]</span> <span class="math display">\[
+f_2(\tau) = \int_{-\infty}^{\tau} h(t') d t'
+\]</span></p>
+<div id="2e1c5c94" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> symbols(<span class="st">'tau'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f1(tau):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> integrate(h(t) <span class="op">*</span> Heaviside(tau <span class="op">-</span> t), (t, <span class="op">-</span>oo, oo))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f2(tau):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> integrate(h(t), (t, <span class="op">-</span>oo, tau))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="3b04e5ad" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>f1(tau)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
+<p><span class="math inline">\(\displaystyle \frac{\sqrt{\pi} \left(2 - \operatorname{erfc}{\left(\tau \right)}\right)}{2}\)</span></p>
+</div>
+</div>
+<div id="dfe26e56" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f2(tau)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
+<p><span class="math inline">\(\displaystyle \frac{\sqrt{\pi} \left(2 - \operatorname{erfc}{\left(\tau \right)}\right)}{2}\)</span></p>
+</div>
+</div>
+<p>We see that both integrals yield the same result, so <span class="math inline">\(f(t) = f_1(t) = f_2(t)\)</span>. For further calculations, it is sufficient to use the integral</p>
+<p><span class="math display">\[
+f(t) = \int_{-\infty}^t h(t') \, \mathrm dt'.
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Both integrals involve the <em>complementary error function</em> <em>erfc</em>, which will be discussed later in more detail.</p>
+</div>
+</div>
+</section>
+<section id="causal-systems" class="level3" data-number="8.2.4">
+<h3 data-number="8.2.4" class="anchored" data-anchor-id="causal-systems"><span class="header-section-number">8.2.4</span> Causal systems</h3>
+<p>Only causal systems occur in geophysics. In causal processes, no fields (or changes in the fields) can be measured before the source has been switched on (or changed). The effect is observed as a consequence of one of the causes.</p>
+<p>The step function response for <em>causal systems</em> is</p>
+<p><span class="math display">\[
+f_{\mathrm{on}}(t)=\int_{0}^{t} h(t') \, \mathrm d t', \quad t \geq 0.
+\]</span></p>
 
 
 </section>
