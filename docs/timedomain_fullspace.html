@@ -296,19 +296,22 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">8.1</span> Introduction</a></li>
-  <li><a href="#terms" id="toc-terms" class="nav-link" data-scroll-target="#terms"><span class="header-section-number">8.2</span> Terms</a>
+  <li><a href="#terminology" id="toc-terminology" class="nav-link" data-scroll-target="#terminology"><span class="header-section-number">8.2</span> Terminology</a>
   <ul class="collapse">
   <li><a href="#step-function-response" id="toc-step-function-response" class="nav-link" data-scroll-target="#step-function-response"><span class="header-section-number">8.2.1</span> Step function response</a></li>
   <li><a href="#impulse-response" id="toc-impulse-response" class="nav-link" data-scroll-target="#impulse-response"><span class="header-section-number">8.2.2</span> Impulse response</a></li>
   <li><a href="#differentiation-integration-convolution" id="toc-differentiation-integration-convolution" class="nav-link" data-scroll-target="#differentiation-integration-convolution"><span class="header-section-number">8.2.3</span> Differentiation, integration, convolution</a></li>
   <li><a href="#causal-systems" id="toc-causal-systems" class="nav-link" data-scroll-target="#causal-systems"><span class="header-section-number">8.2.4</span> Causal systems</a></li>
   <li><a href="#laplace-transform" id="toc-laplace-transform" class="nav-link" data-scroll-target="#laplace-transform"><span class="header-section-number">8.2.5</span> Laplace transform</a></li>
-  <li><a href="#inverse-transform-of-the-electric-field-with-step-function-excitation" id="toc-inverse-transform-of-the-electric-field-with-step-function-excitation" class="nav-link" data-scroll-target="#inverse-transform-of-the-electric-field-with-step-function-excitation"><span class="header-section-number">8.2.6</span> Inverse transform of the electric field with step function excitation</a></li>
   </ul></li>
-  <li><a href="#error-function" id="toc-error-function" class="nav-link" data-scroll-target="#error-function"><span class="header-section-number">8.3</span> Error function</a>
+  <li><a href="#inverse-transform-of-the-electric-field-with-step-function-excitation" id="toc-inverse-transform-of-the-electric-field-with-step-function-excitation" class="nav-link" data-scroll-target="#inverse-transform-of-the-electric-field-with-step-function-excitation"><span class="header-section-number">8.3</span> Inverse transform of the electric field with step function excitation</a>
   <ul class="collapse">
-  <li><a href="#summary-of-all-terms" id="toc-summary-of-all-terms" class="nav-link" data-scroll-target="#summary-of-all-terms"><span class="header-section-number">8.3.1</span> Summary of all terms</a></li>
+  <li><a href="#error-function" id="toc-error-function" class="nav-link" data-scroll-target="#error-function"><span class="header-section-number">8.3.1</span> Error function</a></li>
+  <li><a href="#summary-of-all-terms" id="toc-summary-of-all-terms" class="nav-link" data-scroll-target="#summary-of-all-terms"><span class="header-section-number">8.3.2</span> Summary of all terms</a></li>
   </ul></li>
+  <li><a href="#inverse-transform-of-the-magnetic-field-with-step-function-excitation" id="toc-inverse-transform-of-the-magnetic-field-with-step-function-excitation" class="nav-link" data-scroll-target="#inverse-transform-of-the-magnetic-field-with-step-function-excitation"><span class="header-section-number">8.4</span> Inverse transform of the magnetic field with step function excitation</a></li>
+  <li><a href="#numerical-example" id="toc-numerical-example" class="nav-link" data-scroll-target="#numerical-example"><span class="header-section-number">8.5</span> Numerical example</a></li>
+  <li><a href="#late-time-asymptotic-behaviour-and-apparent-resistivity" id="toc-late-time-asymptotic-behaviour-and-apparent-resistivity" class="nav-link" data-scroll-target="#late-time-asymptotic-behaviour-and-apparent-resistivity"><span class="header-section-number">8.6</span> Late-time asymptotic behaviour and apparent resistivity</a></li>
   </ul>
 </nav>
     </div>
@@ -357,12 +360,13 @@ u(t) =
 \]</span></p>
 <p>The following figures show the Heaviside function <span class="math inline">\(u(t)\)</span> and the result of the time integration of the Dirac delta function <span class="math inline">\(\delta(t)\)</span>.</p>
 <p>We use the symbolic expressions <code>t</code> for the time as well as <code>Heaviside</code> and <code>DiracDelta</code> for step function and Dirac’s delta function respectively. Furthermore, we use the function <code>integrate</code> for symbolic integration.</p>
-<div id="fd39a9b4" class="cell" data-execution_count="1">
+<div id="cba4886b" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, diff, Heaviside, DiracDelta, integrate, plot, exp, oo, erf, erfc</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> symbols(<span class="st">'t'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plot(Heaviside(t), (t, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>), title<span class="op">=</span><span class="st">'Heaviside'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, diff, Heaviside, DiracDelta, integrate, plot, sqrt, exp, oo, erf, erfc, pi</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> symbols(<span class="st">'t'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>plot(Heaviside(t), (t, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>), title<span class="op">=</span><span class="st">'Heaviside'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -373,7 +377,7 @@ u(t) =
 </div>
 </div>
 <p>The following figure shows the result of the time integration of the Dirac delta function, where the integral over <span class="math inline">\(\delta(t)\)</span> from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(t\)</span> is assigned to the value of a function at time <span class="math inline">\(t\)</span>.</p>
-<div id="4e50905c" class="cell" data-execution_count="2">
+<div id="9cb9e5c9" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plot(integrate(DiracDelta(t), t), (t, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>), title<span class="op">=</span><span class="vs">r'$\int_{-\infty}^t\delta(\tau) d\tau$'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -391,7 +395,7 @@ u(t) = \int\limits_{-\infty}^t \delta(\tau) \, \mathrm d \tau.
 \]</span></p>
 <p>We can reproduce the result using symbolic mathematics.</p>
 <p>(In <code>sympy</code> the Heaviside function has the symbol <span class="math inline">\(\theta\)</span>).</p>
-<div id="cf851b9e" class="cell" data-execution_count="3">
+<div id="dfdfb812" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>integrate(DiracDelta(t), t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
 <p><span class="math inline">\(\displaystyle \theta\left(t\right)\)</span></p>
@@ -400,16 +404,20 @@ u(t) = \int\limits_{-\infty}^t \delta(\tau) \, \mathrm d \tau.
 <p>Conversely, the following applies to the time derivative of the Heaviside function <span class="math display">\[
 \frac{\mathrm d}{\mathrm dt} u(t) = \delta(t),
 \]</span> of which we can convince ourselves by symbolic differentiation:</p>
-<div id="d6066339" class="cell" data-execution_count="4">
+<div id="e0463666" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diff(Heaviside(t), t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <p><span class="math inline">\(\displaystyle \delta\left(t\right)\)</span></p>
 </div>
 </div>
 </section>
-<section id="terms" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="terms"><span class="header-section-number">8.2</span> Terms</h2>
-<p>We will use two important terms in the time domain, namely * step function response * impulse response.</p>
+<section id="terminology" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="terminology"><span class="header-section-number">8.2</span> Terminology</h2>
+<p>We will use two important terms in the time domain, namely</p>
+<ul>
+<li>step function response and</li>
+<li>impulse response.</li>
+</ul>
 <p>These terms are related to the time dependence of the current function of the dipole moment.</p>
 <p>In general, the dipole moment is a function of location and time, i.e., <span class="math inline">\(\mathbf m(\mathbf r, t) = \mathbf q(\mathbf r) I(t)\)</span>. Here, <span class="math inline">\(\mathbf q(\mathbf r)\)</span> describes the exact position of the current-carrying cable (e.g., a large horizontal coil on the Earth’s surface) and <span class="math inline">\(I(t)\)</span> the time dependence of the current in this coil.</p>
 <p>In the following, we only consider the time dependence of the dipole moment, i.e., <span class="math inline">\(I(t)\)</span>.</p>
@@ -485,7 +493,7 @@ f(t)=h * u(t)=u * h(t)=\int_{-\infty}^{\infty} h(t') u(t-t') d t' =\int_{-\infty
 \]</span></p>
 <p>The step function response at time <span class="math inline">\(t\)</span> is therefore the result of the time integration over the impulse response from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(t\)</span>.</p>
 <p>In the following example, we assume that the impulse response is <span class="math inline">\(h(t) = e^{-t^2}\)</span>.</p>
-<div id="cb25c2c8" class="cell" data-execution_count="5">
+<div id="d887eb0b" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> h(t):</span>
@@ -506,7 +514,7 @@ f_1(\tau) = \int_{-\infty}^{\infty} h(t) u(\tau-t) \mathrm d t
 \]</span> <span class="math display">\[
 f_2(\tau) = \int_{-\infty}^{\tau} h(t') d t'
 \]</span></p>
-<div id="1952dc6f" class="cell" data-execution_count="6">
+<div id="6e344a2a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> symbols(<span class="st">'tau'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f1(tau):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> integrate(h(t) <span class="op">*</span> Heaviside(tau <span class="op">-</span> t), (t, <span class="op">-</span>oo, oo))</span>
@@ -514,13 +522,13 @@ f_2(\tau) = \int_{-\infty}^{\tau} h(t') d t'
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f2(tau):</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> integrate(h(t), (t, <span class="op">-</span>oo, tau))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fcea616c" class="cell" data-execution_count="7">
+<div id="6d57e48e" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>f1(tau)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
 <p><span class="math inline">\(\displaystyle \frac{\sqrt{\pi} \left(2 - \operatorname{erfc}{\left(\tau \right)}\right)}{2}\)</span></p>
 </div>
 </div>
-<div id="cdcd50e3" class="cell" data-execution_count="8">
+<div id="7d141f32" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f2(tau)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
 <p><span class="math inline">\(\displaystyle \frac{\sqrt{\pi} \left(2 - \operatorname{erfc}{\left(\tau \right)}\right)}{2}\)</span></p>
@@ -551,7 +559,7 @@ Note
 <p><span class="math display">\[
 f_{\mathrm{on}}(t)=\int_{0}^{t} h(t') \, \mathrm d t', \quad t \geq 0.
 \]</span></p>
-<div id="30c9622c" class="cell" data-execution_count="9">
+<div id="650dd061" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_on(tau):</span>
@@ -576,7 +584,7 @@ f_{\text {off }}(t) =\int_{t}^{\infty} h(t') d t' = \int_{0}^{\infty} h(t') d t'
 f_{\text {off }}(t) = f_{\text {on }}(\infty) - f_{\text {on }}(t), \quad t \geq 0
 \]</span></p>
 <p>This means that all we need to calculate the step function response of transient electromagnetics is a routine that can calculate the step response for the switch-on process!</p>
-<div id="94e5cb7c" class="cell" data-execution_count="10">
+<div id="659ffab3" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_off(tau):</span>
@@ -697,8 +705,9 @@ e^{i\omega t} \, \mathrm d\omega
 </tbody>
 </table>
 </section>
-<section id="inverse-transform-of-the-electric-field-with-step-function-excitation" class="level3" data-number="8.2.6">
-<h3 data-number="8.2.6" class="anchored" data-anchor-id="inverse-transform-of-the-electric-field-with-step-function-excitation"><span class="header-section-number">8.2.6</span> Inverse transform of the electric field with step function excitation</h3>
+</section>
+<section id="inverse-transform-of-the-electric-field-with-step-function-excitation" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="inverse-transform-of-the-electric-field-with-step-function-excitation"><span class="header-section-number">8.3</span> Inverse transform of the electric field with step function excitation</h2>
 <p>The starting point is the equation for the electric field of a magnetic dipole in full space.</p>
 <p>With <span class="math inline">\(r = |\mathbf r|\)</span> it holds</p>
 <p><span class="math display">\[
@@ -724,17 +733,15 @@ e^{-ikr}, \quad ikr e^{-ikr}
 \mathcal L^{-1} \left( \frac{k^2 r^2}{s} e^{-ikr} \right) =
 -\frac{4}{\sqrt{\pi}} \Theta^3 r^3 e^{-\Theta^2 r^2}
 \]</span></p>
-</section>
-</section>
-<section id="error-function" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="error-function"><span class="header-section-number">8.3</span> Error function</h2>
+<section id="error-function" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="error-function"><span class="header-section-number">8.3.1</span> Error function</h3>
 <p>The <a href="https://en.wikipedia.org/wiki/Error_function">error function</a> erf<span class="math inline">\((t)\)</span> plays an important role. Its definition is <span class="math display">\[
 \mathrm{erf}(t) = \frac{2}{\sqrt{\pi}} \int_0^t e^{-\tau^2} d\tau.
 \]</span> The <em>complementary error function</em> erfc<span class="math inline">\((t)\)</span> is <span class="math display">\[
 \mathrm{erfc}(t) = 1 - \mathrm{erf}(t).
 \]</span></p>
 <p>We implement the error function again with <code>sympy</code>.</p>
-<div id="9cfe05b1" class="cell" data-execution_count="11">
+<div id="15ec406d" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plot(erf(t), (t,<span class="dv">0</span>,<span class="dv">2</span>), size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>), title<span class="op">=</span><span class="st">'erf(t)'</span>)</span>
@@ -755,8 +762,9 @@ e^{-ikr}, \quad ikr e^{-ikr}
 </div>
 </div>
 </div>
-<section id="summary-of-all-terms" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="summary-of-all-terms"><span class="header-section-number">8.3.1</span> Summary of all terms</h3>
+</section>
+<section id="summary-of-all-terms" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="summary-of-all-terms"><span class="header-section-number">8.3.2</span> Summary of all terms</h3>
 <p>After the LT we first have</p>
 <p><span class="math display">\[
 \mathbf e(\mathbf r, t) = -\partial_t \frac{\mu}{4 \pi r^3} \left(
@@ -764,9 +772,328 @@ e^{-ikr}, \quad ikr e^{-ikr}
 \right) \mathbf m \times \mathbf r.
 \]</span></p>
 <p>We now carry out the derivative with respect to time. To do this, we need the chain rule again, since <span class="math inline">\(\Theta = \Theta(t)\)</span>.</p>
-
-
+<div id="f228067f" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mu, sigma, r <span class="op">=</span> symbols(<span class="st">'mu_0 sigma r'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Theta(t):</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sqrt(mu <span class="op">*</span> sigma <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> t)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>ex1 <span class="op">=</span> diff(erfc(Theta(t) <span class="op">*</span> r), t)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ex2 <span class="op">=</span> diff(Theta(t) <span class="op">*</span> r <span class="op">*</span> exp(<span class="op">-</span>Theta(t)<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span>), t)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>ex <span class="op">=</span> ex1 <span class="op">+</span> <span class="dv">2</span> <span class="op">/</span> sqrt(pi) <span class="op">*</span> ex2</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>ex.subs(sqrt(mu <span class="op">*</span> sigma <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> t), Theta(t)).factor().simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="12">
+<p><span class="math inline">\(\displaystyle \frac{\mu_{0} r^{3} \sigma \sqrt{\frac{\mu_{0} \sigma}{t}} e^{- \frac{\mu_{0} r^{2} \sigma}{4 t}}}{4 \sqrt{\pi} t^{2}}\)</span></p>
+</div>
+</div>
+<p>We slightly rewrite this term with the help of <span class="math inline">\(\Theta(t)\)</span> to get</p>
+<p><span class="math display">\[
+\frac{2}{\sqrt{\pi} t} \Theta^3 r^3 e^{-\Theta^2 r^2}.
+\]</span></p>
+<p>With the leading terms and the cross product we obtain the final result for the electric field as a step function response</p>
+<p><span class="math display">\[
+\mathbf e(\mathbf r, t) = -\frac{\mu}{4 \pi r^3}
+\frac{2}{\sqrt{\pi} t} \Theta^3 r^3 e^{-\Theta^2 r^2}
+\mathbf m \times \mathbf r.
+\]</span></p>
+<p>We implement this function using <code>Python</code>.</p>
+<div id="cf4db58f" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Et(r, m, t, sigma):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> np.linalg.norm(r)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> np.sqrt(mu <span class="op">*</span> sigma <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> t)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    tr <span class="op">=</span> theta <span class="op">*</span> R</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    t2r2 <span class="op">=</span> tr<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> <span class="op">-</span>mu <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> np.pi</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    E <span class="op">=</span> alpha <span class="op">/</span> R<span class="op">**</span><span class="dv">3</span> <span class="op">*</span> np.cross(m, r) <span class="op">*</span> <span class="dv">2</span>  <span class="op">/</span> (</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        np.sqrt(np.pi) <span class="op">*</span> t) <span class="op">*</span> (tr <span class="op">*</span> t2r2) <span class="op">*</span> np.exp(<span class="op">-</span>t2r2)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="a1e5c779" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Et(np.array([<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>]), np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]), <span class="fl">1e-6</span>, <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>array([ 4.5124908e-17, -0.0000000e+00, -0.0000000e+00])</code></pre>
+</div>
+</div>
 </section>
+</section>
+<section id="inverse-transform-of-the-magnetic-field-with-step-function-excitation" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="inverse-transform-of-the-magnetic-field-with-step-function-excitation"><span class="header-section-number">8.4</span> Inverse transform of the magnetic field with step function excitation</h2>
+<p>The starting point is again the equation for the magnetic field in the frequency domain.</p>
+<p><span class="math display">\[
+    \mathbf H(\mathbf r) = \frac{1}{4 \pi r^3} \left[
+    \frac{\mathbf m \cdot \mathbf r}{r^2} (3 + 3 i k r - k^2 r^2) \mathbf r - (1 + i k r - k^2 r^2) \mathbf m
+    \right] e^{-i k r}.
+\]</span></p>
+<p>With the expressions for the inverse Laplace transform introduced above, we obtain the magnetic field in the time domain:</p>
+<p><span class="math display">\[
+\begin{align}
+\begin{split}
+\mathbf h(\mathbf r, t) = &amp; \frac{1}{4 \pi r^3}
+\left[
+    \frac{\mathbf m \cdot \mathbf r}{r^2}
+    \left(3 \, \mathrm{erfc}(\Theta r) + \left(\frac{6}{\sqrt{\pi}}\Theta r + \frac{4}{\sqrt{\pi}}\Theta^3 r^3\right)e^{-\Theta^2 r^2}
+    \right) \mathbf r \right. - \\
+     &amp;  \left. \left(
+    \mathrm{erfc}(\Theta r) + \left(\frac{2}{\sqrt{\pi}}\Theta r + \frac{4}{\sqrt{\pi}}\Theta^3 r^3\right)e^{-\Theta^2 r^2}
+    \right) \mathbf m
+    \right]
+    \end{split}
+\end{align}
+\]</span></p>
+<div id="f2abeb36" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> erf, erfc</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Ht(r, m, t, sigma):</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> np.linalg.norm(r)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> np.sqrt(mu <span class="op">*</span> sigma <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> t)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    tr <span class="op">=</span> theta <span class="op">*</span> R</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    t2r2 <span class="op">=</span> tr<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    t3r3 <span class="op">=</span> tr<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    sqpi <span class="op">=</span> np.sqrt(np.pi)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="fl">4.0</span> <span class="op">*</span> np.pi <span class="op">*</span> R<span class="op">**</span><span class="dv">3</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    H <span class="op">=</span> alpha <span class="op">*</span> (</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        np.dot(m, r) <span class="op">/</span> R<span class="op">**</span><span class="dv">2</span>  <span class="op">*</span> r</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>            <span class="op">*</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>            (<span class="dv">3</span> <span class="op">*</span> erfc(tr) <span class="op">+</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>                (<span class="dv">6</span> <span class="op">*</span> tr <span class="op">/</span> sqpi <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> t3r3 <span class="op">/</span> sqpi) <span class="op">*</span> np.exp(<span class="op">-</span>t2r2)) </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>                <span class="op">-</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>            (erfc(tr) <span class="op">+</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>                (<span class="dv">4</span> <span class="op">*</span> t3r3 <span class="op">/</span> sqpi <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> tr <span class="op">/</span> sqpi) <span class="op">*</span> np.exp(<span class="op">-</span>t2r2)) </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">*</span> m</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> H</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="5065ade2" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Ht(np.array([<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>]), np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]), <span class="fl">1e-0</span>, <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>array([ 0.00000000e+00,  0.00000000e+00, -7.95774926e-08])</code></pre>
+</div>
+</div>
+<p>However, the time derivative of the magnetic field is important, which is why we differentiate w.r.t. time. Using the chain rule, we obtain</p>
+<p><span class="math display">\[
+    \partial_t \mathbf h(\mathbf r, t) = \frac{\Theta^3}{\sqrt{\pi}^3 t} \left[
+    \Theta^2 r^2
+    \frac{\mathbf m \cdot \mathbf r}{r^2}
+    \mathbf r -
+    (\Theta^2 r ^2 - 1)
+    \mathbf m
+    \right] e^{-\Theta^2 r^2}.
+\]</span></p>
+</section>
+<section id="numerical-example" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="numerical-example"><span class="header-section-number">8.5</span> Numerical example</h2>
+<div id="415b2d86" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dHdt(r, m, t, sigma):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> <span class="fl">4e-7</span> <span class="op">*</span> np.pi</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> np.linalg.norm(r)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    theta <span class="op">=</span> np.sqrt(mu <span class="op">*</span> sigma <span class="op">/</span> <span class="fl">4.0</span> <span class="op">/</span> t)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    tr <span class="op">=</span> theta <span class="op">*</span> R</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    t2r2 <span class="op">=</span> tr<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    sqpi <span class="op">=</span> np.sqrt(np.pi)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta<span class="op">**</span><span class="dv">3</span> <span class="op">/</span> sqpi<span class="op">**</span><span class="dv">3</span> <span class="op">/</span> t <span class="op">*</span> np.exp(<span class="op">-</span>t2r2) <span class="op">*</span> (</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>            t2r2 <span class="op">*</span> np.dot(m, r) <span class="op">*</span> r <span class="op">/</span> R<span class="op">**</span><span class="dv">2</span> <span class="op">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>            (<span class="dv">1</span> <span class="op">-</span> t2r2) <span class="op">*</span> m</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We now simulate the step function and impulse response of the electrically conductive full space.</p>
+<p>We choose <span class="math inline">\(\mathbf r = [100, 0, 0]^\top\)</span> as the observation point. The conductivity is 0.01 S/m. The dipole moment is <span class="math inline">\(\mathbf m = [0 ,0 , 1]^\top\)</span>.</p>
+<p>We simulate the fields for logarithmically equidistant times in the interval <span class="math inline">\(10^{-7} \le t \le 1\)</span> s.</p>
+<p>The simulated quantities are <span class="math inline">\(e_y(t)\)</span>, <span class="math inline">\(h_z(t)\)</span> and <span class="math inline">\(\partial_t h_z(t)\)</span>.</p>
+<div id="797ba452" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.array([<span class="fl">100.0</span>, <span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>nt <span class="op">=</span> <span class="dv">71</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>tt <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">7</span>, <span class="dv">0</span>, nt, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>ey <span class="op">=</span> np.array([Et(r, m, v, sigma)[<span class="dv">1</span>] <span class="cf">for</span> v <span class="kw">in</span> tt])</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>hz <span class="op">=</span> np.array([Ht(r, m, v, sigma)[<span class="dv">2</span>] <span class="cf">for</span> v <span class="kw">in</span> tt])</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>dhzdt <span class="op">=</span> np.array([dHdt(r, m, v, sigma)[<span class="dv">2</span>] <span class="cf">for</span> v <span class="kw">in</span> tt])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The electric field exhibits an asymptotic behaviour of <span class="math inline">\(e \sim t^{-5/2}\)</span> as <span class="math inline">\(t \to \infty\)</span></p>
+<div id="cell-fig-ey" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>tr <span class="op">=</span> <span class="kw">lambda</span> t: np.sqrt(np.pi <span class="op">*</span> <span class="fl">4e-7</span> <span class="op">*</span> sigma <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> t) <span class="op">*</span> np.linalg.norm(r)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>TR <span class="op">=</span> np.array([tr(t) <span class="cf">for</span> t <span class="kw">in</span> tt])</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>iind <span class="op">=</span> np.argwhere(TR <span class="op">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>ax.loglog(tt, np.<span class="bu">abs</span>(ey), linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>ax.loglog(tt, [<span class="dv">2</span> <span class="op">*</span> np.<span class="bu">abs</span>(ey[<span class="op">-</span><span class="dv">1</span>]) <span class="op">*</span> t<span class="op">**</span>(<span class="op">-</span><span class="fl">2.5</span>) <span class="cf">for</span> t <span class="kw">in</span> tt], label<span class="op">=</span><span class="vs">r'$\sim t^{-5/2}$'</span>)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>tstar <span class="op">=</span> tt[iind][<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>]</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>ax.axvspan(tt[<span class="dv">0</span>], tstar, facecolor<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>ax.axvspan(tstar, tt[<span class="op">-</span><span class="dv">1</span>], facecolor<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"t in s"</span>)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((<span class="fl">1e-18</span>, <span class="fl">1e-5</span>))</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'$e_y(t)$'</span>)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-ey" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="timedomain_fullspace_files/figure-html/fig-ey-output-1.png" width="587" height="452" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: Electric field component <span class="math inline">\(e_y\)</span> due to a step-on vertical magnetic dipole in fullspace. The red and green shading indicates the regime where <span class="math inline">\(\Theta r &gt; 1\)</span> and <span class="math inline">\(\Theta r &lt; 1\)</span>, resp.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The magnetic field approaches a stationary value as <span class="math inline">\(t \to \infty\)</span>.</p>
+<p>Obviously, <span class="math display">\[
+h(r, t) = -\frac{1}{4 \pi r^3} \text{ for } t \to \infty.
+\]</span></p>
+<p>The numerical evaluations are identical up to rounding errors.</p>
+<div id="977c2eb9" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'h_z(r,t) = '</span> <span class="op">+</span> <span class="bu">str</span>(<span class="op">-</span><span class="fl">1.0</span> <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> np.linalg.norm(r)<span class="op">**</span><span class="dv">3</span>)))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'hz[-1]   = '</span> <span class="op">+</span> <span class="bu">str</span>(hz[<span class="op">-</span><span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>h_z(r,t) = -7.957747154594767e-08
+hz[-1]   = -7.957749262700399e-08</code></pre>
+</div>
+</div>
+<div id="cell-fig-hz" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ax.loglog(tt, np.<span class="bu">abs</span>(hz), linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>ax.axvspan(tt[<span class="dv">0</span>], tstar, facecolor<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>ax.axvspan(tstar, tt[<span class="op">-</span><span class="dv">1</span>], facecolor<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"t in s"</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((<span class="fl">1e-14</span>, <span class="fl">1e-6</span>))</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ax.legend()</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'$h_z(t)$'</span>)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-hz" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="timedomain_fullspace_files/figure-html/fig-hz-output-1.png" width="587" height="452" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2: Magnetic field component <span class="math inline">\(h_z\)</span> due to a current step-on vertical magnetic dipole in fullspace. The red and green shading indicates the regime where <span class="math inline">\(\Theta r &gt; 1\)</span> and <span class="math inline">\(\Theta r &lt; 1\)</span>, resp.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-fig-dhzdt" class="cell" data-execution_count="22">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fneg <span class="op">=</span> np.argwhere(dhzdt <span class="op">&lt;</span> <span class="fl">0.0</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>fpos <span class="op">=</span> np.argwhere(dhzdt <span class="op">&gt;</span> <span class="fl">0.0</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>ax.loglog(tt[fneg], np.<span class="bu">abs</span>(dhzdt[fneg]), color<span class="op">=</span><span class="st">'C0'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>ax.loglog(tt[fpos], np.<span class="bu">abs</span>(dhzdt[fpos]), color<span class="op">=</span><span class="st">'C0'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>ax.loglog(tt, [<span class="dv">2</span> <span class="op">*</span> np.<span class="bu">abs</span>(dhzdt[<span class="op">-</span><span class="dv">1</span>]) <span class="op">*</span> t<span class="op">**</span>(<span class="op">-</span><span class="fl">2.5</span>) <span class="cf">for</span> t <span class="kw">in</span> tt], color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="vs">r'$\sim t^{-5/2}$'</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>ax.axvspan(tt[<span class="dv">0</span>], tstar, facecolor<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>ax.axvspan(tstar, tt[<span class="op">-</span><span class="dv">1</span>], facecolor<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"t in s"</span>)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((<span class="fl">1e-14</span>, <span class="fl">1e-2</span>))</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'$\partial_t h_z(t)$'</span>)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-dhzdt" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dhzdt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="timedomain_fullspace_files/figure-html/fig-dhzdt-output-1.png" width="587" height="452" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dhzdt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.3: Time derivative of the magnetic field component <span class="math inline">\(h_z\)</span> due to a current step-on vertical magnetic dipole in fullspace. The red and green shading indicates the regime where <span class="math inline">\(\Theta r &gt; 1\)</span> and <span class="math inline">\(\Theta r &lt; 1\)</span>, resp.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="late-time-asymptotic-behaviour-and-apparent-resistivity" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="late-time-asymptotic-behaviour-and-apparent-resistivity"><span class="header-section-number">8.6</span> Late-time asymptotic behaviour and apparent resistivity</h2>
+<p>The resistivity of the full space can be reconstructed from the late-time asymptotics of <span class="math inline">\(\partial_t \mathbf h(t)\)</span>.</p>
+<p>For <span class="math inline">\(t \to \infty\)</span> the <em>late-time asymptotics</em> is</p>
+<p><span class="math display">\[
+\partial_t \mathbf h^L(t) = \frac{\Theta^3(t)}{\sqrt{\pi}^3 t} = \frac{1}{8} \left(\frac{\mu\sigma}{\pi}\right)^{3/2} t^{-5/2} \mathbf m.
+\]</span></p>
+<p>We do not recognize any dependence on the distance <span class="math inline">\(r\)</span>.</p>
+<p>From the asymptotic behaviour of the late-time, we can reconstruct the conductivity of the full space directly from the measured variable.</p>
+<p>For example, the following applies for <span class="math inline">\(\mathbf m = (0, 0, m)^\top\)</span>:</p>
+<p><span class="math display">\[
+\sigma = \frac{4 \pi}{\mu} \left( \frac{1}{m} \partial_t h_z(t) \right)^{2/3} t^{5/3}
+\]</span></p>
+<div id="cell-fig-sigma-from-latetime" class="cell" data-execution_count="23">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mu0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>sig_a <span class="op">=</span> np.array([<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">/</span> mu0 <span class="op">*</span> np.<span class="bu">abs</span>(u)<span class="op">**</span>(<span class="dv">2</span><span class="op">/</span><span class="dv">3</span>) <span class="op">*</span> v<span class="op">**</span>(<span class="dv">5</span><span class="op">/</span><span class="dv">3</span>) <span class="cf">for</span> u, v <span class="kw">in</span> <span class="bu">zip</span>(dhzdt, tt)])</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>ax.loglog(tt, sig_a)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>ax.axvspan(tt[<span class="dv">0</span>], tstar, facecolor<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>ax.axvspan(tstar, tt[<span class="op">-</span><span class="dv">1</span>], facecolor<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>ax.hlines(sigma, tt[<span class="dv">0</span>], tt[<span class="op">-</span><span class="dv">1</span>], linestyle<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="st">'True conductivity'</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((<span class="fl">1e-5</span>, <span class="fl">1e-1</span>))</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'t in s'</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$\sigma~in~S/m$'</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-sigma-from-latetime" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sigma-from-latetime-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="timedomain_fullspace_files/figure-html/fig-sigma-from-latetime-output-1.png" width="599" height="436" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sigma-from-latetime-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.4: Apparent conductivity evaluated from the late-time asymptotics. The red and green shading indicates the regime where <span class="math inline">\(\Theta r &gt; 1\)</span> and <span class="math inline">\(\Theta r &lt; 1\)</span>, resp.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

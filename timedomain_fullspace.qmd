@@ -35,7 +35,8 @@ The following figures show the Heaviside function $u(t)$ and the result of the t
 We use the symbolic expressions `t` for the time as well as `Heaviside` and `DiracDelta` for step function and Dirac's delta function respectively. Furthermore, we use the function `integrate` for symbolic integration.
 
 ```{python}
-from sympy import symbols, diff, Heaviside, DiracDelta, integrate, plot, exp, oo, erf, erfc
+import numpy as np
+from sympy import symbols, diff, Heaviside, DiracDelta, integrate, plot, sqrt, exp, oo, erf, erfc, pi
 t = symbols('t', real=True)
 plot(Heaviside(t), (t, -1, 1), size=(6,3), title='Heaviside')
 ```
@@ -71,9 +72,10 @@ of which we can convince ourselves by symbolic differentiation:
 diff(Heaviside(t), t)
 ```
 
-## Terms
+## Terminology
 We will use two important terms in the time domain, namely
-* step function response
+
+* step function response and
 * impulse response.
 
 These terms are related to the time dependence of the current function of the dipole moment.
@@ -350,7 +352,7 @@ The following table contains some important Laplace transform pairs:
 | $\delta(t-a)$ | $e^{-as}$ |
 | $1$ | $\frac{1}{s}$ |
 
-### Inverse transform of the electric field with step function excitation
+## Inverse transform of the electric field with step function excitation
 
 The starting point is the equation for the electric field of a magnetic dipole in full space.
 
@@ -389,7 +391,7 @@ $$
 -\frac{4}{\sqrt{\pi}} \Theta^3 r^3 e^{-\Theta^2 r^2}
 $$
 
-## Error function
+### Error function
 
 The [error function](https://en.wikipedia.org/wiki/Error_function) erf$(t)$ plays an important role. Its definition is
 $$
@@ -418,3 +420,273 @@ $$
 $$
 
 We now carry out the derivative with respect to time. To do this, we need the chain rule again, since $\Theta = \Theta(t)$.
+
+```{python}
+mu, sigma, r = symbols('mu_0 sigma r', real=True)
+def Theta(t):
+    return sqrt(mu * sigma / 4 / t)
+
+ex1 = diff(erfc(Theta(t) * r), t)
+ex2 = diff(Theta(t) * r * exp(-Theta(t)**2 * r**2), t)
+
+ex = ex1 + 2 / sqrt(pi) * ex2
+
+ex.subs(sqrt(mu * sigma / 4 / t), Theta(t)).factor().simplify()
+```
+
+We slightly rewrite this term with the help of $\Theta(t)$ to get
+
+$$
+\frac{2}{\sqrt{\pi} t} \Theta^3 r^3 e^{-\Theta^2 r^2}.
+$$
+
+With the leading terms and the cross product we obtain the final result for the electric field as a step function response
+
+$$
+\mathbf e(\mathbf r, t) = -\frac{\mu}{4 \pi r^3} 
+\frac{2}{\sqrt{\pi} t} \Theta^3 r^3 e^{-\Theta^2 r^2}
+\mathbf m \times \mathbf r.
+$$
+
+We implement this function using `Python`.
+
+```{python}
+def Et(r, m, t, sigma):
+    mu = np.pi * 4e-7
+    R = np.linalg.norm(r)
+    theta = np.sqrt(mu * sigma / 4 / t)
+    tr = theta * R
+    t2r2 = tr**2
+    alpha = -mu / 4 / np.pi
+    E = alpha / R**3 * np.cross(m, r) * 2  / (
+        np.sqrt(np.pi) * t) * (tr * t2r2) * np.exp(-t2r2)
+    return E
+```
+
+```{python}
+Et(np.array([0, 100, 0]), np.array([0, 0, 1]), 1e-6, 0.01)
+```
+
+## Inverse transform of the magnetic field with step function excitation
+
+The starting point is again the equation for the magnetic field in the frequency domain.
+
+$$
+    \mathbf H(\mathbf r) = \frac{1}{4 \pi r^3} \left[
+    \frac{\mathbf m \cdot \mathbf r}{r^2} (3 + 3 i k r - k^2 r^2) \mathbf r - (1 + i k r - k^2 r^2) \mathbf m
+    \right] e^{-i k r}.
+$$
+
+With the expressions for the inverse Laplace transform introduced above, we obtain the magnetic field in the time domain:
+
+$$
+\begin{align}
+\begin{split}
+\mathbf h(\mathbf r, t) = & \frac{1}{4 \pi r^3}
+\left[
+    \frac{\mathbf m \cdot \mathbf r}{r^2}
+    \left(3 \, \mathrm{erfc}(\Theta r) + \left(\frac{6}{\sqrt{\pi}}\Theta r + \frac{4}{\sqrt{\pi}}\Theta^3 r^3\right)e^{-\Theta^2 r^2} 
+    \right) \mathbf r \right. - \\
+     &  \left. \left(
+    \mathrm{erfc}(\Theta r) + \left(\frac{2}{\sqrt{\pi}}\Theta r + \frac{4}{\sqrt{\pi}}\Theta^3 r^3\right)e^{-\Theta^2 r^2}
+    \right) \mathbf m
+    \right]
+    \end{split}
+\end{align}
+$$
+
+```{python}
+from scipy.special import erf, erfc
+def Ht(r, m, t, sigma):
+    mu = np.pi * 4e-7
+    R = np.linalg.norm(r)
+    theta = np.sqrt(mu * sigma / 4 / t)
+    tr = theta * R
+    t2r2 = tr**2
+    t3r3 = tr**3
+    sqpi = np.sqrt(np.pi)
+    alpha = 1.0 / (4.0 * np.pi * R**3)
+    H = alpha * (
+        np.dot(m, r) / R**2  * r
+            *
+            (3 * erfc(tr) +
+                (6 * tr / sqpi + 4 * t3r3 / sqpi) * np.exp(-t2r2)) 
+                -
+            (erfc(tr) +
+                (4 * t3r3 / sqpi + 2 * tr / sqpi) * np.exp(-t2r2)) 
+        * m
+        )
+
+
+    return H
+
+```
+
+```{python}
+Ht(np.array([0, 100, 0]), np.array([0, 0, 1]), 1e-0, 0.01)
+```
+
+However, the time derivative of the magnetic field is important, which is why we differentiate w.r.t. time. 
+Using the chain rule, we obtain 
+
+$$
+    \partial_t \mathbf h(\mathbf r, t) = \frac{\Theta^3}{\sqrt{\pi}^3 t} \left[
+    \Theta^2 r^2
+    \frac{\mathbf m \cdot \mathbf r}{r^2} 
+    \mathbf r - 
+    (\Theta^2 r ^2 - 1) 
+    \mathbf m
+    \right] e^{-\Theta^2 r^2}.
+$$
+
+## Numerical example
+
+```{python}
+def dHdt(r, m, t, sigma):
+    mu = 4e-7 * np.pi
+    R = np.linalg.norm(r)
+    
+    theta = np.sqrt(mu * sigma / 4.0 / t)
+    tr = theta * R
+    t2r2 = tr**2
+    sqpi = np.sqrt(np.pi)
+    
+    return theta**3 / sqpi**3 / t * np.exp(-t2r2) * (
+            t2r2 * np.dot(m, r) * r / R**2 +
+            (1 - t2r2) * m
+        )
+```
+
+We now simulate the step function and impulse response of the electrically conductive full space.
+
+We choose $\mathbf r = [100, 0, 0]^\top$ as the observation point.
+The conductivity is 0.01 S/m.
+The dipole moment is $\mathbf m = [0 ,0 , 1]^\top$.
+
+We simulate the fields for logarithmically equidistant times in the interval $10^{-7} \le t \le 1$ s.
+
+The simulated quantities are $e_y(t)$, $h_z(t)$ and $\partial_t h_z(t)$.
+
+```{python}
+m = np.array([0, 0, 1])
+r = np.array([100.0, 0, 0])
+sigma = 0.01
+
+nt = 71
+tt = np.logspace(-7, 0, nt, endpoint=True)
+ey = np.array([Et(r, m, v, sigma)[1] for v in tt])
+hz = np.array([Ht(r, m, v, sigma)[2] for v in tt])
+dhzdt = np.array([dHdt(r, m, v, sigma)[2] for v in tt])
+```
+
+The electric field exhibits an asymptotic behaviour of $e \sim t^{-5/2}$ as $t \to \infty$
+```{python}
+#| label: fig-ey
+#| fig-cap: "Electric field component $e_y$ due to a step-on vertical magnetic dipole in fullspace. The red and green shading indicates the regime where $\\Theta r > 1$ and $\\Theta r < 1$, resp."
+import matplotlib.pyplot as plt
+
+tr = lambda t: np.sqrt(np.pi * 4e-7 * sigma / 4 / t) * np.linalg.norm(r)
+
+TR = np.array([tr(t) for t in tt])
+
+iind = np.argwhere(TR > 1)
+
+fig, ax = plt.subplots()
+ax.loglog(tt, np.abs(ey), linestyle='--')
+ax.loglog(tt, [2 * np.abs(ey[-1]) * t**(-2.5) for t in tt], label=r'$\sim t^{-5/2}$')
+tstar = tt[iind][-1][0]
+ax.axvspan(tt[0], tstar, facecolor='red', alpha=0.1)
+ax.axvspan(tstar, tt[-1], facecolor='green', alpha=0.1)
+ax.set_xlabel("t in s")
+ax.set_ylim((1e-18, 1e-5))
+ax.legend()
+ax.set_title(r'$e_y(t)$')
+ax.grid(True)
+```
+The magnetic field approaches a stationary value as $t \to \infty$.
+
+Obviously,
+$$
+h(r, t) = -\frac{1}{4 \pi r^3} \text{ for } t \to \infty.
+$$
+
+The numerical evaluations are identical up to rounding errors.
+```{python}
+print('h_z(r,t) = ' + str(-1.0 / (4 * np.pi * np.linalg.norm(r)**3)))
+print('hz[-1]   = ' + str(hz[-1]))
+```
+
+```{python}
+#| label: fig-hz
+#| fig-cap: "Magnetic field component $h_z$ due to a current step-on vertical magnetic dipole in fullspace. The red and green shading indicates the regime where $\\Theta r > 1$ and $\\Theta r < 1$, resp."
+
+fig, ax = plt.subplots()
+ax.loglog(tt, np.abs(hz), linestyle='--')
+
+ax.axvspan(tt[0], tstar, facecolor='red', alpha=0.1)
+ax.axvspan(tstar, tt[-1], facecolor='green', alpha=0.1)
+ax.set_xlabel("t in s")
+ax.set_ylim((1e-14, 1e-6))
+# ax.legend()
+ax.set_title(r'$h_z(t)$')
+ax.grid(True)
+```
+
+```{python}
+#| label: fig-dhzdt
+#| fig-cap: "Time derivative of the magnetic field component $h_z$ due to a current step-on vertical magnetic dipole in fullspace. The red and green shading indicates the regime where $\\Theta r > 1$ and $\\Theta r < 1$, resp."
+
+fneg = np.argwhere(dhzdt < 0.0)
+fpos = np.argwhere(dhzdt > 0.0)
+fig, ax = plt.subplots()
+ax.loglog(tt[fneg], np.abs(dhzdt[fneg]), color='C0', linestyle='--')
+ax.loglog(tt[fpos], np.abs(dhzdt[fpos]), color='C0', linestyle='-')
+ax.loglog(tt, [2 * np.abs(dhzdt[-1]) * t**(-2.5) for t in tt], color='C1', label=r'$\sim t^{-5/2}$')
+
+ax.axvspan(tt[0], tstar, facecolor='red', alpha=0.1)
+ax.axvspan(tstar, tt[-1], facecolor='green', alpha=0.1)
+ax.set_xlabel("t in s")
+ax.set_ylim((1e-14, 1e-2))
+ax.legend()
+ax.set_title(r'$\partial_t h_z(t)$')
+ax.grid(True)
+```
+
+## Late-time asymptotic behaviour and apparent resistivity
+
+The resistivity of the full space can be reconstructed from the late-time asymptotics of $\partial_t \mathbf h(t)$.
+
+For $t \to \infty$ the *late-time asymptotics* is
+
+$$
+\partial_t \mathbf h^L(t) = \frac{\Theta^3(t)}{\sqrt{\pi}^3 t} = \frac{1}{8} \left(\frac{\mu\sigma}{\pi}\right)^{3/2} t^{-5/2} \mathbf m.
+$$
+
+We do not recognize any dependence on the distance $r$.
+
+From the asymptotic behaviour of the late-time, we can reconstruct the conductivity of the full space directly from the measured variable.
+
+For example, the following applies for $\mathbf m = (0, 0, m)^\top$:
+
+$$
+\sigma = \frac{4 \pi}{\mu} \left( \frac{1}{m} \partial_t h_z(t) \right)^{2/3} t^{5/3}
+$$
+
+```{python}
+#| label: fig-sigma-from-latetime
+#| fig-cap: "Apparent conductivity evaluated from the late-time asymptotics. The red and green shading indicates the regime where $\\Theta r > 1$ and $\\Theta r < 1$, resp."
+
+mu0 = np.pi * 4e-7
+sig_a = np.array([4 * np.pi / mu0 * np.abs(u)**(2/3) * v**(5/3) for u, v in zip(dhzdt, tt)])
+fig, ax = plt.subplots()
+
+ax.loglog(tt, sig_a)
+ax.axvspan(tt[0], tstar, facecolor='red', alpha=0.1)
+ax.axvspan(tstar, tt[-1], facecolor='green', alpha=0.1)
+ax.hlines(sigma, tt[0], tt[-1], linestyle='--', color='C1', label='True conductivity')
+ax.legend()
+ax.set_ylim((1e-5, 1e-1))
+ax.set_xlabel('t in s')
+ax.set_ylabel(r'$\sigma~in~S/m$')
+ax.grid(True)
+```
