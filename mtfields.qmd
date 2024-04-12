@@ -220,7 +220,7 @@ ax.grid(True)
 ax.legend(loc='lower right')
 ```
 
-## Impedance and apparent resitivity
+## Impedance and apparent resistivity
 
 We define the magnetotelluric impedance as 
 $$

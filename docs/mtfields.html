@@ -296,7 +296,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#visualization" id="toc-visualization" class="nav-link active" data-scroll-target="#visualization"><span class="header-section-number">6.1</span> Visualization</a></li>
-  <li><a href="#impedance-and-apparent-resitivity" id="toc-impedance-and-apparent-resitivity" class="nav-link" data-scroll-target="#impedance-and-apparent-resitivity"><span class="header-section-number">6.2</span> Impedance and apparent resitivity</a>
+  <li><a href="#impedance-and-apparent-resistivity" id="toc-impedance-and-apparent-resistivity" class="nav-link" data-scroll-target="#impedance-and-apparent-resistivity"><span class="header-section-number">6.2</span> Impedance and apparent resistivity</a>
   <ul class="collapse">
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">6.2.1</span> Example</a></li>
   </ul></li>
@@ -458,7 +458,7 @@ E_y(z) =
 <p>We illustrate our results with a simple example of a uniform halfspace with a conductivity of 0.01 S/m and a frequency of 10 Hz.</p>
 <p>Shown are real (<code>Re</code>) and imaginary (<code>Im</code>) part of the fields along with their magnitude (<code>Abs</code>) as a function of depth.</p>
 <p>Clearly visible is the exponential decay with depth.</p>
-<div id="d2afd144" class="cell" data-execution_count="1">
+<div id="4ba76134" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -493,7 +493,7 @@ E_y(z) =
 </details>
 </div>
 <p>In our example, the skin depth is 1590.63 m.</p>
-<div id="c04cd3ef" class="cell" data-execution_count="2">
+<div id="9f7c0751" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
@@ -518,7 +518,7 @@ E_y(z) =
 </div>
 </div>
 </div>
-<div id="01a5d713" class="cell" data-execution_count="3">
+<div id="c5c0761f" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
@@ -544,8 +544,8 @@ E_y(z) =
 </div>
 </div>
 </section>
-<section id="impedance-and-apparent-resitivity" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="impedance-and-apparent-resitivity"><span class="header-section-number">6.2</span> Impedance and apparent resitivity</h2>
+<section id="impedance-and-apparent-resistivity" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="impedance-and-apparent-resistivity"><span class="header-section-number">6.2</span> Impedance and apparent resistivity</h2>
 <p>We define the magnetotelluric impedance as <span class="math display">\[
 Z(\omega) = \frac{ \mathbf e_h \cdot \mathbf E }{(\mathbf e_h \times \mathbf e_z) \cdot \mathbf H } = \frac{ E_x }{ H_y} = -\frac{ E_y }{H_x }
 \]</span> where <span class="math inline">\(\mathbf e_h\)</span> is an arbitrary horizontal Cartesian unit vector, and <span class="math inline">\(\mathbf e_z\)</span> is the vertical Cartesian unit vector.</p>
@@ -561,7 +561,7 @@ Z_1 = \frac{ \omega \mu_0 }{ k_1 } = Z_s.
 \]</span></p>
 <section id="example" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="example"><span class="header-section-number">6.2.1</span> Example</h3>
-<div id="b09d6bfb" class="cell" data-execution_count="4">
+<div id="f6aea234" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">100.0</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mu0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
