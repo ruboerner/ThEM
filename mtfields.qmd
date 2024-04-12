@@ -219,3 +219,84 @@ ax.set_title('Normalized magnetic field')
 ax.grid(True)
 ax.legend(loc='lower right')
 ```
+
+## Impedance and apparent resitivity
+
+We define the magnetotelluric impedance as 
+$$
+Z(\omega) = \frac{ \mathbf e_h \cdot \mathbf E }{(\mathbf e_h \times \mathbf e_z) \cdot \mathbf H } = \frac{ E_x }{ H_y} = -\frac{ E_y }{H_x }
+$$
+where $\mathbf e_h$ is an arbitrary horizontal Cartesian unit vector, and $\mathbf e_z$ is the vertical Cartesian unit vector.
+
+On the surface of a halfspace, we can measure the _surface impedance_
+$$
+Z_s = Z(\omega),
+$$
+which in case of a uniform halfspace is identical to the _intrinsic impedance_
+$$
+Z_1 = \frac{ \omega \mu_0 }{ k_1 } = Z_s.
+$$
+Here, $k_1^2 = -i\omega\mu_0\sigma_1$ is the wave propagation constant of the first (however infinite in its vertical extent) layer.
+
+From $Z_s$ we can infer the _apparent resistivity_
+$$
+\rho_a = \frac{ 1 }{ \omega \mu_0} |Z_s|^2
+$$
+and the _phase_
+$$
+\varphi = \arctan \frac{ \mathrm{Im}(Z_s) }{\mathrm{Re}(Z_s) }.
+$$
+
+### Example
+```{python}
+#| code-fold: False
+sigma = 0.01
+f = 100.0
+mu0 = np.pi * 4e-7
+omega = 2 * np.pi * f
+k = np.sqrt(-1j * omega * mu0 * sigma)
+Hx = 1.0
+Ey = -1j * k / sigma
+Zs = Ey / Hx
+
+rhoa = lambda Z, f: np.abs(Z)**2 / ( 2 * np.pi * f * mu0)
+phi = lambda Z: np.arctan(np.imag(Z) / np.real(Z)) * 180 / np.pi
+```
+
+For our example, the apparent resistivity is `{python} rhoa(Zs, f)` $\Omega \cdot m$.
+The phase angle is `{python} phi(Zs)` degrees.
+
+
+::: {.callout-note}
+Note the sign of $Z_s$, which depends on the choice of the horizontal field components.
+
+Let's check the result of the cross product $\mathbf e_h \times \mathbf e_z$:
+
+$$
+\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix} \times
+\begin{bmatrix}
+0 \\ 0 \\ 1
+\end{bmatrix} =
+\begin{bmatrix}
+0 \\ -1 \\ 0
+\end{bmatrix} \quad\text{with } \mathbf e_h = \mathbf e_x
+$$
+
+$$
+\begin{bmatrix}
+0 \\ 1 \\ 0
+\end{bmatrix} \times
+\begin{bmatrix}
+0 \\ 0 \\ 1
+\end{bmatrix} =
+\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix} \quad\text{with } \mathbf e_h = \mathbf e_y
+$$
+:::
+
+In  the inhomogeneous case, i.e., when the conductivity of the halfspace is not uniform, the apparent resistivity and phase generally vary with frequency.
+
+This can be visualized using _sounding curves_ of $\rho_a$ vs. period $T = 1/f$ or $\varphi$ vs. $T$.

@@ -296,6 +296,10 @@ window.Quarto = {
    
   <ul>
   <li><a href="#visualization" id="toc-visualization" class="nav-link active" data-scroll-target="#visualization"><span class="header-section-number">6.1</span> Visualization</a></li>
+  <li><a href="#impedance-and-apparent-resitivity" id="toc-impedance-and-apparent-resitivity" class="nav-link" data-scroll-target="#impedance-and-apparent-resitivity"><span class="header-section-number">6.2</span> Impedance and apparent resitivity</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">6.2.1</span> Example</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -454,7 +458,7 @@ E_y(z) =
 <p>We illustrate our results with a simple example of a uniform halfspace with a conductivity of 0.01 S/m and a frequency of 10 Hz.</p>
 <p>Shown are real (<code>Re</code>) and imaginary (<code>Im</code>) part of the fields along with their magnitude (<code>Abs</code>) as a function of depth.</p>
 <p>Clearly visible is the exponential decay with depth.</p>
-<div id="dd8f95b4" class="cell" data-execution_count="1">
+<div id="d2afd144" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -489,7 +493,7 @@ E_y(z) =
 </details>
 </div>
 <p>In our example, the skin depth is 1590.63 m.</p>
-<div id="a239ddd6" class="cell" data-execution_count="2">
+<div id="c04cd3ef" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
@@ -514,7 +518,7 @@ E_y(z) =
 </div>
 </div>
 </div>
-<div id="a6cfac18" class="cell" data-execution_count="3">
+<div id="01a5d713" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
@@ -539,8 +543,79 @@ E_y(z) =
 </div>
 </div>
 </div>
+</section>
+<section id="impedance-and-apparent-resitivity" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="impedance-and-apparent-resitivity"><span class="header-section-number">6.2</span> Impedance and apparent resitivity</h2>
+<p>We define the magnetotelluric impedance as <span class="math display">\[
+Z(\omega) = \frac{ \mathbf e_h \cdot \mathbf E }{(\mathbf e_h \times \mathbf e_z) \cdot \mathbf H } = \frac{ E_x }{ H_y} = -\frac{ E_y }{H_x }
+\]</span> where <span class="math inline">\(\mathbf e_h\)</span> is an arbitrary horizontal Cartesian unit vector, and <span class="math inline">\(\mathbf e_z\)</span> is the vertical Cartesian unit vector.</p>
+<p>On the surface of a halfspace, we can measure the <em>surface impedance</em> <span class="math display">\[
+Z_s = Z(\omega),
+\]</span> which in case of a uniform halfspace is identical to the <em>intrinsic impedance</em> <span class="math display">\[
+Z_1 = \frac{ \omega \mu_0 }{ k_1 } = Z_s.
+\]</span> Here, <span class="math inline">\(k_1^2 = -i\omega\mu_0\sigma_1\)</span> is the wave propagation constant of the first (however infinite in its vertical extent) layer.</p>
+<p>From <span class="math inline">\(Z_s\)</span> we can infer the <em>apparent resistivity</em> <span class="math display">\[
+\rho_a = \frac{ 1 }{ \omega \mu_0} |Z_s|^2
+\]</span> and the <em>phase</em> <span class="math display">\[
+\varphi = \arctan \frac{ \mathrm{Im}(Z_s) }{\mathrm{Re}(Z_s) }.
+\]</span></p>
+<section id="example" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="example"><span class="header-section-number">6.2.1</span> Example</h3>
+<div id="b09d6bfb" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">100.0</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mu0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> np.sqrt(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> mu0 <span class="op">*</span> sigma)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Hx <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>Ey <span class="op">=</span> <span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">/</span> sigma</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Zs <span class="op">=</span> Ey <span class="op">/</span> Hx</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>rhoa <span class="op">=</span> <span class="kw">lambda</span> Z, f: np.<span class="bu">abs</span>(Z)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> ( <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f <span class="op">*</span> mu0)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> <span class="kw">lambda</span> Z: np.arctan(np.imag(Z) <span class="op">/</span> np.real(Z)) <span class="op">*</span> <span class="dv">180</span> <span class="op">/</span> np.pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For our example, the apparent resistivity is 100.0 <span class="math inline">\(\Omega \cdot m\)</span>. The phase angle is 45.0 degrees.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note the sign of <span class="math inline">\(Z_s\)</span>, which depends on the choice of the horizontal field components.</p>
+<p>Let’s check the result of the cross product <span class="math inline">\(\mathbf e_h \times \mathbf e_z\)</span>:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix} \times
+\begin{bmatrix}
+0 \\ 0 \\ 1
+\end{bmatrix} =
+\begin{bmatrix}
+0 \\ -1 \\ 0
+\end{bmatrix} \quad\text{with } \mathbf e_h = \mathbf e_x
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}
+0 \\ 1 \\ 0
+\end{bmatrix} \times
+\begin{bmatrix}
+0 \\ 0 \\ 1
+\end{bmatrix} =
+\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix} \quad\text{with } \mathbf e_h = \mathbf e_y
+\]</span></p>
+</div>
+</div>
+<p>In the inhomogeneous case, i.e., when the conductivity of the halfspace is not uniform, the apparent resistivity and phase generally vary with frequency.</p>
+<p>This can be visualized using <em>sounding curves</em> of <span class="math inline">\(\rho_a\)</span> vs.&nbsp;period <span class="math inline">\(T = 1/f\)</span> or <span class="math inline">\(\varphi\)</span> vs.&nbsp;<span class="math inline">\(T\)</span>.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
