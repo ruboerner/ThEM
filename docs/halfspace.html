@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.5.29">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods - 9&nbsp; Dipole sources above a halfspace</title>
+<title>Theory of Electromagnetic Methods – 9&nbsp; Dipole sources above a halfspace</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -68,7 +102,46 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+window.MathJax = {
+  loader: {
+    load: ['[tex]/physics']
+  },
+  tex: {
+    packages: {'[+]': ['physics']}
+  }
+};
+</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -232,7 +305,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#uniform-halfspace" id="toc-uniform-halfspace" class="nav-link active" data-scroll-target="#uniform-halfspace"><span class="header-section-number">9.1</span> Uniform halfspace</a></li>
+  <li><a href="#uniform-halfspace" id="toc-uniform-halfspace" class="nav-link active" data-scroll-target="#uniform-halfspace"><span class="header-section-number">9.1</span> Uniform halfspace</a>
+  <ul class="collapse">
+  <li><a href="#source-field" id="toc-source-field" class="nav-link" data-scroll-target="#source-field"><span class="header-section-number">9.1.1</span> Source field</a></li>
+  <li><a href="#superposition-of-source-field-and-induced-field-within-the-halfspace" id="toc-superposition-of-source-field-and-induced-field-within-the-halfspace" class="nav-link" data-scroll-target="#superposition-of-source-field-and-induced-field-within-the-halfspace"><span class="header-section-number">9.1.2</span> Superposition of source field and induced field within the halfspace</a></li>
+  <li><a href="#helmholtz-equation" id="toc-helmholtz-equation" class="nav-link" data-scroll-target="#helmholtz-equation"><span class="header-section-number">9.1.3</span> Helmholtz equation</a></li>
+  <li><a href="#conditions-of-continuity" id="toc-conditions-of-continuity" class="nav-link" data-scroll-target="#conditions-of-continuity"><span class="header-section-number">9.1.4</span> Conditions of continuity</a></li>
+  <li><a href="#separation-of-variables" id="toc-separation-of-variables" class="nav-link" data-scroll-target="#separation-of-variables"><span class="header-section-number">9.1.5</span> Separation of variables</a></li>
+  <li><a href="#potential-in-z0-conducting-halfspace" id="toc-potential-in-z0-conducting-halfspace" class="nav-link" data-scroll-target="#potential-in-z0-conducting-halfspace"><span class="header-section-number">9.1.6</span> Potential in <span class="math inline">\(z&gt;0\)</span> (conducting halfspace)</a></li>
+  <li><a href="#potential-in-z0-insulating-halfspace" id="toc-potential-in-z0-insulating-halfspace" class="nav-link" data-scroll-target="#potential-in-z0-insulating-halfspace"><span class="header-section-number">9.1.7</span> Potential in <span class="math inline">\(z&lt;0\)</span> (insulating halfspace)</a></li>
+  <li><a href="#exploiting-the-continuity-conditions-in-z0" id="toc-exploiting-the-continuity-conditions-in-z0" class="nav-link" data-scroll-target="#exploiting-the-continuity-conditions-in-z0"><span class="header-section-number">9.1.8</span> Exploiting the continuity conditions in <span class="math inline">\(z=0\)</span></a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">9.1.9</span> Implementation</a></li>
+  <li><a href="#bessel-functions" id="toc-bessel-functions" class="nav-link" data-scroll-target="#bessel-functions"><span class="header-section-number">9.1.10</span> Bessel functions</a></li>
+  </ul></li>
   <li><a href="#layered-halfspace" id="toc-layered-halfspace" class="nav-link" data-scroll-target="#layered-halfspace"><span class="header-section-number">9.2</span> Layered halfspace</a></li>
   </ul>
 </nav>
@@ -261,6 +346,334 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="uniform-halfspace" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="uniform-halfspace"><span class="header-section-number">9.1</span> Uniform halfspace</h2>
+<p>First, we recall that we have derived frequency domain full-space solutions of the Helmholtz equation for the fields <span class="math inline">\(\mathbf E\)</span> and <span class="math inline">\(\mathbf H\)</span> which base on the definition of a vector potential <span class="math inline">\(\mathbf F\)</span>.</p>
+<p>Now, we introduce the plane <span class="math inline">\(z=0\)</span> where a jump (discontinuity) in the electrical conductivity from zero to some positive, constant and finite value occurs.</p>
+<p>We set <span class="math display">\[
+\sigma(z) =
+\begin{cases}
+0 &amp; z &lt; 0 \\
+\sigma_1 &gt; 0 &amp; z \ge 0.
+\end{cases}
+\]</span></p>
+<p>Later, we associate the upper halfspace (where <span class="math inline">\(z&lt;0\)</span>) with the electrically insulating Air, and the lower halfspace (where <span class="math inline">\(z&gt;0\)</span>) with the electrically conducting Earth, which we refer to as the <em>conductive halfspace</em>.</p>
+<p>We place the dipole at a height of <span class="math inline">\(h&gt;0\)</span> above the Air-Earth interface. Hence, the <span class="math inline">\(z\)</span>-coordinate of the dipole is <span class="math inline">\(z=-h\)</span>.</p>
+<p>Due to the symmetry of the problem we prefer a cylindrical coordinate system <span class="math inline">\((r, z, \varphi)\)</span>. The axis of the dipole is aligned with the <span class="math inline">\(z\)</span>-axis (hence the term <em>vertical</em> magnetic dipole, <em>VMD</em>).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The restriction to a vertical magnetic dipole was made intentionally in order to describe the principles of the mathematical approach. It does not restrict the generality.</p>
+</div>
+</div>
+<p>It is known from the analysis of the fullspace solution that, in the case of a VMD, there is no dependency of the angular direction <span class="math inline">\(\varphi\)</span> around the <span class="math inline">\(z\)</span>-axis.</p>
+<p>In a cylindrical coordinate system, the fields of a <span class="math inline">\(z\)</span>-axis aligned VMD only depend on <span class="math inline">\(r\)</span> and <span class="math inline">\(z\)</span>.</p>
+<section id="source-field" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="source-field"><span class="header-section-number">9.1.1</span> Source field</h3>
+<p>The dipole has a dipole moment of <span class="math inline">\(\mathbf m = (0, 0, m)^\top\)</span> and is located at the point <span class="math inline">\(\mathbf r_0 = (0, 0, -h)^\top\)</span>.</p>
+<p>For <span class="math inline">\(h\)</span> being sufficiently large, the conducting halfspace has only negligible induction effects in the upper halfspace, therefore we could approximate the vector potential at a point <span class="math inline">\(\mathbf r\)</span> in the neighborhood of the dipole as <span class="math inline">\(`math
+F_z^* = \frac{i\omega\mu_0 m}{4 \pi R},\)</span>` where <span class="math inline">\(R = |\mathbf r - \mathbf r_0| = \sqrt{r^2 + (z + h)^2}\)</span> is the Euclidean distance between the dipole and the point of observation.</p>
+</section>
+<section id="superposition-of-source-field-and-induced-field-within-the-halfspace" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="superposition-of-source-field-and-induced-field-within-the-halfspace"><span class="header-section-number">9.1.2</span> Superposition of source field and induced field within the halfspace</h3>
+<p>The vector potential (and thus the electric and magnetic field) in <span class="math inline">\(z&lt;0\)</span> is a superposition of two separate, but not independent contributions, i.e., <span class="math display">\[
+F^0_\text{total}  = F^* + F^0 \quad \text{ in } z &lt; 0,
+\]</span></p>
+<p>Within the conducting halfspace <span class="math inline">\(z&gt;0\)</span> the vector potential is referred to as <span class="math inline">\(F^1\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that we have still left out the consideration of the potential in the plane <span class="math inline">\(z=0\)</span>!</p>
+</div>
+</div>
+<p>Both <span class="math inline">\(F^0\)</span> and <span class="math inline">\(F^1\)</span> depend on the dipole position.</p>
+</section>
+<section id="helmholtz-equation" class="level3" data-number="9.1.3">
+<h3 data-number="9.1.3" class="anchored" data-anchor-id="helmholtz-equation"><span class="header-section-number">9.1.3</span> Helmholtz equation</h3>
+<p>For any arbitrary dipole position <span class="math inline">\(\mathbf r_0 = (0, 0, -h)^\top\)</span>, <span class="math inline">\(h&gt;0\)</span>, we observe a unique distribution of fields in both halfspaces.</p>
+<p>We formulate the problem of finding these fields as a system of two independent PDEs for the two halfspaces (excluding the common interface at <span class="math inline">\(z=0\)</span>). Such a system can only be solved uniquely when certain conditions at <span class="math inline">\(z=0\)</span> are enforced.</p>
+<p>In other words: The freedom of choice of the solutions in both halfspaces must be restricted by the conditions of continuity at <span class="math inline">\(z=0\)</span>.</p>
+<p>We formulate the following task:</p>
+<p>We seek the vector potentials <span class="math inline">\(F^0(r, z)\)</span> und <span class="math inline">\(F^1(r, z)\)</span> as solution of the system <span class="math display">\[
+\begin{align}
+\laplacian F^0 + k_0^2 F^0 &amp; = -i\omega\mu_0 m \delta^3(\mathbf r_0) &amp; \text{ for } z &lt; 0 \\
+\laplacian F^1 + k_1^2 F^1 &amp; = 0 &amp; \text{ for } z &gt; 0
+\end{align}
+\]</span> with appropriate conditions in <span class="math inline">\(z=0\)</span>.</p>
+<p><span class="math inline">\(k_0^2\)</span> and <span class="math inline">\(k_1^2\)</span> are the (squared) wave numbers, where <span class="math inline">\(k_i^2 = -i\omega\mu_0\sigma_i\)</span>, <span class="math inline">\(i=0,1\)</span>. The first of the above equations (for <span class="math inline">\(F^0\)</span>) is a Poisson equation, since <span class="math inline">\(k_0^2 \approx 0\)</span>.</p>
+</section>
+<section id="conditions-of-continuity" class="level3" data-number="9.1.4">
+<h3 data-number="9.1.4" class="anchored" data-anchor-id="conditions-of-continuity"><span class="header-section-number">9.1.4</span> Conditions of continuity</h3>
+<p>When propagating through the interface <span class="math inline">\(z=0\)</span>, the tangential field components <span class="math inline">\(E_\varphi\)</span> and <span class="math inline">\(H_r\)</span> are continuous.</p>
+<p>However, we are using the vector potential in our derivation. What is the appropriate condition for the vector potential in <span class="math inline">\(z=0\)</span>?</p>
+<p>Therefore, in cylindrical coordinates, the fields in <span class="math inline">\(z=0\)</span> must fulfill the equations <span class="math display">\[
+\begin{align}
+E_\varphi^0 &amp; = E_\varphi^1 \\
+H_r^0 &amp; = H_r^1,
+\end{align}
+\]</span> which translate into the appropriate conditions for the vector potentials in <span class="math inline">\(z=0\)</span>: <span class="math display">\[
+\begin{align}
+\pdv{F^0}{r} &amp; = \pdv{F^1}{r} \\
+\pdv{F^0}{r}{z} &amp; = \pdv{F^1}{r}{z} .
+\end{align}
+\]</span> These conditions apply along the complete plane <span class="math inline">\(z=0\)</span>. <span class="math inline">\(F^0\)</span> and <span class="math inline">\(F^1\)</span> must vanish for <span class="math inline">\(r \to \infty\)</span>. Therefore the constants of integration must be zero. After integration we obtain <span class="math display">\[
+\begin{align}
+F^0 &amp; = F^1 \\
+\pdv{F^0}{z} &amp; = \pdv{F^1}{z}
+\end{align}
+\]</span> as <em>conditions of continuity</em> for the vector potential in <span class="math inline">\(z=0\)</span>.</p>
+</section>
+<section id="separation-of-variables" class="level3" data-number="9.1.5">
+<h3 data-number="9.1.5" class="anchored" data-anchor-id="separation-of-variables"><span class="header-section-number">9.1.5</span> Separation of variables</h3>
+<p>At first, we seek a solution of the homogeneous PDE in <span class="math inline">\(z&gt;0\)</span> (medium <span class="math inline">\(1\)</span>, i.e., within the <em>conducting halfspace</em>). In cylindrical coordinates, the Helmholtz equation can be written as <span class="math display">\[
+\begin{equation}
+\pdv[2]{F}{r}
++ \frac{1}{r}  \pdv{F}{r} + \pdv[2]{F}{z} + k^2 F = 0.
+\end{equation}
+\]</span></p>
+<p>A common solution method is the <em>Separation of variables</em>.</p>
+<p>We make the following <em>ansatz</em></p>
+<p><span class="math display">\[
+\begin{equation}
+F(r,z) = U(r) V(z)
+\end{equation}
+\]</span> and replace <span class="math inline">\(F\)</span> by <span class="math inline">\(U V\)</span> in the PDE.</p>
+<p>After multiplication with <span class="math inline">\(\dfrac{1}{UV}\)</span> we rewrite <span class="math display">\[
+\begin{equation}
+\underbrace{
+\frac{1}{U}  \dv[2]{U}{r}+
+\frac{1}{Ur} \dv{U}{r} }_{=-\lambda^2} +
+\underbrace{
+k^2 +
+\frac{1}{V} \dv[2]{V}{z}}_{=+\lambda^2} = 0,
+\end{equation}
+\]</span> from which we obtain the two independent ODEs <span class="math display">\[
+\begin{equation}
+\begin{split}
+\dv[2]{U}{r} +
+\frac{1}{r} \dv{U}{r} + \lambda^2 U &amp; = 0 \\
+\dv[2]{V}{z} - (\lambda^2 - k^2) V &amp; = 0,
+\end{split}
+\end{equation}
+\]</span> which we refer to as <em>Bessel</em> and <em>d’Alembert</em> equations, resp.</p>
+<p>Their solutions are <span class="math display">\[
+\begin{equation}
+U(r, \lambda) = \hat\alpha(\lambda) J_0(\lambda r) +
+\hat\beta(\lambda) Y_0(\lambda r)
+\end{equation}
+\]</span> and <span class="math display">\[
+\begin{equation}
+V(z, \lambda) = \hat\gamma^-(\lambda) e^{-\sqrt{\lambda^2 - k^2}z}
++ \hat\gamma^+(\lambda) e^{+\sqrt{\lambda^2 - k^2}z}.
+\end{equation}
+\]</span></p>
+<p>The general solution can be obtained by linear combination, i.e., <span class="math display">\[
+F(r, z) = \int\limits_0^\infty U(r, \lambda) V(z, \lambda) \dd\lambda
+\]</span></p>
+</section>
+<section id="potential-in-z0-conducting-halfspace" class="level3" data-number="9.1.6">
+<h3 data-number="9.1.6" class="anchored" data-anchor-id="potential-in-z0-conducting-halfspace"><span class="header-section-number">9.1.6</span> Potential in <span class="math inline">\(z&gt;0\)</span> (conducting halfspace)</h3>
+<p>With <span class="math inline">\(\lambda_1 = \sqrt{\lambda^2 - k_1^2}\)</span> and <span class="math inline">\(\gamma^\pm = \hat\alpha \hat \gamma^\pm\)</span> the superposition of solutions for all values of <span class="math inline">\(\lambda\)</span> yields the solution for <span class="math inline">\(z&gt;0\)</span> <span class="math display">\[
+\begin{equation}
+F^1(r,z) = \frac{i\omega\mu m}{4 \pi} \int_0^\infty
+\left[
+\gamma^-(\lambda) e^{-\lambda_1 z} +
+\gamma^+(\lambda) e^{+\lambda_1 z}
+\right] J_0(\lambda r)\, \dd\lambda.
+\end{equation}
+\]</span> It is required that <span class="math inline">\(F^1 \to 0\)</span> for <span class="math inline">\(z \to +\infty\)</span>. This can be achieved by setting <span class="math inline">\(\gamma^+ = 0\)</span>.</p>
+<p>We obtain the important intermediate result <span class="math display">\[
+\begin{equation}
+F^1(r,z) = \frac{i\omega\mu m}{4 \pi} \int_0^\infty
+\gamma^-(\lambda) e^{-\lambda_1 z}
+J_0(\lambda r)\, \dd\lambda.
+\end{equation}
+\]</span> Now, it remains to determine the unknown coefficient function <span class="math inline">\(\gamma^-(\lambda)\)</span>.</p>
+</section>
+<section id="potential-in-z0-insulating-halfspace" class="level3" data-number="9.1.7">
+<h3 data-number="9.1.7" class="anchored" data-anchor-id="potential-in-z0-insulating-halfspace"><span class="header-section-number">9.1.7</span> Potential in <span class="math inline">\(z&lt;0\)</span> (insulating halfspace)</h3>
+<p>As has been indicated above, the total potential in the insulating halfspace can be written as the superposition of the two contributions <span class="math inline">\(F^0\)</span> and <span class="math inline">\(F^*\)</span>.</p>
+<p>In <span class="math inline">\(z&lt;0\)</span>, we add the potential observed in the unbounded non-conducting fullspace, <span class="math inline">\(F^*\)</span>, and the potential of the induced currents in <span class="math inline">\(z&gt;0\)</span>: <span class="math display">\[
+F^0(r,z) = \frac{i\omega\mu m}{4 \pi}
+\left[
+\frac{1}{R} + \int_0^\infty \gamma^+(\lambda) e^{+\sqrt{\lambda^2 - k_0^2}z}J_0(\lambda r)\,\dd\lambda
+\right]
+\]</span> Again, it is required that <span class="math inline">\(F^0 \to 0\)</span> for <span class="math inline">\(z \to -\infty\)</span> which is met by setting <span class="math inline">\(\gamma^-(\lambda) = 0\)</span> in <span class="math inline">\(z&lt;0\)</span>.</p>
+<p>To make both terms in brackets compatible, we use the <em>Sommerfeld integral</em> <span class="math display">\[
+\frac{1}{R} = \int_0^\infty e^{-\lambda |z+h|} J_0(\lambda r)\, \dd\lambda.
+\]</span> Assuming <span class="math inline">\(k_0^2 = 0\)</span>, we write <span class="math display">\[
+F^0(r, z) = \frac{i\omega\mu m}{4 \pi} \int_0^\infty
+\left[
+e^{-\lambda|z+h|} + \gamma^+(\lambda)
+e^{+\lambda z} \right] J_0(\lambda r)\,\dd\lambda
+\]</span></p>
+</section>
+<section id="exploiting-the-continuity-conditions-in-z0" class="level3" data-number="9.1.8">
+<h3 data-number="9.1.8" class="anchored" data-anchor-id="exploiting-the-continuity-conditions-in-z0"><span class="header-section-number">9.1.8</span> Exploiting the continuity conditions in <span class="math inline">\(z=0\)</span></h3>
+<p>At this point, we need the conditions of continuity to match both solutions in <span class="math inline">\(z=0\)</span>.</p>
+<p>It is required, that the potential and its vertical (i.e., normal with respect to the plane <span class="math inline">\(z=0\)</span>) derivative are both continuous <em>globally</em>, i.e., in the complete plane <span class="math inline">\(z=0\)</span> (for all <span class="math inline">\(r\)</span>). The latter condition must also be fulfilled for all values of <span class="math inline">\(\lambda\)</span>.</p>
+<p>We have now two conditions and are able to derive the two coefficient functions <span class="math inline">\(\gamma^-\)</span> and <span class="math inline">\(\gamma^+\)</span>.</p>
+<p>We can restrict the determination of the coefficient functions to those terms that only depend on <span class="math inline">\(z\)</span>, i.e., we drop the Bessel function and the integral.</p>
+<p>It remains to solve the equations <span class="math display">\[
+V^0(z) = e^{-\lambda|z+h|} + \gamma^+(\lambda)
+e^{+\lambda z}
+\]</span> and <span class="math display">\[
+V^1(z) = \gamma^-(\lambda) e^{-\lambda_1 z}.
+\]</span> for <span class="math inline">\(\gamma^-(\lambda)\)</span> and <span class="math inline">\(\gamma^+(\lambda)\)</span>.</p>
+</section>
+<section id="implementation" class="level3" data-number="9.1.9">
+<h3 data-number="9.1.9" class="anchored" data-anchor-id="implementation"><span class="header-section-number">9.1.9</span> Implementation</h3>
+<p>For the determination of the coefficient functions we use <code>SymPy</code>.</p>
+<div id="6e1ac741" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, exp, Abs, diff, simplify, factor, solve</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>lam1, gamma_plus, gamma_minus, alpha, beta <span class="op">=</span> symbols(<span class="st">"lambda_1, gamma^+, gamma^-, alpha, beta"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> symbols(<span class="st">"h"</span>, real<span class="op">=</span><span class="va">True</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> symbols(<span class="st">"z"</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> symbols(<span class="st">"lambda"</span>, real<span class="op">=</span><span class="va">True</span>, nonnegative<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="determination-of-the-coefficient-functions" class="level4" data-number="9.1.9.1">
+<h4 data-number="9.1.9.1" class="anchored" data-anchor-id="determination-of-the-coefficient-functions"><span class="header-section-number">9.1.9.1</span> Determination of the coefficient functions</h4>
+<p>Here we employ the conditions of continuity to match the solutions obtained separately for the two adjacent regions.</p>
+<p>Recall that with the <em>separation of variables</em> ansatz introduced above, the function <span class="math inline">\(V(z, \lambda)\)</span> (beside <span class="math inline">\(U(r, \lambda)\)</span>) was one of the two individual functions that composed <span class="math inline">\(F(r,z)\)</span>.</p>
+<p>The conditions of continuity in <span class="math inline">\(z=0\)</span> have to be enforced for <em>any value of <span class="math inline">\(r\)</span></em>.</p>
+<p>Hence, only <span class="math inline">\(V(z, \lambda)\)</span> is affected.</p>
+<p>We define two symbolic functions for both <span class="math inline">\(V^0(z, \lambda)\)</span> and <span class="math inline">\(V^1(z, \lambda)\)</span>. To ensure that differential operators can be applied, we let these functions depend explicitly on <span class="math inline">\(z\)</span>:</p>
+<div id="f12a938c" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>V0 <span class="op">=</span> <span class="kw">lambda</span> z: exp(<span class="op">-</span>lam <span class="op">*</span> Abs(z <span class="op">+</span> h)) <span class="op">+</span> gamma_plus <span class="op">*</span> exp(lam <span class="op">*</span> z)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>V1 <span class="op">=</span> <span class="kw">lambda</span> z: gamma_minus <span class="op">*</span> exp(<span class="op">-</span>lam1 <span class="op">*</span> z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="0ff1f6be" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>V0(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<p><span class="math inline">\(\displaystyle \gamma^{+} e^{\lambda z} + e^{- \lambda \left|{h + z}\right|}\)</span></p>
+</div>
+</div>
+<div id="a8cbb9b9" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>V1(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<p><span class="math inline">\(\displaystyle \gamma^{-} e^{- \lambda_{1} z}\)</span></p>
+</div>
+</div>
+<p>Here we define two symbolic functions that evaluate the derivative of the potentials <span class="math inline">\(V\)</span> w.r.t. <span class="math inline">\(z\)</span>:</p>
+<div id="8c23e036" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dV0 <span class="op">=</span> <span class="kw">lambda</span> z: diff(V0(z), z)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dV1 <span class="op">=</span> <span class="kw">lambda</span> z: diff(V1(z), z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we substitute <span class="math inline">\(z\)</span> with <span class="math inline">\(0\)</span> in the results of the differentiation:</p>
+<div id="a1eab139" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dV0(z).subs(z, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
+<p><span class="math inline">\(\displaystyle \gamma^{+} \lambda - \lambda e^{- h \lambda}\)</span></p>
+</div>
+</div>
+<div id="4a20022f" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dV1(z).subs(z, <span class="fl">0.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
+<p><span class="math inline">\(\displaystyle - \gamma^{-} \lambda_{1}\)</span></p>
+</div>
+</div>
+<div id="39917e28" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ex1 <span class="op">=</span> V0(z) <span class="op">-</span> V1(z)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ex2 <span class="op">=</span> dV0(z) <span class="op">-</span> dV1(z)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sols <span class="op">=</span> solve([ex1.subs(z, <span class="dv">0</span>), ex2.subs(z, <span class="dv">0</span>)], [gamma_plus, gamma_minus])</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>gm <span class="op">=</span> sols[gamma_minus]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>gp <span class="op">=</span> sols[gamma_plus]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="48329c24" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gm.simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
+<p><span class="math inline">\(\displaystyle \frac{2 \lambda e^{- h \lambda}}{\lambda + \lambda_{1}}\)</span></p>
+</div>
+</div>
+<div id="c9d822d7" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gp.simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="10">
+<p><span class="math inline">\(\displaystyle \frac{\left(\lambda - \lambda_{1}\right) e^{- h \lambda}}{\lambda + \lambda_{1}}\)</span></p>
+</div>
+</div>
+<div id="bad6b6bc" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>V0(z).subs(gamma_plus, gp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="11">
+<p><span class="math inline">\(\displaystyle \left(\frac{\lambda}{\lambda e^{h \lambda} + \lambda_{1} e^{h \lambda}} - \frac{\lambda_{1}}{\lambda e^{h \lambda} + \lambda_{1} e^{h \lambda}}\right) e^{\lambda z} + e^{- \lambda \left|{h + z}\right|}\)</span></p>
+</div>
+</div>
+<div id="f02e9563" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>V1(z).subs(gamma_minus, gm).factor().simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="12">
+<p><span class="math inline">\(\displaystyle \frac{2 \lambda e^{- h \lambda - \lambda_{1} z}}{\lambda + \lambda_{1}}\)</span></p>
+</div>
+</div>
+<p>We summarize: The vector potential <span class="math inline">\(F^0\)</span> in <span class="math inline">\(z\le0\)</span> is <span class="math display">\[
+F^0(r, z) = \frac{i \omega \mu m}{4 \pi} \int_0^\infty
+\left(
+e^{-\lambda |z+h|} + \frac{\lambda - \lambda_1}{\lambda + \lambda_1} e^{-\lambda h} e^{\lambda z}
+\right) J_0(\lambda r)\, \dd\lambda,
+\]</span> and <span class="math inline">\(F^1\)</span> in <span class="math inline">\(z\ge 0\)</span> is <span class="math display">\[
+F^1(r, z) = \frac{i \omega \mu m}{4 \pi} \int_0^\infty
+\frac{2 \lambda}{\lambda + \lambda_1} e^{-\lambda h} e^{-\lambda_1 z} J_0(\lambda r)\, \dd\lambda.
+\]</span></p>
+</section>
+</section>
+<section id="bessel-functions" class="level3" data-number="9.1.10">
+<h3 data-number="9.1.10" class="anchored" data-anchor-id="bessel-functions"><span class="header-section-number">9.1.10</span> Bessel functions</h3>
+<p>Bessel functions typically occur as fundamental solutions of PDEs in cylindrical coordinate systems.</p>
+<p>For the calculation of the electric and magnetic fields, we need to apply derivatives w.r.t. the coordinates <span class="math inline">\(r\)</span> and <span class="math inline">\(z\)</span>.</p>
+<ul>
+<li>the operator <span class="math inline">\(\pdv{}{r}\)</span> only affects the <em>Bessel function</em> <span class="math inline">\(J_0(\lambda r)\)</span></li>
+<li>the operator <span class="math inline">\(\pdv{}{z}\)</span> only affects the <em>exponential function</em>, i.e., <span class="math inline">\(e^{-\lambda_1 z}\)</span></li>
+</ul>
+<p>In particular, we need to evaluate the following derivatives: <span class="math display">\[
+\begin{align}
+E_\varphi &amp; = \pdv{F}{r} \\
+H_r &amp; = \beta \, \pdv{F}{r}{z}  \\
+H_z &amp; = -\beta \frac{1}{r}\pdv{}{r}(r \pdv{F}{r})
+\end{align}
+\]</span> with <span class="math inline">\(\beta = (i\omega \mu_0)^{-1}\)</span>.</p>
+<p>We will use <code>sympy</code> again to provide the Bessel functions of zeroth and first order as symbolic expressions.</p>
+<div id="963fab94" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> besselj</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spb <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> symbols(<span class="st">"r"</span>, positive<span class="op">=</span><span class="va">True</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>J0 <span class="op">=</span> <span class="kw">lambda</span> r: besselj(<span class="dv">0</span>, r)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>J1 <span class="op">=</span> <span class="kw">lambda</span> r: besselj(<span class="dv">1</span>, r)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> graphics(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    line(J0(z), (z, <span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>), title<span class="op">=</span><span class="st">'J0(x)'</span>),</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    line(J1(z), (z, <span class="op">-</span><span class="dv">20</span>, <span class="dv">20</span>), title<span class="op">=</span><span class="st">'J1(x)'</span>),</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">3</span>), ylabel<span class="op">=</span><span class="vs">r'$J_\nu(z)$'</span>, use_latex<span class="op">=</span><span class="va">True</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="halfspace_files/figure-html/cell-14-output-1.png" width="467" height="276" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="2a1cfc14" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dJ1dr <span class="op">=</span> <span class="kw">lambda</span> v: diff(J1(v), r).simplify()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>dJ1dr(lam <span class="op">*</span> r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="14">
+<p><span class="math inline">\(\displaystyle \lambda J_{0}\left(\lambda r\right) - \frac{J_{1}\left(\lambda r\right)}{r}\)</span></p>
+</div>
+</div>
+</section>
 </section>
 <section id="layered-halfspace" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="layered-halfspace"><span class="header-section-number">9.2</span> Layered halfspace</h2>
@@ -304,18 +717,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -347,7 +749,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -355,7 +779,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
