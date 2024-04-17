@@ -1,5 +1,7 @@
 ---
 title: "Dipole sources above a halfspace"
+execute: 
+  cache: false
 jupyter: python3
 code-fold: false
 ---
@@ -255,7 +257,7 @@ for $\gamma^-(\lambda)$ and $\gamma^+(\lambda)$.
 For the determination of the coefficient functions we use `SymPy`.
 
 ```{python}
-from sympy import symbols, exp, Abs, diff, simplify, factor, solve
+from sympy import symbols, exp, Abs, diff, simplify, factor, solve, pi, I
 
 lam1, gamma_plus, gamma_minus, alpha, beta = symbols("lambda_1, gamma^+, gamma^-, alpha, beta")
 h = symbols("h", real=True, positive=True)
@@ -323,15 +325,19 @@ gp.simplify()
 ```
 
 ```{python}
-
-V0(z).subs(gamma_plus, gp)
+V_0 = lambda z: V0(z).subs(gamma_plus, gp)
+V_0(z)
 ```
 
 ```{python}
-V1(z).subs(gamma_minus, gm).factor().simplify()
+V_1 = lambda z: V1(z).subs(gamma_minus, gm).factor().simplify()
+V_1(z)
 ```
 
 We summarize:
+
+::: {.callout-note title='Summary'}
+
 The vector potential $F^0$ in $z\le0$ is
 $$
 F^0(r, z) = \frac{i \omega \mu m}{4 \pi} \int_0^\infty 
@@ -346,6 +352,9 @@ F^1(r, z) = \frac{i \omega \mu m}{4 \pi} \int_0^\infty
 \frac{2 \lambda}{\lambda + \lambda_1} e^{-\lambda h} e^{-\lambda_1 z} J_0(\lambda r)\, \dd\lambda.
 $$
 
+:::
+
+
 ### Bessel functions
 Bessel functions typically occur as fundamental solutions of PDEs in cylindrical coordinate systems.
 
@@ -353,6 +362,19 @@ For the calculation of the electric and magnetic fields, we need to apply deriva
 
 - the operator $\pdv{}{r}$ only affects the _Bessel function_ $J_0(\lambda r)$ 
 - the operator $\pdv{}{z}$ only affects the _exponential function_, i.e., $e^{-\lambda_1 z}$
+
+::: {.callout-tip title="Recall"}
+
+We make use of the _ansatz_
+$$
+\begin{align}
+\vb{E} & = -\curl \vb{F} \\
+\vb{H} & = (i \omega \mu_0)^{-1} (\grad \divergence \vb{F} + k^2 \vb{F})
+\end{align}
+$$
+with differential operators appropriate for cylindrical coordinates.
+
+:::
 
 In particular, we need to evaluate the following derivatives:
 $$
@@ -364,7 +386,22 @@ H_z & = -\beta \frac{1}{r}\pdv{}{r}(r \pdv{F}{r})
 $$
 with $\beta = (i\omega \mu_0)^{-1}$.
 
+::: {.callout-note}
+
+Note that in cylindrical coordinates the radial part of the Laplace operator reads
+$$
+\frac{ 1 }{ r} \pdv{}{r}(r \pdv{F}{r})
+$$
+For a homogeneous Helmholtz equation it turns out that
+$$
+\pdv[2]{F}{z} + k^2 F = -\frac{ 1 }{ r} \pdv{}{r}(r \pdv{F}{r}).
+$$
+:::
+
 We will use `sympy` again to provide the Bessel functions of zeroth and first order as symbolic expressions.
+
+First, let's inspect the graphs of of $J_0(x)$ and $J_1(x)$.
+It appears from visual inspection, that $J_1(x)$ is related to the negative derivative of $J_0(x)$. 
 
 ```{python}
 from sympy import besselj
@@ -379,10 +416,86 @@ p = graphics(
     size=(5,3), ylabel=r'$J_\nu(z)$', use_latex=True
 )
 ```
+
+Are we able to handle the derivatives of the Bessel function using `sympy`?
+
+We note that
+$$
+\dv{J_0(\lambda r)}{r} = -\lambda J_1(\lambda r).
+$$
+`sympy` provides
+```{python}
+dJ0dr = lambda v: diff(J0(v), r)
+dJ0dr(lam * r)
+```
+as expected.
+
+On the other hand, we know from [Abramowitz & Stegun](https://secure.math.ubc.ca/~cbm/aands/page_361.htm) that
+$$
+\dv{J_1(\lambda r)}{r} = \lambda J_0(\lambda r) - \frac{ J_1(\lambda r) }{ r },
+$$
+while `sympy` gets
+```{python}
+diff(J1(lam * r), r)
+```
+We can however correct the output by use of the `simplify` method:
 ```{python}
 dJ1dr = lambda v: diff(J1(v), r).simplify()
-
 dJ1dr(lam * r)
 ```
+
+### Expressions for the fields in $z \ge 0$
+In the following we derive the proper expressions for the integrands necessary for the evaluation of the _fields_.
+
+Note that the actual integration, i.e., carrying out $\int_0^\infty \dots \dd\lambda$, remains untouched.
+
+To compute the integrands, we introduce the symbolic variables for $\omega$, $\mu_0$, and $m$.
+
+**Integrand for $E_\varphi$**
+
+We evaluate the derivative according to 
+$$
+E_\varphi = \pdv{F}{r}
+$$
+and obtain the integrand for later evaluation of $E_\varphi$  (for which we introduce the abbreviation `Ephi_` in `sympy`)
+```{python}
+omega, mu0, m = symbols("omega mu_0 m")
+Ephi_ = symbols("E_phi")
+Ephi_ = alpha * V_1(z) * dJ0dr(lam * r)
+print('Ephi_ = ')
+Ephi_.subs(alpha, I * omega * mu0 * m / ( 4 * pi))
+```
+which we rearrange as
+$$
+-\frac{i \omega \mu_0 m}{2 \pi} \frac{\lambda^2 }{\lambda + \lambda_1} e^{-\lambda h} e^{-\lambda_1 z} J_1(\lambda r).
+$$
+
+Later we integrate this expression along the positive $\lambda$-axis $0 \le \lambda < +\infty$.
+
+**Integrand for $H_r$**
+
+We need to calculate the derivative similar to
+$$
+H_r = \beta \pdv{E_\varphi}{z}
+$$
+
+We obtain
+```{python}
+Hr_ = diff(Ephi_, z) * beta
+Hr_.subs(alpha, I * omega * mu0 * m / ( 4 * pi)).subs(beta, 1 / (I * omega * mu0)).simplify()
+```
+
+**Integrand for $H_z$**
+
+We calculate the following expression to obtain the integrand for the evaluation of $H_z$ which will be carried out later:
+$$
+H_z  = -\beta \frac{1}{r}\pdv{}{r}(r \pdv{F}{r}).
+$$
+
+```{python}
+Hz_ = (-beta * diff(Ephi_ * r, r).simplify() / r).subs(alpha, I * omega * mu0 * m / ( 4 * pi)).subs(beta, 1 / (I * omega * mu0)).simplify()
+Hz_
+```
+With the calculations completed above, we have provided all integrands for the evaluation of the fields in $z \ge 0$.
 
 ## Layered halfspace
