@@ -1,10 +1,14 @@
 ---
-title: "Dipole sources above a halfspace"
+title: "Dipole sources above a uniform halfspace"
 execute: 
   cache: false
 jupyter: python3
 code-fold: false
 ---
+```{python}
+#| echo: false
+from sympy import symbols, exp, Abs, diff, simplify, factor, sqrt, solve, pi, I
+```
 
 ## Uniform halfspace
 
@@ -223,7 +227,7 @@ Again, it is required that $F^0 \to 0$ for $z \to -\infty$ which is met by setti
 To make both terms in brackets compatible, we use the _Sommerfeld integral_
 $$
  \frac{1}{R} = \int_0^\infty e^{-\lambda |z+h|} J_0(\lambda r)\, \dd\lambda.
-$$
+$$ {#eq-sommerfeld}
 Assuming $k_0^2 = 0$, we write
 $$
 F^0(r, z) = \frac{i\omega\mu m}{4 \pi} \int_0^\infty
@@ -257,8 +261,6 @@ for $\gamma^-(\lambda)$ and $\gamma^+(\lambda)$.
 For the determination of the coefficient functions we use `SymPy`.
 
 ```{python}
-from sympy import symbols, exp, Abs, diff, simplify, factor, solve, pi, I
-
 lam1, gamma_plus, gamma_minus, alpha, beta = symbols("lambda_1, gamma^+, gamma^-, alpha, beta")
 h = symbols("h", real=True, positive=True)
 z = symbols("z", real=True)
@@ -498,4 +500,117 @@ Hz_
 ```
 With the calculations completed above, we have provided all integrands for the evaluation of the fields in $z \ge 0$.
 
-## Layered halfspace
+### Expression for the fields in $z \le 0$
+
+We exclude the source term from the integral and write with the help of @eq-sommerfeld
+$$F^0(r,z) = \frac{i\omega\mu m}{4 \pi} 
+\left[
+\frac{1}{R} + \int_0^\infty 
+\frac{\lambda - \lambda_1}{\lambda + \lambda_1} e^{-\lambda h}
+e^{+\lambda z}J_0(\lambda r)\,\dd\lambda
+\right]
+$$
+Both $1/R$ and the integral are affected by the differentiation w.r.t. $r$ and $z$.
+
+Required are the derivatives
+$$
+\pdv{}{r} \frac{1}{R} = -\frac{r}{R^3}
+$$
+and
+$$
+\pdv{}{r}{z} \frac{1}{R} = \frac{3 r (z+h)}{R^5}.
+$$
+
+```{python}
+R = sqrt(r**2 + (z + h)**2)
+dRdr = alpha * diff(1/R, r).subs(sqrt(r**2 + (z+h)**2), R).simplify()
+dRdrdz = diff(dRdr, z).subs(sqrt(r**2 + (z+h)**2), R).simplify()
+```
+
+**Integrand for $E_\varphi$**
+
+```{python}
+V_0_part = lambda z: V_0(z) - exp(-lam * abs(z+h))
+
+Ephi_0_ = alpha * diff(V_0_part(z) * J0(lam * r), r) + dRdr
+Ephi_0_
+```
+TBC.
+
+**Integrand for $H_r$**
+
+```{python}
+Hr_0_ = beta * diff(Ephi_0_, z) + beta * dRdrdz
+Hr_0_.simplify().simplify()
+```
+
+TBC.
+
+**Integrand for $H_z$**
+
+Within the Air halfspace we use the following simpler relations to obtain $H_z$.
+
+$$
+H^0_z = \beta \pdv[2]{}{z}  F^0
+$$
+
+TBC.
+
+## Summary
+
+We have obtained expressions for the fields that can be observed either in the Air or in the conducting halfspace.
+
+The results are summarized in the following blocks.
+
+::: {.callout-tip title='Air'}
+
+$$
+	E_\varphi = -\frac{i \omega \mu_0 m}{4 \pi} 
+	\left[
+	\frac{r}{R^3} +
+	\int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda 
+	e^{-\lambda h}e^{\lambda z}J_1(\lambda r)\, \dd\lambda
+	\right]
+$$
+
+$$
+	H_r = \frac{m}{4 \pi}
+	\left[
+	\frac{3r(z+h)}{R^5} -
+	\int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
+	e^{-\lambda h}e^{\lambda z}J_1(\lambda r)\, \dd\lambda
+	\right]
+$$
+
+$$
+	H_z = \frac{m}{4 \pi}
+	\left[
+	\frac{3(z+h)^2 - R^2}{R^5} +
+	\int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
+	e^{-\lambda h}e^{\lambda z}J_0(\lambda r)\, \dd\lambda
+	\right]
+  $$
+
+:::
+
+::: {.callout-tip title='Earth'}
+
+$$
+	E_\varphi = -\frac{i \omega \mu_0 m}{2 \pi} 
+	\int_0^\infty \frac{\lambda^2}{\lambda + \lambda_1}
+	e^{-\lambda h}e^{-\lambda_1 z}J_1(\lambda r)\, \dd\lambda
+$$
+
+$$
+	H_r = \frac{m}{2 \pi}
+	\int_0^\infty \frac{\lambda^2\lambda_1}{\lambda + \lambda_1}
+	e^{-\lambda h}e^{-\lambda_1 z}J_1(\lambda r)\, \dd\lambda
+$$
+
+$$
+	H_z = \frac{m}{2 \pi}
+	\int_0^\infty \frac{\lambda^3}{\lambda + \lambda_1}
+	e^{-\lambda h}e^{-\lambda_1 z}J_0(\lambda r)\, \dd\lambda
+$$
+
+:::

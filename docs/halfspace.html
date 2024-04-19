@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods – 9&nbsp; Dipole sources above a halfspace</title>
+<title>Theory of Electromagnetic Methods – 9&nbsp; Dipole sources above a uniform halfspace</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
+<link href="./layered_halfspace.html" rel="next">
 <link href="./timedomain_fullspace.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -154,7 +154,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./halfspace.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a halfspace</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./halfspace.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a uniform halfspace</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -267,7 +267,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./halfspace.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a halfspace</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a uniform halfspace</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./layered_halfspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span></a>
   </div>
 </li>
       </ul>
@@ -284,7 +290,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -318,17 +324,18 @@ window.Quarto = {
   <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">9.1.9</span> Implementation</a></li>
   <li><a href="#bessel-functions" id="toc-bessel-functions" class="nav-link" data-scroll-target="#bessel-functions"><span class="header-section-number">9.1.10</span> Bessel functions</a></li>
   <li><a href="#expressions-for-the-fields-in-z-ge-0" id="toc-expressions-for-the-fields-in-z-ge-0" class="nav-link" data-scroll-target="#expressions-for-the-fields-in-z-ge-0"><span class="header-section-number">9.1.11</span> Expressions for the fields in <span class="math inline">\(z \ge 0\)</span></a></li>
+  <li><a href="#expression-for-the-fields-in-z-le-0" id="toc-expression-for-the-fields-in-z-le-0" class="nav-link" data-scroll-target="#expression-for-the-fields-in-z-le-0"><span class="header-section-number">9.1.12</span> Expression for the fields in <span class="math inline">\(z \le 0\)</span></a></li>
   </ul></li>
-  <li><a href="#layered-halfspace" id="toc-layered-halfspace" class="nav-link" data-scroll-target="#layered-halfspace"><span class="header-section-number">9.2</span> Layered halfspace</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">9.2</span> Summary</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./halfspace.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a halfspace</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./halfspace.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a uniform halfspace</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a halfspace</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a uniform halfspace</span></h1>
 </div>
 
 
@@ -512,9 +519,9 @@ F^0(r,z) = \frac{i\omega\mu m}{4 \pi}
 \frac{1}{R} + \int_0^\infty \gamma^+(\lambda) e^{+\sqrt{\lambda^2 - k_0^2}z}J_0(\lambda r)\,\dd\lambda
 \right]
 \]</span> Again, it is required that <span class="math inline">\(F^0 \to 0\)</span> for <span class="math inline">\(z \to -\infty\)</span> which is met by setting <span class="math inline">\(\gamma^-(\lambda) = 0\)</span> in <span class="math inline">\(z&lt;0\)</span>.</p>
-<p>To make both terms in brackets compatible, we use the <em>Sommerfeld integral</em> <span class="math display">\[
+<p>To make both terms in brackets compatible, we use the <em>Sommerfeld integral</em> <span id="eq-sommerfeld"><span class="math display">\[
 \frac{1}{R} = \int_0^\infty e^{-\lambda |z+h|} J_0(\lambda r)\, \dd\lambda.
-\]</span> Assuming <span class="math inline">\(k_0^2 = 0\)</span>, we write <span class="math display">\[
+\tag{9.1}\]</span></span> Assuming <span class="math inline">\(k_0^2 = 0\)</span>, we write <span class="math display">\[
 F^0(r, z) = \frac{i\omega\mu m}{4 \pi} \int_0^\infty
 \left[
 e^{-\lambda|z+h|} + \gamma^+(\lambda)
@@ -537,13 +544,11 @@ V^1(z) = \gamma^-(\lambda) e^{-\lambda_1 z}.
 <section id="implementation" class="level3" data-number="9.1.9">
 <h3 data-number="9.1.9" class="anchored" data-anchor-id="implementation"><span class="header-section-number">9.1.9</span> Implementation</h3>
 <p>For the determination of the coefficient functions we use <code>SymPy</code>.</p>
-<div id="659e66ba" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, exp, Abs, diff, simplify, factor, solve, pi, I</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>lam1, gamma_plus, gamma_minus, alpha, beta <span class="op">=</span> symbols(<span class="st">"lambda_1, gamma^+, gamma^-, alpha, beta"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> symbols(<span class="st">"h"</span>, real<span class="op">=</span><span class="va">True</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> symbols(<span class="st">"z"</span>, real<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> symbols(<span class="st">"lambda"</span>, real<span class="op">=</span><span class="va">True</span>, nonnegative<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3a2cd130" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>lam1, gamma_plus, gamma_minus, alpha, beta <span class="op">=</span> symbols(<span class="st">"lambda_1, gamma^+, gamma^-, alpha, beta"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> symbols(<span class="st">"h"</span>, real<span class="op">=</span><span class="va">True</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> symbols(<span class="st">"z"</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> symbols(<span class="st">"lambda"</span>, real<span class="op">=</span><span class="va">True</span>, nonnegative<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="determination-of-the-coefficient-functions" class="level4" data-number="9.1.9.1">
 <h4 data-number="9.1.9.1" class="anchored" data-anchor-id="determination-of-the-coefficient-functions"><span class="header-section-number">9.1.9.1</span> Determination of the coefficient functions</h4>
@@ -552,41 +557,41 @@ V^1(z) = \gamma^-(\lambda) e^{-\lambda_1 z}.
 <p>The conditions of continuity in <span class="math inline">\(z=0\)</span> have to be enforced for <em>any value of <span class="math inline">\(r\)</span></em>.</p>
 <p>Hence, only <span class="math inline">\(V(z, \lambda)\)</span> is affected.</p>
 <p>We define two symbolic functions for both <span class="math inline">\(V^0(z, \lambda)\)</span> and <span class="math inline">\(V^1(z, \lambda)\)</span>. To ensure that differential operators can be applied, we let these functions depend explicitly on <span class="math inline">\(z\)</span>:</p>
-<div id="3c059386" class="cell" data-execution_count="2">
+<div id="4128940e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>V0 <span class="op">=</span> <span class="kw">lambda</span> z: exp(<span class="op">-</span>lam <span class="op">*</span> Abs(z <span class="op">+</span> h)) <span class="op">+</span> gamma_plus <span class="op">*</span> exp(lam <span class="op">*</span> z)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>V1 <span class="op">=</span> <span class="kw">lambda</span> z: gamma_minus <span class="op">*</span> exp(<span class="op">-</span>lam1 <span class="op">*</span> z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="859853cf" class="cell" data-execution_count="3">
+<div id="ec9ed282" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>V0(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <p><span class="math inline">\(\displaystyle \gamma^{+} e^{\lambda z} + e^{- \lambda \left|{h + z}\right|}\)</span></p>
 </div>
 </div>
-<div id="c3560847" class="cell" data-execution_count="4">
+<div id="85fe85e4" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>V1(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <p><span class="math inline">\(\displaystyle \gamma^{-} e^{- \lambda_{1} z}\)</span></p>
 </div>
 </div>
 <p>Here we define two symbolic functions that evaluate the derivative of the potentials <span class="math inline">\(V\)</span> w.r.t. <span class="math inline">\(z\)</span>:</p>
-<div id="975ed390" class="cell" data-execution_count="5">
+<div id="9c2bf5ef" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dV0 <span class="op">=</span> <span class="kw">lambda</span> z: diff(V0(z), z)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dV1 <span class="op">=</span> <span class="kw">lambda</span> z: diff(V1(z), z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we substitute <span class="math inline">\(z\)</span> with <span class="math inline">\(0\)</span> in the results of the differentiation:</p>
-<div id="60cb9acc" class="cell" data-execution_count="6">
+<div id="b10dc249" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dV0(z).subs(z, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
 <p><span class="math inline">\(\displaystyle \gamma^{+} \lambda - \lambda e^{- h \lambda}\)</span></p>
 </div>
 </div>
-<div id="6c954c8f" class="cell" data-execution_count="7">
+<div id="02b3f191" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dV1(z).subs(z, <span class="fl">0.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
 <p><span class="math inline">\(\displaystyle - \gamma^{-} \lambda_{1}\)</span></p>
 </div>
 </div>
-<div id="ba707471" class="cell" data-execution_count="8">
+<div id="f6e0c0bf" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ex1 <span class="op">=</span> V0(z) <span class="op">-</span> V1(z)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ex2 <span class="op">=</span> dV0(z) <span class="op">-</span> dV1(z)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -595,29 +600,29 @@ V^1(z) = \gamma^-(\lambda) e^{-\lambda_1 z}.
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>gm <span class="op">=</span> sols[gamma_minus]</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>gp <span class="op">=</span> sols[gamma_plus]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="9fb2d214" class="cell" data-execution_count="9">
+<div id="342747ce" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gm.simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="9">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="10">
 <p><span class="math inline">\(\displaystyle \frac{2 \lambda e^{- h \lambda}}{\lambda + \lambda_{1}}\)</span></p>
 </div>
 </div>
-<div id="d2953797" class="cell" data-execution_count="10">
+<div id="a61973ad" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gp.simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="10">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="11">
 <p><span class="math inline">\(\displaystyle \frac{\left(\lambda - \lambda_{1}\right) e^{- h \lambda}}{\lambda + \lambda_{1}}\)</span></p>
 </div>
 </div>
-<div id="dd7f6a6a" class="cell" data-execution_count="11">
+<div id="bd4cfeb9" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>V_0 <span class="op">=</span> <span class="kw">lambda</span> z: V0(z).subs(gamma_plus, gp)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>V_0(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="11">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="12">
 <p><span class="math inline">\(\displaystyle \left(\frac{\lambda}{\lambda e^{h \lambda} + \lambda_{1} e^{h \lambda}} - \frac{\lambda_{1}}{\lambda e^{h \lambda} + \lambda_{1} e^{h \lambda}}\right) e^{\lambda z} + e^{- \lambda \left|{h + z}\right|}\)</span></p>
 </div>
 </div>
-<div id="dd44c53d" class="cell" data-execution_count="12">
+<div id="66fc45f7" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>V_1 <span class="op">=</span> <span class="kw">lambda</span> z: V1(z).subs(gamma_minus, gm).factor().simplify()</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>V_1(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="12">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="13">
 <p><span class="math inline">\(\displaystyle \frac{2 \lambda e^{- h \lambda - \lambda_{1} z}}{\lambda + \lambda_{1}}\)</span></p>
 </div>
 </div>
@@ -697,7 +702,7 @@ Note
 </div>
 <p>We will use <code>sympy</code> again to provide the Bessel functions of zeroth and first order as symbolic expressions.</p>
 <p>First, let’s inspect the graphs of of <span class="math inline">\(J_0(x)\)</span> and <span class="math inline">\(J_1(x)\)</span>. It appears from visual inspection, that <span class="math inline">\(J_1(x)\)</span> is related to the negative derivative of <span class="math inline">\(J_0(x)\)</span>.</p>
-<div id="3d968127" class="cell" data-execution_count="13">
+<div id="08e0e4a9" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> besselj</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spb <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> symbols(<span class="st">"r"</span>, positive<span class="op">=</span><span class="va">True</span>, real<span class="op">=</span><span class="va">True</span>)</span>
@@ -712,7 +717,7 @@ Note
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="halfspace_files/figure-html/cell-14-output-1.png" width="467" height="276" class="figure-img"></p>
+<p><img src="halfspace_files/figure-html/cell-15-output-1.png" width="467" height="276" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -721,10 +726,10 @@ Note
 <p>We note that <span class="math display">\[
 \dv{J_0(\lambda r)}{r} = -\lambda J_1(\lambda r).
 \]</span> <code>sympy</code> provides</p>
-<div id="6f8024eb" class="cell" data-execution_count="14">
+<div id="a7f79b20" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dJ0dr <span class="op">=</span> <span class="kw">lambda</span> v: diff(J0(v), r)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dJ0dr(lam <span class="op">*</span> r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="14">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="15">
 <p><span class="math inline">\(\displaystyle - \lambda J_{1}\left(\lambda r\right)\)</span></p>
 </div>
 </div>
@@ -732,17 +737,17 @@ Note
 <p>On the other hand, we know from <a href="https://secure.math.ubc.ca/~cbm/aands/page_361.htm">Abramowitz &amp; Stegun</a> that <span class="math display">\[
 \dv{J_1(\lambda r)}{r} = \lambda J_0(\lambda r) - \frac{ J_1(\lambda r) }{ r },
 \]</span> while <code>sympy</code> gets</p>
-<div id="9abe3982" class="cell" data-execution_count="15">
+<div id="5864ca89" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>diff(J1(lam <span class="op">*</span> r), r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="15">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="16">
 <p><span class="math inline">\(\displaystyle \lambda \left(\frac{J_{0}\left(\lambda r\right)}{2} - \frac{J_{2}\left(\lambda r\right)}{2}\right)\)</span></p>
 </div>
 </div>
 <p>We can however correct the output by use of the <code>simplify</code> method:</p>
-<div id="d58109c2" class="cell" data-execution_count="16">
+<div id="a777f4fd" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dJ1dr <span class="op">=</span> <span class="kw">lambda</span> v: diff(J1(v), r).simplify()</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>dJ1dr(lam <span class="op">*</span> r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="16">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="17">
 <p><span class="math inline">\(\displaystyle \lambda J_{0}\left(\lambda r\right) - \frac{J_{1}\left(\lambda r\right)}{r}\)</span></p>
 </div>
 </div>
@@ -756,7 +761,7 @@ Note
 <p>We evaluate the derivative according to <span class="math display">\[
 E_\varphi = \pdv{F}{r}
 \]</span> and obtain the integrand for later evaluation of <span class="math inline">\(E_\varphi\)</span> (for which we introduce the abbreviation <code>Ephi_</code> in <code>sympy</code>)</p>
-<div id="1138f1ef" class="cell" data-execution_count="17">
+<div id="b3ef3338" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>omega, mu0, m <span class="op">=</span> symbols(<span class="st">"omega mu_0 m"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Ephi_ <span class="op">=</span> symbols(<span class="st">"E_phi"</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>Ephi_ <span class="op">=</span> alpha <span class="op">*</span> V_1(z) <span class="op">*</span> dJ0dr(lam <span class="op">*</span> r)</span>
@@ -765,7 +770,7 @@ E_\varphi = \pdv{F}{r}
 <div class="cell-output cell-output-stdout">
 <pre><code>Ephi_ = </code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="17">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="18">
 <p><span class="math inline">\(\displaystyle - \frac{i \lambda^{2} m \mu_{0} \omega e^{- h \lambda - \lambda_{1} z} J_{1}\left(\lambda r\right)}{2 \pi \left(\lambda + \lambda_{1}\right)}\)</span></p>
 </div>
 </div>
@@ -778,10 +783,10 @@ E_\varphi = \pdv{F}{r}
 H_r = \beta \pdv{E_\varphi}{z}
 \]</span></p>
 <p>We obtain</p>
-<div id="a39fa884" class="cell" data-execution_count="18">
+<div id="4f0cb74d" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Hr_ <span class="op">=</span> diff(Ephi_, z) <span class="op">*</span> beta</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Hr_.subs(alpha, I <span class="op">*</span> omega <span class="op">*</span> mu0 <span class="op">*</span> m <span class="op">/</span> ( <span class="dv">4</span> <span class="op">*</span> pi)).subs(beta, <span class="dv">1</span> <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu0)).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="18">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="19">
 <p><span class="math inline">\(\displaystyle \frac{\lambda^{2} \lambda_{1} m e^{- h \lambda - \lambda_{1} z} J_{1}\left(\lambda r\right)}{2 \pi \left(\lambda + \lambda_{1}\right)}\)</span></p>
 </div>
 </div>
@@ -789,18 +794,129 @@ H_r = \beta \pdv{E_\varphi}{z}
 <p>We calculate the following expression to obtain the integrand for the evaluation of <span class="math inline">\(H_z\)</span> which will be carried out later: <span class="math display">\[
 H_z  = -\beta \frac{1}{r}\pdv{}{r}(r \pdv{F}{r}).
 \]</span></p>
-<div id="cb97cd9c" class="cell" data-execution_count="19">
+<div id="58d79615" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Hz_ <span class="op">=</span> (<span class="op">-</span>beta <span class="op">*</span> diff(Ephi_ <span class="op">*</span> r, r).simplify() <span class="op">/</span> r).subs(alpha, I <span class="op">*</span> omega <span class="op">*</span> mu0 <span class="op">*</span> m <span class="op">/</span> ( <span class="dv">4</span> <span class="op">*</span> pi)).subs(beta, <span class="dv">1</span> <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu0)).simplify()</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Hz_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="19">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="20">
 <p><span class="math inline">\(\displaystyle \frac{\lambda^{3} m e^{- h \lambda - \lambda_{1} z} J_{0}\left(\lambda r\right)}{2 \pi \left(\lambda + \lambda_{1}\right)}\)</span></p>
 </div>
 </div>
 <p>With the calculations completed above, we have provided all integrands for the evaluation of the fields in <span class="math inline">\(z \ge 0\)</span>.</p>
 </section>
+<section id="expression-for-the-fields-in-z-le-0" class="level3" data-number="9.1.12">
+<h3 data-number="9.1.12" class="anchored" data-anchor-id="expression-for-the-fields-in-z-le-0"><span class="header-section-number">9.1.12</span> Expression for the fields in <span class="math inline">\(z \le 0\)</span></h3>
+<p>We exclude the source term from the integral and write with the help of <a href="#eq-sommerfeld" class="quarto-xref"><span>9.1</span></a> <span class="math display">\[F^0(r,z) = \frac{i\omega\mu m}{4 \pi}
+\left[
+\frac{1}{R} + \int_0^\infty
+\frac{\lambda - \lambda_1}{\lambda + \lambda_1} e^{-\lambda h}
+e^{+\lambda z}J_0(\lambda r)\,\dd\lambda
+\right]
+\]</span> Both <span class="math inline">\(1/R\)</span> and the integral are affected by the differentiation w.r.t. <span class="math inline">\(r\)</span> and <span class="math inline">\(z\)</span>.</p>
+<p>Required are the derivatives <span class="math display">\[
+\pdv{}{r} \frac{1}{R} = -\frac{r}{R^3}
+\]</span> and <span class="math display">\[
+\pdv{}{r}{z} \frac{1}{R} = \frac{3 r (z+h)}{R^5}.
+\]</span></p>
+<div id="b6dd0fd9" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> sqrt(r<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (z <span class="op">+</span> h)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>dRdr <span class="op">=</span> alpha <span class="op">*</span> diff(<span class="dv">1</span><span class="op">/</span>R, r).subs(sqrt(r<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (z<span class="op">+</span>h)<span class="op">**</span><span class="dv">2</span>), R).simplify()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>dRdrdz <span class="op">=</span> diff(dRdr, z).subs(sqrt(r<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (z<span class="op">+</span>h)<span class="op">**</span><span class="dv">2</span>), R).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Integrand for <span class="math inline">\(E_\varphi\)</span></strong></p>
+<div id="4e8dffc1" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>V_0_part <span class="op">=</span> <span class="kw">lambda</span> z: V_0(z) <span class="op">-</span> exp(<span class="op">-</span>lam <span class="op">*</span> <span class="bu">abs</span>(z<span class="op">+</span>h))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Ephi_0_ <span class="op">=</span> alpha <span class="op">*</span> diff(V_0_part(z) <span class="op">*</span> J0(lam <span class="op">*</span> r), r) <span class="op">+</span> dRdr</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Ephi_0_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="22">
+<p><span class="math inline">\(\displaystyle - \alpha \lambda \left(\frac{\lambda}{\lambda e^{h \lambda} + \lambda_{1} e^{h \lambda}} - \frac{\lambda_{1}}{\lambda e^{h \lambda} + \lambda_{1} e^{h \lambda}}\right) e^{\lambda z} J_{1}\left(\lambda r\right) - \frac{\alpha r}{\left(r^{2} + \left(h + z\right)^{2}\right)^{\frac{3}{2}}}\)</span></p>
+</div>
+</div>
+<p>TBC.</p>
+<p><strong>Integrand for <span class="math inline">\(H_r\)</span></strong></p>
+<div id="23d541b4" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Hr_0_ <span class="op">=</span> beta <span class="op">*</span> diff(Ephi_0_, z) <span class="op">+</span> beta <span class="op">*</span> dRdrdz</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>Hr_0_.simplify().simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="23">
+<p><span class="math inline">\(\displaystyle - \frac{\alpha \beta \left(\lambda^{2} \left(\lambda - \lambda_{1}\right) \left(r^{2} + \left(h + z\right)^{2}\right)^{\frac{5}{2}} e^{\lambda z} J_{1}\left(\lambda r\right) - 6 r \left(h + z\right) \left(\lambda + \lambda_{1}\right) e^{h \lambda}\right) e^{- h \lambda}}{\left(\lambda + \lambda_{1}\right) \left(r^{2} + \left(h + z\right)^{2}\right)^{\frac{5}{2}}}\)</span></p>
+</div>
+</div>
+<p>TBC.</p>
+<p><strong>Integrand for <span class="math inline">\(H_z\)</span></strong></p>
+<p>Within the Air halfspace we use the following simpler relations to obtain <span class="math inline">\(H_z\)</span>.</p>
+<p><span class="math display">\[
+H^0_z = \beta \pdv[2]{}{z}  F^0
+\]</span></p>
+<p>TBC.</p>
 </section>
-<section id="layered-halfspace" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="layered-halfspace"><span class="header-section-number">9.2</span> Layered halfspace</h2>
+</section>
+<section id="summary" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">9.2</span> Summary</h2>
+<p>We have obtained expressions for the fields that can be observed either in the Air or in the conducting halfspace.</p>
+<p>The results are summarized in the following blocks.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Air">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Air
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+    E_\varphi = -\frac{i \omega \mu_0 m}{4 \pi}
+    \left[
+    \frac{r}{R^3} +
+    \int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda
+    e^{-\lambda h}e^{\lambda z}J_1(\lambda r)\, \dd\lambda
+    \right]
+\]</span></p>
+<p><span class="math display">\[
+    H_r = \frac{m}{4 \pi}
+    \left[
+    \frac{3r(z+h)}{R^5} -
+    \int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
+    e^{-\lambda h}e^{\lambda z}J_1(\lambda r)\, \dd\lambda
+    \right]
+\]</span></p>
+<p><span class="math display">\[
+    H_z = \frac{m}{4 \pi}
+    \left[
+    \frac{3(z+h)^2 - R^2}{R^5} +
+    \int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
+    e^{-\lambda h}e^{\lambda z}J_0(\lambda r)\, \dd\lambda
+    \right]
+  \]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Earth">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Earth
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+    E_\varphi = -\frac{i \omega \mu_0 m}{2 \pi}
+    \int_0^\infty \frac{\lambda^2}{\lambda + \lambda_1}
+    e^{-\lambda h}e^{-\lambda_1 z}J_1(\lambda r)\, \dd\lambda
+\]</span></p>
+<p><span class="math display">\[
+    H_r = \frac{m}{2 \pi}
+    \int_0^\infty \frac{\lambda^2\lambda_1}{\lambda + \lambda_1}
+    e^{-\lambda h}e^{-\lambda_1 z}J_1(\lambda r)\, \dd\lambda
+\]</span></p>
+<p><span class="math display">\[
+    H_z = \frac{m}{2 \pi}
+    \int_0^\infty \frac{\lambda^3}{\lambda + \lambda_1}
+    e^{-\lambda h}e^{-\lambda_1 z}J_0(\lambda r)\, \dd\lambda
+\]</span></p>
+</div>
+</div>
 
 
 </section>
@@ -1233,8 +1349,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./layered_halfspace.html" class="pagination-link" aria-label="Dipole sources above a layered halfspace">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
