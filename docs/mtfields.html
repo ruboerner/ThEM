@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.29">
+<meta name="generator" content="quarto-1.5.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -383,9 +383,9 @@ e^{-i k z} &amp; \text{ for } z \ge 0
 \]</span> We have assumed the continuity of <span class="math inline">\(H_x\)</span> in <span class="math inline">\(z=0\)</span>.</p>
 <p>To obtain the electric field associated with the magnetic field in both halfspaces, we make use of Maxwell’s equations.</p>
 <p>Recall that in quasi-static approximation, <span class="math display">\[
-\nabla \times \mathbf H = \mathbf j.
+\curl \mathbf H = \mathbf j.
 \]</span> More precisely, <span class="math display">\[
-\nabla \times \mathbf H =
+\curl \mathbf H =
 \begin{bmatrix}
 \partial_x \\ \partial_y \\ \partial_z
 \end{bmatrix}
@@ -401,7 +401,7 @@ H_x \\ H_y \\ H_z
 \end{bmatrix}.
 \]</span> In our case (cf. <a href="#eq-hair" class="quarto-xref"><span>6.1</span></a>), there is only an <span class="math inline">\(x\)</span>-component of <span class="math inline">\(\mathbf H\)</span>,</p>
 <p><span class="math display">\[
-\nabla \times \mathbf H =
+\curl \mathbf H =
 \begin{bmatrix}
 0 \\
 \partial_z H_x \\
@@ -439,7 +439,7 @@ Self study
 \end{bmatrix}
 \]</span></p>
 <p>We feed this into Faraday’s law: <span class="math display">\[
-\nabla \times \mathbf E = \begin{bmatrix}
+\curl \mathbf E = \begin{bmatrix}
 -i \omega \mu \\ 0 \\ 0
 \end{bmatrix}
 =
@@ -468,7 +468,7 @@ E_y(z) =
 <p>We illustrate our results with a simple example of a uniform halfspace with a conductivity of 0.01 S/m and a frequency of 10 Hz.</p>
 <p>Shown are real (<code>Re</code>) and imaginary (<code>Im</code>) part of the fields along with their magnitude (<code>Abs</code>) as a function of depth.</p>
 <p>Clearly visible is the exponential decay with depth.</p>
-<div id="ccb9a3eb" class="cell" data-execution_count="1">
+<div id="78f16d93" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -503,7 +503,7 @@ E_y(z) =
 </details>
 </div>
 <p>In our example, the skin depth is 1590.63 m.</p>
-<div id="7fee5363" class="cell" data-execution_count="2">
+<div id="290f7edc" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
@@ -528,7 +528,7 @@ E_y(z) =
 </div>
 </div>
 </div>
-<div id="a1a561cd" class="cell" data-execution_count="3">
+<div id="7fae8a94" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
@@ -571,7 +571,7 @@ Z_1 = \frac{ \omega \mu_0 }{ k_1 } = Z_s.
 \]</span></p>
 <section id="example" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="example"><span class="header-section-number">6.2.1</span> Example</h3>
-<div id="603dcab2" class="cell" data-execution_count="4">
+<div id="d71dc107" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">100.0</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mu0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>

@@ -5,19 +5,19 @@ title: "Maxwell's Equations"
 The EM fields @eq-fields-time are solutions of *Maxwell's equations*
 
 $$
-\nabla \times \mathbf h - \partial_t \mathbf d   = \mathbf j
+\curl \mathbf h - \partial_t \mathbf d   = \mathbf j
 $$ {#eq-ampere}
 
 $$
-\nabla \times \mathbf e + \partial_t \mathbf b  = \mathbf 0
+\curl \mathbf e + \partial_t \mathbf b  = \mathbf 0
 $$ {#eq-faraday}
 
 $$
-\nabla \cdot \mathbf b  = 0
+\divergence \mathbf b  = 0
 $$ {#eq-gauss-b}
 
 $$
-\nabla \cdot \mathbf d  = \rho_E
+\divergence \mathbf d  = \rho_E
 $$ {#eq-gauss-d}
 
 In the form presented here, Maxwell's equations are an **uncoupled set of ordinary differential equations**.

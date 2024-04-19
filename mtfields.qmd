@@ -2,35 +2,30 @@
 title: "Plane waves above and inside a homogeneous Earth"
 jupyter: python3
 ---
+
 In this section we calculate the magnetic and electric fields inside and above a uniform Earth.
 
 We consider plane electromagnetic waves as they are typically used in Magnetotellurics (MT).
 
-The conducting Earth is confined to the halfspace in $z \ge 0$, whereas the Air halfspace is in $z < 0$.
-The electrical conductivity $\sigma$ of the conducting halfspace is uniform.
-We use time-harmonic plane waves with a time dependency of $\exp(i \omega t)$.
+The conducting Earth is confined to the halfspace in $z \ge 0$, whereas the Air halfspace is in $z < 0$. The electrical conductivity $\sigma$ of the conducting halfspace is uniform. We use time-harmonic plane waves with a time dependency of $\exp(i \omega t)$.
 
-The source of electromagnetic induction in the lower halfspace is a homogeneous time-harmonic magnetic field in $z<0$ with
-$$
+The source of electromagnetic induction in the lower halfspace is a homogeneous time-harmonic magnetic field in $z<0$ with $$
 \mathbf H(z, \omega) = \begin{bmatrix} H_x\\ 0\\ 0 \end{bmatrix} e^{i \omega t}, \quad z < 0
 $$ {#eq-hair}
 
-where the amplitude is $H_x = 1$ A/m.
-The inducing field is linear polarized in the $x$-direction.
+where the amplitude is $H_x = 1$ A/m. The inducing field is linear polarized in the $x$-direction.
 
-::: {.callout-note}
+::: callout-note
 In the following, we drop the term $e^{i \omega t}$.
 :::
 
 What do we know about the magnetic field inside the Earth?
 
-In $z \ge 0$, the magnetic field is a solution of thr Helmholtz equation
-$$
+In $z \ge 0$, the magnetic field is a solution of thr Helmholtz equation $$
 \partial^2_{zz} H_x + k^2 H_x = 0, \quad k^2 = - i \omega \mu \sigma
 $$ {#eq-helm-h}
 
-The solution inside the Earth is
-$$
+The solution inside the Earth is $$
 H_x(z) = e^{- i k z}
 $$ {#eq-sol-h}
 
@@ -38,24 +33,19 @@ $$ {#eq-sol-h}
 Show that @eq-sol-h is the solution to @eq-helm-h!
 :::
 
-We now have the complete solution in the entire half-space:
-$$
+We now have the complete solution in the entire half-space: $$
 H_x(z) = \begin{cases}
 1 & \text{ for } z \le 0 \\
 e^{-i k z} & \text{ for } z \ge 0
 \end{cases}
-$$
-We have assumed the continuity of $H_x$ in $z=0$.
+$$ We have assumed the continuity of $H_x$ in $z=0$.
 
 To obtain the electric field associated with the magnetic field in both halfspaces, we make use of Maxwell's equations.
 
-Recall that in quasi-static approximation,
-$$
-\nabla \times \mathbf H = \mathbf j.
-$$
-More precisely,
-$$
-\nabla \times \mathbf H = 
+Recall that in quasi-static approximation, $$
+\curl \mathbf H = \mathbf j.
+$$ More precisely, $$
+\curl \mathbf H = 
 \begin{bmatrix}
 \partial_x \\ \partial_y \\ \partial_z
 \end{bmatrix}
@@ -69,11 +59,10 @@ H_x \\ H_y \\ H_z
 \partial_z H_x - \partial_x H_z \\
 \partial_x H_y - \partial_y H_x
 \end{bmatrix}.
-$$
-In our case (cf. @eq-hair), there is only an $x$-component of $\mathbf H$,
+$$ In our case (cf. @eq-hair), there is only an $x$-component of $\mathbf H$,
 
 $$
-\nabla \times \mathbf H = 
+\curl \mathbf H = 
 \begin{bmatrix}
 0 \\
 \partial_z H_x \\
@@ -82,10 +71,7 @@ $$
 \begin{bmatrix}
 0 \\ E_y \\ 0
 \end{bmatrix},
-$$
-which results in a $y$-component of the associated electric field $\mathbf E$.
-The EM waves $\mathbf H$ and $\mathbf E$ are transversal waves, hence mutually orthogonal to the direction of propagation $\mathbf k$, such that
-$$
+$$ which results in a $y$-component of the associated electric field $\mathbf E$. The EM waves $\mathbf H$ and $\mathbf E$ are transversal waves, hence mutually orthogonal to the direction of propagation $\mathbf k$, such that $$
 \mathbf H \perp \mathbf E \perp \mathbf k.
 $$
 
@@ -93,9 +79,7 @@ Now we derive an expression for $E_y$ in $z \ge 0$:
 
 $$
 E_y(z) = \frac{1}{\sigma} \partial_z H_x(z) = \frac{ 1 }{ \sigma } \partial_z e^{-i k z} = -\frac{ ik }{ \sigma } e^{-i k z} .
-$$
-The amplitude of the electric field at the surface of the Earth in $z=0$ is
-$$
+$$ The amplitude of the electric field at the surface of the Earth in $z=0$ is $$
 E_y(0) = -\frac{ ik }{ \sigma }.
 $$
 
@@ -105,16 +89,14 @@ Show that $E_y(z)$ satisfies Faraday's law!
 
 Now we turn to the electric field in the Air halfspace, i.e., in $z\le 0$.
 
-In $z \le 0$, the magnetic field is uniform with a field intensity of 1 A/m, so
-$$
+In $z \le 0$, the magnetic field is uniform with a field intensity of 1 A/m, so $$
 \mathbf H = \begin{bmatrix}
 1 \\ 0 \\ 0
 \end{bmatrix}
 $$
 
-We feed this into Faraday's law:
-$$
-\nabla \times \mathbf E = \begin{bmatrix}
+We feed this into Faraday's law: $$
+\curl \mathbf E = \begin{bmatrix}
 -i \omega \mu \\ 0 \\ 0
 \end{bmatrix}
 =
@@ -123,23 +105,16 @@ $$
 0 \\
 0
 \end{bmatrix}
-$$
-We see, that to obtain $E_y$, we have to integrate both sides of
-$$
+$$ We see, that to obtain $E_y$, we have to integrate both sides of $$
 i \omega \mu = \partial_z E_y.
-$$
-We integrate by parts and get
-$$
+$$ We integrate by parts and get $$
 \int\limits_0^\xi \partial_z E_y \, \mathrm d z = \left[ E_y \right]_0^\xi = [i \omega \mu]_0^\xi
-$$
-Therefore,
-$$
+$$ Therefore, $$
 E_y(\xi) = E_y(0) + i \omega \mu \xi = -\frac{ ik }{ \sigma } + i \omega \mu \xi =
 -\frac{ ik }{ \sigma } (1 - i k \xi).
 $$
 
-Finally, we obtain the result
-$$
+Finally, we obtain the result $$
 E_y(z) = 
 \begin{cases}
 -\dfrac{ ik }{ \sigma } (1 - i k z) & z \le 0 \\
@@ -204,6 +179,7 @@ ax.set_title('Normalized electric field')
 ax.grid(True)
 ax.legend(loc='lower right')
 ```
+
 ```{python}
 fig, ax = plt.subplots(figsize=(4, 4), layout='constrained')
 ax.plot(np.real(H / H0), z, label='Re')
@@ -222,32 +198,24 @@ ax.legend(loc='lower right')
 
 ## Impedance and apparent resistivity
 
-We define the magnetotelluric impedance as 
-$$
+We define the magnetotelluric impedance as $$
 Z(\omega) = \frac{ \mathbf e_h \cdot \mathbf E }{(\mathbf e_h \times \mathbf e_z) \cdot \mathbf H } = \frac{ E_x }{ H_y} = -\frac{ E_y }{H_x }
-$$
-where $\mathbf e_h$ is an arbitrary horizontal Cartesian unit vector, and $\mathbf e_z$ is the vertical Cartesian unit vector.
+$$ where $\mathbf e_h$ is an arbitrary horizontal Cartesian unit vector, and $\mathbf e_z$ is the vertical Cartesian unit vector.
 
-On the surface of a halfspace, we can measure the _surface impedance_
-$$
+On the surface of a halfspace, we can measure the *surface impedance* $$
 Z_s = Z(\omega),
-$$
-which in case of a uniform halfspace is identical to the _intrinsic impedance_
-$$
+$$ which in case of a uniform halfspace is identical to the *intrinsic impedance* $$
 Z_1 = \frac{ \omega \mu_0 }{ k_1 } = Z_s.
-$$
-Here, $k_1^2 = -i\omega\mu_0\sigma_1$ is the wave propagation constant of the first (however infinite in its vertical extent) layer.
+$$ Here, $k_1^2 = -i\omega\mu_0\sigma_1$ is the wave propagation constant of the first (however infinite in its vertical extent) layer.
 
-From $Z_s$ we can infer the _apparent resistivity_
-$$
+From $Z_s$ we can infer the *apparent resistivity* $$
 \rho_a = \frac{ 1 }{ \omega \mu_0} |Z_s|^2
-$$
-and the _phase_
-$$
+$$ and the *phase* $$
 \varphi = \arctan \frac{ \mathrm{Im}(Z_s) }{\mathrm{Re}(Z_s) }.
 $$
 
 ### Example
+
 ```{python}
 #| code-fold: False
 sigma = 0.01
@@ -263,11 +231,9 @@ rhoa = lambda Z, f: np.abs(Z)**2 / ( 2 * np.pi * f * mu0)
 phi = lambda Z: np.arctan(np.imag(Z) / np.real(Z)) * 180 / np.pi
 ```
 
-For our example, the apparent resistivity is `{python} rhoa(Zs, f)` $\Omega \cdot m$.
-The phase angle is `{python} phi(Zs)` degrees.
+For our example, the apparent resistivity is `{python} rhoa(Zs, f)` $\Omega \cdot m$. The phase angle is `{python} phi(Zs)` degrees.
 
-
-::: {.callout-note}
+::: callout-note
 Note the sign of $Z_s$, which depends on the choice of the horizontal field components.
 
 Let's check the result of the cross product $\mathbf e_h \times \mathbf e_z$:
@@ -297,6 +263,6 @@ $$
 $$
 :::
 
-In  the inhomogeneous case, i.e., when the conductivity of the halfspace is not uniform, the apparent resistivity and phase generally vary with frequency.
+In the inhomogeneous case, i.e., when the conductivity of the halfspace is not uniform, the apparent resistivity and phase generally vary with frequency.
 
-This can be visualized using _sounding curves_ of $\rho_a$ vs. period $T = 1/f$ or $\varphi$ vs. $T$.
+This can be visualized using *sounding curves* of $\rho_a$ vs. period $T = 1/f$ or $\varphi$ vs. $T$.

@@ -140,7 +140,7 @@ The impulse response $h(t)$ used here a physically unspecified function of time,
 We then obtain the [step function response](https://en.wikipedia.org/wiki/Step_response) $f(t)$ from the *convolution* of the impulse response $h(t)$ with the Heaviside function $u(t)$:
 
 $$
-f(t)=h * u(t)=u * h(t)=\int_{-\infty}^{\infty} h(t') u(t-t') d t' =\int_{-\infty}^{t} h(t') d t'
+f(t)=h * u(t)=u * h(t)=\int_{-\infty}^{\infty} h(t') u(t-t') \dd t' =\int_{-\infty}^{t} h(t') \dd t'
 $$
 
 The step function response at time $t$ is therefore the result of the time integration over the impulse response from $-\infty$ to $t$.
@@ -156,10 +156,10 @@ plot(h(t), (t, -10, 10), size=(6,3), ylabel='h(t)')
 We define symbolic expressions for the integrals introduced above to calculate $f(t)$:
 
 $$
-f_1(\tau) = \int_{-\infty}^{\infty} h(t) u(\tau-t) \mathrm d t
+f_1(\tau) = \int_{-\infty}^{\infty} h(t) u(\tau-t) \dd t
 $$
 $$
-f_2(\tau) = \int_{-\infty}^{\tau} h(t') d t'
+f_2(\tau) = \int_{-\infty}^{\tau} h(t') \dd t'
 $$
 
 ```{python}
@@ -185,7 +185,7 @@ f2(tau)
 We see that both integrals yield the same result, so $f(t) = f_1(t) = f_2(t)$. For further calculations, it is sufficient to use the integral
 
 $$
-f(t) = \int_{-\infty}^t h(t') \, \mathrm dt'.
+f(t) = \int_{-\infty}^t h(t') \, \dd t'.
 $$
 
 ::: {.callout-note}
@@ -201,7 +201,7 @@ The effect is observed as a consequence of one of the causes.
 The step function response for *causal systems* is
 
 $$
-f_{\mathrm{on}}(t)=\int_{0}^{t} h(t') \, \mathrm d t', \quad t \geq 0.
+f_{\mathrm{on}}(t)=\int_{0}^{t} h(t') \, \dd t', \quad t \geq 0.
 $$
 
 ```{python}
@@ -214,7 +214,7 @@ plot(f_on(t), (t, 0, 10), ylim=(0, 1), size=(6,3), title=r'$f_\text{on}(t)$')
 With $u(-t) = 1 - u(t)$ we obtain the step function response for the *switch-off* process, which plays a major role in transient electromagnetics in particular, but also in the induced polarization method in the time domain.
 
 $$
-f_{\text {off }}(t) =\int_{t}^{\infty} h(t') d t' = \int_{0}^{\infty} h(t') d t' - \int_{0}^{t} h(t') d t', \quad t \geq 0
+f_{\text {off }}(t) =\int_{t}^{\infty} h(t') \dd t' = \int_{0}^{\infty} h(t') \dd t' - \int_{0}^{t} h(t') \dd t', \quad t \geq 0
 $$
 
 The integrals can be expressed by the step function response for causal systems $f_{\text {on }}(t)$:
@@ -304,10 +304,10 @@ The inverse Fourier transformation finally provides the desired step function re
 $$
 \begin{align}
 f_s(t) & = \frac{1}{2\pi} \int\limits_{-\infty}^\infty 
-\left(\pi \delta(\omega) + \frac{1}{i \omega}\right) F(\omega) e^{i\omega t} \, \mathrm d\omega \\ & = \frac{F(0)}{2} + 
+\left(\pi \delta(\omega) + \frac{1}{i \omega}\right) F(\omega) e^{i\omega t} \, \dd\omega \\ & = \frac{F(0)}{2} + 
 \frac{1}{2\pi} \int\limits_{-\infty}^\infty 
 \frac{F(\omega)}{i\omega}
-e^{i\omega t} \, \mathrm d\omega
+e^{i\omega t} \, \dd\omega
 \end{align}
 $$
 
@@ -324,7 +324,7 @@ Consider a function $f(t)$, $t > 0$.
 
 The Laplace transform can be applied to $f(t)$ as follows:
 $$
-\mathcal L(f(x, t))=\int_{0}^{\infty} e^{-s t} f(x, t) d t \equiv F(x, s)
+\mathcal L(f(x, t))=\int_{0}^{\infty} e^{-s t} f(x, t) \dd t \equiv F(x, s)
 $$
 with $x$ as parameter.
 
@@ -340,7 +340,7 @@ $$
 which we calculate using the Laplace integral introduced above via partial integration:
 $$
 \begin{align}
-\mathcal L(f_t(x, t) & = \int\limits_{0}^{\infty} e^{-s t} f_{t}(x, t) d t \\ & = \left.e^{-s t} f(x, t)\right|_{0} ^{\infty}+s \int\limits_{0}^{\infty} e^{-s t} f(x, t) d t \\ & = s F(x, s)-f(x, 0).
+\mathcal L(f_t(x, t) & = \int\limits_{0}^{\infty} e^{-s t} f_{t}(x, t) \dd t \\ & = \left.e^{-s t} f(x, t)\right|_{0} ^{\infty}+s \int\limits_{0}^{\infty} e^{-s t} f(x, t) \dd t \\ & = s F(x, s)-f(x, 0).
 \end{align}
 $$
 
@@ -348,9 +348,9 @@ The following table contains some important Laplace transform pairs:
 
 | $f(t)$ | $\mathcal L(f(t))$ |
 |-----------------|---------------|
-| $u(t-a)$ | $\frac{e^{-as}}{s}$ |
+| $u(t-a)$ | $\dfrac{e^{-as}}{s}$ |
 | $\delta(t-a)$ | $e^{-as}$ |
-| $1$ | $\frac{1}{s}$ |
+| $1$ | $\dfrac{1}{s}$ |
 
 ## Inverse transform of the electric field with step function excitation
 
@@ -395,7 +395,7 @@ $$
 
 The [error function](https://en.wikipedia.org/wiki/Error_function) erf$(t)$ plays an important role. Its definition is
 $$
-\mathrm{erf}(t) = \frac{2}{\sqrt{\pi}} \int_0^t e^{-\tau^2} d\tau.
+\mathrm{erf}(t) = \frac{2}{\sqrt{\pi}} \int_0^t e^{-\tau^2} \dd\tau.
 $$
 The *complementary error function* erfc$(t)$ is
 $$

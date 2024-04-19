@@ -49,8 +49,8 @@ $$
 
 With the introduction of the polarization vectors, we are now able to augment Maxwell's equations, such that $$
 \begin{align}
-\nabla \times \mathbf h & = \mathbf j + \varepsilon \partial_t \mathbf e + \partial_t \mathbf p^s \\
-\nabla \times \mathbf e & = \phantom{\mathbf j} -\mu \partial_t \mathbf h - \mu_0 \partial_t \mathbf m^s
+\curl \mathbf h & = \mathbf j + \varepsilon \partial_t \mathbf e + \partial_t \mathbf p^s \\
+\curl \mathbf e & = \phantom{\mathbf j} -\mu \partial_t \mathbf h - \mu_0 \partial_t \mathbf m^s
 \end{align}
 $$
 
@@ -97,47 +97,52 @@ When $\mathbf J_m \equiv 0$, then we only observe the set of fields $[\mathbf E_
 
 The two sets are disjoint. We insert into Maxwell's equations $$
 \begin{align}
-\nabla \times \mathbf E_m & = -i \omega \mu \mathbf H_m \textcolor{red}{- \mathbf J_m^s} \\
-\nabla \times \mathbf H_m & = (\sigma + i \omega \varepsilon) \mathbf E_m
+\curl \mathbf E_m & = -i \omega \mu \mathbf H_m \textcolor{red}{- \mathbf J_m^s} \\
+\curl \mathbf H_m & = (\sigma + i \omega \varepsilon) \mathbf E_m
 \end{align}
 $$
 
 $$
 \begin{align}
-\nabla \times \mathbf E_e & = -i \omega \mu \mathbf H_e  \\
-\nabla \times \mathbf H_e & = (\sigma + i \omega \varepsilon) \mathbf E_e \textcolor{red}{+ \mathbf J_e^s}
+\curl \mathbf E_e & = -i \omega \mu \mathbf H_e  \\
+\curl \mathbf H_e & = (\sigma + i \omega \varepsilon) \mathbf E_e \textcolor{red}{+ \mathbf J_e^s}
 \end{align}
 $$
 
 Now we apply the divergence to all of the above equations. Here we employ the identity $$
-\nabla \cdot (\nabla \times \mathbf F) = 0,
+\divergence (\curl \mathbf F) = 0,
 $$ {#eq-divrot} such that, e.g., $$
-\underbrace{\nabla \cdot (\nabla \times \mathbf E_m)}_{=0}  = -i \omega \mu \nabla \cdot \mathbf H_m - \nabla \cdot \mathbf J_m^s.
+\underbrace{\divergence (\curl \mathbf E_m)}_{=0}  = -i \omega \mu \divergence \mathbf H_m - \divergence \mathbf J_m^s.
 $$ We obtain $$
 \begin{align}
-\nabla \cdot \mathbf H_m & = -\frac{ \nabla \cdot \mathbf J_m^s }{i \omega \mu } \\
-\nabla \cdot \mathbf E_e & = -\frac{ \nabla \cdot \mathbf J_e^s }{\sigma + i \omega \varepsilon } \\
-\nabla \cdot \mathbf H_e & = 0 \\
-\nabla \cdot \mathbf E_m & = 0.
+\divergence \mathbf H_m & = -\frac{ \divergence \mathbf J_m^s }{i \omega \mu } \\
+\divergence \mathbf E_e & = -\frac{ \divergence \mathbf J_e^s }{\sigma + i \omega \varepsilon } \\
+\divergence \mathbf H_e & = 0 \\
+\divergence \mathbf E_m & = 0.
 \end{align}
 $$ Since the divergence of $\mathbf H_e$ and $\mathbf E_m$ are zero, we can express both fields by the curl of an arbitrary vector field according to @eq-divrot. However, this vector field must fulfill Maxwell's equations. The following ansatz employing the vector potentials $\mathbf F$ and $\mathbf A$ meets this requirement: $$
 \begin{align}
-\mathbf E_m & = -\nabla \times \mathbf F \\
-\mathbf H_e & = \phantom{-} \nabla \times \mathbf A.
+\mathbf E_m & = -\curl \mathbf F \\
+\mathbf H_e & = \phantom{-} \curl \mathbf A.
 \end{align}
 $$ It follows $$
 \begin{align}
-\nabla \times \mathbf H_m & = -(\sigma + i \omega \varepsilon) \nabla \times \mathbf F \\
-\nabla \times \mathbf E_e & = -i \omega \mu \nabla \times \mathbf A 
+\curl \mathbf H_m & = -(\sigma + i \omega \varepsilon) \curl \mathbf F \\
+\curl \mathbf E_e & = -i \omega \mu \curl \mathbf A 
 \end{align}
 $$ from which we obtain $$
 \begin{align}
-\mathbf H_m & = -(\sigma + i \omega \varepsilon) \mathbf F - \nabla V \\
-\mathbf E_e & = -i \omega \mu \mathbf A - \nabla U
+\mathbf H_m & = -(\sigma + i \omega \varepsilon) \mathbf F - \grad V \\
+\mathbf E_e & = -i \omega \mu \mathbf A - \grad U
 \end{align}
-$$ because of $$
-\nabla \times \nabla u = \mathbf 0.
-$$ The scalar potentials $V$ and $U$ are referred to as magnetic and electrical scalar potential, resp.
+$$ 
+because 
+$$
+\curl \nabla u = \mathbf 0
+$$ 
+for any scalar function $u: \mathbb R^3 \mapsto \mathbb R$.
+
+The scalar potentials $V$ and $U$ are referred to as magnetic and electrical scalar potential, resp.
 
 ## The curl-curl equation for the potentials
 
@@ -145,17 +150,17 @@ Let's insert the potentials into Maxwell's equations.
 
 $$
 \begin{align}
-\mathbf E_m & = - \nabla \times \mathbf F \\
-\nabla \times \mathbf E_m & = - \nabla \times \nabla \times \mathbf F && = -i \omega \mu \textcolor{red}{\mathbf H_m} - \mathbf J^s_m \\
- &   && = i \omega \mu \textcolor{red}{(\sigma + i \omega \varepsilon) \mathbf F} + i \omega \mu \textcolor{red}{\nabla V} - \mathbf J^s_m
+\mathbf E_m & = - \curl \mathbf F \\
+\curl \mathbf E_m & = - \curl \curl \mathbf F && = -i \omega \mu \textcolor{red}{\mathbf H_m} - \mathbf J^s_m \\
+ &   && = i \omega \mu \textcolor{red}{(\sigma + i \omega \varepsilon) \mathbf F} + i \omega \mu \textcolor{red}{\grad V} - \mathbf J^s_m
 \end{align}
 $$
 
 $$
 \begin{align}
-\mathbf H_e & = \phantom{-} \nabla \times \mathbf A \\
-\nabla \times \mathbf H_e & = \phantom{-} \nabla \times \nabla \times \mathbf A && = (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf E_e} + \mathbf J^s_e \\
- &   && = \textcolor{red}{-i \omega \mu} (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf A} - i \omega \mu \textcolor{red}{\nabla U} + \mathbf J^s_e
+\mathbf H_e & = \phantom{-} \curl \mathbf A \\
+\curl \mathbf H_e & = \phantom{-} \curl \curl \mathbf A && = (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf E_e} + \mathbf J^s_e \\
+ &   && = \textcolor{red}{-i \omega \mu} (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf A} - i \omega \mu \textcolor{red}{\grad U} + \mathbf J^s_e
 \end{align}
 $$
 
@@ -163,8 +168,8 @@ We use the vector identity @eq-vector-identity and obtain
 
 $$
 \begin{align}
--\nabla^2 \mathbf F + \nabla \nabla \cdot \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F + i \omega \mu \nabla V & = + \mathbf J^s_m \\
--\nabla^2 \mathbf A + \nabla \nabla \cdot \mathbf A + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf A + i \omega \mu \nabla U & = + \mathbf J^s_e
+-\laplacian \mathbf F + \nabla \divergence \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F + i \omega \mu \grad V & = + \mathbf J^s_m \\
+-\laplacian \mathbf A + \nabla \divergence \mathbf A + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf A + i \omega \mu \grad U & = + \mathbf J^s_e
 \end{align}
 $$
 
@@ -172,15 +177,15 @@ $$
 
 Question: How to get rid of $V$ and $U$?
 
-We choose the arbitrary scalar potential $V, U$ such that it cancels with the expression $\nabla \cdot \mathbf F$ and $\nabla \cdot \mathbf A$, resp. $$
+We choose the arbitrary scalar potential $V, U$ such that it cancels with the expression $\divergence \mathbf F$ and $\divergence \mathbf A$, resp. $$
 \begin{align}
-\nabla \nabla \cdot \mathbf F & = - i \omega \mu \nabla V \\
-\nabla \cdot \mathbf F & = - i \omega \mu V
+\nabla \divergence \mathbf F & = - i \omega \mu \grad V \\
+\divergence \mathbf F & = - i \omega \mu V
 \end{align}
 $$ and obtain $$
--\nabla^2 \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F = + \mathbf J^s_m.
+-\laplacian \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F = + \mathbf J^s_m.
 $$ or short $$
-\nabla^2 \mathbf F + k^2 \mathbf F = -\mathbf J^s_m, \qquad k^2 = -i \omega \mu (\sigma + i \omega \varepsilon).
+\laplacian \mathbf F + k^2 \mathbf F = -\mathbf J^s_m, \qquad k^2 = -i \omega \mu (\sigma + i \omega \varepsilon).
 $$
 
 ::: {.callout title="Self study"}
@@ -191,9 +196,9 @@ Repeat the steps above for the case of $\mathbf A$.
 We have eliminated the scalar potentials $V$ and $U$ by use of the *Lorenz gauge*.
 
 The vector potentials are solutions to $$
-\nabla^2 \mathbf F + k^2 \mathbf F  = -\mathbf J^s_m
+\laplacian \mathbf F + k^2 \mathbf F  = -\mathbf J^s_m
 $$ {#eq-inhomogeneous-helmholtz-F} and $$
-\nabla^2 \mathbf A + k^2 \mathbf A = -\mathbf J^s_e.
+\laplacian \mathbf A + k^2 \mathbf A = -\mathbf J^s_e.
 $$ {#eq-inhomogeneous-helmholtz-A}
 
 These equations are called *inhomogeneous Helmholtz equations*.
@@ -226,7 +231,7 @@ $$
 Also required are the differentiation, convolution, and linearity properties of the Fourier transform.
 
 We recognize that in a Cartesian coordinate system $$
-\nabla^2 := \partial^2_{xx} + \partial^2_{yy} + \partial^2_{zz}
+\laplacian := \partial^2_{xx} + \partial^2_{yy} + \partial^2_{zz}
 $$ and therefore $$
 \partial^2_{xx} e^{-i k_x x} = -k_x^2 e^{-i k_x x} \text{ etc.}
 $$
@@ -246,7 +251,7 @@ We can obtain $\mathbf A$ directly in the spatial domain by evaluating a 3-D con
 To this end, let's consider a PDE similar to @eq-inhomogeneous-helmholtz-A. The differences are important: First, the solution to the PDE is a scalar function $G$, second, the right-hand side of the equation is a Dirac impulse in space.
 
 We depart from $$
-\nabla^2 G + k^2 G = -\delta(x) \delta(y) \delta(z)
+\laplacian G + k^2 G = -\delta(x) \delta(y) \delta(z)
 $$ {#eq-pde-G}
 
 We take steps 1 and 2 as outlined above and obtain $$
@@ -388,7 +393,7 @@ $$ would simplify for a vertically aligned dipole to $$
 0 \\ 0 \\ J_m^s
 \end{bmatrix}
 $$ The vector-valued PDE @eq-inhomogeneous-helmholtz-F would turn into $$
-\nabla^2 \mathbf F + k^2 \mathbf F = -i \omega \mu m \delta^3(\mathbf r) \mathbf e_z,
+\laplacian \mathbf F + k^2 \mathbf F = -i \omega \mu m \delta^3(\mathbf r) \mathbf e_z,
 $$ hence, the scalar potential for a magnetic dipole aligned with the $z$-axis is $$
 F_z = \mathbf F \cdot \mathbf e_z = \frac{ i \omega \mu m }{ 4 \pi r } e^{-i k r}.
 $$
@@ -400,9 +405,9 @@ Dipole induction problems become particularly easy to solve when the dipole axis
 :::
 
 With the ansatz defined above $$
-\mathbf E_m = - \nabla \times \mathbf F
+\mathbf E_m = - \curl \mathbf F
 $$ and $$
-\mathbf H_m = \frac{ 1 }{ i \omega \mu } (\nabla \nabla \cdot \mathbf F + k^2 \mathbf F)
+\mathbf H_m = \frac{ 1 }{ i \omega \mu } (\grad \divergence \mathbf F + k^2 \mathbf F)
 $$ we can calculate the components of the electric and magnetic fields in a straightforward manner.
 
 Note that there are just spatial derivatives involved.
@@ -411,7 +416,7 @@ However, the symmetry of the problem suggests using cylindrical coordinates.
 
 $$
 \begin{align}
-    \nabla \times \mathbf F = & \left(
+    \curl \mathbf F = & \left(
         \frac{1}{r}
     \frac{\partial F_z}{\partial \varphi}-
     \frac{\partial F_\varphi}{\partial z}
@@ -428,7 +433,7 @@ $$ {#eq-rot-cylindrical}
 
 In the case of a dipole oriented in $z$-direction, the curl simplifies to 
 $$
-\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi,
+\curl \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi,
 $$ {#eq-rot-F}
 where $\mathbf e_\varphi$ is the unit coordinate vector in $\varphi$-direction.
 
@@ -449,7 +454,7 @@ The components are mutual orthogonal!
 
 With the definition 
 $$
- \mathbf E = -\nabla \times \mathbf F
+ \mathbf E = -\curl \mathbf F
 $$ 
 we find using @eq-rot-F that
 $$
@@ -541,8 +546,8 @@ Looking in the direction of the positive $z$-axis of a right-handed coordinate s
 
 For the magnetic field, we need 
 $$
-\mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \nabla\nabla\cdot\mathbf F = \frac{1}{i\omega\mu} \left(
-    k^2 \mathbf F + \nabla\nabla\cdot\mathbf F
+\mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \grad \divergence \mathbf F = \frac{1}{i\omega\mu} \left(
+    k^2 \mathbf F + \grad\divergence \mathbf F
 \right).
 $$ 
 
@@ -563,7 +568,7 @@ $$
 
 Further, the divergence and gradient operators generally read in cylindrical coordinates for a vector field $\mathbf F$ and  a scalar field $f$
 $$
-\nabla \cdot \mathbf F = \frac{1}{r} \partial_r(r F_r) + 
+\divergence \mathbf F = \frac{1}{r} \partial_r(r F_r) + 
 \frac{1}{r} \partial_\varphi F_\varphi +
 \partial_z F_z
 $$
@@ -576,7 +581,7 @@ $$
 
 In our case we need to calculate
 $$
-\nabla \cdot \mathbf F = \partial_z F_z.
+\divergence \mathbf F = \partial_z F_z.
 $$
 
 To compute the derivatives, we use `sympy`:
@@ -590,7 +595,7 @@ Fz = I * omega * mu * m / (4 * pi * r) * exp(-I * k * r)
 print('Fz = ')
 Fz
 ```
-Next, we implement an expression for $\nabla \cdot \mathbf F$:
+Next, we implement an expression for $\divergence \mathbf F$:
 
 ```{python}
 divF = diff(Fz.subs(r, sqrt(x**2 + y**2 + z**2)), z).subs(sqrt(x**2 + y**2 + z**2), r).simplify()

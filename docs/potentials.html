@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.29">
+<meta name="generator" content="quarto-1.5.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -410,8 +410,8 @@ window.Quarto = {
 \]</span></p>
 <p>With the introduction of the polarization vectors, we are now able to augment Maxwell’s equations, such that <span class="math display">\[
 \begin{align}
-\nabla \times \mathbf h &amp; = \mathbf j + \varepsilon \partial_t \mathbf e + \partial_t \mathbf p^s \\
-\nabla \times \mathbf e &amp; = \phantom{\mathbf j} -\mu \partial_t \mathbf h - \mu_0 \partial_t \mathbf m^s
+\curl \mathbf h &amp; = \mathbf j + \varepsilon \partial_t \mathbf e + \partial_t \mathbf p^s \\
+\curl \mathbf e &amp; = \phantom{\mathbf j} -\mu \partial_t \mathbf h - \mu_0 \partial_t \mathbf m^s
 \end{align}
 \]</span></p>
 <p>We define the <em>source current densities</em> in the magnetic and electric case as <span class="math display">\[
@@ -457,83 +457,84 @@ Example
 <p>When <span class="math inline">\(\mathbf J_m \equiv 0\)</span>, then we only observe the set of fields <span class="math inline">\([\mathbf E_e, \mathbf H_e]\)</span>.</p>
 <p>The two sets are disjoint. We insert into Maxwell’s equations <span class="math display">\[
 \begin{align}
-\nabla \times \mathbf E_m &amp; = -i \omega \mu \mathbf H_m \textcolor{red}{- \mathbf J_m^s} \\
-\nabla \times \mathbf H_m &amp; = (\sigma + i \omega \varepsilon) \mathbf E_m
+\curl \mathbf E_m &amp; = -i \omega \mu \mathbf H_m \textcolor{red}{- \mathbf J_m^s} \\
+\curl \mathbf H_m &amp; = (\sigma + i \omega \varepsilon) \mathbf E_m
 \end{align}
 \]</span></p>
 <p><span class="math display">\[
 \begin{align}
-\nabla \times \mathbf E_e &amp; = -i \omega \mu \mathbf H_e  \\
-\nabla \times \mathbf H_e &amp; = (\sigma + i \omega \varepsilon) \mathbf E_e \textcolor{red}{+ \mathbf J_e^s}
+\curl \mathbf E_e &amp; = -i \omega \mu \mathbf H_e  \\
+\curl \mathbf H_e &amp; = (\sigma + i \omega \varepsilon) \mathbf E_e \textcolor{red}{+ \mathbf J_e^s}
 \end{align}
 \]</span></p>
 <p>Now we apply the divergence to all of the above equations. Here we employ the identity <span id="eq-divrot"><span class="math display">\[
-\nabla \cdot (\nabla \times \mathbf F) = 0,
+\divergence (\curl \mathbf F) = 0,
 \tag{7.1}\]</span></span> such that, e.g., <span class="math display">\[
-\underbrace{\nabla \cdot (\nabla \times \mathbf E_m)}_{=0}  = -i \omega \mu \nabla \cdot \mathbf H_m - \nabla \cdot \mathbf J_m^s.
+\underbrace{\divergence (\curl \mathbf E_m)}_{=0}  = -i \omega \mu \divergence \mathbf H_m - \divergence \mathbf J_m^s.
 \]</span> We obtain <span class="math display">\[
 \begin{align}
-\nabla \cdot \mathbf H_m &amp; = -\frac{ \nabla \cdot \mathbf J_m^s }{i \omega \mu } \\
-\nabla \cdot \mathbf E_e &amp; = -\frac{ \nabla \cdot \mathbf J_e^s }{\sigma + i \omega \varepsilon } \\
-\nabla \cdot \mathbf H_e &amp; = 0 \\
-\nabla \cdot \mathbf E_m &amp; = 0.
+\divergence \mathbf H_m &amp; = -\frac{ \divergence \mathbf J_m^s }{i \omega \mu } \\
+\divergence \mathbf E_e &amp; = -\frac{ \divergence \mathbf J_e^s }{\sigma + i \omega \varepsilon } \\
+\divergence \mathbf H_e &amp; = 0 \\
+\divergence \mathbf E_m &amp; = 0.
 \end{align}
 \]</span> Since the divergence of <span class="math inline">\(\mathbf H_e\)</span> and <span class="math inline">\(\mathbf E_m\)</span> are zero, we can express both fields by the curl of an arbitrary vector field according to <a href="#eq-divrot" class="quarto-xref"><span>7.1</span></a>. However, this vector field must fulfill Maxwell’s equations. The following ansatz employing the vector potentials <span class="math inline">\(\mathbf F\)</span> and <span class="math inline">\(\mathbf A\)</span> meets this requirement: <span class="math display">\[
 \begin{align}
-\mathbf E_m &amp; = -\nabla \times \mathbf F \\
-\mathbf H_e &amp; = \phantom{-} \nabla \times \mathbf A.
+\mathbf E_m &amp; = -\curl \mathbf F \\
+\mathbf H_e &amp; = \phantom{-} \curl \mathbf A.
 \end{align}
 \]</span> It follows <span class="math display">\[
 \begin{align}
-\nabla \times \mathbf H_m &amp; = -(\sigma + i \omega \varepsilon) \nabla \times \mathbf F \\
-\nabla \times \mathbf E_e &amp; = -i \omega \mu \nabla \times \mathbf A
+\curl \mathbf H_m &amp; = -(\sigma + i \omega \varepsilon) \curl \mathbf F \\
+\curl \mathbf E_e &amp; = -i \omega \mu \curl \mathbf A
 \end{align}
 \]</span> from which we obtain <span class="math display">\[
 \begin{align}
-\mathbf H_m &amp; = -(\sigma + i \omega \varepsilon) \mathbf F - \nabla V \\
-\mathbf E_e &amp; = -i \omega \mu \mathbf A - \nabla U
+\mathbf H_m &amp; = -(\sigma + i \omega \varepsilon) \mathbf F - \grad V \\
+\mathbf E_e &amp; = -i \omega \mu \mathbf A - \grad U
 \end{align}
-\]</span> because of <span class="math display">\[
-\nabla \times \nabla u = \mathbf 0.
-\]</span> The scalar potentials <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span> are referred to as magnetic and electrical scalar potential, resp.</p>
+\]</span> because <span class="math display">\[
+\curl \nabla u = \mathbf 0
+\]</span> for any scalar function <span class="math inline">\(u: \mathbb R^3 \mapsto \mathbb R\)</span>.</p>
+<p>The scalar potentials <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span> are referred to as magnetic and electrical scalar potential, resp.</p>
 </section>
 <section id="the-curl-curl-equation-for-the-potentials" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="the-curl-curl-equation-for-the-potentials"><span class="header-section-number">7.3</span> The curl-curl equation for the potentials</h2>
 <p>Let’s insert the potentials into Maxwell’s equations.</p>
 <p><span class="math display">\[
 \begin{align}
-\mathbf E_m &amp; = - \nabla \times \mathbf F \\
-\nabla \times \mathbf E_m &amp; = - \nabla \times \nabla \times \mathbf F &amp;&amp; = -i \omega \mu \textcolor{red}{\mathbf H_m} - \mathbf J^s_m \\
-&amp;   &amp;&amp; = i \omega \mu \textcolor{red}{(\sigma + i \omega \varepsilon) \mathbf F} + i \omega \mu \textcolor{red}{\nabla V} - \mathbf J^s_m
+\mathbf E_m &amp; = - \curl \mathbf F \\
+\curl \mathbf E_m &amp; = - \curl \curl \mathbf F &amp;&amp; = -i \omega \mu \textcolor{red}{\mathbf H_m} - \mathbf J^s_m \\
+&amp;   &amp;&amp; = i \omega \mu \textcolor{red}{(\sigma + i \omega \varepsilon) \mathbf F} + i \omega \mu \textcolor{red}{\grad V} - \mathbf J^s_m
 \end{align}
 \]</span></p>
 <p><span class="math display">\[
 \begin{align}
-\mathbf H_e &amp; = \phantom{-} \nabla \times \mathbf A \\
-\nabla \times \mathbf H_e &amp; = \phantom{-} \nabla \times \nabla \times \mathbf A &amp;&amp; = (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf E_e} + \mathbf J^s_e \\
-&amp;   &amp;&amp; = \textcolor{red}{-i \omega \mu} (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf A} - i \omega \mu \textcolor{red}{\nabla U} + \mathbf J^s_e
+\mathbf H_e &amp; = \phantom{-} \curl \mathbf A \\
+\curl \mathbf H_e &amp; = \phantom{-} \curl \curl \mathbf A &amp;&amp; = (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf E_e} + \mathbf J^s_e \\
+&amp;   &amp;&amp; = \textcolor{red}{-i \omega \mu} (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf A} - i \omega \mu \textcolor{red}{\grad U} + \mathbf J^s_e
 \end{align}
 \]</span></p>
 <p>We use the vector identity <a href="pde.html#eq-vector-identity" class="quarto-xref"><span>5.2</span></a> and obtain</p>
 <p><span class="math display">\[
 \begin{align}
--\nabla^2 \mathbf F + \nabla \nabla \cdot \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F + i \omega \mu \nabla V &amp; = + \mathbf J^s_m \\
--\nabla^2 \mathbf A + \nabla \nabla \cdot \mathbf A + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf A + i \omega \mu \nabla U &amp; = + \mathbf J^s_e
+-\laplacian \mathbf F + \nabla \divergence \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F + i \omega \mu \grad V &amp; = + \mathbf J^s_m \\
+-\laplacian \mathbf A + \nabla \divergence \mathbf A + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf A + i \omega \mu \grad U &amp; = + \mathbf J^s_e
 \end{align}
 \]</span></p>
 </section>
 <section id="the-vector-helmholtz-equations-for-the-potentials" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="the-vector-helmholtz-equations-for-the-potentials"><span class="header-section-number">7.4</span> The vector Helmholtz equations for the potentials</h2>
 <p>Question: How to get rid of <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span>?</p>
-<p>We choose the arbitrary scalar potential <span class="math inline">\(V, U\)</span> such that it cancels with the expression <span class="math inline">\(\nabla \cdot \mathbf F\)</span> and <span class="math inline">\(\nabla \cdot \mathbf A\)</span>, resp. <span class="math display">\[
+<p>We choose the arbitrary scalar potential <span class="math inline">\(V, U\)</span> such that it cancels with the expression <span class="math inline">\(\divergence \mathbf F\)</span> and <span class="math inline">\(\divergence \mathbf A\)</span>, resp. <span class="math display">\[
 \begin{align}
-\nabla \nabla \cdot \mathbf F &amp; = - i \omega \mu \nabla V \\
-\nabla \cdot \mathbf F &amp; = - i \omega \mu V
+\nabla \divergence \mathbf F &amp; = - i \omega \mu \grad V \\
+\divergence \mathbf F &amp; = - i \omega \mu V
 \end{align}
 \]</span> and obtain <span class="math display">\[
--\nabla^2 \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F = + \mathbf J^s_m.
+-\laplacian \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F = + \mathbf J^s_m.
 \]</span> or short <span class="math display">\[
-\nabla^2 \mathbf F + k^2 \mathbf F = -\mathbf J^s_m, \qquad k^2 = -i \omega \mu (\sigma + i \omega \varepsilon).
+\laplacian \mathbf F + k^2 \mathbf F = -\mathbf J^s_m, \qquad k^2 = -i \omega \mu (\sigma + i \omega \varepsilon).
 \]</span></p>
 <div class="callout callout-style-simple callout-none no-icon callout-titled" title="Self study">
 <div class="callout-header d-flex align-content-center">
@@ -560,9 +561,9 @@ Summary
 <div class="callout-body-container callout-body">
 <p>We have eliminated the scalar potentials <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span> by use of the <em>Lorenz gauge</em>.</p>
 <p>The vector potentials are solutions to <span id="eq-inhomogeneous-helmholtz-F"><span class="math display">\[
-\nabla^2 \mathbf F + k^2 \mathbf F  = -\mathbf J^s_m
+\laplacian \mathbf F + k^2 \mathbf F  = -\mathbf J^s_m
 \tag{7.2}\]</span></span> and <span id="eq-inhomogeneous-helmholtz-A"><span class="math display">\[
-\nabla^2 \mathbf A + k^2 \mathbf A = -\mathbf J^s_e.
+\laplacian \mathbf A + k^2 \mathbf A = -\mathbf J^s_e.
 \tag{7.3}\]</span></span></p>
 <p>These equations are called <em>inhomogeneous Helmholtz equations</em>.</p>
 <p>Note that the vector potentials are <em>aligned</em> with the direction of the source current densities!</p>
@@ -589,7 +590,7 @@ Summary
 \]</span></p>
 <p>Also required are the differentiation, convolution, and linearity properties of the Fourier transform.</p>
 <p>We recognize that in a Cartesian coordinate system <span class="math display">\[
-\nabla^2 := \partial^2_{xx} + \partial^2_{yy} + \partial^2_{zz}
+\laplacian := \partial^2_{xx} + \partial^2_{yy} + \partial^2_{zz}
 \]</span> and therefore <span class="math display">\[
 \partial^2_{xx} e^{-i k_x x} = -k_x^2 e^{-i k_x x} \text{ etc.}
 \]</span></p>
@@ -604,7 +605,7 @@ Summary
 <p>We can obtain <span class="math inline">\(\mathbf A\)</span> directly in the spatial domain by evaluating a 3-D convolution integral, since <a href="#eq-AGJ" class="quarto-xref"><span>7.4</span></a> is a multiplication in the wave number domain by exploiting the convolution property of the Fourier transform. Unfortunately, we still have not found an expression for <span class="math inline">\(G\)</span>.</p>
 <p>To this end, let’s consider a PDE similar to <a href="#eq-inhomogeneous-helmholtz-A" class="quarto-xref"><span>7.3</span></a>. The differences are important: First, the solution to the PDE is a scalar function <span class="math inline">\(G\)</span>, second, the right-hand side of the equation is a Dirac impulse in space.</p>
 <p>We depart from <span id="eq-pde-G"><span class="math display">\[
-\nabla^2 G + k^2 G = -\delta(x) \delta(y) \delta(z)
+\laplacian G + k^2 G = -\delta(x) \delta(y) \delta(z)
 \tag{7.5}\]</span></span></p>
 <p>We take steps 1 and 2 as outlined above and obtain <span class="math display">\[
 \tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
@@ -684,7 +685,7 @@ e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
 <p>We implement the Green’s function in <code>Python</code> and plot it as a function of time or source-receiver-offset, resp.</p>
 <p>At first, let’s calculate the Green’s function at a fixed distance of <span class="math inline">\(r=100\)</span> m for a time range of <span class="math inline">\(t \in [10^{-6}, 10^{-2}]\)</span> seconds.</p>
 <p>The late time asymptotic <span class="math inline">\(g(r,t) \sim t^{-3/2}\)</span> as <span class="math inline">\(t \to \infty\)</span> is indicated as a straight line in the log-log plot.</p>
-<div id="8620da6b" class="cell" data-execution_count="1">
+<div id="39f0d268" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -740,7 +741,7 @@ e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
 0 \\ 0 \\ J_m^s
 \end{bmatrix}
 \]</span> The vector-valued PDE <a href="#eq-inhomogeneous-helmholtz-F" class="quarto-xref"><span>7.2</span></a> would turn into <span class="math display">\[
-\nabla^2 \mathbf F + k^2 \mathbf F = -i \omega \mu m \delta^3(\mathbf r) \mathbf e_z,
+\laplacian \mathbf F + k^2 \mathbf F = -i \omega \mu m \delta^3(\mathbf r) \mathbf e_z,
 \]</span> hence, the scalar potential for a magnetic dipole aligned with the <span class="math inline">\(z\)</span>-axis is <span class="math display">\[
 F_z = \mathbf F \cdot \mathbf e_z = \frac{ i \omega \mu m }{ 4 \pi r } e^{-i k r}.
 \]</span></p>
@@ -759,15 +760,15 @@ Tip
 </div>
 </div>
 <p>With the ansatz defined above <span class="math display">\[
-\mathbf E_m = - \nabla \times \mathbf F
+\mathbf E_m = - \curl \mathbf F
 \]</span> and <span class="math display">\[
-\mathbf H_m = \frac{ 1 }{ i \omega \mu } (\nabla \nabla \cdot \mathbf F + k^2 \mathbf F)
+\mathbf H_m = \frac{ 1 }{ i \omega \mu } (\grad \divergence \mathbf F + k^2 \mathbf F)
 \]</span> we can calculate the components of the electric and magnetic fields in a straightforward manner.</p>
 <p>Note that there are just spatial derivatives involved.</p>
 <p>However, the symmetry of the problem suggests using cylindrical coordinates.</p>
 <p><span id="eq-rot-cylindrical"><span class="math display">\[
 \begin{align}
-    \nabla \times \mathbf F = &amp; \left(
+    \curl \mathbf F = &amp; \left(
         \frac{1}{r}
     \frac{\partial F_z}{\partial \varphi}-
     \frac{\partial F_\varphi}{\partial z}
@@ -782,7 +783,7 @@ Tip
 \end{align}
 \tag{7.6}\]</span></span></p>
 <p>In the case of a dipole oriented in <span class="math inline">\(z\)</span>-direction, the curl simplifies to <span id="eq-rot-F"><span class="math display">\[
-\nabla \times \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi,
+\curl \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi,
 \tag{7.7}\]</span></span> where <span class="math inline">\(\mathbf e_\varphi\)</span> is the unit coordinate vector in <span class="math inline">\(\varphi\)</span>-direction.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -805,7 +806,7 @@ E_\varphi,\quad H_r,\quad H_z.
 <section id="electric-field" class="level3" data-number="7.7.1">
 <h3 data-number="7.7.1" class="anchored" data-anchor-id="electric-field"><span class="header-section-number">7.7.1</span> Electric field</h3>
 <p>With the definition <span class="math display">\[
-\mathbf E = -\nabla \times \mathbf F
+\mathbf E = -\curl \mathbf F
 \]</span> we find using <a href="#eq-rot-F" class="quarto-xref"><span>7.7</span></a> that <span class="math display">\[
 E_\varphi = \frac{\partial F_z}{\partial r}.
 \]</span> Hence, <span class="math display">\[
@@ -899,8 +900,8 @@ Note
 <section id="magnetic-field" class="level3" data-number="7.7.2">
 <h3 data-number="7.7.2" class="anchored" data-anchor-id="magnetic-field"><span class="header-section-number">7.7.2</span> Magnetic field</h3>
 <p>For the magnetic field, we need <span class="math display">\[
-\mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \nabla\nabla\cdot\mathbf F = \frac{1}{i\omega\mu} \left(
-    k^2 \mathbf F + \nabla\nabla\cdot\mathbf F
+\mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \grad \divergence \mathbf F = \frac{1}{i\omega\mu} \left(
+    k^2 \mathbf F + \grad\divergence \mathbf F
 \right).
 \]</span></p>
 <p>The <span class="math inline">\(\nabla\cdot\)</span>-operator requires the calculation of <span class="math inline">\(\partial_z F_z\)</span>, whereas the gradient requires to provide all partial derivatives of <span class="math inline">\(\partial_z F_z\)</span> with respect to <span class="math inline">\(r\)</span> and <span class="math inline">\(z\)</span>.</p>
@@ -912,7 +913,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 \partial_z r = \frac{ z }{ r}.
 \]</span></p>
 <p>Further, the divergence and gradient operators generally read in cylindrical coordinates for a vector field <span class="math inline">\(\mathbf F\)</span> and a scalar field <span class="math inline">\(f\)</span> <span class="math display">\[
-\nabla \cdot \mathbf F = \frac{1}{r} \partial_r(r F_r) +
+\divergence \mathbf F = \frac{1}{r} \partial_r(r F_r) +
 \frac{1}{r} \partial_\varphi F_\varphi +
 \partial_z F_z
 \]</span> and <span class="math display">\[
@@ -921,10 +922,10 @@ r = \sqrt{x^2 + y^2 + z^2}
 \partial_z f \mathbf e_z.
 \]</span></p>
 <p>In our case we need to calculate <span class="math display">\[
-\nabla \cdot \mathbf F = \partial_z F_z.
+\divergence \mathbf F = \partial_z F_z.
 \]</span></p>
 <p>To compute the derivatives, we use <code>sympy</code>:</p>
-<div id="22c31b31" class="cell" data-execution_count="2">
+<div id="5b7802bf" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> diff, symbols, sqrt, pi, exp, I, simplify, Derivative, Matrix</span>
@@ -942,8 +943,8 @@ r = \sqrt{x^2 + y^2 + z^2}
 <p><span class="math inline">\(\displaystyle \frac{i m \mu_{0} \omega e^{- i k r}}{4 \pi r}\)</span></p>
 </div>
 </div>
-<p>Next, we implement an expression for <span class="math inline">\(\nabla \cdot \mathbf F\)</span>:</p>
-<div id="64396463" class="cell" data-execution_count="3">
+<p>Next, we implement an expression for <span class="math inline">\(\divergence \mathbf F\)</span>:</p>
+<div id="baa32bb0" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>divF <span class="op">=</span> diff(Fz.subs(r, sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>)), z).subs(sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>), r).simplify()</span>
@@ -958,7 +959,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 </div>
 </div>
 <p>The chain rule can be implemented by a <code>lambda</code> function <code>chain</code> which first substitutes <span class="math inline">\(r\)</span> by the square root, forms the derivative, and finally substitutes all square root expressions by <span class="math inline">\(r\)</span> or powers thereof.</p>
-<div id="553c614f" class="cell" data-execution_count="4">
+<div id="2c08603a" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> <span class="kw">lambda</span> F, v: diff(F.subs(r, sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>)), v).subs(sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>), r).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -967,7 +968,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <p>A call to <code>chain</code>, i.e., the implementation of <span class="math inline">\(\partial_z \partial_z F_z\)</span> would simply look as follows:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>chain(Fz, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>However, to get the magentic field components, we need to divide by the term <span class="math inline">\(i \omega \mu_0\)</span>.</p>
-<div id="b351c79c" class="cell" data-execution_count="5">
+<div id="3963fd17" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Hx <span class="op">=</span> chain(divF, x).factor() <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -981,7 +982,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <p><span class="math inline">\(\displaystyle - \frac{m x z \left(k^{2} r^{2} - 3 i k r - 3\right) e^{- i k r}}{4 \pi r^{5}}\)</span></p>
 </div>
 </div>
-<div id="a26651c8" class="cell" data-execution_count="6">
+<div id="97c72b5a" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Hy <span class="op">=</span> chain(divF, y).factor() <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -996,7 +997,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 </div>
 </div>
 <p>To get <span class="math inline">\(H_z\)</span> we have to add the term <span class="math inline">\(k^2 F_z\)</span> as</p>
-<div id="ad3369a3" class="cell" data-execution_count="7">
+<div id="b63b8807" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Hz <span class="op">=</span> (chain(divF, z) <span class="op">+</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> Fz) <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -1017,7 +1018,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 \]</span></p>
 <p>Let’s check the validity on our example.</p>
 <p>We introduce the symbolic vector quantities <code>M</code> and <code>R</code>, and implement a <code>lambda</code> function to express the magnetic field with respect to the orientation of the magnetic dipole moment:</p>
-<div id="9ba1bd9e" class="cell" data-execution_count="8">
+<div id="eddb2737" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> Matrix([<span class="dv">0</span>, <span class="dv">0</span>, m])</span>
@@ -1048,7 +1049,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <li>What are the differences compared to homogeneous excitation (MT)?</li>
 </ul>
 <p>We implement the general equations for the electric and magnetic fields as <code>Python</code> functions <code>E</code> and <code>H</code>, resp.:</p>
-<div id="fd0d610b" class="cell" data-execution_count="9">
+<div id="5a42c69e" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> E(r, m, f, sigma):</span>
@@ -1092,7 +1093,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <li><span class="math inline">\(f = 100\)</span> Hz</li>
 <li><span class="math inline">\(\sigma = 0.01\)</span> S/m.</li>
 </ul>
-<div id="c00dbda5" class="cell" data-execution_count="10">
+<div id="e906e5a7" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.array([<span class="fl">100.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>])</span>
@@ -1108,7 +1109,7 @@ r = \sqrt{x^2 + y^2 + z^2}
         0.00000000e+00-0.00000000e+00j])</code></pre>
 </div>
 </div>
-<div id="4b81b465" class="cell" data-execution_count="11">
+<div id="70433f9f" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> H(r, m, f, sigma)</span>
@@ -1124,7 +1125,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <p>Now we try to calculate the <em>impedance</em> from the ratio of two mutually orthogonal components of <span class="math inline">\(\mathbf E\)</span> and <span class="math inline">\(\mathbf H\)</span>, e.g., <span class="math display">\[
 Z = \frac{ E_y }{ H_z}.
 \]</span></p>
-<div id="018a4ffb" class="cell" data-execution_count="12">
+<div id="414127ae" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> Ey <span class="op">/</span> Hz</span>
@@ -1137,7 +1138,7 @@ Z = \frac{ E_y }{ H_z}.
 <p>For the calculation of the apparent resistivity, we use <span class="math display">\[
 \rho_a = \frac{ 1 }{ \omega \mu_0} |Z|^2
 \]</span></p>
-<div id="40c63f8b" class="cell" data-execution_count="13">
+<div id="828585da" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhoa(Z, f):</span>
@@ -1146,7 +1147,7 @@ Z = \frac{ E_y }{ H_z}.
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">abs</span>(Z)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (omega <span class="op">*</span> mu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="6c18d2ee" class="cell" data-execution_count="14">
+<div id="5dcd55b9" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>rhoa(Z, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1157,7 +1158,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 <p>This does not meet our expectations. We are therefore investigating whether the impedance depends on the frequency and/or the distance to the dipole.</p>
 <p>We vary the frequencies and observe <span class="math inline">\(\rho_a\)</span> as a function of frequency.</p>
-<div id="4a1c5bb0" class="cell" data-execution_count="15">
+<div id="07f7607c" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>nf <span class="op">=</span> <span class="dv">41</span></span>
@@ -1165,7 +1166,7 @@ Z = \frac{ E_y }{ H_z}.
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>Rhoa_f <span class="op">=</span> [rhoa(E(r,m,v,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(r,m,v,sigma)[<span class="dv">2</span>], v) <span class="cf">for</span> v <span class="kw">in</span> freq]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="14f22ab1" class="cell" data-execution_count="16">
+<div id="bf81a4e1" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1187,7 +1188,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 <p>Obviously, the value of <span class="math inline">\(\rho_a\)</span> depends on the frequency and asymptotically approaches the expected full-space value of the resistivity as <span class="math inline">\(f \to \infty\)</span>.</p>
 <p>We gain more insight, when we vary the distance to the dipole while keeping the frequency fixed.</p>
-<div id="15b5732a" class="cell" data-execution_count="17">
+<div id="64d13df7" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>nr <span class="op">=</span> <span class="dv">41</span></span>
@@ -1195,7 +1196,7 @@ Z = \frac{ E_y }{ H_z}.
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>Rhoa_x <span class="op">=</span> np.array([rhoa(E(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">2</span>], f) <span class="cf">for</span> v <span class="kw">in</span> x])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="0c2cab3a" class="cell" data-execution_count="18">
+<div id="2ef47f8d" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(x, Rhoa_x)</span>
@@ -1214,7 +1215,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 </div>
 <p>Is there a consistent explanation for these observations? We look at the induction parameter <span class="math inline">\(|k|r\)</span> and revisit the parameters from the previous examples.</p>
-<div id="c519474e" class="cell" data-execution_count="19">
+<div id="edf59b12" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kr(f, sigma, r):</span>
@@ -1226,7 +1227,7 @@ Z = \frac{ E_y }{ H_z}.
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.where(np.array(data) <span class="op">&gt;</span> threshold, data, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="5fa50fda" class="cell" data-execution_count="20">
+<div id="5a4b2f08" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(v, sigma, np.linalg.norm(r)) <span class="cf">for</span> v <span class="kw">in</span> freq])</span>
@@ -1249,7 +1250,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 </div>
 <p>With the indicator <span class="math inline">\(|k|r\)</span> just introduced, it is easier to determine which branch of the asymptotic we are on.</p>
-<div id="91697666" class="cell" data-execution_count="21">
+<div id="cc284ee9" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(f, sigma, v) <span class="cf">for</span> v <span class="kw">in</span> x])</span>
@@ -1317,7 +1318,7 @@ Figure&nbsp;7.1: Real and imaginary part of the magnetic field of an oscillating
 H_z = -\frac{ m }{4 \pi r^3 }.
 \]</span></p>
 <p>We evaluate this equation with the given values of <span class="math inline">\(r\)</span> and <span class="math inline">\(m\)</span>. We obtain</p>
-<div id="86666b1e" class="cell" data-execution_count="23">
+<div id="6888bf0c" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'H_z   = '</span> <span class="op">+</span> <span class="bu">str</span>(<span class="op">-</span><span class="dv">1</span> <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> r<span class="op">**</span><span class="dv">3</span>)))</span>

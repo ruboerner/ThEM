@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.29">
+<meta name="generator" content="quarto-1.5.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -343,8 +343,8 @@ window.Quarto = {
 <p>As we have seen, Maxwell’s equations can be coupled using the constitutive equations and Ohm’s law.</p>
 <p>After Fourier transform w.r.t. time <span class="math inline">\(t\)</span>, but in a slightly different notation, we obtain <span class="math display">\[
 \begin{bmatrix}
-\nabla \times &amp; -i\omega\varepsilon \mathbf I \\
-+i\omega\mu_0 \mathbf I &amp; \nabla \times
+\curl &amp; -i\omega\varepsilon \mathbf I \\
++i\omega\mu_0 \mathbf I &amp; \curl
 \end{bmatrix}
 \begin{bmatrix}
 \mathbf H \\ \mathbf E
@@ -355,8 +355,8 @@ window.Quarto = {
 \]</span></p>
 <p><span class="math display">\[
 \begin{bmatrix}
-\nabla \cdot &amp; 0 \\
-0 &amp; \nabla \cdot
+\divergence &amp; 0 \\
+0 &amp; \divergence
 \end{bmatrix}
 \begin{bmatrix}
 \mathbf B \\ \mathbf D
@@ -394,7 +394,7 @@ Self-study questions
 </div>
 <section id="the-curl-curl-equation" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="the-curl-curl-equation"><span class="header-section-number">5.1</span> The curl-curl equation</h2>
-<p>We first eliminate one field from the set of Maxwell’s equations by applying the <em>curl operator</em> (<span class="math inline">\(\nabla \times\)</span>) to one of the equations, i.e., Faraday’s law <a href="maxwell.html#eq-faraday" class="quarto-xref"><span>4.2</span></a>.</p>
+<p>We first eliminate one field from the set of Maxwell’s equations by applying the <em>curl operator</em> (<span class="math inline">\(\curl\)</span>) to one of the equations, i.e., Faraday’s law <a href="maxwell.html#eq-faraday" class="quarto-xref"><span>4.2</span></a>.</p>
 <p>This results in a second-order PDE because we differentiate twice with respect to spatial coordinates.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -410,16 +410,16 @@ Tip
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
 \begin{align}
-\nabla \times \mathbf e  &amp; = -\partial_t \mathbf b \\
-\nabla \times \nabla \times \mathbf e &amp; = \nabla \times (-\partial_t \mathbf b) \\
-  &amp; = -\nabla \times (\partial_t \mathbf b) \\
-  &amp; = -\partial_t\nabla \times  \mathbf b \\
-  &amp; = -\partial_t\nabla \times ( \mu \mathbf h) \\
-  &amp; = -\partial_t \mu \nabla \times \mathbf h \\
-  &amp; = -\mu \partial_t \nabla \times \mathbf h \\
+\curl \mathbf e  &amp; = -\partial_t \mathbf b \\
+\curl \curl \mathbf e &amp; = \curl (-\partial_t \mathbf b) \\
+  &amp; = -\curl (\partial_t \mathbf b) \\
+  &amp; = -\partial_t\curl  \mathbf b \\
+  &amp; = -\partial_t\curl ( \mu \mathbf h) \\
+  &amp; = -\partial_t \mu \curl \mathbf h \\
+  &amp; = -\mu \partial_t \curl \mathbf h \\
   &amp; = -\mu \partial_t (\mathbf j + \partial_t \mathbf d) \\
   &amp; = -\mu \partial_t (\sigma \mathbf e + \partial_t \mathbf d) \\
-  &amp; -\mu \partial_t (\sigma \mathbf e + \partial_t \varepsilon \mathbf e) \\
+  &amp; = -\mu \partial_t (\sigma \mathbf e + \partial_t \varepsilon \mathbf e) \\
   &amp; = -\mu \partial_t \sigma \mathbf e -\mu \partial^2_{tt} \varepsilon \mathbf e \\
   &amp; = -\mu \sigma \partial_t \mathbf e -\mu \varepsilon \partial^2_{tt} \mathbf e
 \end{align}
@@ -428,15 +428,15 @@ Tip
 </div>
 </div>
 <p>Finally, we obtain the <strong>curl-curl equation</strong> for the electric field <span class="math inline">\(\mathbf e\)</span> as <span id="eq-curlcurl"><span class="math display">\[
-\nabla \times \nabla \times \mathbf e  +\mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
+\curl \curl \mathbf e  +\mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
 \tag{5.1}\]</span></span></p>
 <p>This is a second-order PDE with first- and second-order time derivatives.</p>
 <p>Note that you obtain a similar PDE for the magnetic field <span class="math inline">\(\mathbf h\)</span> if you apply the steps outlined above to Ampere’s law.</p>
 <p>Often, a slightly different form of <a href="#eq-curlcurl" class="quarto-xref"><span>5.1</span></a> is used.</p>
 <p>The following identity is useful for any vector field <span class="math inline">\(\mathbf f\)</span>: <span id="eq-vector-identity"><span class="math display">\[
-\nabla \times \nabla \times \mathbf f = \nabla \nabla \cdot \mathbf f - \nabla^2 \mathbf f
+\curl \curl \mathbf f = \grad \divergence \mathbf f - \laplacian \mathbf f
 \tag{5.2}\]</span></span></p>
-<p>This equation is useful, e.g., when <span class="math inline">\(\nabla \cdot \mathbf f = 0\)</span>. In this case the curl-curl operator can be replaced by <span class="math inline">\(-\nabla^2\)</span>, the <em>vector Laplace operator</em> defined over a vector field.</p>
+<p>This equation is useful, e.g., when <span class="math inline">\(\divergence \mathbf f = 0\)</span>. In this case the curl-curl operator can be replaced by <span class="math inline">\(-\laplacian\)</span>, the <em>vector Laplace operator</em> defined over a vector field.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -451,29 +451,31 @@ Warning
 <p>In Cartesian coordinates, the returned vector field is equal to the vector field of the scalar Laplacian applied to each vector component.</p>
 </div>
 </div>
-<p>Under which conditions can we switch from the <em>curl-curl</em> to the <em>Laplace</em> operator? Clearly, the term <span class="math inline">\(\nabla \nabla \cdot \mathbf f\)</span> must vanish (or its contribution must be negligible).</p>
+<p>Under which conditions can we switch from the <em>curl-curl</em> to the <em>Laplace</em> operator? Clearly, the term <span class="math inline">\(\grad \divergence \mathbf f\)</span> must vanish (or its contribution must be negligible).</p>
 <section id="decay-of-free-charges" class="level3" data-number="5.1.1">
 <h3 data-number="5.1.1" class="anchored" data-anchor-id="decay-of-free-charges"><span class="header-section-number">5.1.1</span> Decay of free charges</h3>
-<p>When the electric field <span class="math inline">\(\mathbf e\)</span> is considered, we are faced with the following problem: Under which conditions <span class="math inline">\(\nabla \cdot \mathbf e\)</span> becomes negligible small?</p>
+<p>When the electric field <span class="math inline">\(\mathbf e\)</span> is considered, we are faced with the following problem: Under which conditions <span class="math inline">\(\divergence \mathbf e\)</span> becomes negligible small?</p>
 <p>The answer should be clear: When there are no free charges present in the considered domain, there is no associated electric field.</p>
 <p>Recall, that in a uniform dielectric medium there holds <em>Gauß’ s law</em> for electric charges</p>
 <p><span class="math display">\[
-\nabla \cdot \mathbf e = \frac{\rho_E}{\varepsilon},
+\divergence \mathbf e = \frac{\rho_E}{\varepsilon},
 \]</span></p>
 <p>where <span class="math inline">\(\rho_E\)</span> is the volume charge density and <span class="math inline">\(\varepsilon = \varepsilon_r \varepsilon_0\)</span> is the permittivity.</p>
 <p>Let’s find out how to solve the problem.</p>
-<p>We want to show that <span class="math inline">\(\nabla \cdot \mathbf e \approx 0\)</span> for some time <span class="math inline">\(t&gt;0\)</span>. As long as <span class="math inline">\(t \le 0\)</span>, there is a certain charge density <span class="math inline">\(\rho_E(t)\)</span> concentrated at, e.g., the origin of a uniform fullspace.</p>
+<p>We want to show that <span class="math inline">\(\divergence \mathbf e \approx 0\)</span> for some time <span class="math inline">\(t&gt;0\)</span>. As long as <span class="math inline">\(t \le 0\)</span>, there is a certain charge density <span class="math inline">\(\rho_E(t)\)</span> concentrated at, e.g., the origin of a uniform fullspace.</p>
 <p>We apply the divergence operator to Ampere’s law:</p>
 <p><span class="math display">\[
 \begin{align}
-\nabla \cdot \nabla \times \mathbf h &amp; = \nabla \cdot \mathbf j + \partial_t \nabla \cdot \mathbf d \\
+\divergence \curl \mathbf h &amp; = \divergence \mathbf j + \partial_t \divergence \mathbf d \\
 &amp; = 0
 \end{align}
 \]</span></p>
 <p>With <span class="math display">\[
-\nabla \cdot \mathbf d = \rho_E \\
-\nabla \cdot \mathbf j = \nabla \cdot (\sigma \mathbf e) = \nabla\sigma \cdot \mathbf e + \sigma \nabla \cdot \mathbf e \\
-\sigma \nabla \cdot \mathbf e = \sigma \frac{\rho_E}{\varepsilon}
+\begin{align}
+\divergence \mathbf d &amp; = \rho_E \\
+\divergence \mathbf j &amp; = \divergence (\sigma \mathbf e) = \grad \sigma \cdot \mathbf e + \sigma \divergence \mathbf e \\
+\sigma \divergence \mathbf e &amp; = \sigma \frac{\rho_E}{\varepsilon}
+\end{align}
 \]</span> we obtain an initial-value problem for the charge density</p>
 <p><span class="math display">\[
 \frac{\sigma}{\varepsilon} \rho_E + \dot{\rho_E} = 0.
@@ -487,7 +489,7 @@ Warning
 <p>To study the decay of a free charge denoted by an electrical charge density, we define as initial condition for <span class="math inline">\(t=0\)</span> that <span class="math inline">\(\rho_E(0) = 1~A\cdot s\cdot m^{-3}\)</span> .</p>
 <p>Further, the conductivity of the uniform fullspace is 0.01 S/m.</p>
 <p>We plot the function <a href="#eq-decay" class="quarto-xref"><span>5.3</span></a> for a very small time window:</p>
-<div id="e0d784a3" class="cell" data-execution_count="1">
+<div id="a6571df4" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -517,7 +519,7 @@ Warning
 <p>By visual inspection, after approx. 10 ns the volume charge density has dropped to zero.</p>
 <p>Let’s be more precise:</p>
 <p>We can calculate the time at which the charge density decays to a given fraction of its initial value, e.g., to 1 ppm.</p>
-<div id="83bc3afa" class="cell" data-execution_count="2">
+<div id="055d53c4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> <span class="op">*</span></span>
@@ -538,7 +540,7 @@ Warning
 <p><span class="math display">\[
 \hat{t} = \frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{0}}{\rho_{E}} \right)} = -\frac{\epsilon }{\sigma}\log{\left(\frac{\rho_{E}}{\rho_{0}} \right)}
 \]</span></p>
-<div id="00130735" class="cell" data-execution_count="3">
+<div id="115d4d6a" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tstar <span class="op">=</span> <span class="op">-</span>epsilon_n <span class="op">/</span> sigma_n <span class="op">*</span> np.log(<span class="fl">1e-6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -552,7 +554,7 @@ Warning
 <h2 data-number="5.2" class="anchored" data-anchor-id="the-telegraph-equation"><span class="header-section-number">5.2</span> The Telegraph equation</h2>
 <p>By virtue of <a href="#eq-vector-identity" class="quarto-xref"><span>5.2</span></a> we can cast the curl-curl equation <a href="#eq-curlcurl" class="quarto-xref"><span>5.1</span></a> into the telegraph equation of induction, such that</p>
 <p><span id="eq-telegraph-full"><span class="math display">\[
--\nabla^2 \mathbf e + \mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
+-\laplacian \mathbf e + \mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
 \tag{5.4}\]</span></span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -617,7 +619,7 @@ A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
 \frac{\partial f}{\partial t} = \frac{\partial f}{\partial t'} \frac{\partial t'}{\partial t} = \frac{1}{T} \frac{\partial f}{\partial t'}
 \]</span></p>
 <p>This carries over to the differential operators, i.e., <span class="math display">\[
-\nabla \times \nabla \times \mathbf f = \frac{1}{L^2} \nabla' \times \nabla' \times \mathbf f.
+\curl \curl \mathbf f = \frac{1}{L^2} \nabla' \times \nabla' \times \mathbf f.
 \]</span></p>
 <p>We obtain a PDE with scaled coefficients, i.e., <span class="math display">\[
 \nabla' \times \nabla' \times \mathbf e + \eta_1 \partial_{t'} \mathbf e + \eta_2 \partial^{2}_{t't'} \mathbf e = \mathbf 0
@@ -639,7 +641,7 @@ A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
 \frac{\eta_1}{\eta_2} = \frac{\mu\sigma}{\mu\varepsilon} T = c_0^2 \mu\sigma T \gg 1.
 \]</span></p>
 <p>We illustrate our findings and calculate meaningful values for the coefficients.</p>
-<div id="9f75c8fa" class="cell" data-execution_count="4">
+<div id="34dfc48f" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eta1(T, L, sigma):</span>
@@ -667,7 +669,7 @@ A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
 </div>
 </div>
 <p>In global investigations for which <span class="math inline">\(L \approx 10^4\)</span> km, we observe that <span class="math inline">\(\eta_2\)</span> is small (less than, e.g., 0.1) for <span class="math inline">\(T &gt; 0.1\)</span> seconds.</p>
-<div id="f2f7963b" class="cell" data-execution_count="5">
+<div id="6e6a5568" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(<span class="dv">1</span> <span class="op">/</span> T, [eta1(t, L, <span class="fl">1e-5</span>) <span class="op">/</span> eta2(t, L) <span class="cf">for</span> t <span class="kw">in</span> T])</span>
@@ -686,7 +688,7 @@ A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
 <p>In the last example we have used a conductivity of <span class="math inline">\(10^{-5}\)</span> S/m as a reasonable low value for minerals. We recognize that the ratio is large for frequencies less than <span class="math inline">\(10^5\)</span> Hz.</p>
 <p>To conclude, we can safely assume that the second term, <span class="math inline">\(\eta_2\)</span>, and correspondingly the term <span class="math inline">\(\mu\varepsilon\)</span>, can be neglected for frequencies less than <span class="math inline">\(10^5\)</span> Hz for the lowest reasonable value of the conductivity in the Earth. For higher conductivities, the result becomes even more pronounced.</p>
 <p>As a consequence, the displacement current density in Ampere’s law can be neglected as well, such that <span class="math display">\[
-\nabla \times \mathbf{h} = \mathbf j
+\curl \mathbf{h} = \mathbf j
 \]</span></p>
 <p>We call this the <em>quasi-static approximation</em> of Maxwell’s equations.</p>
 <p>Note that this corresponds to the classical formulation of Maxwell’s equations, which have later been extended to account for displacement currents.</p>
@@ -697,11 +699,11 @@ A u_{xx} + 2 B u_{xy} + C u_{yy} + D u_x + E u_y + F u + G = 0
 \frac{1}{c_0^2} \to 0,
 \]</span> which violates the generally recognized fact that the speed of light is finite. On the other hand, this makes it clear that changes in the fields happen everywhere at the same time.</p>
 <p>The curl-curl equation for the electric field under quasi-static approximation reads <span id="eq-curlcurl-quasistatic"><span class="math display">\[
-\nabla \times \nabla \times \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
+\curl \curl \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
 \tag{5.5}\]</span></span></p>
 <p>With the identity introduced earlier, we write</p>
 <p><span id="eq-telegraph-quasistatic"><span class="math display">\[
--\nabla^2 \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
+-\laplacian \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
 \tag{5.6}\]</span></span></p>
 <p>With our definition of the Fourier transform given by <a href="fourier.html#eq-fourier" class="quarto-xref"><span>3.2</span></a> we transform the time-domain expressions into the frequency domain.</p>
 <p>By doing so, we decouple the time-dependency from the PDE. For most CSEM applications, this is common practice.</p>
@@ -729,7 +731,7 @@ Time derivatives in the frequency domain
 <section id="the-vector-helmholtz-equation" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="the-vector-helmholtz-equation"><span class="header-section-number">5.4</span> The Vector Helmholtz equation</h2>
 <p>We use the identity <a href="#eq-vector-identity" class="quarto-xref"><span>5.2</span></a> and obtain <span class="math display">\[
--\nabla^2 \mathbf E + i \omega \mu \sigma \mathbf E = \mathbf 0
+-\laplacian \mathbf E + i \omega \mu \sigma \mathbf E = \mathbf 0
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Notation">
 <div class="callout-header d-flex align-content-center">
@@ -746,9 +748,9 @@ Notation
 </div>
 </div>
 <p>Many textbooks use the notation <span class="math display">\[
-\nabla^2 \mathbf e - i \omega \mu \sigma \mathbf e = \mathbf 0
+\laplacian \mathbf e - i \omega \mu \sigma \mathbf e = \mathbf 0
 \]</span> with the abbreviation <span id="eq-vector-helmholtz"><span class="math display">\[
-\nabla^2 \mathbf e + k^2 \mathbf e = \mathbf 0,
+\laplacian \mathbf e + k^2 \mathbf e = \mathbf 0,
 \tag{5.7}\]</span></span> where <span class="math display">\[
 k^2 = - i \omega \mu \sigma.
 \]</span></p>
@@ -783,7 +785,7 @@ H_x(z) = H_x(0) e^{-i k z}.
 <p>We use <code>sympy</code> to exlore the problem:</p>
 <section id="symbolic-representation-of-k2" class="level4" data-number="5.4.1.1">
 <h4 data-number="5.4.1.1" class="anchored" data-anchor-id="symbolic-representation-of-k2"><span class="header-section-number">5.4.1.1</span> Symbolic representation of <span class="math inline">\(k^2\)</span></h4>
-<div id="851a7221" class="cell" data-execution_count="6">
+<div id="b1596ead" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy</span>
@@ -801,7 +803,7 @@ k^2 = (\alpha - i \beta)^2
 \]</span> and <span class="math display">\[
 -2 \alpha \beta = - \omega \mu \sigma.
 \]</span></p>
-<div id="87c2ea37" class="cell" data-execution_count="7">
+<div id="ee9593cb" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>expr <span class="op">=</span> expand((alpha <span class="op">-</span> I <span class="op">*</span> beta)<span class="op">**</span><span class="dv">2</span>)</span>
@@ -811,7 +813,7 @@ k^2 = (\alpha - i \beta)^2
 <p><span class="math display">\[\begin{equation}\alpha^{2} - \beta^{2}\end{equation}\]</span></p>
 </div>
 </div>
-<div id="d4b07c93" class="cell" data-execution_count="8">
+<div id="7aaea51f" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>k2 <span class="op">=</span> <span class="op">-</span>I <span class="op">*</span> omega <span class="op">*</span> mu <span class="op">*</span> sigma</span>

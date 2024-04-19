@@ -7,8 +7,8 @@ As we have seen, Maxwell's equations can be coupled using the constitutive equat
 
 After Fourier transform w.r.t. time $t$, but in a slightly different notation, we obtain $$
 \begin{bmatrix}
-\nabla \times & -i\omega\varepsilon \mathbf I \\
-+i\omega\mu_0 \mathbf I & \nabla \times
+\curl & -i\omega\varepsilon \mathbf I \\
++i\omega\mu_0 \mathbf I & \curl
 \end{bmatrix}
 \begin{bmatrix}
 \mathbf H \\ \mathbf E
@@ -20,8 +20,8 @@ $$
 
 $$
 \begin{bmatrix}
-\nabla \cdot & 0 \\
-0 & \nabla \cdot
+\divergence & 0 \\
+0 & \divergence
 \end{bmatrix}
 \begin{bmatrix}
 \mathbf B \\ \mathbf D
@@ -50,23 +50,23 @@ We refer to the following *types* of PDEs:
 
 ## The curl-curl equation
 
-We first eliminate one field from the set of Maxwell's equations by applying the *curl operator* ($\nabla \times$) to one of the equations, i.e., Faraday's law @eq-faraday.
+We first eliminate one field from the set of Maxwell's equations by applying the *curl operator* ($\curl$) to one of the equations, i.e., Faraday's law @eq-faraday.
 
 This results in a second-order PDE because we differentiate twice with respect to spatial coordinates.
 
 ::: {.callout-tip collapse="true"}
 $$
 \begin{align}
-\nabla \times \mathbf e  & = -\partial_t \mathbf b \\
-\nabla \times \nabla \times \mathbf e & = \nabla \times (-\partial_t \mathbf b) \\
-  & = -\nabla \times (\partial_t \mathbf b) \\
-  & = -\partial_t\nabla \times  \mathbf b \\
-  & = -\partial_t\nabla \times ( \mu \mathbf h) \\
-  & = -\partial_t \mu \nabla \times \mathbf h \\
-  & = -\mu \partial_t \nabla \times \mathbf h \\
+\curl \mathbf e  & = -\partial_t \mathbf b \\
+\curl \curl \mathbf e & = \curl (-\partial_t \mathbf b) \\
+  & = -\curl (\partial_t \mathbf b) \\
+  & = -\partial_t\curl  \mathbf b \\
+  & = -\partial_t\curl ( \mu \mathbf h) \\
+  & = -\partial_t \mu \curl \mathbf h \\
+  & = -\mu \partial_t \curl \mathbf h \\
   & = -\mu \partial_t (\mathbf j + \partial_t \mathbf d) \\
   & = -\mu \partial_t (\sigma \mathbf e + \partial_t \mathbf d) \\
-  & -\mu \partial_t (\sigma \mathbf e + \partial_t \varepsilon \mathbf e) \\
+  & = -\mu \partial_t (\sigma \mathbf e + \partial_t \varepsilon \mathbf e) \\
   & = -\mu \partial_t \sigma \mathbf e -\mu \partial^2_{tt} \varepsilon \mathbf e \\
   & = -\mu \sigma \partial_t \mathbf e -\mu \varepsilon \partial^2_{tt} \mathbf e
 \end{align}
@@ -74,7 +74,7 @@ $$
 :::
 
 Finally, we obtain the **curl-curl equation** for the electric field $\mathbf e$ as $$
-\nabla \times \nabla \times \mathbf e  +\mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
+\curl \curl \mathbf e  +\mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
 $$ {#eq-curlcurl}
 
 This is a second-order PDE with first- and second-order time derivatives.
@@ -84,10 +84,10 @@ Note that you obtain a similar PDE for the magnetic field $\mathbf h$ if you app
 Often, a slightly different form of @eq-curlcurl is used.
 
 The following identity is useful for any vector field $\mathbf f$: $$
-\nabla \times \nabla \times \mathbf f = \nabla \nabla \cdot \mathbf f - \nabla^2 \mathbf f 
+\curl \curl \mathbf f = \grad \divergence \mathbf f - \laplacian \mathbf f 
 $$ {#eq-vector-identity}
 
-This equation is useful, e.g., when $\nabla \cdot \mathbf f = 0$. In this case the curl-curl operator can be replaced by $-\nabla^2$, the *vector Laplace operator* defined over a vector field.
+This equation is useful, e.g., when $\divergence \mathbf f = 0$. In this case the curl-curl operator can be replaced by $-\laplacian$, the *vector Laplace operator* defined over a vector field.
 
 ::: callout-warning
 The vector Laplacian is similar to the scalar Laplacian. The scalar Laplacian applies to a scalar field and returns a scalar quantity, whereas the vector Laplacian applies to a vector field and returns a vector quantity.
@@ -95,39 +95,41 @@ The vector Laplacian is similar to the scalar Laplacian. The scalar Laplacian ap
 In Cartesian coordinates, the returned vector field is equal to the vector field of the scalar Laplacian applied to each vector component.
 :::
 
-Under which conditions can we switch from the *curl-curl* to the *Laplace* operator? Clearly, the term $\nabla \nabla \cdot \mathbf f$ must vanish (or its contribution must be negligible).
+Under which conditions can we switch from the *curl-curl* to the *Laplace* operator? Clearly, the term $\grad \divergence \mathbf f$ must vanish (or its contribution must be negligible).
 
 ### Decay of free charges
 
-When the electric field $\mathbf e$ is considered, we are faced with the following problem: Under which conditions $\nabla \cdot \mathbf e$ becomes negligible small?
+When the electric field $\mathbf e$ is considered, we are faced with the following problem: Under which conditions $\divergence \mathbf e$ becomes negligible small?
 
 The answer should be clear: When there are no free charges present in the considered domain, there is no associated electric field.
 
 Recall, that in a uniform dielectric medium there holds *Gauß' s law* for electric charges
 
 $$
-\nabla \cdot \mathbf e = \frac{\rho_E}{\varepsilon},
+\divergence \mathbf e = \frac{\rho_E}{\varepsilon},
 $$
 
 where $\rho_E$ is the volume charge density and $\varepsilon = \varepsilon_r \varepsilon_0$ is the permittivity.
 
 Let's find out how to solve the problem.
 
-We want to show that $\nabla \cdot \mathbf e \approx 0$ for some time $t>0$. As long as $t \le 0$, there is a certain charge density $\rho_E(t)$ concentrated at, e.g., the origin of a uniform fullspace.
+We want to show that $\divergence \mathbf e \approx 0$ for some time $t>0$. As long as $t \le 0$, there is a certain charge density $\rho_E(t)$ concentrated at, e.g., the origin of a uniform fullspace.
 
 We apply the divergence operator to Ampere's law:
 
 $$
 \begin{align}
-\nabla \cdot \nabla \times \mathbf h & = \nabla \cdot \mathbf j + \partial_t \nabla \cdot \mathbf d \\
+\divergence \curl \mathbf h & = \divergence \mathbf j + \partial_t \divergence \mathbf d \\
 & = 0
 \end{align}
 $$
 
 With $$
-\nabla \cdot \mathbf d = \rho_E \\
-\nabla \cdot \mathbf j = \nabla \cdot (\sigma \mathbf e) = \nabla\sigma \cdot \mathbf e + \sigma \nabla \cdot \mathbf e \\
-\sigma \nabla \cdot \mathbf e = \sigma \frac{\rho_E}{\varepsilon}
+\begin{align}
+\divergence \mathbf d & = \rho_E \\
+\divergence \mathbf j & = \divergence (\sigma \mathbf e) = \grad \sigma \cdot \mathbf e + \sigma \divergence \mathbf e \\
+\sigma \divergence \mathbf e & = \sigma \frac{\rho_E}{\varepsilon}
+\end{align}
 $$ we obtain an initial-value problem for the charge density
 
 $$
@@ -202,7 +204,7 @@ With the values given above, the charge density drops to 1 ppm of its initial va
 By virtue of @eq-vector-identity we can cast the curl-curl equation @eq-curlcurl into the telegraph equation of induction, such that
 
 $$
--\nabla^2 \mathbf e + \mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
+-\laplacian \mathbf e + \mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
 $$ {#eq-telegraph-full}
 
 ::: callout-note
@@ -270,7 +272,7 @@ $$
 $$
 
 This carries over to the differential operators, i.e., $$
-\nabla \times \nabla \times \mathbf f = \frac{1}{L^2} \nabla' \times \nabla' \times \mathbf f.
+\curl \curl \mathbf f = \frac{1}{L^2} \nabla' \times \nabla' \times \mathbf f.
 $$
 
 We obtain a PDE with scaled coefficients, i.e., $$
@@ -339,7 +341,7 @@ In the last example we have used a conductivity of $10^{-5}$ S/m as a reasonable
 To conclude, we can safely assume that the second term, $\eta_2$, and correspondingly the term $\mu\varepsilon$, can be neglected for frequencies less than $10^5$ Hz for the lowest reasonable value of the conductivity in the Earth. For higher conductivities, the result becomes even more pronounced.
 
 As a consequence, the displacement current density in Ampere's law can be neglected as well, such that $$
-\nabla \times \mathbf{h} = \mathbf j
+\curl \mathbf{h} = \mathbf j
 $$
 
 We call this the *quasi-static approximation* of Maxwell's equations.
@@ -355,13 +357,13 @@ When we neglect this term, we implicitly assume that $$
 $$ which violates the generally recognized fact that the speed of light is finite. On the other hand, this makes it clear that changes in the fields happen everywhere at the same time.
 
 The curl-curl equation for the electric field under quasi-static approximation reads $$
-\nabla \times \nabla \times \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
+\curl \curl \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
 $$ {#eq-curlcurl-quasistatic}
 
 With the identity introduced earlier, we write
 
 $$
--\nabla^2 \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
+-\laplacian \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
 $$ {#eq-telegraph-quasistatic}
 
 With our definition of the Fourier transform given by @eq-fourier we transform the time-domain expressions into the frequency domain.
@@ -383,7 +385,7 @@ $$
 ## The Vector Helmholtz equation
 
 We use the identity @eq-vector-identity and obtain $$
--\nabla^2 \mathbf E + i \omega \mu \sigma \mathbf E = \mathbf 0
+-\laplacian \mathbf E + i \omega \mu \sigma \mathbf E = \mathbf 0
 $$
 
 ::: {.callout-note title="Notation"}
@@ -393,9 +395,9 @@ In the time domain, the fields are typeset in small letters, e.g., $\mathbf e$.
 :::
 
 Many textbooks use the notation $$
-\nabla^2 \mathbf e - i \omega \mu \sigma \mathbf e = \mathbf 0
+\laplacian \mathbf e - i \omega \mu \sigma \mathbf e = \mathbf 0
 $$ with the abbreviation $$
-\nabla^2 \mathbf e + k^2 \mathbf e = \mathbf 0,
+\laplacian \mathbf e + k^2 \mathbf e = \mathbf 0,
 $$ {#eq-vector-helmholtz} where $$
 k^2 = - i \omega \mu \sigma.
 $$
