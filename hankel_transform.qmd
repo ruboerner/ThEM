@@ -1,4 +1,109 @@
 ---
-title: "Numerical calulation of the EM Hankel integrals"
+title: "Numerical calculation of the EM Hankel integrals"
+jupyter: python3
 ---
-TBD
+This section covers the implementation of the numerical calculation of Hankel integrals typically encountered in dipole induction over a layered half-space.
+
+As usual, we will restrict ourselves to the vertical magnetic dipole (VMD).
+
+We will demonstrate the computational method using the vertical component $B_z$ of the magnetic field as an example.
+
+Finally, we will use our implementation to simulate a measurement with the helicopter EM system of the BGR Hannover.
+
+```{python}
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+
+We have obtained the following integrals for $z \le 0$:
+
+$$
+\begin{align}
+	E_\varphi & = -\frac{i \omega \mu m}{4 \pi} 
+	\left[
+    \frac{r}{R^3} +
+	\int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda 
+	e^{-\lambda h}e^{\lambda z}J_1(\lambda r)\, \dd\lambda
+	\right] \\
+    B_r & = \frac{\mu_0 m}{4 \pi}
+	\left[
+	\frac{3r(z+h)}{R^5} -
+	\int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
+	e^{-\lambda h}e^{\lambda z}J_1(\lambda r)\, \dd\lambda
+	\right] \\
+    B_z & = \frac{\mu_0 m}{4 \pi}
+	\left[
+	\frac{3(z+h)^2 - R^2}{R^5} +
+	\int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
+	e^{-\lambda h}e^{\lambda z}J_0(\lambda r)\, \dd\lambda
+	\right]
+\end{align}
+$$ {#eq-fields-in-air}
+
+
+The first terms in the brackets of @eq-fields-in-air describe the geometric damping of the source field in free space.
+These terms are trivial to calculate.
+
+The contribution to the field components in $z<0$ caused by induction in $z>0$ is provided by the integral expressions in the brackets.
+
+They have the general form
+$$
+\begin{equation}
+g(r) = \int_0^\infty f(\lambda, z) J_\nu(\lambda r)\, \dd\lambda, \qquad \nu > -1
+\end{equation}
+$$
+with $\nu$ indicating the order of the Bessel function.
+
+To evaluate, e.g., the component $B_z$, one needs the function $f(\lambda, z)$ as
+$$
+f(\lambda, z) = \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
+e^{-\lambda h}e^{\lambda z}
+$$
+
+As an example, we choose a uniform halfspace with
+
+- conductivity $\sigma_1=0.01$ S/m
+- frequency $f = 100$ Hz
+- transmitter and receiver in plane $z=0$
+- offset $r = 100$ m.
+
+The surface admittance $\lambda_1 = \sqrt{\lambda^2 + i \omega \mu_0 \sigma_1}$ will be calculated using the function `lambda_1` given below.
+
+
+This is the `Python` implementation of the admittance of the uniform halfspace, $\lambda_1$:
+
+```{python}
+def lambda_1(lam, sigma, mu, f):
+    omega = 2 * np.pi * f
+    mu0 = np.pi * 4e-7
+    alpha = np.sqrt(lam**2 + 1j * omega * mu * sigma)
+    return alpha / mu0
+```
+
+Given these definitions, we are now able to evaluate the complete integrand functions in @eq-fields-in-air. 
+
+To this end, we first illustrate the integrand graphically:
+
+```{python}
+nlam = 1001
+lam = np.logspace(0, 5, nlam, endpoint=True)
+r = 100.0
+freq = 100.0
+sigma = 0.01
+mu = np.pi * 4e-7
+
+f = [(l - lambda_1(l, sigma, mu, freq)) / (l + lambda_1(l, sigma, mu, freq)) * l**2 for l in lam]
+
+plt.semilogx(lam, np.real(f))
+plt.xlabel(r'$\lambda$')
+plt.grid(True)
+```
+
+```{python}
+plt.loglog(lam, np.imag(f))
+plt.xlabel(r'$\lambda$')
+plt.ylim(1e-12, 1e-10)
+plt.grid(True)
+```

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods – 10&nbsp; Numerical calulation of the EM Hankel integrals</title>
+<title>Theory of Electromagnetic Methods – 10&nbsp; Numerical calculation of the EM Hankel integrals</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -79,6 +113,35 @@ window.MathJax = {
 };
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -91,7 +154,7 @@ window.MathJax = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./hankel_transform.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calulation of the EM Hankel integrals</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./hankel_transform.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -210,7 +273,7 @@ window.MathJax = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hankel_transform.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calulation of the EM Hankel integrals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -261,9 +324,9 @@ window.MathJax = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./hankel_transform.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calulation of the EM Hankel integrals</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./hankel_transform.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calulation of the EM Hankel integrals</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></h1>
 </div>
 
 
@@ -280,7 +343,111 @@ window.MathJax = {
 </header>
 
 
-<p>TBD</p>
+<p>This section covers the implementation of the numerical calculation of Hankel integrals typically encountered in dipole induction over a layered half-space.</p>
+<p>As usual, we will restrict ourselves to the vertical magnetic dipole (VMD).</p>
+<p>We will demonstrate the computational method using the vertical component <span class="math inline">\(B_z\)</span> of the magnetic field as an example.</p>
+<p>Finally, we will use our implementation to simulate a measurement with the helicopter EM system of the BGR Hannover.</p>
+<p>We have obtained the following integrals for <span class="math inline">\(z \le 0\)</span>:</p>
+<p><span id="eq-fields-in-air"><span class="math display">\[
+\begin{align}
+    E_\varphi &amp; = -\frac{i \omega \mu m}{4 \pi}
+    \left[
+    \frac{r}{R^3} +
+    \int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda
+    e^{-\lambda h}e^{\lambda z}J_1(\lambda r)\, \dd\lambda
+    \right] \\
+    B_r &amp; = \frac{\mu_0 m}{4 \pi}
+    \left[
+    \frac{3r(z+h)}{R^5} -
+    \int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
+    e^{-\lambda h}e^{\lambda z}J_1(\lambda r)\, \dd\lambda
+    \right] \\
+    B_z &amp; = \frac{\mu_0 m}{4 \pi}
+    \left[
+    \frac{3(z+h)^2 - R^2}{R^5} +
+    \int_0^\infty \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
+    e^{-\lambda h}e^{\lambda z}J_0(\lambda r)\, \dd\lambda
+    \right]
+\end{align}
+\tag{10.1}\]</span></span></p>
+<p>The first terms in the brackets of <a href="#eq-fields-in-air" class="quarto-xref"><span>10.1</span></a> describe the geometric damping of the source field in free space. These terms are trivial to calculate.</p>
+<p>The contribution to the field components in <span class="math inline">\(z&lt;0\)</span> caused by induction in <span class="math inline">\(z&gt;0\)</span> is provided by the integral expressions in the brackets.</p>
+<p>They have the general form <span class="math display">\[
+\begin{equation}
+g(r) = \int_0^\infty f(\lambda, z) J_\nu(\lambda r)\, \dd\lambda, \qquad \nu &gt; -1
+\end{equation}
+\]</span> with <span class="math inline">\(\nu\)</span> indicating the order of the Bessel function.</p>
+<p>To evaluate, e.g., the component <span class="math inline">\(B_z\)</span>, one needs the function <span class="math inline">\(f(\lambda, z)\)</span> as <span class="math display">\[
+f(\lambda, z) = \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
+e^{-\lambda h}e^{\lambda z}
+\]</span></p>
+<p>As an example, we choose a uniform halfspace with</p>
+<ul>
+<li>conductivity <span class="math inline">\(\sigma_1=0.01\)</span> S/m</li>
+<li>frequency <span class="math inline">\(f = 100\)</span> Hz</li>
+<li>transmitter and receiver in plane <span class="math inline">\(z=0\)</span></li>
+<li>offset <span class="math inline">\(r = 100\)</span> m.</li>
+</ul>
+<p>The surface admittance <span class="math inline">\(\lambda_1 = \sqrt{\lambda^2 + i \omega \mu_0 \sigma_1}\)</span> will be calculated using the function <code>lambda_1</code> given below.</p>
+<p>This is the <code>Python</code> implementation of the admittance of the uniform halfspace, <span class="math inline">\(\lambda_1\)</span>:</p>
+<div id="c2bc6dc4" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lambda_1(lam, sigma, mu, f):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    mu0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    alpha <span class="op">=</span> np.sqrt(lam<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> mu <span class="op">*</span> sigma)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> alpha <span class="op">/</span> mu0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Given these definitions, we are now able to evaluate the complete integrand functions in <a href="#eq-fields-in-air" class="quarto-xref"><span>10.1</span></a>.</p>
+<p>To this end, we first illustrate the integrand graphically:</p>
+<div id="759bb31b" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nlam <span class="op">=</span> <span class="dv">1001</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> np.logspace(<span class="dv">0</span>, <span class="dv">5</span>, nlam, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">100.0</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> <span class="fl">100.0</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> [(l <span class="op">-</span> lambda_1(l, sigma, mu, freq)) <span class="op">/</span> (l <span class="op">+</span> lambda_1(l, sigma, mu, freq)) <span class="op">*</span> l<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> l <span class="kw">in</span> lam]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.semilogx(lam, np.real(f))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'$\lambda$'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hankel_transform_files/figure-html/cell-4-output-1.png" width="582" height="445" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="9645835f" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(lam, np.imag(f))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'$\lambda$'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="fl">1e-12</span>, <span class="fl">1e-10</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/bn/mf0vkwhn31x6n25gc0bk005r0000gn/T/ipykernel_9955/707258671.py:3: UserWarning:
+
+Data has no positive values, and therefore cannot be log-scaled.
+</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hankel_transform_files/figure-html/cell-5-output-2.png" width="587" height="436" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 
