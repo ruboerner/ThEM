@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods – 4&nbsp; Maxwell’s Equations</title>
+<title>Theory of Electromagnetic Methods – 10&nbsp; Numerical calulation of the EM Hankel integrals</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./pde.html" rel="next">
-<link href="./fourier.html" rel="prev">
+<link href="./layered_halfspace.html" rel="next">
+<link href="./halfspace.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -79,35 +79,6 @@ window.MathJax = {
 };
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -120,7 +91,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./maxwell.html">Maxwell’s equations</a></li><li class="breadcrumb-item"><a href="./maxwell.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s Equations</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./hankel_transform.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calulation of the EM Hankel integrals</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -191,7 +162,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./maxwell.html" class="sidebar-item-text sidebar-link active">
+  <a href="./maxwell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s Equations</span></span></a>
   </div>
 </li>
@@ -238,7 +209,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hankel_transform.html" class="sidebar-item-text sidebar-link">
+  <a href="./hankel_transform.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calulation of the EM Hankel integrals</span></span></a>
   </div>
 </li>
@@ -284,25 +255,15 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#constitutive-equations" id="toc-constitutive-equations" class="nav-link active" data-scroll-target="#constitutive-equations"><span class="header-section-number">4.1</span> Constitutive equations</a></li>
-  <li><a href="#ohms-law" id="toc-ohms-law" class="nav-link" data-scroll-target="#ohms-law"><span class="header-section-number">4.2</span> Ohm’s law</a>
-  <ul class="collapse">
-  <li><a href="#remarks-about-anisotropy" id="toc-remarks-about-anisotropy" class="nav-link" data-scroll-target="#remarks-about-anisotropy"><span class="header-section-number">4.2.1</span> Remarks about anisotropy</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./maxwell.html">Maxwell’s equations</a></li><li class="breadcrumb-item"><a href="./maxwell.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s Equations</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./hankel_transform.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calulation of the EM Hankel integrals</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s Equations</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calulation of the EM Hankel integrals</span></h1>
 </div>
 
 
@@ -319,81 +280,9 @@ window.Quarto = {
 </header>
 
 
-<p>The EM fields <a href="intro.html#eq-fields-time" class="quarto-xref"><span>2.1</span></a> are solutions of <em>Maxwell’s equations</em></p>
-<p><span id="eq-ampere"><span class="math display">\[
-\curl \mathbf h - \partial_t \mathbf d   = \mathbf j
-\tag{4.1}\]</span></span></p>
-<p><span id="eq-faraday"><span class="math display">\[
-\curl \mathbf e + \partial_t \mathbf b  = \mathbf 0
-\tag{4.2}\]</span></span></p>
-<p><span id="eq-gauss-b"><span class="math display">\[
-\divergence \mathbf b  = 0
-\tag{4.3}\]</span></span></p>
-<p><span id="eq-gauss-d"><span class="math display">\[
-\divergence \mathbf d  = \rho_E
-\tag{4.4}\]</span></span></p>
-<p>In the form presented here, Maxwell’s equations are an <strong>uncoupled set of ordinary differential equations</strong>.</p>
-<section id="constitutive-equations" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="constitutive-equations"><span class="header-section-number">4.1</span> Constitutive equations</h2>
-<p>The goal is to couple these equations. This can be achieved with the use of the <strong>constitutive equations</strong>, which are</p>
-<p><span id="eq-constitutive-equations"><span class="math display">\[
-\begin{align}
-\mathbf d &amp; = \varepsilon \mathbf e \\
-\mathbf b &amp; = \mu \mathbf h
-\end{align}
-\tag{4.5}\]</span></span></p>
-<p>Generally, the linear parameters <span class="math inline">\(\varepsilon, \mu\)</span> are rank-2 <strong>tensors</strong> represented as 3-by-3 matrices.</p>
-</section>
-<section id="ohms-law" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="ohms-law"><span class="header-section-number">4.2</span> Ohm’s law</h2>
-<p>In an electrically conductive medium, any electric field gives rise to an electric current. This current is expressed by its <em>current density</em> as</p>
-<p><span id="eq-ohms-law"><span class="math display">\[
-\mathbf j = \sigma \mathbf e,
-\tag{4.6}\]</span></span></p>
-<p>where <span class="math inline">\(\sigma\)</span> is a rank-2 tensor.</p>
-<p>This tensor can be represented in matrix form as</p>
-<p><span class="math display">\[
-\sigma =   \begin{pmatrix}    \sigma_{11} &amp; \sigma_{12} &amp; \sigma_{13} \\    \sigma_{21} &amp; \sigma_{22} &amp; \sigma_{23} \\    \sigma_{31} &amp; \sigma_{32} &amp; \sigma_{33}   \end{pmatrix}.
-\]</span></p>
-<p>Tensors like introduced here cause <em>anisotropy</em>, i.e., the material properties have different values across different spatial directions.</p>
-<p>A typical observation would be the deviation of the induced current density from the direction of the driving electric field.</p>
-<section id="remarks-about-anisotropy" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="remarks-about-anisotropy"><span class="header-section-number">4.2.1</span> Remarks about anisotropy</h3>
-<p>The rank-2 tensor of electrical conductivity <span class="math inline">\(\tilde\sigma\)</span> may be represented in matrix form as</p>
-<p><span class="math display">\[
-  \hat\sigma =
-  \begin{pmatrix}
-    \sigma_{11} &amp; \sigma_{12} &amp; \sigma_{13} \\
-    \sigma_{21} &amp; \sigma_{22} &amp; \sigma_{23} \\
-    \sigma_{31} &amp; \sigma_{32} &amp; \sigma_{33}
-  \end{pmatrix}.
-\]</span></p>
-<p>Any real symmetric (n-by-n) matrix <span class="math inline">\(A\)</span> can be diagonalized (principal axis theorem), such that</p>
-<p><span class="math display">\[
-D_A = S^\top A S  
-\]</span></p>
-<p>is a diagonal matrix, and <span class="math inline">\(S\)</span> is an orthogonal matrix.</p>
-<p>Interpreting the matrix <span class="math inline">\(A\)</span> as a linear map in <span class="math inline">\(\mathbb {R} ^3\)</span>, then the matrix <span class="math inline">\(S\)</span> can be thought of as a transformation to the new basis. Between the old and new coordinates there is the relation <span class="math inline">\(\mathbf {x}=S \boldsymbol {\xi }\)</span>. The action of the matrix <span class="math inline">\(A\)</span> in the new coordinate system is taken over by the diagonal matrix <span class="math inline">\(D_{A}\)</span>.</p>
-<p>After transformation of the tensor in diagonal form, we have <span class="math display">\[
-  \tilde\sigma =
-  \begin{pmatrix}
-    \sigma_{xx} &amp; 0 &amp; 0 \\
-    0 &amp; \sigma_{yy} &amp; 0 \\
-    0 &amp; 0 &amp; \sigma_{zz}
-  \end{pmatrix}.
-\]</span></p>
-<p>If <span class="math inline">\(\sigma_{xx} = \sigma_{yy} = \sigma_{zz} = \sigma\)</span>, then <span class="math display">\[
-  \tilde\sigma = \sigma
-  \begin{pmatrix}
-    1 &amp; 0 &amp; 0 \\
-    0 &amp; 1 &amp; 0 \\
-    0 &amp; 0 &amp; 1
-  \end{pmatrix} = \sigma.
-\]</span> In this case, the conductivity does not depend on the spatial direction and hence is labelled <em>isotropic</em>.</p>
+<p>TBD</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -818,13 +707,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./fourier.html" class="pagination-link" aria-label="Fourier transform">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Fourier transform</span></span>
+      <a href="./halfspace.html" class="pagination-link" aria-label="Dipole sources above a uniform halfspace">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a uniform halfspace</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pde.html" class="pagination-link" aria-label="Partial Differential Equations">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Partial Differential Equations</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./layered_halfspace.html" class="pagination-link" aria-label="Dipole sources above a layered halfspace">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

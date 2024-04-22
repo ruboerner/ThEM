@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods – 10&nbsp; Dipole sources above a layered halfspace</title>
+<title>Theory of Electromagnetic Methods – 11&nbsp; Dipole sources above a layered halfspace</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -84,8 +84,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
-<link href="./halfspace.html" rel="prev">
+<link href="./timedomain_halfspace.html" rel="next">
+<link href="./hankel_transform.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -174,7 +174,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./layered_halfspace.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./layered_halfspace.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -292,8 +292,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hankel_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calulation of the EM Hankel integrals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./layered_halfspace.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./timedomain_halfspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></span></a>
   </div>
 </li>
       </ul>
@@ -310,7 +322,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -331,23 +343,23 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-layered-halfspace-model" id="toc-the-layered-halfspace-model" class="nav-link active" data-scroll-target="#the-layered-halfspace-model"><span class="header-section-number">10.1</span> The layered halfspace model</a></li>
-  <li><a href="#recursion" id="toc-recursion" class="nav-link" data-scroll-target="#recursion"><span class="header-section-number">10.2</span> Recursion</a>
+  <li><a href="#the-layered-halfspace-model" id="toc-the-layered-halfspace-model" class="nav-link active" data-scroll-target="#the-layered-halfspace-model"><span class="header-section-number">11.1</span> The layered halfspace model</a></li>
+  <li><a href="#recursion" id="toc-recursion" class="nav-link" data-scroll-target="#recursion"><span class="header-section-number">11.2</span> Recursion</a>
   <ul class="collapse">
-  <li><a href="#behaviour-of-vz-in-layer-n" id="toc-behaviour-of-vz-in-layer-n" class="nav-link" data-scroll-target="#behaviour-of-vz-in-layer-n"><span class="header-section-number">10.2.1</span> Behaviour of <span class="math inline">\(V(z)\)</span> in layer <span class="math inline">\(N\)</span></a></li>
+  <li><a href="#behaviour-of-vz-in-layer-n" id="toc-behaviour-of-vz-in-layer-n" class="nav-link" data-scroll-target="#behaviour-of-vz-in-layer-n"><span class="header-section-number">11.2.1</span> Behaviour of <span class="math inline">\(V(z)\)</span> in layer <span class="math inline">\(N\)</span></a></li>
   </ul></li>
-  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">10.3</span> Implementation</a></li>
-  <li><a href="#algorithm" id="toc-algorithm" class="nav-link" data-scroll-target="#algorithm"><span class="header-section-number">10.4</span> Algorithm</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">10.5</span> Summary</a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">11.3</span> Implementation</a></li>
+  <li><a href="#algorithm" id="toc-algorithm" class="nav-link" data-scroll-target="#algorithm"><span class="header-section-number">11.4</span> Algorithm</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">11.5</span> Summary</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./layered_halfspace.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./layered_halfspace.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></h1>
 </div>
 
 
@@ -365,8 +377,8 @@ window.Quarto = {
 
 
 <p>We consider a vertical magnetic dipole (VMD) over a layered halfspace.</p>
-<section id="the-layered-halfspace-model" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="the-layered-halfspace-model"><span class="header-section-number">10.1</span> The layered halfspace model</h2>
+<section id="the-layered-halfspace-model" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="the-layered-halfspace-model"><span class="header-section-number">11.1</span> The layered halfspace model</h2>
 <p>The halfspace is partitioned into <span class="math inline">\(N\)</span> horizontal, uniform plates of infinite extent. The layer with index <span class="math inline">\(1\)</span> is the uppermost layer, often referred to as overburden. The layer with index <span class="math inline">\(N\)</span> (the <em>substratum</em>, sometimes called basement) extends vertically to <span class="math inline">\(+\infty\)</span>. In the case of a uniform halfspace, <span class="math inline">\(N=1\)</span>.</p>
 <p>The <em>interfaces</em> between the layers are at <span class="math inline">\(z=h_n\)</span> where <span class="math inline">\(1 \le n \le N\)</span>. The surface of the conducting Earth is at <span class="math inline">\(z=h_1 = 0\)</span>.</p>
 <p>The <em>thickness</em> of layer <span class="math inline">\(n\)</span> is <span class="math inline">\(d_n = h_{n+1} - h_n\)</span>.</p>
@@ -378,7 +390,7 @@ window.Quarto = {
 <img src="https://ruboerner.github.io/images/layered.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-halfspace-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.1: The <span class="math inline">\(N\)</span>-layered halfspace model
+Figure&nbsp;11.1: The <span class="math inline">\(N\)</span>-layered halfspace model
 </figcaption>
 </figure>
 </div>
@@ -415,8 +427,8 @@ Note
 </div>
 </div>
 </section>
-<section id="recursion" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="recursion"><span class="header-section-number">10.2</span> Recursion</h2>
+<section id="recursion" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="recursion"><span class="header-section-number">11.2</span> Recursion</h2>
 <p>Let’s first study the wave propagation in layer <span class="math inline">\(N\)</span>.</p>
 <p>There only exists a downward propagating (outgoing) wave with <span class="math display">\[
 \begin{equation}
@@ -459,16 +471,16 @@ Summary
 </div>
 </div>
 <p>In the following we introduce some auxiliary functions like the <em>reflection coefficient function</em> <span class="math inline">\(r_n(\lambda)\)</span>.</p>
-<section id="behaviour-of-vz-in-layer-n" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="behaviour-of-vz-in-layer-n"><span class="header-section-number">10.2.1</span> Behaviour of <span class="math inline">\(V(z)\)</span> in layer <span class="math inline">\(N\)</span></h3>
+<section id="behaviour-of-vz-in-layer-n" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="behaviour-of-vz-in-layer-n"><span class="header-section-number">11.2.1</span> Behaviour of <span class="math inline">\(V(z)\)</span> in layer <span class="math inline">\(N\)</span></h3>
 <p>With <span class="math inline">\(r_n\)</span> we describe the ratio of upward and downward travelling partial waves.</p>
 <p>In <span class="math inline">\(z=h_N\)</span> we don’t observe an upward travelling wave, i.e., there is no reflection arising from a further interface below <span class="math inline">\(z=h_N\)</span>.</p>
 <p>Therefore, <span class="math inline">\(r_N = 0\)</span> in <span class="math inline">\(z=h_N\)</span> for all <span class="math inline">\(\lambda\)</span>.</p>
 <p>The substratum acts like a homogeneous halfspace.</p>
 </section>
 </section>
-<section id="implementation" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="implementation"><span class="header-section-number">10.3</span> Implementation</h2>
+<section id="implementation" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="implementation"><span class="header-section-number">11.3</span> Implementation</h2>
 <p>In the following we want to derive a formulation for the computation of <span class="math inline">\(B_1\)</span>.</p>
 <p>First, we define a few symbolic variables.</p>
 <ul>
@@ -479,7 +491,7 @@ Summary
 <li><code>dₙ</code>: thickness of layer <span class="math inline">\(n\)</span></li>
 <li><code>hₙ</code>: <span class="math inline">\(z\)</span>-coordinate of top of layer <span class="math inline">\(n\)</span></li>
 </ul>
-<div id="34831556" class="cell" data-execution_count="2">
+<div id="5ff3b87d" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>z, r_n, d_n <span class="op">=</span> symbols(<span class="st">"z r_n d_n"</span>, real<span class="op">=</span><span class="va">True</span>)</span>
@@ -488,7 +500,7 @@ Summary
 </details>
 </div>
 <p>Further, we define <code>V(z)</code> as a symbolc expression for <span class="math inline">\(V(z)\)</span>:</p>
-<div id="dbf0d57b" class="cell" data-execution_count="3">
+<div id="320db40b" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> <span class="kw">lambda</span> z: gamma_minus <span class="op">*</span> (exp(<span class="op">-</span>lambda_n <span class="op">*</span> (z <span class="op">-</span> h_n)) <span class="op">+</span> r_n <span class="op">*</span> exp(lambda_n <span class="op">*</span> (z <span class="op">-</span> h_n)))</span>
@@ -499,7 +511,7 @@ Summary
 </div>
 </div>
 <p><code>B(z)</code> is the implementation of the admittance function <span class="math inline">\(B(z)\)</span>:</p>
-<div id="1f5526a7" class="cell" data-execution_count="4">
+<div id="b5cd372b" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> <span class="kw">lambda</span> z: <span class="op">-</span>diff(V(z), z) <span class="op">/</span> V(z)</span>
@@ -509,7 +521,7 @@ Summary
 <p><span class="math inline">\(\displaystyle \frac{\lambda_{n} \left(- r_{n} + e^{2 \lambda_{n} \left(h_{n} - z\right)}\right)}{r_{n} + e^{2 \lambda_{n} \left(h_{n} - z\right)}}\)</span></p>
 </div>
 </div>
-<div id="059b5303" class="cell" data-execution_count="5">
+<div id="b99c1224" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>B_n <span class="op">=</span> B(z).subs(z, h_n).simplify()</span>
@@ -523,10 +535,10 @@ Summary
 \begin{equation}
 B_{n}=\lambda_{n} \frac{1-r_{n}}{1+r_{n}}.
 \end{equation}
-\tag{10.1}\]</span></span> We now have a representation of the admittance in terms of the layer properties <span class="math inline">\(\lambda_n\)</span> and the reflection coefficient <span class="math inline">\(r_n\)</span>.</p>
+\tag{11.1}\]</span></span> We now have a representation of the admittance in terms of the layer properties <span class="math inline">\(\lambda_n\)</span> and the reflection coefficient <span class="math inline">\(r_n\)</span>.</p>
 <p>Yet, the <span class="math inline">\(r_n\)</span> is still undetermined. We try to eliminate <span class="math inline">\(r_n\)</span> from the equation above.</p>
 <p>To this end, we express <span class="math inline">\(B(z)\)</span> at <span class="math inline">\(z=h_{n+1}\)</span> using the layer thickness <span class="math inline">\(d_n\)</span>.</p>
-<div id="2ed73c35" class="cell" data-execution_count="6">
+<div id="5a5eaf0f" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>B(z).subs(z <span class="op">-</span> h_n, d_n).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -550,7 +562,7 @@ B_{n+1}=\lambda_{n} \frac{1-r_{n} e^{2 \lambda_{n} d_{n}}}{1+r_{n} e^{2 \lambda_
 <li>Save the result as <code>r</code> in <code>sympy</code></li>
 </ul>
 <p>Thus, we have found an expression which introduces a link to the layer <span class="math inline">\(n+1\)</span>, and enables us to eliminate <span class="math inline">\(r_n\)</span>.</p>
-<div id="d0048261" class="cell" data-execution_count="7">
+<div id="1a3d85c1" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> solve(B(z).subs(z <span class="op">-</span> h_n, d_n) <span class="op">-</span> B_np1, r_n)</span>
@@ -560,11 +572,11 @@ B_{n+1}=\lambda_{n} \frac{1-r_{n} e^{2 \lambda_{n} d_{n}}}{1+r_{n} e^{2 \lambda_
 <p><span class="math inline">\(\displaystyle \frac{\left(- B_{n+1} + \lambda_{n}\right) e^{- 2 d_{n} \lambda_{n}}}{B_{n+1} + \lambda_{n}}\)</span></p>
 </div>
 </div>
-<p>Given this intermediate result, we are now prepared to substitute the expression <span class="math inline">\(r_n\)</span> in the equation <a href="#eq-Bn" class="quarto-xref"><span>10.1</span></a> introduced above for <span class="math inline">\(B_n\)</span>.</p>
+<p>Given this intermediate result, we are now prepared to substitute the expression <span class="math inline">\(r_n\)</span> in the equation <a href="#eq-Bn" class="quarto-xref"><span>11.1</span></a> introduced above for <span class="math inline">\(B_n\)</span>.</p>
 <p>We have obtained an important, yet unfinished, intermediate result, which already contains a recursion <span class="math display">\[
 B_n \leftarrow B_{n+1} \qquad\text{for } n= N-1, N-2, \dots, 1.
 \]</span></p>
-<div id="005ddb34" class="cell" data-execution_count="8">
+<div id="18bfee59" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>B_n.subs(r_n, r[<span class="dv">0</span>]).simplify().simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -634,9 +646,9 @@ Wait algorithm incorporating <span class="math inline">\(\mu_r \ne 1\)</span>
 </div>
 </div>
 </section>
-<section id="algorithm" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="algorithm"><span class="header-section-number">10.4</span> Algorithm</h2>
-<div id="7654dc95" class="cell" data-execution_count="9">
+<section id="algorithm" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="algorithm"><span class="header-section-number">11.4</span> Algorithm</h2>
+<div id="e6172fb9" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> admittance(λ, σ, μ, d, f):</span>
@@ -658,7 +670,7 @@ Wait algorithm incorporating <span class="math inline">\(\mu_r \ne 1\)</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="d367a0f0" class="cell" data-execution_count="10">
+<div id="9dc6567a" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>admittance(<span class="fl">10.0</span>, np.array([<span class="dv">1</span>, <span class="dv">1</span>]), np.array([<span class="dv">1</span>, <span class="dv">1</span>]), np.array([<span class="dv">1</span>]), <span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -668,8 +680,8 @@ Wait algorithm incorporating <span class="math inline">\(\mu_r \ne 1\)</span>
 </div>
 </div>
 </section>
-<section id="summary" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">10.5</span> Summary</h2>
+<section id="summary" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">11.5</span> Summary</h2>
 <p>We are now able to express the effect of the layered halfspace by the <em>surface admittance</em> <span class="math inline">\(B_1\)</span>.</p>
 <p>The resulting admittance formula can be used to simply replace every occurence of <span class="math inline">\(\lambda_1\)</span> in the equations for the homogeneous halfspace by <span class="math inline">\(B_1\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Fields in $z \le 0$">
@@ -707,7 +719,7 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 </div>
 </div>
 <p>Finally, it remains to evaluate the <em>Hankel integrals</em> numerically.</p>
-<div id="ce76738b" class="cell" data-execution_count="11">
+<div id="f2f0c4a4" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convolve(fc, kernel, style<span class="op">=</span><span class="st">"valid"</span>):</span>
@@ -728,7 +740,7 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="07f18590" class="cell" data-execution_count="12">
+<div id="9379ac5e" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
@@ -740,7 +752,7 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 <pre><code>array([1, 2, 3, 4, 5, 4, 3, 2, 1], dtype=object)</code></pre>
 </div>
 </div>
-<div id="61a978f2" class="cell" data-execution_count="13">
+<div id="0a40c964" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -779,7 +791,7 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 </details>
 </div>
 <p>Filter coefficients:</p>
-<div id="13053c00" class="cell" data-execution_count="14">
+<div id="fba5a395" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -855,13 +867,13 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 <img src="layered_halfspace_files/figure-html/fig-bz-output-1.png" width="606" height="451" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.2: VMD plot
+Figure&nbsp;11.2: VMD plot
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div id="65abc0cf" class="cell" data-execution_count="16">
+<div id="68e28992" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Hz_analytical(r, f, sigma):</span>
@@ -872,7 +884,7 @@ Figure&nbsp;10.2: VMD plot
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="4e48161a" class="cell" data-execution_count="17">
+<div id="cae71e5f" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> [Hz_analytical(<span class="fl">100.0</span>, v, <span class="fl">0.01</span>) <span class="cf">for</span> v <span class="kw">in</span> freq]</span>
@@ -899,7 +911,7 @@ Figure&nbsp;10.2: VMD plot
 <img src="https://ruboerner.github.io/images/Hz_VMD.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reference-VMD-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.3: Reference to Fig. above above taken from <span class="citation" data-cites="ward1988electromagnetic">Ward &amp; Hohmann (<a href="references.html#ref-ward1988electromagnetic" role="doc-biblioref">1988</a>)</span>
+Figure&nbsp;11.3: Reference to Fig. above above taken from <span class="citation" data-cites="ward1988electromagnetic">Ward &amp; Hohmann (<a href="references.html#ref-ward1988electromagnetic" role="doc-biblioref">1988</a>)</span>
 </figcaption>
 </figure>
 </div>
@@ -1335,13 +1347,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./halfspace.html" class="pagination-link" aria-label="Dipole sources above a uniform halfspace">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a uniform halfspace</span></span>
+      <a href="./hankel_transform.html" class="pagination-link" aria-label="Numerical calulation of the EM Hankel integrals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calulation of the EM Hankel integrals</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./timedomain_halfspace.html" class="pagination-link" aria-label="Dipole induction over a layered halfspace in the time domain">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

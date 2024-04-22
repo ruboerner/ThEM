@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.30">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Theory of Electromagnetic Methods – 12&nbsp; Dipole induction over a layered halfspace in the time domain</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./summary.html" rel="next">
+<link href="./layered_halfspace.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+window.MathJax = {
+  loader: {
+    load: ['[tex]/physics']
+  },
+  tex: {
+    packages: {'[+]': ['physics']}
+  }
+};
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./timedomain_halfspace.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Theory of Electromagnetic Methods</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prerequisites</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Electromagnetic fields</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fourier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Fourier transform</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Maxwell’s equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maxwell.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Maxwell’s Equations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pde.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Partial Differential Equations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mtfields.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plane waves above and inside a homogeneous Earth</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Dipole induction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./potentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sources in unbounded media</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./timedomain_fullspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Fields in the time domain</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./halfspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a uniform halfspace</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hankel_transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calulation of the EM Hankel integrals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./layered_halfspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./timedomain_halfspace.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Summary</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#inverse-fourier-transform-from-frequency-to-time-domain" id="toc-inverse-fourier-transform-from-frequency-to-time-domain" class="nav-link active" data-scroll-target="#inverse-fourier-transform-from-frequency-to-time-domain"><span class="header-section-number">12.1</span> Inverse Fourier transform from frequency to time domain</a>
+  <ul class="collapse">
+  <li><a href="#properties-of-the-step-response" id="toc-properties-of-the-step-response" class="nav-link" data-scroll-target="#properties-of-the-step-response"><span class="header-section-number">12.1.1</span> Properties of the step response</a></li>
+  </ul></li>
+  <li><a href="#how-sines-and-cosines-are-related-to-bessel-functions" id="toc-how-sines-and-cosines-are-related-to-bessel-functions" class="nav-link" data-scroll-target="#how-sines-and-cosines-are-related-to-bessel-functions"><span class="header-section-number">12.2</span> How sine’s and cosine’s are related to Bessel functions</a></li>
+  <li><a href="#the-fast-hankel-transform-fht" id="toc-the-fast-hankel-transform-fht" class="nav-link" data-scroll-target="#the-fast-hankel-transform-fht"><span class="header-section-number">12.3</span> The Fast Hankel Transform (FHT)</a>
+  <ul class="collapse">
+  <li><a href="#how-many-frequency-solutions-are-required" id="toc-how-many-frequency-solutions-are-required" class="nav-link" data-scroll-target="#how-many-frequency-solutions-are-required"><span class="header-section-number">12.3.1</span> How many frequency solutions are required?</a></li>
+  </ul></li>
+  <li><a href="#numerical-experiments" id="toc-numerical-experiments" class="nav-link" data-scroll-target="#numerical-experiments"><span class="header-section-number">12.4</span> Numerical experiments</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./timedomain_halfspace.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="inverse-fourier-transform-from-frequency-to-time-domain" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="inverse-fourier-transform-from-frequency-to-time-domain"><span class="header-section-number">12.1</span> Inverse Fourier transform from frequency to time domain</h2>
+<p>We have already learned that the inverse transform (<em>Fourier synthesis</em>) back to the time domain can be performed using the Laplace transform when the source current in the transmitter dipole is turned on or off. The current waveform can be described mathematically by a <em>Heaviside step function</em>.</p>
+<p>Key idea ist the <em>step response</em>.</p>
+<p>The step response is the impulse response convolved with the transfer function of the step function. In the frequency domain we realize this by a multiplication of the Fourier transform of the considered field component with the Fourier transform of the step function.</p>
+<p>The equation <span class="math display">\[
+\begin{equation}
+f(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \frac{F(\omega)}{i \omega} e^{i \omega t} \dd \omega
+\end{equation}
+\]</span> describes the relation formally correct, but suffers from a singularity when <span class="math inline">\(\omega=0\)</span>.</p>
+<p>Therefore the Fourier transformation is not applicable, since the function <span class="math inline">\(1/i\omega\)</span> to be transformed is not integrable. However, this deficiency can be solved with a trick.</p>
+<p>We will formulate the approach to the inverse Fourier transform a little more elegantly below.</p>
+<section id="properties-of-the-step-response" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="properties-of-the-step-response"><span class="header-section-number">12.1.1</span> Properties of the step response</h3>
+<p>First, we put together some pleasant properties of the function <span class="math inline">\(f(t)\)</span> we are looking for:</p>
+<ul>
+<li><span class="math inline">\(f(t)\)</span> is real, hence</li>
+<li><span class="math inline">\(F(\omega)\)</span> is complex with symmetry <span class="math inline">\(F(-\omega) = \overline F(\omega)\)</span></li>
+<li><span class="math inline">\(f(t) = 0\)</span> for <span class="math inline">\(t &lt; 0\)</span> (causality).</li>
+</ul>
+<p>Therefore, as we will see, the inverse transformation can be carried out optionally as a <em>cosine</em> or <em>sine transform</em> of the imaginary or real part of <span class="math inline">\(\frac{F(\omega)}{\omega}\)</span>, respectively:</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Step response via cosine or sine transform">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step response via cosine or sine transform
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+    \begin{equation}
+    \begin{aligned}
+    f(t) &amp;=\frac{2}{\pi} \int_{0}^{\infty} \operatorname{Im} \frac{F(\omega)}{\omega} \cos (\omega t) \dd \omega \\
+    &amp;=\frac{2}{\pi} \int_{0}^{\infty} \operatorname{Re} \frac{F(\omega)}{\omega} \sin (\omega t) \dd \omega
+    \end{aligned}
+    \end{equation}
+\]</span></p>
+</div>
+</div>
+<p>We note the change of the integration limits (from <span class="math inline">\(0\)</span> to <span class="math inline">\(+\infty\)</span>) and the leading factor <span class="math inline">\(2 / \pi\)</span> instead of <span class="math inline">\(1 / 2 \pi\)</span> before.</p>
+<p>How do we get to this result?</p>
+<ul>
+<li>To transform the field components into the time domain, we need to specify the frequency dependence of the dipole moment.<br>
+</li>
+<li>For a dipole moment of a VMD let <span class="math inline">\(\mathbf m(t) = \mathbf m_0 g(t)\)</span> , <span class="math inline">\(g(t)\)</span> is a dimensionless function.<br>
+</li>
+<li>The frequency dependent dipole moment is thus <span class="math inline">\(\widetilde{\mathbf m}(\omega) = \mathbf m_0 \widetilde{g}(\omega)\)</span>.</li>
+</ul>
+<p>The <em>Heaviside function</em> is denoted by <span class="math inline">\(H(t)\)</span>.</p>
+<p>First, we consider the current step-on. It holds <span class="math inline">\(g(t) =: g_\mathrm{on}(t) = H(t)\)</span>.</p>
+<p>Using the Fourier transform pair</p>
+<p><span class="math display">\[
+\begin{equation}
+f(t)=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} F(\omega) \mathrm{e}^{i \omega t} \dd \omega
+\end{equation}
+\]</span></p>
+<p><span class="math display">\[
+\begin{equation}
+F(\omega)=\int_{-\infty}^{+\infty} f(t) \mathrm{e}^{-i \omega t} \dd t
+\end{equation}
+\]</span> and a stabilizing term <span class="math inline">\(e^{-\epsilon t}\)</span>, <span class="math inline">\(\epsilon \to 0^+\)</span>, we obtain (<a href="https://en.wikipedia.org/wiki/Fourier_transform#Square-integrable_functions,_one-dimensional">Table of Fourier transforms</a>) <span class="math display">\[
+\begin{equation}
+\tilde{g}(\omega)=: \tilde{g}_\mathrm{o n}(\omega)=\lim _{\epsilon \rightarrow 0^{+}} \int_{0}^{\infty} e^{-(\epsilon+i \omega) t} \dd t=\lim _{\epsilon \rightarrow 0^{+}} \frac{1}{\epsilon+i \omega}.
+\end{equation}
+\]</span> For the current step-off there holds <span class="math inline">\(g(t) =: g_\mathrm{off}(t) = H(-t)\)</span>: <span class="math display">\[
+\begin{equation}
+\tilde{g}(\omega)=: \tilde{g}_\mathrm{off}(\omega)=\lim _{\epsilon \rightarrow 0^{+}} \int_{-\infty}^{0} e^{(\epsilon-i \omega) t} \dd t=\lim _{\epsilon \rightarrow 0^{+}} \frac{1}{\epsilon-i \omega}.
+\end{equation}
+\]</span> We add both expressions in the frequency domain and obtain <span class="math display">\[
+\begin{equation}
+\tilde{g}_\mathrm{o n}(\omega)+\tilde{g}_\mathrm{o f f}(\omega)=\lim _{\epsilon \rightarrow 0^{+}} \frac{2 \epsilon}{\epsilon^{2}+\omega^{2}}=2 \pi \delta(\omega),
+\end{equation}
+\]</span> Equivalently, in the time domain <span class="math display">\[
+\begin{equation}
+g_\mathrm{o n}(t)+g_\mathrm{o f f}(t) = H(t) + H(-t)=1
+\end{equation}
+\]</span></p>
+<p>We now consider a source term of the form <span class="math inline">\(\mathbf m(t) = \mathbf m_0 e^{i \omega t}\)</span> (complex-valued single-frequency source). The resulting field is <span class="math inline">\(F(\mathbf r, \omega) e^{i \omega t}\)</span>.</p>
+<p>The real-valued field components for the current step-on (<span class="math inline">\(f_\text{on}\)</span>) and step-off (<span class="math inline">\(f_\text{off}\)</span>) are <span class="math display">\[
+\begin{equation}
+f_\mathrm{o n}(\mathbf{r}, t)=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} \tilde{g}_\mathrm{o n}(\omega) F(\mathbf{r}, \omega) \mathrm{e}^{i \omega t} \dd \omega
+\end{equation}
+\]</span> and <span class="math display">\[
+\begin{equation}
+f_\mathrm{o f f}(\mathbf{r}, t)=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} \tilde{g}_\mathrm{o f f}(\omega) F(\mathbf{r}, \omega) \mathrm{e}^{i \omega t} \dd \omega.
+\end{equation}
+\]</span> Due to causality all field components must be zero for <span class="math inline">\(t&lt;0\)</span>.</p>
+<p>Setting <span class="math inline">\(t' := -t\)</span> we obtain <span class="math display">\[
+\begin{equation}
+0=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} \tilde{g}_\mathrm{o n}(\omega) F(\mathbf{r}, \omega) \mathrm{e}^{-i \omega t'} \dd \omega.
+\end{equation}
+\]</span> Multiplying out <span class="math inline">\(F = real(F) + i\cdot imag(F)\)</span> and <span class="math inline">\(\mathrm{e}^{-i \omega t'} = \cos(\omega t') - i \sin(\omega t')\)</span> and taking into account that <span class="math inline">\(f(t)\)</span> is real, we obtain the following result for <span class="math inline">\(t&gt;0\)</span>: <span class="math display">\[
+\begin{equation}
+\begin{aligned}
+f_\mathrm{o n}(\mathbf{r}, t) &amp; = -\frac{2}{\pi} \int_{0}^{\infty} \operatorname{Im}\left[\tilde{g}_{o n}(\omega) F(\mathbf{r}, \omega)\right] \sin (\omega t) d \omega \\
+&amp; =\frac{2}{\pi} \int_{0}^{\infty} \operatorname{Re}\frac{F(\omega)}{\omega} \sin (\omega t) d \omega.
+\end{aligned}
+\end{equation}
+\]</span> We have exploited that <span class="math display">\[
+\begin{equation}
+\lim _{\epsilon \rightarrow 0^{+}} g_{o n}(\omega) \sin (\omega t)=\frac{\sin (\omega t)}{i \omega}
+\end{equation}
+\]</span> is finite for <span class="math inline">\(\omega \to 0\)</span>, such that the stabilizing term <span class="math inline">\(\epsilon\)</span> is not required.</p>
+</section>
+</section>
+<section id="how-sines-and-cosines-are-related-to-bessel-functions" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="how-sines-and-cosines-are-related-to-bessel-functions"><span class="header-section-number">12.2</span> How sine’s and cosine’s are related to Bessel functions</h2>
+<p>We now want to establish the connection to the Hankel transformation via Bessel functions of half-integer order. There holds (<a href="http://people.math.sfu.ca/~cbm/aands/page_437.htm">Abramowitz &amp; Stegun</a>, 10.1.1, 10.1.10 and 10.1.11) <span class="math display">\[
+\begin{equation}
+\begin{aligned}
+J_{-1 / 2}(\omega t) &amp;=\sqrt{\frac{2}{\pi \omega t}} \cos (\omega t) \\
+J_{+1 / 2}(\omega t) &amp;=\sqrt{\frac{2}{\pi \omega t}} \sin (\omega t).
+\end{aligned}
+\end{equation}
+\]</span> We may now rewrite the equations for the sine and cosine transform introduced above. We obtain the</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Step response via Hankel transform">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Step response via Hankel transform
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+    \begin{equation}
+    \begin{aligned}
+    f(t) &amp;=\sqrt{\frac{2 t}{\pi}} \int_{0}^{\infty} \operatorname{Im} \frac{F(\omega)}{\sqrt{\omega}} J_{-1 / 2}(\omega t) \dd \omega \\
+    &amp;=\sqrt{\frac{2 t}{\pi}} \int_{0}^{\infty} \operatorname{Re} \frac{F(\omega)}{\sqrt{\omega}} J_{+1 / 2}(\omega t) \dd \omega
+    \end{aligned}
+    \end{equation}
+\]</span></p>
+</div>
+</div>
+<p>Note that for calculating the impulse response, we exploit the relation between the Dirac delta function and the Heaviside step function. We take the time derivative of the step response to obtain the impulse response.</p>
+<p>In the frequency domain, this can be done simply by multiplication with <span class="math inline">\(i\omega\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Impulse response via Hankel transform">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Impulse response via Hankel transform
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+    \begin{equation}
+    \begin{aligned}
+    \dv{}{t} f(t) &amp;=\sqrt{\frac{2 t}{\pi}} \int_{0}^{\infty} \operatorname{Im} \frac{i \omega F(\omega)}{\sqrt{\omega}} J_{-1 / 2}(\omega t) \dd \omega \\
+    &amp;=\sqrt{\frac{2 t}{\pi}} \int_{0}^{\infty} \operatorname{Re} \frac{i \omega F(\omega)}{\sqrt{\omega}} J_{+1 / 2}(\omega t) \dd \omega
+    \end{aligned}
+    \end{equation}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="the-fast-hankel-transform-fht" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="the-fast-hankel-transform-fht"><span class="header-section-number">12.3</span> The Fast Hankel Transform (FHT)</h2>
+<p>We follow the basic ideas of the FHT as introduced above where we have considered dipole induction in the frequency domain over a (layered) half-space.</p>
+<p>After a substitution of variables, a convolution integral and later a convolution sum with finitely many terms can be established.</p>
+<p>Likewise, we make the transformations <span class="math display">\[
+\begin{equation}
+\begin{aligned}
+    x &amp; = \log(t / t_0) \\
+    y &amp; = -\log (\omega t_0), &amp; t_0 &gt; 0 \\
+    G(x) &amp; = t g(t) \\
+    F(y) &amp; = f(\omega) \\
+    H(x) &amp; = e^x J_\nu(e^x).
+\end{aligned}
+\end{equation}
+\]</span></p>
+<section id="how-many-frequency-solutions-are-required" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="how-many-frequency-solutions-are-required"><span class="header-section-number">12.3.1</span> How many frequency solutions are required?</h3>
+<p>Which frequencies have to be calculated and how do they depend on the desired time interval?</p>
+<p>The following rule applies:</p>
+<p>Let <span class="math inline">\(n_c\)</span> be the number of filter coefficients, <span class="math inline">\(n_t\)</span> the number of logarithmically equidistant time points <span class="math inline">\(t_i\)</span>, <span class="math inline">\(i=1,\dots,n_t\)</span>.</p>
+<p>This gives <span class="math inline">\(n_c + n_t - 1\)</span> necessary evaluations in the frequency domain.</p>
+<p>The location of the required frequencies can be calculated from <span class="math inline">\(t_i\)</span> if the location of the zero index of the filter coefficients is known.</p>
+<p>Let <span class="math inline">\(n_0\)</span> be the zero index, <span class="math inline">\(n_c\)</span> the filter length and <span class="math inline">\(n_t\)</span> the length of the desired time signal, then the following determination equation is valid for the required angular frequencies <span class="math display">\[
+\begin{equation}
+\omega_n = \frac{1}{t_0} 10^{(1 - n_0 + n_c - n) / 10}, \qquad n=1,\dots,n_c + n_t - 1
+\end{equation}
+\]</span></p>
+<p><strong>Example</strong></p>
+<p>Let <span class="math inline">\(n_c = 80\)</span>, <span class="math inline">\(n_t = 31\)</span> sampled from the interval <span class="math inline">\(t_0 = 10^{-6} \le t \le 10^{-3}\)</span> s with 10 log-equidistant samples per decade.</p>
+<p>Then <span class="math inline">\(n_c + n_t - 1 = 110\)</span>.</p>
+<p>Let’s compute the <span class="math inline">\(\omega_n\)</span>.</p>
+<div id="a895e2d7" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nt <span class="op">=</span> <span class="dv">31</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">6</span>, <span class="op">-</span><span class="dv">3</span>, nt, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> t[<span class="dv">0</span>]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>nc <span class="op">=</span> <span class="dv">80</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nc0 <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ncnt <span class="op">=</span> nc <span class="op">+</span> nt <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> np.zeros(ncnt, dtype<span class="op">=</span>np.float64)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> np.array([<span class="dv">10</span><span class="op">**</span>(<span class="fl">0.1</span> <span class="op">*</span> (nc <span class="op">-</span> nc0 <span class="op">-</span> i)) <span class="op">/</span> t0 <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, ncnt)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The required 110 frequencies <span class="math inline">\(f_n = \omega_n / (2 \pi)\)</span> are located between 0.02 Hz and 1.592 GHz.</p>
+</section>
+</section>
+<section id="numerical-experiments" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="numerical-experiments"><span class="header-section-number">12.4</span> Numerical experiments</h2>
+<div id="09114b6a" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gethankelfcsin():</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    fc <span class="op">=</span> np.array([</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">2.595262360000e-07</span>, <span class="op">+</span><span class="fl">3.665448430000e-07</span>, <span class="op">+</span><span class="fl">5.178307950000e-07</span>, <span class="op">+</span><span class="fl">7.313406220000e-07</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.033228050000e-06</span>, <span class="op">+</span><span class="fl">1.459185000000e-06</span>, <span class="op">+</span><span class="fl">2.061610650000e-06</span>, <span class="op">+</span><span class="fl">2.911377930000e-06</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">4.113578630000e-06</span>, <span class="op">+</span><span class="fl">5.808764200000e-06</span>, <span class="op">+</span><span class="fl">8.207980750000e-06</span>, <span class="op">+</span><span class="fl">1.158950830000e-05</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.637785600000e-05</span>, <span class="op">+</span><span class="fl">2.312284590000e-05</span>, <span class="op">+</span><span class="fl">3.268006490000e-05</span>, <span class="op">+</span><span class="fl">4.613293340000e-05</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">6.521010850000e-05</span>, <span class="op">+</span><span class="fl">9.203905750000e-05</span>, <span class="op">+</span><span class="fl">1.301229350000e-04</span>, <span class="op">+</span><span class="fl">1.836204310000e-04</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">2.596566260000e-04</span>, <span class="op">+</span><span class="fl">3.663119820000e-04</span>, <span class="op">+</span><span class="fl">5.181411840000e-04</span>, <span class="op">+</span><span class="fl">7.307173400000e-04</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.033921840000e-03</span>, <span class="op">+</span><span class="fl">1.457427140000e-03</span>, <span class="op">+</span><span class="fl">2.062923020000e-03</span>, <span class="op">+</span><span class="fl">2.905999110000e-03</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">4.114719020000e-03</span>, <span class="op">+</span><span class="fl">5.790427630000e-03</span>, <span class="op">+</span><span class="fl">8.200047220000e-03</span>, <span class="op">+</span><span class="fl">1.151929300000e-02</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.630391330000e-02</span>, <span class="op">+</span><span class="fl">2.282577570000e-02</span>, <span class="op">+</span><span class="fl">3.222492220000e-02</span>, <span class="op">+</span><span class="fl">4.478643280000e-02</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">6.273296250000e-02</span>, <span class="op">+</span><span class="fl">8.570591000000e-02</span>, <span class="op">+</span><span class="fl">1.174183140000e-01</span>, <span class="op">+</span><span class="fl">1.536326550000e-01</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.977179640000e-01</span>, <span class="op">+</span><span class="fl">2.288498490000e-01</span>, <span class="op">+</span><span class="fl">2.403110380000e-01</span>, <span class="op">+</span><span class="fl">1.654092200000e-01</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">2.847014760000e-03</span>, <span class="op">-</span><span class="fl">2.880160570000e-01</span>, <span class="op">-</span><span class="fl">3.690974060000e-01</span>, <span class="op">-</span><span class="fl">2.501075140000e-02</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">5.718112560000e-01</span>, <span class="op">-</span><span class="fl">3.922615720000e-01</span>, <span class="op">+</span><span class="fl">7.632800440000e-02</span>, <span class="op">+</span><span class="fl">5.162339940000e-02</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="fl">6.480120820000e-02</span>, <span class="op">+</span><span class="fl">4.890471410000e-02</span>, <span class="op">-</span><span class="fl">3.269363310000e-02</span>, <span class="op">+</span><span class="fl">2.105398420000e-02</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="fl">1.338625490000e-02</span>, <span class="op">+</span><span class="fl">8.471246950000e-03</span>, <span class="op">-</span><span class="fl">5.351239720000e-03</span>, <span class="op">+</span><span class="fl">3.377966510000e-03</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="fl">2.131744660000e-03</span>, <span class="op">+</span><span class="fl">1.345138330000e-03</span>, <span class="op">-</span><span class="fl">8.487496120000e-04</span>, <span class="op">+</span><span class="fl">5.355310060000e-04</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="fl">3.378987800000e-04</span>, <span class="op">+</span><span class="fl">2.132001090000e-04</span>, <span class="op">-</span><span class="fl">1.345202730000e-04</span>, <span class="op">+</span><span class="fl">8.487657870000e-05</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="fl">5.355350690000e-05</span>, <span class="op">+</span><span class="fl">3.378998010000e-05</span>, <span class="op">-</span><span class="fl">2.132003650000e-05</span>, <span class="op">+</span><span class="fl">1.345203370000e-05</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="fl">8.487659490000e-06</span>, <span class="op">+</span><span class="fl">5.355351100000e-06</span>, <span class="op">-</span><span class="fl">3.378998110000e-06</span>, <span class="op">+</span><span class="fl">2.132003680000e-06</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="fl">1.345203380000e-06</span>, <span class="op">+</span><span class="fl">8.487659510000e-07</span>, <span class="op">-</span><span class="fl">5.355351100000e-07</span>, <span class="op">+</span><span class="fl">3.378998110000e-07</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    nc <span class="op">=</span> <span class="dv">80</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    nc0 <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fc, nc, nc0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Plot of the filter coefficients:</p>
+<div id="bd693e83" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fc, nc, nc0 <span class="op">=</span> gethankelfcsin()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.plot([nc0 <span class="op">-</span> i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, nc)], fc)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="timedomain_halfspace_files/figure-html/cell-6-output-1.png" width="582" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the following we implement a function for the computation of the step response of a layered halfspace.</p>
+<p>To this end, we provide two analytical solutions for the dipole induction in a uniform halfspace in the frequency domain. More precisely,</p>
+<ul>
+<li><code>Bz_analytical()</code> provides all required frequency domain solutions to be used in the sine transform,</li>
+<li><code>dBzdt_halfspace()</code> provides an analytical reference solution for the <em>impulse response</em> of a uniform halfspace.</li>
+</ul>
+<div id="ed3d1fa9" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Bz_analytical(r, omega, sigma):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    μ <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> np.sqrt(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> μ <span class="op">*</span> sigma)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="dv">9</span> <span class="op">-</span> (<span class="dv">9</span> <span class="op">+</span> <span class="dv">9</span> <span class="op">*</span> <span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> r <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="ot">1j</span> <span class="op">*</span> k<span class="op">**</span><span class="dv">3</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">3</span>) <span class="op">*</span> np.exp(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> r)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> B <span class="op">*</span> μ <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">5</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> erf</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dBzdt_halfspace(t, r, sigma, m<span class="op">=</span><span class="fl">1.0</span>):</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    nt <span class="op">=</span> <span class="bu">len</span>(t)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    hzp <span class="op">=</span> np.zeros(nt)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    mu0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nt):</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        theta <span class="op">=</span> np.sqrt(mu0 <span class="op">*</span> sigma <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> t[i]))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        hzp[i] <span class="op">=</span> <span class="op">-</span>m <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> sigma <span class="op">*</span> r<span class="op">**</span><span class="dv">5</span>) <span class="op">*</span> (</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            <span class="dv">9</span> <span class="op">*</span> erf(theta <span class="op">*</span> r) <span class="op">-</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="dv">2</span> <span class="op">*</span> theta <span class="op">*</span> r <span class="op">/</span> np.sqrt(np.pi) <span class="op">*</span> (</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>                <span class="dv">9</span> <span class="op">+</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>                <span class="dv">6</span> <span class="op">*</span> theta<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span> <span class="op">+</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>                <span class="dv">4</span> <span class="op">*</span> theta<span class="op">**</span><span class="dv">4</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">4</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>            ) <span class="op">*</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>            np.exp(<span class="op">-</span>theta<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hzp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We check our implemention and set</p>
+<ul>
+<li><span class="math inline">\(\sigma=0.01\)</span> S/m,</li>
+<li><span class="math inline">\(r=100\)</span> m,</li>
+<li><span class="math inline">\(z=h=0\)</span> m,</li>
+<li>time interval as defined above.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that the call of <code>Bz_analytical</code> in the code below may be replaced by a call to any appropriate function which provides the frequency domain field components of any dipole type and orientation.</p>
+</div>
+</div>
+<div id="f31d9d9a" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">100.0</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Bz_f <span class="op">=</span> [Bz_analytical(r, w, sigma) <span class="cf">for</span> w <span class="kw">in</span> omega]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>dBzdt <span class="op">=</span> convolve(fc, <span class="op">\</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    np.real(<span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> Bz_f <span class="op">/</span> np.sqrt(omega))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">*</span> np.sqrt(<span class="dv">2</span> <span class="op">/</span> np.pi <span class="op">/</span> t)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>dBzdt_ana <span class="op">=</span> dBzdt_halfspace(t, r, sigma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Plot of the results</p>
+<div id="f3e4245c" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(t, np.<span class="bu">abs</span>(dBzdt), marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'FHT'</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.loglog(t, np.<span class="bu">abs</span>(dBzdt_ana), label<span class="op">=</span><span class="st">'analytical'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'t in s'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$db_z(t)/dt \mathrm{~in~} V/m^2$'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Impulse response'</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="timedomain_halfspace_files/figure-html/cell-9-output-1.png" width="608" height="451" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>By visual inspection, there is no substantial problem in our implementation.</p>
+<p>The <strong>relative numerical error</strong> can be evaluated by an appropriate error norm, i.e., <span class="math display">\[
+\delta = \frac{\left \| \dv{}{t}b_z^{analytical}(t) - \dv{}{t}b_z^{FHT}(t) \right \|_2}{{\left \| \dv{}{t}b_z^{analytical}(t) \right \|_2}}
+\]</span> which evaluates for our experiment to 9.61e-08.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./layered_halfspace.html" class="pagination-link" aria-label="Dipole sources above a layered halfspace">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
