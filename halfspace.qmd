@@ -614,3 +614,11 @@ $$
 $$
 
 :::
+
+::: {.callout-tip title="Outlook"}
+
+In the multi-layered case, we will simply replace $\lambda_1$ by a function defined by the conductivities, thicknesses, frequencies, and $\lambda$.
+
+We will call this function `B₁` and refer to it as the _admittance of the layered halfspace_.
+
+:::
