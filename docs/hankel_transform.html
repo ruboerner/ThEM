@@ -390,7 +390,7 @@ e^{-\lambda h}e^{\lambda z}
 </ul>
 <p>The surface admittance <span class="math inline">\(\lambda_1 = \sqrt{\lambda^2 + i \omega \mu_0 \sigma_1}\)</span> will be calculated using the function <code>lambda_1</code> given below.</p>
 <p>This is the <code>Python</code> implementation of the admittance of the uniform halfspace, <span class="math inline">\(\lambda_1\)</span>:</p>
-<div id="c2bc6dc4" class="cell" data-execution_count="2">
+<div id="b63bc817" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lambda_1(lam, sigma, mu, f):</span>
@@ -402,7 +402,7 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 <p>Given these definitions, we are now able to evaluate the complete integrand functions in <a href="#eq-fields-in-air" class="quarto-xref"><span>10.1</span></a>.</p>
 <p>To this end, we first illustrate the integrand graphically:</p>
-<div id="759bb31b" class="cell" data-execution_count="3">
+<div id="d075013c" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nlam <span class="op">=</span> <span class="dv">1001</span></span>
@@ -426,7 +426,7 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 </div>
 </div>
-<div id="9645835f" class="cell" data-execution_count="4">
+<div id="eb1b71ec" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(lam, np.imag(f))</span>
@@ -435,7 +435,7 @@ e^{-\lambda h}e^{\lambda z}
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/bn/mf0vkwhn31x6n25gc0bk005r0000gn/T/ipykernel_9955/707258671.py:3: UserWarning:
+<pre><code>/var/folders/bn/mf0vkwhn31x6n25gc0bk005r0000gn/T/ipykernel_12444/707258671.py:3: UserWarning:
 
 Data has no positive values, and therefore cannot be log-scaled.
 </code></pre>
