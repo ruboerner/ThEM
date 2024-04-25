@@ -163,10 +163,13 @@ def rho(t):
 
 t_n = np.logspace(-13, -7, num=71, endpoint=True)
 
-plt.semilogx(t_n, rho(t_n))
-plt.xlabel('t in s')
-plt.ylabel(r'$\rho_E(t)/\rho_E(0)$')
-plt.show()
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+ax.semilogx(t_n, rho(t_n))
+ax.set_xlabel('t in s')
+ax.set_ylabel(r'$\rho_E(t)/\rho_E(0)$')
+ax.axvspan(1e-8, t_n[-1], color='green', alpha=0.1, label=r'$\rho_E(t)$ small')
+ax.legend()
+ax.grid(True)
 ```
 
 By visual inspection, after approx. 10 ns the volume charge density has dropped to zero.
@@ -318,22 +321,28 @@ def eta2(T, L):
 
 T = np.logspace(-6, 3, num=91)
 L = 1e7
-plt.loglog(T, [eta2(t, L) for t in T])
-plt.xlabel('T in s')
-plt.ylabel(r'$\eta_2$')
-plt.grid(True)
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+ax.loglog(T, [eta2(t, L) for t in T])
+ax.set_xlabel('T in s')
+ax.set_ylabel(r'$\eta_2$')
+ax.axvspan(0.1, T[-1], color='green', alpha=0.1, label=r'$\eta_2$ small')
+ax.legend()
+ax.grid(True)
 ```
 
-In global investigations for which $L \approx 10^4$ km, we observe that $\eta_2$ is small (less than, e.g., 0.1) for $T > 0.1$ seconds.
+In global investigations for which $L \approx 10^4$ km, we observe that $\eta_2$ is "small" (less than, e.g., 0.1) for $T > 0.1$ seconds.
 
 ```{python}
 #| code-fold: true
 #| code-summary: "Show the code"
 
-plt.loglog(1 / T, [eta1(t, L, 1e-5) / eta2(t, L) for t in T])
-plt.xlabel('frequency in Hz')
-plt.ylabel(r'$\eta_1 / \eta_2$')
-plt.grid(True)
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+ax.loglog(1 / T, [eta1(t, L, 1e-5) / eta2(t, L) for t in T])
+ax.set_xlabel('frequency in Hz')
+ax.set_ylabel(r'$\eta_1 / \eta_2$')
+ax.axvspan(T[0], 1e5, color='green', alpha=0.1, label=r'$\eta_1/\eta_2$ large')
+ax.legend()
+ax.grid(True)
 ```
 
 In the last example we have used a conductivity of $10^{-5}$ S/m as a reasonable low value for minerals. We recognize that the ratio is large for frequencies less than $10^5$ Hz.

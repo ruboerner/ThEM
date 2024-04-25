@@ -390,7 +390,7 @@ e^{-\lambda h}e^{\lambda z}
 </ul>
 <p>The surface admittance <span class="math inline">\(\lambda_1 = \sqrt{\lambda^2 + i \omega \mu_0 \sigma_1}\)</span> will be calculated using the function <code>lambda_1</code> given below.</p>
 <p>This is the <code>Python</code> implementation of the admittance of the uniform halfspace, <span class="math inline">\(\lambda_1\)</span>:</p>
-<div id="b63bc817" class="cell" data-execution_count="2">
+<div id="3f7dac33" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lambda_1(lam, sigma, mu, f):</span>
@@ -402,7 +402,7 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 <p>Given these definitions, we are now able to evaluate the complete integrand functions in <a href="#eq-fields-in-air" class="quarto-xref"><span>10.1</span></a>.</p>
 <p>To this end, we first illustrate the integrand graphically:</p>
-<div id="d075013c" class="cell" data-execution_count="3">
+<div id="ae27b3a5" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nlam <span class="op">=</span> <span class="dv">1001</span></span>
@@ -414,40 +414,27 @@ e^{-\lambda h}e^{\lambda z}
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> [(l <span class="op">-</span> lambda_1(l, sigma, mu, freq)) <span class="op">/</span> (l <span class="op">+</span> lambda_1(l, sigma, mu, freq)) <span class="op">*</span> l<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> l <span class="kw">in</span> lam]</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.semilogx(lam, np.real(f))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'$\lambda$'</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, sharex<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ax1.loglog(lam, np.<span class="bu">abs</span>(np.real(f)))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="vs">r'$| \mathrm</span><span class="sc">{Re}</span><span class="vs">(f(\lambda,z))|$'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ax2.loglog(lam, np.<span class="bu">abs</span>(np.imag(f)))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="vs">r'$\lambda$'</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'$| \mathrm</span><span class="sc">{Im}</span><span class="vs">(f(\lambda,z))|$'</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>ax2.set_ylim(<span class="fl">1e-12</span>, <span class="fl">1e-10</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="hankel_transform_files/figure-html/cell-4-output-1.png" width="582" height="445" class="figure-img"></p>
+<p><img src="hankel_transform_files/figure-html/cell-4-output-1.png" width="533" height="357" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="eb1b71ec" class="cell" data-execution_count="4">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plt.loglog(lam, np.imag(f))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'$\lambda$'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="fl">1e-12</span>, <span class="fl">1e-10</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/bn/mf0vkwhn31x6n25gc0bk005r0000gn/T/ipykernel_12444/707258671.py:3: UserWarning:
-
-Data has no positive values, and therefore cannot be log-scaled.
-</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hankel_transform_files/figure-html/cell-5-output-2.png" width="587" height="436" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+<p>As we see from the above illustration, the behaviour of <span class="math inline">\(f(\lambda,z)\)</span> itself does not impose any numerical problems to the integration.</p>
+<p>Later we will study the behaviour of the heaviliy oscillating Bessel function and how to solve the problem of the numerical quadrature of oscillating integrands.</p>
 
 
 

@@ -591,16 +591,17 @@ TR = np.array([tr(t) for t in tt])
 
 iind = np.argwhere(TR > 1)
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
 ax.loglog(tt, np.abs(ey), linestyle='--')
-ax.loglog(tt, [2 * np.abs(ey[-1]) * t**(-2.5) for t in tt], label=r'$\sim t^{-5/2}$')
+ax.loglog(tt, [2 * np.abs(ey[-1]) * t**(-2.5) for t in tt], label=r'asymptotic $\sim t^{-5/2}$')
 tstar = tt[iind][-1][0]
 ax.axvspan(tt[0], tstar, facecolor='red', alpha=0.1)
 ax.axvspan(tstar, tt[-1], facecolor='green', alpha=0.1)
 ax.set_xlabel("t in s")
+ax.set_ylabel(r'$e_y(t)$ in V/m')
 ax.set_ylim((1e-18, 1e-5))
 ax.legend()
-ax.set_title(r'$e_y(t)$')
+ax.set_title(r'$e_y(t)$, r = 100 m')
 ax.grid(True)
 ```
 The magnetic field approaches a stationary value as $t \to \infty$.
@@ -620,12 +621,13 @@ print('hz[-1]   = ' + str(hz[-1]))
 #| label: fig-hz
 #| fig-cap: "Magnetic field component $h_z$ due to a current step-on vertical magnetic dipole in fullspace. The red and green shading indicates the regime where $\\Theta r > 1$ and $\\Theta r < 1$, resp."
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
 ax.loglog(tt, np.abs(hz), linestyle='--')
 
 ax.axvspan(tt[0], tstar, facecolor='red', alpha=0.1)
 ax.axvspan(tstar, tt[-1], facecolor='green', alpha=0.1)
 ax.set_xlabel("t in s")
+ax.set_ylabel(r'$h_z(t)$ in A/m')
 ax.set_ylim((1e-14, 1e-6))
 # ax.legend()
 ax.set_title(r'$h_z(t)$')
@@ -638,14 +640,15 @@ ax.grid(True)
 
 fneg = np.argwhere(dhzdt < 0.0)
 fpos = np.argwhere(dhzdt > 0.0)
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
 ax.loglog(tt[fneg], np.abs(dhzdt[fneg]), color='C0', linestyle='--')
 ax.loglog(tt[fpos], np.abs(dhzdt[fpos]), color='C0', linestyle='-')
-ax.loglog(tt, [2 * np.abs(dhzdt[-1]) * t**(-2.5) for t in tt], color='C1', label=r'$\sim t^{-5/2}$')
+ax.loglog(tt, [2 * np.abs(dhzdt[-1]) * t**(-2.5) for t in tt], color='C1', label=r'asymptotic $\sim t^{-5/2}$')
 
 ax.axvspan(tt[0], tstar, facecolor='red', alpha=0.1)
 ax.axvspan(tstar, tt[-1], facecolor='green', alpha=0.1)
 ax.set_xlabel("t in s")
+ax.set_ylabel(r'$\partial_t h_z(t)$ in A/(ms)')
 ax.set_ylim((1e-14, 1e-2))
 ax.legend()
 ax.set_title(r'$\partial_t h_z(t)$')
@@ -678,7 +681,7 @@ $$
 
 mu0 = np.pi * 4e-7
 sig_a = np.array([4 * np.pi / mu0 * np.abs(u)**(2/3) * v**(5/3) for u, v in zip(dhzdt, tt)])
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
 
 ax.loglog(tt, sig_a)
 ax.axvspan(tt[0], tstar, facecolor='red', alpha=0.1)
@@ -687,6 +690,6 @@ ax.hlines(sigma, tt[0], tt[-1], linestyle='--', color='C1', label='True conducti
 ax.legend()
 ax.set_ylim((1e-5, 1e-1))
 ax.set_xlabel('t in s')
-ax.set_ylabel(r'$\sigma~in~S/m$')
+ax.set_ylabel(r'$\sigma_a~in~S/m$')
 ax.grid(True)
 ```

@@ -96,14 +96,17 @@ mu = np.pi * 4e-7
 
 f = [(l - lambda_1(l, sigma, mu, freq)) / (l + lambda_1(l, sigma, mu, freq)) * l**2 for l in lam]
 
-plt.semilogx(lam, np.real(f))
-plt.xlabel(r'$\lambda$')
-plt.grid(True)
-```
+fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, figsize=(6,4))
+ax1.loglog(lam, np.abs(np.real(f)))
+ax1.set_ylabel(r'$| \mathrm{Re}(f(\lambda,z))|$')
+ax1.grid(True)
 
-```{python}
-plt.loglog(lam, np.imag(f))
-plt.xlabel(r'$\lambda$')
-plt.ylim(1e-12, 1e-10)
-plt.grid(True)
+ax2.loglog(lam, np.abs(np.imag(f)))
+ax2.set_xlabel(r'$\lambda$')
+ax2.set_ylabel(r'$| \mathrm{Im}(f(\lambda,z))|$')
+ax2.set_ylim(1e-12, 1e-10)
+ax2.grid(True)
 ```
+As we see from the above illustration, the behaviour of $f(\lambda,z)$ itself does not impose any numerical problems to the integration.
+
+Later we will study the behaviour of the heaviliy oscillating Bessel function and how to solve the problem of the numerical quadrature of oscillating integrands.

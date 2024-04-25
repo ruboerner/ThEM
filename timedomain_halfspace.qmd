@@ -305,15 +305,17 @@ def gethankelfcsin():
     return fc, nc, nc0
 ```
 
-Plot of the filter coefficients:
+We plot of the filter coefficients for $J_{+1/2}(\omega t)$, i.e., the _sine_ transform:
 
 ```{python}
 fc, nc, nc0 = gethankelfcsin()
-plt.plot([nc0 - i for i in range(0, nc)], fc)
-plt.grid(True)
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+ax.plot([nc0 - i for i in range(0, nc)], fc)
+ax.set_xlabel('index of coefficients')
+ax.grid(True)
 ```
 
-In the following we implement a function for the computation of the step response of a layered halfspace.
+In the following we will implement a function for the computation of the step response of a layered halfspace.
 
 To this end, we provide two analytical solutions for the dipole induction in a uniform halfspace in the frequency domain.
 More precisely,
@@ -377,14 +379,15 @@ dBzdt_ana = dBzdt_halfspace(t, r, sigma)
 Plot of  the results
 
 ```{python}
-plt.loglog(t, np.abs(dBzdt), marker='o', label='FHT')
-plt.loglog(t, np.abs(dBzdt_ana), label='analytical')
-plt.legend()
-plt.xlabel('t in s')
-plt.ylabel(r'$db_z(t)/dt \mathrm{~in~} V/m^2$')
-plt.grid(True)
-plt.title('Impulse response')
-plt.show()
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+
+ax.loglog(t, np.abs(dBzdt), marker='o', label='FHT')
+ax.loglog(t, np.abs(dBzdt_ana), label='analytical')
+ax.legend()
+ax.set_label('t in s')
+ax.set_ylabel(r'$db_z(t)/dt$ in V/$m^2$')
+ax.set_title('Impulse response')
+ax.grid(True)
 ```
 
 By visual inspection, there is no substantial problem in our implementation.

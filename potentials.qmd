@@ -773,12 +773,15 @@ Rhoa_f = [rhoa(E(r,m,v,sigma)[1] / H(r,m,v,sigma)[2], v) for v in freq]
 ```{python}
 import matplotlib.pyplot as plt
 
-plt.loglog(freq, Rhoa_f)
-plt.grid(True)
-plt.xlabel('f in Hz')
-plt.ylabel(r'$\rho_a~in~\Omega\cdot m$')
-plt.title('Dipole offset ' + str(np.linalg.norm(r)) + ' m')
-plt.show()
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+ax.loglog(freq, Rhoa_f, label=r'$\rho_a$')
+ax.grid(True)
+ax.set_xlabel('f in Hz')
+ax.set_ylabel(r'$\rho_a~in~\Omega\cdot m$')
+ax.set_title('Dipole offset ' + str(np.linalg.norm(r)) + ' m')
+ax.axhline(1e2, color='C1', label=r'true $\rho$')
+ax.legend()
+ax
 ```
 
 Obviously, the value of $\rho_a$ depends on the frequency and asymptotically approaches the expected full-space value of the resistivity as $f \to \infty$.
@@ -792,12 +795,16 @@ Rhoa_x = np.array([rhoa(E(np.array([v, 0, 0]),m,f,sigma)[1] / H(np.array([v, 0, 
 ```
 
 ```{python}
-plt.loglog(x, Rhoa_x)
-plt.grid(True)
-plt.xlabel('r in m')
-plt.ylabel(r'$\rho_a~in~\Omega\cdot m$')
-plt.title('Frequency ' + str(np.linalg.norm(f)) + ' Hz')
-plt.show()
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+
+ax.loglog(x, Rhoa_x, label=r'$\rho_a$')
+ax.axhline(1e2, color='C1', label=r'true $\rho$')
+ax.grid(True)
+ax.legend()
+ax.set_xlabel('r in m')
+ax.set_ylabel(r'$\rho_a~in~\Omega\cdot m$')
+ax.set_title('Frequency ' + str(np.linalg.norm(f)) + ' Hz')
+ax
 ```
 
 Is there a consistent explanation for these observations?
@@ -815,30 +822,38 @@ def pos(data, threshold):
 
 ```{python}
 KR = np.array([kr(v, sigma, np.linalg.norm(r)) for v in freq])
-plt.loglog(freq, KR, color='C1', label=r'|k|r > 1')
+
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+
+
+ax.loglog(freq, KR, color='C1', label=r'|k|r > 1')
 iind = np.argwhere(KR < 1)
-plt.loglog(freq[iind], KR[iind], color='C0', label=r'|k|r < 1')
-plt.legend()
-plt.grid(True)
-plt.ylabel(r'$|k|r$')
-plt.xlabel('f in Hz')
-plt.title('Dipole offset ' + str(np.linalg.norm(r)) + ' m')
-plt.show()
+ax.loglog(freq[iind], KR[iind], color='C0', label=r'|k|r < 1')
+ax.legend()
+ax.grid(True)
+ax.set_ylabel(r'$|k|r$')
+ax.set_xlabel('f in Hz')
+ax.set_title('Dipole offset ' + str(np.linalg.norm(r)) + ' m')
+ax
 ```
 
 With the indicator $|k|r$ just introduced, it is easier to determine which branch of the asymptotic we are on.
 
 ```{python}
 KR = np.array([kr(f, sigma, v) for v in x])
-plt.loglog(x, Rhoa_x, color='C1', label=r'$|k|r > 1$')
+
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+
+
+ax.loglog(x, Rhoa_x, color='C1', label=r'$|k|r > 1$')
 iind = np.argwhere(KR < 1)
-plt.loglog(x[iind], Rhoa_x[iind], color='C0', label=r'$|k|r < 1$')
-plt.legend()
-plt.grid(True)
-plt.xlabel('r in m')
-plt.ylabel(r'$\rho_a~in~\Omega\cdot m$')
-plt.title('Frequency ' + str(np.linalg.norm(f)) + ' Hz')
-plt.show()
+ax.loglog(x[iind], Rhoa_x[iind], color='C0', label=r'$|k|r < 1$')
+ax.legend()
+ax.grid(True)
+ax.set_xlabel('r in m')
+ax.set_ylabel(r'$\rho_a~in~\Omega\cdot m$')
+ax.set_title('Frequency ' + str(np.linalg.norm(f)) + ' Hz')
+ax
 ```
 
 In contrast to homogeneous excitation, the impedance and thus the apparent resistivity for dipole excitation depends not only on the frequency but also on the distance between the dipole source and the receiver.
@@ -862,20 +877,21 @@ KR = np.array([kr(f, v, r) for v in sigma])
 
 Hz = np.array([H(np.array([r, 0, 0]), np.array([0, 0, 1]), f, v)[2] for v in sigma])
 
-fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(6,4), sharex=True)
 
 ax1.loglog(KR, np.abs(np.real(Hz)))
-ax1.axvspan(KR[0], 1.0, facecolor='lightgreen', alpha=0.4)
-ax1.axvspan(1.0, KR[-1], facecolor='red', alpha=0.4)
+ax1.axvspan(KR[0], 1.0, facecolor='green', alpha=0.1, label=r'$|k|r<1$')
+ax1.axvspan(1.0, KR[-1], facecolor='red', alpha=0.1, label=r'$|k|r>1$')
 ax1.grid(True)
+ax1.legend()
 ax1.set_ylabel(r'$|Re(H_z)|$')
 ax2.loglog(KR, np.abs(np.imag(Hz)))
-ax2.axvspan(KR[0], 1.0, facecolor='lightgreen', alpha=0.4)
-ax2.axvspan(1.0, KR[-1], facecolor='red', alpha=0.4)
+ax2.axvspan(KR[0], 1.0, facecolor='green', alpha=0.1, label=r'$|k|r<1$')
+ax2.axvspan(1.0, KR[-1], facecolor='red', alpha=0.1, label=r'$|k|r>1$')
 ax2.grid(True)
 ax2.set_xlabel(r'$|k|r$')
 ax2.set_ylabel(r'$|Im(H_z)|$')
-plt.show()
+ax2.legend()
 ```
 
 As we can see from Fig. @fig-lin-response, the real part of the magnetic field goes to a constant value for $|k|r \to 0$, whereas the imaginary part shows a straight line in the log-log plot.

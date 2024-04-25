@@ -394,17 +394,20 @@ def gethankelfcJ0():
 
 ```
 
-Filter coefficients:
+We illustrate the filter coefficients associated with $J_0(\lambda r)$:
 
 ```{python}
 import matplotlib.pyplot as plt
 fc0, nc, nc0 = gethankelfcJ0()
-plt.plot([-nc0 + v for v in range(1, nc+1)], fc0)
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+ax.plot([-nc0 + v for v in range(1, nc+1)], fc0)
+ax.set_xlabel('index of coefficients')
+ax.grid(True)
 ```
 
 ```{python}
 #| label: fig-Bz
-#| fig-cap: VMD plot
+#| fig-cap: Vertical magnetic field of a VMD over a uniform halfspace in the frequency domain, calculated using the FHT.
 rmin = 10.0
 nr = 21
 ncnr = nc + nr -1
@@ -447,14 +450,16 @@ for k, f in enumerate(freq):
 
     Bz[:, k] = mu0 / 4 / np.pi * (Bz0 - convolve(fc0, kernel) / rr)
 
-plt.loglog(freq, np.abs(np.real(Bz[10, :])) / mu0, label='Re')
-plt.loglog(freq, np.abs(np.imag(Bz[10, :])) / mu0, label='Im')
-plt.grid(True)
-plt.legend()
-plt.xlabel('f in Hz')
-plt.ylabel(r'$H_z$ in A/m')
-plt.title(r'$\sigma = $' + str(sigma[0]) + ' S/m, r = ' + '{0:.2f}'.format(rr[10]) + ' m')
-plt.show()
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+
+ax.loglog(freq, np.abs(np.real(Bz[10, :])) / mu0, label='Re')
+ax.loglog(freq, np.abs(np.imag(Bz[10, :])) / mu0, label='Im')
+ax.grid(True)
+ax.legend()
+ax.set_xlabel('f in Hz')
+ax.set_ylabel(r'$H_z$ in A/m')
+ax.set_title(r'$\sigma = $' + str(sigma[0]) + ' S/m, r = ' + '{0:.2f}'.format(rr[10]) + ' m')
+ax
 ```
 
 ```{python}
@@ -468,15 +473,22 @@ def Hz_analytical(r, f, sigma):
 ```
 
 ```{python}
+#| label: fig-Bz-ana
+#| fig-cap: Vertical magnetic field of a VMD over a uniform halfspace in the frequency domain, calculated using an analytical formula.
 H = [Hz_analytical(100.0, v, 0.01) for v in freq]
-plt.loglog(freq, np.abs(np.real(H)), label='Re')
-plt.loglog(freq, np.abs(np.imag(H)), label='Im')
-plt.grid(True)
-plt.legend()
-plt.xlabel('f in Hz')
-plt.ylabel(r'$H_z$ in A/m')
-plt.title(r'$\sigma = $' + str(sigma[0]) + ' S/m, r = ' + '{0:.2f}'.format(rr[10]) + ' m')
-plt.show()
+
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+
+ax.loglog(freq, np.abs(np.real(H)), label='Re')
+ax.loglog(freq, np.abs(np.imag(H)), label='Im')
+ax.grid(True)
+ax.legend()
+ax.set_xlabel('f in Hz')
+ax.set_ylabel(r'$H_z$ in A/m')
+ax.set_title(r'$\sigma = $' + str(sigma[0]) + ' S/m, r = ' + '{0:.2f}'.format(rr[10]) + ' m')
+ax
 ```
 
 ![Reference to Fig. above above taken from @ward1988electromagnetic](https://ruboerner.github.io/images/Hz_VMD.png){#fig-reference-VMD}
+
+As we can see from visual inspection of all three illustrations given above, the Fast Hankel Transform approach works well.
