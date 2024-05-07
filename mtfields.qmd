@@ -37,7 +37,7 @@ $$ {#eq-sol-h}
 Show that @eq-sol-h is the solution to @eq-helm-h!
 :::
 
-We now have the complete solution in the entire half-space:
+We now have the complete solution in the entire full-space:
 
 $$
 H_x(z) = \begin{cases}
