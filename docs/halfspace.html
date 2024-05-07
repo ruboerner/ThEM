@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.5.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods - 9&nbsp; Dipole sources above a uniform halfspace</title>
+<title>Theory of Electromagnetic Methods – 9&nbsp; Dipole sources above a uniform halfspace</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -113,7 +113,7 @@ window.MathJax = {
 };
 </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -151,13 +151,13 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./halfspace.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a uniform halfspace</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -187,9 +187,9 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Introduction</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -216,9 +216,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Maxwell’s equations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -245,9 +245,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Dipole induction</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -292,9 +292,9 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Summary</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -556,7 +556,7 @@ V^1(z) = \gamma^-(\lambda) e^{-\lambda_1 z}.
 <section id="implementation" class="level3" data-number="9.1.9">
 <h3 data-number="9.1.9" class="anchored" data-anchor-id="implementation"><span class="header-section-number">9.1.9</span> Implementation</h3>
 <p>For the determination of the coefficient functions we use <code>SymPy</code>.</p>
-<div id="04995efe" class="cell" data-execution_count="2">
+<div id="ac16ec17" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>lam1, gamma_plus, gamma_minus, alpha, beta <span class="op">=</span> symbols(<span class="st">"lambda_1, gamma^+, gamma^-, alpha, beta"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> symbols(<span class="st">"h"</span>, real<span class="op">=</span><span class="va">True</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> symbols(<span class="st">"z"</span>, real<span class="op">=</span><span class="va">True</span>)</span>
@@ -569,41 +569,41 @@ V^1(z) = \gamma^-(\lambda) e^{-\lambda_1 z}.
 <p>The conditions of continuity in <span class="math inline">\(z=0\)</span> have to be enforced for <em>any value of <span class="math inline">\(r\)</span></em>.</p>
 <p>Hence, only <span class="math inline">\(V(z, \lambda)\)</span> is affected.</p>
 <p>We define two symbolic functions for both <span class="math inline">\(V^0(z, \lambda)\)</span> and <span class="math inline">\(V^1(z, \lambda)\)</span>. To ensure that differential operators can be applied, we let these functions depend explicitly on <span class="math inline">\(z\)</span>:</p>
-<div id="831f6bda" class="cell" data-execution_count="3">
+<div id="5a563696" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>V0 <span class="op">=</span> <span class="kw">lambda</span> z: exp(<span class="op">-</span>lam <span class="op">*</span> Abs(z <span class="op">+</span> h)) <span class="op">+</span> gamma_plus <span class="op">*</span> exp(lam <span class="op">*</span> z)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>V1 <span class="op">=</span> <span class="kw">lambda</span> z: gamma_minus <span class="op">*</span> exp(<span class="op">-</span>lam1 <span class="op">*</span> z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="6a76bd70" class="cell" data-execution_count="4">
+<div id="d485801c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>V0(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <p><span class="math inline">\(\displaystyle \gamma^{+} e^{\lambda z} + e^{- \lambda \left|{h + z}\right|}\)</span></p>
 </div>
 </div>
-<div id="28555ba9" class="cell" data-execution_count="5">
+<div id="4a3ab2bc" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>V1(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
 <p><span class="math inline">\(\displaystyle \gamma^{-} e^{- \lambda_{1} z}\)</span></p>
 </div>
 </div>
 <p>Here we define two symbolic functions that evaluate the derivative of the potentials <span class="math inline">\(V\)</span> w.r.t. <span class="math inline">\(z\)</span>:</p>
-<div id="5f929199" class="cell" data-execution_count="6">
+<div id="46e300fd" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dV0 <span class="op">=</span> <span class="kw">lambda</span> z: diff(V0(z), z)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dV1 <span class="op">=</span> <span class="kw">lambda</span> z: diff(V1(z), z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we substitute <span class="math inline">\(z\)</span> with <span class="math inline">\(0\)</span> in the results of the differentiation:</p>
-<div id="3358c22a" class="cell" data-execution_count="7">
+<div id="ca07512d" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dV0(z).subs(z, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
 <p><span class="math inline">\(\displaystyle \gamma^{+} \lambda - \lambda e^{- h \lambda}\)</span></p>
 </div>
 </div>
-<div id="ebd630ff" class="cell" data-execution_count="8">
+<div id="53928e07" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dV1(z).subs(z, <span class="fl">0.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
 <p><span class="math inline">\(\displaystyle - \gamma^{-} \lambda_{1}\)</span></p>
 </div>
 </div>
-<div id="4d6d64d4" class="cell" data-execution_count="9">
+<div id="57e094ff" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ex1 <span class="op">=</span> V0(z) <span class="op">-</span> V1(z)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ex2 <span class="op">=</span> dV0(z) <span class="op">-</span> dV1(z)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -612,26 +612,26 @@ V^1(z) = \gamma^-(\lambda) e^{-\lambda_1 z}.
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>gm <span class="op">=</span> sols[gamma_minus]</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>gp <span class="op">=</span> sols[gamma_plus]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="bfa2fd40" class="cell" data-execution_count="10">
+<div id="023ee70d" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gm.simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="10">
 <p><span class="math inline">\(\displaystyle \frac{2 \lambda e^{- h \lambda}}{\lambda + \lambda_{1}}\)</span></p>
 </div>
 </div>
-<div id="3f265456" class="cell" data-execution_count="11">
+<div id="22c7a88c" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gp.simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="11">
 <p><span class="math inline">\(\displaystyle \frac{\left(\lambda - \lambda_{1}\right) e^{- h \lambda}}{\lambda + \lambda_{1}}\)</span></p>
 </div>
 </div>
-<div id="36a6ab18" class="cell" data-execution_count="12">
+<div id="db74eb64" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>V_0 <span class="op">=</span> <span class="kw">lambda</span> z: V0(z).subs(gamma_plus, gp)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>V_0(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="12">
 <p><span class="math inline">\(\displaystyle \left(\frac{\lambda}{\lambda e^{h \lambda} + \lambda_{1} e^{h \lambda}} - \frac{\lambda_{1}}{\lambda e^{h \lambda} + \lambda_{1} e^{h \lambda}}\right) e^{\lambda z} + e^{- \lambda \left|{h + z}\right|}\)</span></p>
 </div>
 </div>
-<div id="553198ff" class="cell" data-execution_count="13">
+<div id="cb3c3ada" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>V_1 <span class="op">=</span> <span class="kw">lambda</span> z: V1(z).subs(gamma_minus, gm).factor().simplify()</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>V_1(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="13">
@@ -714,7 +714,7 @@ Note
 </div>
 <p>We will use <code>sympy</code> again to provide the Bessel functions of zeroth and first order as symbolic expressions.</p>
 <p>First, let’s inspect the graphs of of <span class="math inline">\(J_0(x)\)</span> and <span class="math inline">\(J_1(x)\)</span>. It appears from visual inspection, that <span class="math inline">\(J_1(x)\)</span> is related to the negative derivative of <span class="math inline">\(J_0(x)\)</span>.</p>
-<div id="0fe4d83b" class="cell" data-execution_count="14">
+<div id="6c5bcbd2" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> besselj</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spb <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> symbols(<span class="st">"r"</span>, positive<span class="op">=</span><span class="va">True</span>, real<span class="op">=</span><span class="va">True</span>)</span>
@@ -738,7 +738,7 @@ Note
 <p>We note that <span class="math display">\[
 \dv{J_0(\lambda r)}{r} = -\lambda J_1(\lambda r).
 \]</span> <code>sympy</code> provides</p>
-<div id="2c746fd5" class="cell" data-execution_count="15">
+<div id="1b47ff88" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dJ0dr <span class="op">=</span> <span class="kw">lambda</span> v: diff(J0(v), r)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dJ0dr(lam <span class="op">*</span> r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="15">
@@ -749,14 +749,14 @@ Note
 <p>On the other hand, we know from <a href="https://secure.math.ubc.ca/~cbm/aands/page_361.htm">Abramowitz &amp; Stegun</a> that <span class="math display">\[
 \dv{J_1(\lambda r)}{r} = \lambda J_0(\lambda r) - \frac{ J_1(\lambda r) }{ r },
 \]</span> while <code>sympy</code> gets</p>
-<div id="6cacb943" class="cell" data-execution_count="16">
+<div id="3471c104" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>diff(J1(lam <span class="op">*</span> r), r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="16">
 <p><span class="math inline">\(\displaystyle \lambda \left(\frac{J_{0}\left(\lambda r\right)}{2} - \frac{J_{2}\left(\lambda r\right)}{2}\right)\)</span></p>
 </div>
 </div>
 <p>We can however correct the output by use of the <code>simplify</code> method:</p>
-<div id="beff3a07" class="cell" data-execution_count="17">
+<div id="1df4ec6e" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dJ1dr <span class="op">=</span> <span class="kw">lambda</span> v: diff(J1(v), r).simplify()</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>dJ1dr(lam <span class="op">*</span> r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="17">
@@ -773,7 +773,7 @@ Note
 <p>We evaluate the derivative according to <span class="math display">\[
 E_\varphi = \pdv{F}{r}
 \]</span> and obtain the integrand for later evaluation of <span class="math inline">\(E_\varphi\)</span> (for which we introduce the abbreviation <code>Ephi_</code> in <code>sympy</code>)</p>
-<div id="94085427" class="cell" data-execution_count="18">
+<div id="c0bed0ef" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>omega, mu0, m <span class="op">=</span> symbols(<span class="st">"omega mu_0 m"</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>Ephi_ <span class="op">=</span> symbols(<span class="st">"E_phi"</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>Ephi_ <span class="op">=</span> alpha <span class="op">*</span> V_1(z) <span class="op">*</span> dJ0dr(lam <span class="op">*</span> r)</span>
@@ -795,7 +795,7 @@ E_\varphi = \pdv{F}{r}
 H_r = \beta \pdv{E_\varphi}{z}
 \]</span></p>
 <p>We obtain</p>
-<div id="40855166" class="cell" data-execution_count="19">
+<div id="e59f3eca" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Hr_ <span class="op">=</span> diff(Ephi_, z) <span class="op">*</span> beta</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Hr_.subs(alpha, I <span class="op">*</span> omega <span class="op">*</span> mu0 <span class="op">*</span> m <span class="op">/</span> ( <span class="dv">4</span> <span class="op">*</span> pi)).subs(beta, <span class="dv">1</span> <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu0)).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="19">
@@ -806,7 +806,7 @@ H_r = \beta \pdv{E_\varphi}{z}
 <p>We calculate the following expression to obtain the integrand for the evaluation of <span class="math inline">\(H_z\)</span> which will be carried out later: <span class="math display">\[
 H_z  = -\beta \frac{1}{r}\pdv{}{r}(r \pdv{F}{r}).
 \]</span></p>
-<div id="54e29b34" class="cell" data-execution_count="20">
+<div id="91d99d3f" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Hz_ <span class="op">=</span> (<span class="op">-</span>beta <span class="op">*</span> diff(Ephi_ <span class="op">*</span> r, r).simplify() <span class="op">/</span> r).subs(alpha, I <span class="op">*</span> omega <span class="op">*</span> mu0 <span class="op">*</span> m <span class="op">/</span> ( <span class="dv">4</span> <span class="op">*</span> pi)).subs(beta, <span class="dv">1</span> <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu0)).simplify()</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Hz_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="20">
@@ -829,13 +829,13 @@ e^{+\lambda z}J_0(\lambda r)\,\dd\lambda
 \]</span> and <span class="math display">\[
 \pdv{}{r}{z} \frac{1}{R} = \frac{3 r (z+h)}{R^5}.
 \]</span></p>
-<div id="df2499bd" class="cell" data-execution_count="21">
+<div id="d0601ddf" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> sqrt(r<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (z <span class="op">+</span> h)<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>dRdr <span class="op">=</span> alpha <span class="op">*</span> diff(<span class="dv">1</span><span class="op">/</span>R, r).subs(sqrt(r<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (z<span class="op">+</span>h)<span class="op">**</span><span class="dv">2</span>), R).simplify()</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>dRdrdz <span class="op">=</span> diff(dRdr, z).subs(sqrt(r<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (z<span class="op">+</span>h)<span class="op">**</span><span class="dv">2</span>), R).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Integrand for <span class="math inline">\(E_\varphi\)</span></strong></p>
-<div id="ab0f3d66" class="cell" data-execution_count="22">
+<div id="aef4d22e" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>V_0_part <span class="op">=</span> <span class="kw">lambda</span> z: V_0(z) <span class="op">-</span> exp(<span class="op">-</span>lam <span class="op">*</span> <span class="bu">abs</span>(z<span class="op">+</span>h))</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Ephi_0_ <span class="op">=</span> alpha <span class="op">*</span> diff(V_0_part(z) <span class="op">*</span> J0(lam <span class="op">*</span> r), r) <span class="op">+</span> dRdr</span>
@@ -846,7 +846,7 @@ e^{+\lambda z}J_0(\lambda r)\,\dd\lambda
 </div>
 <p>TBC.</p>
 <p><strong>Integrand for <span class="math inline">\(H_r\)</span></strong></p>
-<div id="d54fac7d" class="cell" data-execution_count="23">
+<div id="b00c5773" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Hr_0_ <span class="op">=</span> beta <span class="op">*</span> diff(Ephi_0_, z) <span class="op">+</span> beta <span class="op">*</span> dRdrdz</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>Hr_0_.simplify().simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="23">
@@ -983,18 +983,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1026,7 +1015,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1034,7 +1045,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

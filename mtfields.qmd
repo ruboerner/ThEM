@@ -21,11 +21,15 @@ In the following, we drop the term $e^{i \omega t}$.
 
 What do we know about the magnetic field inside the Earth?
 
-In $z \ge 0$, the magnetic field is a solution of thr Helmholtz equation $$
+In $z \ge 0$, the magnetic field is a solution of the Helmholtz equation
+
+$$
 \partial^2_{zz} H_x + k^2 H_x = 0, \quad k^2 = - i \omega \mu \sigma
 $$ {#eq-helm-h}
 
-The solution inside the Earth is $$
+The solution inside the Earth is
+
+$$
 H_x(z) = e^{- i k z}
 $$ {#eq-sol-h}
 
@@ -33,23 +37,25 @@ $$ {#eq-sol-h}
 Show that @eq-sol-h is the solution to @eq-helm-h!
 :::
 
-We now have the complete solution in the entire half-space: 
+We now have the complete solution in the entire half-space:
+
 $$
 H_x(z) = \begin{cases}
 1 & \text{ for } z \le 0 \\
 e^{-i k z} & \text{ for } z \ge 0
 \end{cases}
-$$ 
+$$
 
 We have assumed the continuity of $H_x$ in $z=0$.
 
 To obtain the electric field associated with the magnetic field in both halfspaces, we make use of Maxwell's equations.
 
-Recall that in quasi-static approximation, 
+Recall that in quasi-static approximation,
+
 $$
 \curl \mathbf H = \mathbf j.
-$$ 
-More precisely, 
+$$ More precisely,
+
 $$
 \curl \mathbf H = 
 \begin{bmatrix}
@@ -65,7 +71,9 @@ H_x \\ H_y \\ H_z
 \partial_z H_x - \partial_x H_z \\
 \partial_x H_y - \partial_y H_x
 \end{bmatrix}.
-$$ In our case (cf. @eq-hair), there is only an $x$-component of $\mathbf H$,
+$$
+
+In our case (cf. @eq-hair), there is only an $x$-component of $\mathbf H$,
 
 $$
 \curl \mathbf H = 
@@ -77,7 +85,11 @@ $$
 \begin{bmatrix}
 0 \\ E_y \\ 0
 \end{bmatrix},
-$$ which results in a $y$-component of the associated electric field $\mathbf E$. The EM waves $\mathbf H$ and $\mathbf E$ are transversal waves, hence mutually orthogonal to the direction of propagation $\mathbf k$, such that $$
+$$
+
+which results in a $y$-component of the associated electric field $\mathbf E$. The EM waves $\mathbf H$ and $\mathbf E$ are transversal waves, hence mutually orthogonal to the direction of propagation $\mathbf k$, such that
+
+$$
 \mathbf H \perp \mathbf E \perp \mathbf k.
 $$
 
@@ -85,30 +97,37 @@ Now we derive an expression for $E_y$ in $z \ge 0$:
 
 $$
 E_y(z) = \frac{1}{\sigma} \partial_z H_x(z) = \frac{ 1 }{ \sigma } \partial_z e^{-i k z} = -\frac{ ik }{ \sigma } e^{-i k z} .
-$$ 
-The amplitude of the electric field at the surface of the Earth in $z=0$ is $$
+$$
+
+The amplitude of the electric field at the surface of the Earth in $z=0$ is
+
+$$
 E_y(0) = -\frac{ ik }{ \sigma }.
 $$
 
-::: {.callout-tip}
+::: callout-tip
 $$
--\frac{ik}{\sigma} = -\frac{ik^2}{k \sigma} = -\frac{\omega\mu_0 \sigma}{k \sigma} = -\frac{\omega\mu_0}{k}
+\frac{ik}{\sigma} = \frac{ik^2}{k \sigma} = \frac{i(-i\omega\mu_0 \sigma)}{k \sigma} = \frac{\omega\mu_0}{k}
 $$
 :::
 
-::: {.callout title="Self study"}
+::: {.callout-note title="Self study"}
 Show that $E_y(z)$ satisfies Faraday's law!
 :::
 
 Now we turn to the electric field in the Air halfspace, i.e., in $z\le 0$.
 
-In $z \le 0$, the magnetic field is uniform with a field intensity of 1 A/m, so $$
+In $z \le 0$, the magnetic field is uniform with a field intensity of 1 A/m, so
+
+$$
 \mathbf H = \begin{bmatrix}
 1 \\ 0 \\ 0
 \end{bmatrix}
 $$
 
-We feed this into Faraday's law: $$
+We feed this into Faraday's law:
+
+$$
 \curl \mathbf E = \begin{bmatrix}
 -i \omega \mu \\ 0 \\ 0
 \end{bmatrix}
@@ -118,22 +137,40 @@ We feed this into Faraday's law: $$
 0 \\
 0
 \end{bmatrix}
-$$ We see, that to obtain $E_y$, we have to integrate both sides of $$
-i \omega \mu = \partial_z E_y.
-$$ We integrate by parts and get $$
-\int\limits_0^\xi \partial_z E_y \, \mathrm d z = \left[ E_y \right]_0^\xi = [i \omega \mu]_0^\xi
-$$ Therefore, $$
-E_y(\xi) = E_y(0) + i \omega \mu \xi = -\frac{ ik }{ \sigma } + i \omega \mu \xi =
--\frac{ ik }{ \sigma } (1 - i k \xi).
 $$
 
-Finally, we obtain the result $$
+We see, that to obtain $E_y$, we have to integrate both sides of
+
+$$
+i \omega \mu = \partial_z E_y.
+$$ We integrate by parts and get
+
+$$
+\int\limits_0^\xi \partial_z E_y \, \mathrm d z = \left[ E_y \right]_0^\xi = [i \omega \mu]_0^\xi
+$$ Therefore,
+
+$$
+E_y(\xi) = E_y(0) + i \omega \mu \xi = -\frac{ \omega\mu_0 }{ k } + i \omega \mu \xi =
+-\frac{ \omega \mu_0 }{ k } (1 - i k \xi).
+$$
+
+Finally, we obtain the result
+
+$$
 E_y(z) = 
 \begin{cases}
--\dfrac{ ik }{ \sigma } (1 - i k z) & z \le 0 \\
--\dfrac{ ik }{ \sigma } e^{-i k z} & z \ge 0
+-\dfrac{ \omega\mu_0 }{ k } (1 - i k z) & z \le 0 \\
+-\dfrac{ \omega\mu_0 }{ k } e^{-i k z} & z \ge 0
 \end{cases}
 $$
+
+::: callout-note
+## Self study
+
+Obtain the appropriate expression for $E_x(z)$ when $\vb{H} = [0, 1, 0]^\top$!
+
+Do you observe a difference? Try to explain your result.
+:::
 
 ## Visualization
 
@@ -151,7 +188,7 @@ f = 10
 omega = 2 * np.pi * f
 sigma = 0.01
 
-z = np.arange(-1000, 10001, 10)
+z = np.arange(-1000, 10001, 100)
 
 def h(omega, sigma, z):
     k = np.sqrt(-1j * omega * np.pi * 4e-7 * sigma)
@@ -179,6 +216,7 @@ In our example, the skin depth is `{python} round(503 * np.sqrt(1 / sigma / f), 
 
 ```{python}
 fig, ax = plt.subplots(figsize=(4, 4), layout='constrained')
+
 ax.plot(np.real(E / E0), z, label='Re')
 ax.plot(np.imag(E / E0), z, label='Im')
 ax.plot(np.abs(E / E0), z, label='Abs')
@@ -186,11 +224,12 @@ ax.axhspan(z[0], 0.0, facecolor='lightblue', alpha=0.4)
 ax.axhspan(0.0, z[-1], facecolor='lightgreen', alpha=0.4)
 ax.invert_yaxis()
 ax.set_ylim((z[-1], z[0]))
+ax.set_xlim((-1.8, 1.8))
 ax.set_ylabel('depth in m')
 ax.set_xlabel(r'$E(z)/E(0)$')
 ax.set_title('Normalized electric field')
 ax.grid(True)
-ax.legend(loc='lower right')
+ax.legend(loc='lower right', fontsize='small', frameon=True)
 ```
 
 ```{python}
@@ -202,28 +241,41 @@ ax.axhspan(z[0], 0.0, facecolor='lightblue', alpha=0.4)
 ax.axhspan(0.0, z[-1], facecolor='lightgreen', alpha=0.4)
 ax.invert_yaxis()
 ax.set_ylim((z[-1], z[0]))
+ax.set_xlim((-1.1, 1.1))
 ax.set_ylabel('depth in m')
 ax.set_xlabel(r'$H(z)/H(0)$')
 ax.set_title('Normalized magnetic field')
 ax.grid(True)
-ax.legend(loc='lower right')
+ax.legend(loc='lower right', fontsize='small', frameon=True)
 ```
 
 ## Impedance and apparent resistivity
 
-We define the magnetotelluric impedance as $$
+We define the magnetotelluric impedance as
+
+$$
 Z(\omega) = \frac{ \mathbf e_h \cdot \mathbf E }{(\mathbf e_h \times \mathbf e_z) \cdot \mathbf H } = \frac{ E_x }{ H_y} = -\frac{ E_y }{H_x }
 $$ where $\mathbf e_h$ is an arbitrary horizontal Cartesian unit vector, and $\mathbf e_z$ is the vertical Cartesian unit vector.
 
-On the surface of a halfspace, we can measure the *surface impedance* $$
+On the surface of a halfspace, we can measure the *surface impedance*
+
+$$
 Z_s = Z(\omega),
-$$ which in case of a uniform halfspace is identical to the *intrinsic impedance* $$
+$$ which in case of a uniform halfspace is identical to the *intrinsic impedance*
+
+$$
 Z_1 = \frac{ \omega \mu_0 }{ k_1 } = Z_s.
 $$ Here, $k_1^2 = -i\omega\mu_0\sigma_1$ is the wave propagation constant of the first (however infinite in its vertical extent) layer.
 
-From $Z_s$ we can infer the *apparent resistivity* $$
+From $Z_s$ we can infer the *apparent resistivity*
+
+$$
 \rho_a = \frac{ 1 }{ \omega \mu_0} |Z_s|^2
-$$ and the *phase* $$
+$$
+
+and the *phase*
+
+$$
 \varphi = \arctan \frac{ \mathrm{Im}(Z_s) }{\mathrm{Re}(Z_s) }.
 $$
 
@@ -276,6 +328,6 @@ $$
 $$
 :::
 
-In the inhomogeneous case, i.e., when the conductivity of the halfspace is not uniform, the apparent resistivity and phase generally vary with frequency.
+In the _inhomogeneous case_, i.e., when the conductivity of the halfspace is not uniform, the apparent resistivity and phase generally vary with frequency.
 
 This can be visualized using *sounding curves* of $\rho_a$ vs. period $T = 1/f$ or $\varphi$ vs. $T$.
