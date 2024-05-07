@@ -33,18 +33,24 @@ $$ {#eq-sol-h}
 Show that @eq-sol-h is the solution to @eq-helm-h!
 :::
 
-We now have the complete solution in the entire half-space: $$
+We now have the complete solution in the entire half-space: 
+$$
 H_x(z) = \begin{cases}
 1 & \text{ for } z \le 0 \\
 e^{-i k z} & \text{ for } z \ge 0
 \end{cases}
-$$ We have assumed the continuity of $H_x$ in $z=0$.
+$$ 
+
+We have assumed the continuity of $H_x$ in $z=0$.
 
 To obtain the electric field associated with the magnetic field in both halfspaces, we make use of Maxwell's equations.
 
-Recall that in quasi-static approximation, $$
+Recall that in quasi-static approximation, 
+$$
 \curl \mathbf H = \mathbf j.
-$$ More precisely, $$
+$$ 
+More precisely, 
+$$
 \curl \mathbf H = 
 \begin{bmatrix}
 \partial_x \\ \partial_y \\ \partial_z
@@ -79,9 +85,16 @@ Now we derive an expression for $E_y$ in $z \ge 0$:
 
 $$
 E_y(z) = \frac{1}{\sigma} \partial_z H_x(z) = \frac{ 1 }{ \sigma } \partial_z e^{-i k z} = -\frac{ ik }{ \sigma } e^{-i k z} .
-$$ The amplitude of the electric field at the surface of the Earth in $z=0$ is $$
+$$ 
+The amplitude of the electric field at the surface of the Earth in $z=0$ is $$
 E_y(0) = -\frac{ ik }{ \sigma }.
 $$
+
+::: {.callout-tip}
+$$
+-\frac{ik}{\sigma} = -\frac{ik^2}{k \sigma} = -\frac{\omega\mu_0 \sigma}{k \sigma} = -\frac{\omega\mu_0}{k}
+$$
+:::
 
 ::: {.callout title="Self study"}
 Show that $E_y(z)$ satisfies Faraday's law!
