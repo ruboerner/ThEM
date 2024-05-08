@@ -400,46 +400,72 @@ window.Quarto = {
 </ul>
 <section id="polarization-vectors" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="polarization-vectors"><span class="header-section-number">7.1</span> Polarization vectors</h2>
-<p>In the absence of matter, we observe that <span class="math display">\[
+<p>In the absence of matter, we observe that</p>
+<p><span class="math display">\[
 \mathbf d - \varepsilon_0 \mathbf e = \mathbf 0
-\]</span> and <span class="math display">\[
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
 \mu_0^{-1} \mathbf b - \mathbf h = \mathbf 0.
-\]</span> When the differences are non-zero, then we observe the response of matter. We define the <em>electrical polarization</em> <span class="math inline">\(\mathbf p\)</span> <span class="math display">\[
+\]</span></p>
+<p>When the differences are non-zero, then we observe the response of matter. We define the <em>electrical polarization</em> <span class="math inline">\(\mathbf p\)</span> <span class="math display">\[
 \mathbf p = \mathbf d - \varepsilon_0 \mathbf e
-\]</span> and the magnetic polarization or magnetization <span class="math inline">\(\mathbf m\)</span> <span class="math display">\[
+\]</span></p>
+<p>and the magnetic polarization or magnetization <span class="math inline">\(\mathbf m\)</span></p>
+<p><span class="math display">\[
 \mathbf m = \mu_0^{-1} \mathbf b - \mathbf h
-\]</span> The polarization vectors <span class="math inline">\(\mathbf p\)</span> and <span class="math inline">\(\mathbf m\)</span> are parallel and proportional to <span class="math inline">\(\mathbf e\)</span> and <span class="math inline">\(\mathbf h\)</span>, resp.</p>
+\]</span></p>
+<p>The polarization vectors <span class="math inline">\(\mathbf p\)</span> and <span class="math inline">\(\mathbf m\)</span> are parallel and proportional to <span class="math inline">\(\mathbf e\)</span> and <span class="math inline">\(\mathbf h\)</span>, resp.</p>
 <p>We are able to quantify the polarization properties by the electrical susceptibility <span class="math inline">\(\chi_e\)</span> and magnetic susceptibility <span class="math inline">\(\chi_m\)</span>. The latter is often referred to as the magnetic susceptibility <span class="math inline">\(\kappa\)</span>.</p>
-<p>We define <span class="math display">\[
+<p>We define</p>
+<p><span class="math display">\[
 \mathbf p := \chi_e \varepsilon_0 \mathbf e = \mathbf d - \varepsilon_0 \mathbf e
-\]</span> and likewise <span class="math display">\[
+\]</span></p>
+<p>and likewise</p>
+<p><span class="math display">\[
 \mathbf m := \chi_m \mathbf h = \mu_0^{-1} \mathbf b - \mathbf h.
-\]</span> It follows for the relative dielectric permittivity <span class="math display">\[
+\]</span></p>
+<p>It follows for the relative dielectric permittivity</p>
+<p><span class="math display">\[
 \varepsilon_r = 1 + \chi_e
-\]</span> and for the relative magnetic permeability <span class="math display">\[
+\]</span></p>
+<p>and for the relative magnetic permeability</p>
+<p><span class="math display">\[
 \mu_r = 1 + \chi_m = 1 + \kappa.
 \]</span></p>
-<p>To implement technical sources, we separate the polarization into induced (superscript <span class="math inline">\(i\)</span>) and external (superscript <span class="math inline">\(s\)</span>) contributions to the observed fields: <span class="math display">\[
+<p>To implement technical sources, we separate the polarization into induced (superscript <span class="math inline">\(i\)</span>) and external (superscript <span class="math inline">\(s\)</span>) contributions to the observed fields:</p>
+<p><span class="math display">\[
 \mathbf p = \mathbf p^i + \mathbf p^s = \mathbf d - \varepsilon_0 \mathbf e.
-\]</span> Then, <span class="math display">\[
+\]</span></p>
+<p>Then,</p>
+<p><span class="math display">\[
 \mathbf d = [\underbrace{\varepsilon_0 \mathbf e}_\text{free space} + \underbrace{\mathbf p^i}_\text{matter}] + \mathbf p^s
-\]</span> and <span class="math display">\[
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
 \mathbf b = [\underbrace{\mu_0 \mathbf h}_\text{free space} + \underbrace{\mu_0 \mathbf m^i}_\text{matter}] + \mu_0 \mathbf m^s
 \]</span></p>
-<p>With the introduction of the polarization vectors, we are now able to augment Maxwell’s equations, such that <span class="math display">\[
+<p>With the introduction of the polarization vectors, we are now able to augment Maxwell’s equations, such that</p>
+<p><span class="math display">\[
 \begin{align}
 \curl \mathbf h &amp; = \mathbf j + \varepsilon \partial_t \mathbf e + \partial_t \mathbf p^s \\
 \curl \mathbf e &amp; = \phantom{\mathbf j} -\mu \partial_t \mathbf h - \mu_0 \partial_t \mathbf m^s
 \end{align}
 \]</span></p>
-<p>We define the <em>source current densities</em> in the magnetic and electric case as <span class="math display">\[
+<p>We define the <em>source current densities</em> in the magnetic and electric case as</p>
+<p><span class="math display">\[
 \mathbf j_m^s := \mu_0 \partial_t \mathbf m^s
-\]</span> and <span class="math display">\[
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
 \mathbf j_e^s := \phantom{\mu_0} \partial_t \mathbf p^s .
 \]</span></p>
-<p>Now, we extend our definitions to the frequency domain: <span class="math display">\[
+<p>Now, we extend our definitions to the frequency domain:</p>
+<p><span class="math display">\[
 \mathbf J_m^s := i \omega \mu_0 \mathbf M^s
-\]</span> and <span class="math display">\[
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
 \mathbf J_e^s := i \omega \mathbf P^s .
 \]</span></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Example">
@@ -455,9 +481,11 @@ Example
 <p>We consider a magnetic dipole at the point <span class="math inline">\(\mathbf r_0 = [0, 0, -h]^\top, h &gt; 0\)</span>.</p>
 <p>The point of observation is at <span class="math inline">\(\mathbf r = [x, y, z]^\top\)</span>.</p>
 <p>The location of the dipole can now be pinned to <span class="math inline">\(\mathbf r_0\)</span> using a Dirac delta function.</p>
-<p>We obtain <span class="math display">\[
+<p>We obtain</p>
+<p><span class="math display">\[
 \mathbf M^s(\mathbf r) = \mathbf m \, \delta(\mathbf r - \mathbf r_0)
-\]</span> with <span class="math inline">\(\mathbf m\)</span> the oriented <em>magnetic dipole moment</em>. The dipole moment has the physical dimension of <span class="math inline">\([\mathbf m] =\)</span> A<span class="math inline">\(\cdot m^2\)</span>. It can be interpreted as a current <span class="math inline">\(I\)</span> measured in A enclosing a surface measured in <span class="math inline">\(m^2\)</span>.</p>
+\]</span></p>
+<p>with <span class="math inline">\(\mathbf m\)</span> the oriented <em>magnetic dipole moment</em>. The dipole moment has the physical dimension of <span class="math inline">\([\mathbf m] =\)</span> A<span class="math inline">\(\cdot m^2\)</span>. It can be interpreted as a current <span class="math inline">\(I\)</span> measured in A enclosing a surface measured in <span class="math inline">\(m^2\)</span>.</p>
 <p>As a vector quantity, the dipole moment has a direction. Its direction is given by the unit vector normal to the surface of the enclosed area.</p>
 <p>A useful special case arises when the dipole is aligned with one of the Cartesian axes.</p>
 <p>This way, we can define a vertical or horizontal dipole.</p>
@@ -466,14 +494,17 @@ Example
 </section>
 <section id="electromagnetic-potentials" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="electromagnetic-potentials"><span class="header-section-number">7.2</span> Electromagnetic potentials</h2>
-<p>Let’s assume that electric and magnetic fields originate from <em>either</em> a magnetic or an electric source, i.e., <span class="math display">\[
+<p>Let’s assume that electric and magnetic fields originate from <em>either</em> a magnetic or an electric source, i.e.,</p>
+<p><span class="math display">\[
 \begin{align}
 \mathbf E &amp; = \mathbf E_m + \mathbf E_e \\
 \mathbf H &amp; = \mathbf H_m + \mathbf H_e
 \end{align}
-\]</span> When <span class="math inline">\(\mathbf J_e \equiv 0\)</span>, then we only observe the set of fields <span class="math inline">\([\mathbf E_m, \mathbf H_m]\)</span>.</p>
+\]</span></p>
+<p>When <span class="math inline">\(\mathbf J_e \equiv 0\)</span>, then we only observe the set of fields <span class="math inline">\([\mathbf E_m, \mathbf H_m]\)</span>.</p>
 <p>When <span class="math inline">\(\mathbf J_m \equiv 0\)</span>, then we only observe the set of fields <span class="math inline">\([\mathbf E_e, \mathbf H_e]\)</span>.</p>
-<p>The two sets are disjoint. We insert into Maxwell’s equations <span class="math display">\[
+<p>The two sets are disjoint. We insert into Maxwell’s equations</p>
+<p><span class="math display">\[
 \begin{align}
 \curl \mathbf E_m &amp; = -i \omega \mu \mathbf H_m \textcolor{red}{- \mathbf J_m^s} \\
 \curl \mathbf H_m &amp; = (\sigma + i \omega \varepsilon) \mathbf E_m
@@ -485,35 +516,49 @@ Example
 \curl \mathbf H_e &amp; = (\sigma + i \omega \varepsilon) \mathbf E_e \textcolor{red}{+ \mathbf J_e^s}
 \end{align}
 \]</span></p>
-<p>Now we apply the divergence to all of the above equations. Here we employ the identity <span id="eq-divrot"><span class="math display">\[
+<p>Now we apply the divergence to all of the above equations. Here we employ the identity</p>
+<p><span id="eq-divrot"><span class="math display">\[
 \divergence (\curl \mathbf F) = 0,
-\tag{7.1}\]</span></span> such that, e.g., <span class="math display">\[
+\tag{7.1}\]</span></span></p>
+<p>such that, e.g.,</p>
+<p><span class="math display">\[
 \underbrace{\divergence (\curl \mathbf E_m)}_{=0}  = -i \omega \mu \divergence \mathbf H_m - \divergence \mathbf J_m^s.
-\]</span> We obtain <span class="math display">\[
+\]</span></p>
+<p>We obtain</p>
+<p><span class="math display">\[
 \begin{align}
 \divergence \mathbf H_m &amp; = -\frac{ \divergence \mathbf J_m^s }{i \omega \mu } \\
 \divergence \mathbf E_e &amp; = -\frac{ \divergence \mathbf J_e^s }{\sigma + i \omega \varepsilon } \\
 \divergence \mathbf H_e &amp; = 0 \\
 \divergence \mathbf E_m &amp; = 0.
 \end{align}
-\]</span> Since the divergence of <span class="math inline">\(\mathbf H_e\)</span> and <span class="math inline">\(\mathbf E_m\)</span> are zero, we can express both fields by the curl of an arbitrary vector field according to <a href="#eq-divrot" class="quarto-xref"><span>7.1</span></a>. However, this vector field must fulfill Maxwell’s equations. The following ansatz employing the vector potentials <span class="math inline">\(\mathbf F\)</span> and <span class="math inline">\(\mathbf A\)</span> meets this requirement: <span class="math display">\[
+\]</span></p>
+<p>Since the divergence of <span class="math inline">\(\mathbf H_e\)</span> and <span class="math inline">\(\mathbf E_m\)</span> are zero, we can express both fields by the curl of an arbitrary vector field according to <a href="#eq-divrot" class="quarto-xref"><span>7.1</span></a>. However, this vector field must fulfill Maxwell’s equations. The following ansatz employing the vector potentials <span class="math inline">\(\mathbf F\)</span> and <span class="math inline">\(\mathbf A\)</span> meets this requirement:</p>
+<p><span class="math display">\[
 \begin{align}
 \mathbf E_m &amp; = -\curl \mathbf F \\
 \mathbf H_e &amp; = \phantom{-} \curl \mathbf A.
 \end{align}
-\]</span> It follows <span class="math display">\[
+\]</span></p>
+<p>It follows</p>
+<p><span class="math display">\[
 \begin{align}
 \curl \mathbf H_m &amp; = -(\sigma + i \omega \varepsilon) \curl \mathbf F \\
 \curl \mathbf E_e &amp; = -i \omega \mu \curl \mathbf A
 \end{align}
-\]</span> from which we obtain <span class="math display">\[
+\]</span></p>
+<p>from which we obtain</p>
+<p><span class="math display">\[
 \begin{align}
 \mathbf H_m &amp; = -(\sigma + i \omega \varepsilon) \mathbf F - \grad V \\
 \mathbf E_e &amp; = -i \omega \mu \mathbf A - \grad U
 \end{align}
-\]</span> because <span class="math display">\[
+\]</span></p>
+<p>because</p>
+<p><span class="math display">\[
 \curl \nabla u = \mathbf 0
-\]</span> for any scalar function <span class="math inline">\(u: \mathbb R^3 \mapsto \mathbb R\)</span>.</p>
+\]</span></p>
+<p>for any scalar function <span class="math inline">\(u: \mathbb R^3 \mapsto \mathbb R\)</span>.</p>
 <p>The scalar potentials <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span> are referred to as magnetic and electrical scalar potential, resp.</p>
 </section>
 <section id="the-curl-curl-equation-for-the-potentials" class="level2" data-number="7.3">
@@ -544,12 +589,15 @@ Example
 <section id="the-vector-helmholtz-equations-for-the-potentials" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="the-vector-helmholtz-equations-for-the-potentials"><span class="header-section-number">7.4</span> The vector Helmholtz equations for the potentials</h2>
 <p>Question: How to get rid of <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span>?</p>
-<p>We choose the arbitrary scalar potential <span class="math inline">\(V, U\)</span> such that it cancels with the expression <span class="math inline">\(\divergence \mathbf F\)</span> and <span class="math inline">\(\divergence \mathbf A\)</span>, resp. <span class="math display">\[
+<p>We choose the arbitrary scalar potential <span class="math inline">\(V, U\)</span> such that it cancels with the expression <span class="math inline">\(\divergence \mathbf F\)</span> and <span class="math inline">\(\divergence \mathbf A\)</span>, resp.</p>
+<p><span class="math display">\[
 \begin{align}
-\nabla \divergence \mathbf F &amp; = - i \omega \mu \grad V \\
+\grad \divergence \mathbf F &amp; = - i \omega \mu \grad V \\
 \divergence \mathbf F &amp; = - i \omega \mu V
 \end{align}
-\]</span> and obtain <span class="math display">\[
+\]</span></p>
+<p>and obtain</p>
+<p><span class="math display">\[
 -\laplacian \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F = + \mathbf J^s_m.
 \]</span> or short <span class="math display">\[
 \laplacian \mathbf F + k^2 \mathbf F = -\mathbf J^s_m, \qquad k^2 = -i \omega \mu (\sigma + i \omega \varepsilon).
@@ -578,9 +626,12 @@ Summary
 </div>
 <div class="callout-body-container callout-body">
 <p>We have eliminated the scalar potentials <span class="math inline">\(V\)</span> and <span class="math inline">\(U\)</span> by use of the <em>Lorenz gauge</em>.</p>
-<p>The vector potentials are solutions to <span id="eq-inhomogeneous-helmholtz-F"><span class="math display">\[
+<p>The vector potentials are solutions to</p>
+<p><span id="eq-inhomogeneous-helmholtz-F"><span class="math display">\[
 \laplacian \mathbf F + k^2 \mathbf F  = -\mathbf J^s_m
-\tag{7.2}\]</span></span> and <span id="eq-inhomogeneous-helmholtz-A"><span class="math display">\[
+\tag{7.2}\]</span></span></p>
+<p>and</p>
+<p><span id="eq-inhomogeneous-helmholtz-A"><span class="math display">\[
 \laplacian \mathbf A + k^2 \mathbf A = -\mathbf J^s_e.
 \tag{7.3}\]</span></span></p>
 <p>These equations are called <em>inhomogeneous Helmholtz equations</em>.</p>
@@ -591,7 +642,7 @@ Summary
 <section id="solutions-of-the-inhomogeneous-helmholtz-equation" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="solutions-of-the-inhomogeneous-helmholtz-equation"><span class="header-section-number">7.5</span> Solutions of the inhomogeneous Helmholtz equation</h2>
 <p>We now want to find solutions to the inhomogeneous vector Helmholtz equations.</p>
-<p>Let’s consider the potential <span class="math inline">\(\mathbf A\)</span> <a href="#eq-inhomogeneous-helmholtz-A" class="quarto-xref"><span>7.3</span></a>.</p>
+<p>Let’s consider the potential <span class="math inline">\(\mathbf A\)</span> as defined in <a href="#eq-inhomogeneous-helmholtz-A" class="quarto-xref"><span>7.3</span></a>.</p>
 <p>To obtain a solution, we take the following steps:</p>
 <ol type="1">
 <li>transform the expressions into the Fourier wave number domain</li>
@@ -599,7 +650,8 @@ Summary
 <li>transform back into space domain</li>
 </ol>
 <p>First, we need a useful definition of the Fourier transform. We follow a similar notation like that given in <a href="fourier.html#eq-fourier" class="quarto-xref"><span>3.2</span></a>, but instead of time and angular frequency we choose as variables the Cartesian coordinates <span class="math inline">\(x, y, z\)</span> and the corresponding wave numbers <span class="math inline">\(k_x, k_y, k_z\)</span>.</p>
-<p>We define the <em>3-D Fourier transform pair</em> <span class="math display">\[
+<p>We define the <em>3-D Fourier transform pair</em></p>
+<p><span class="math display">\[
 \begin{align}
 \tilde{\mathbf A}(k_x, k_y, k_z)
     &amp; = \iiint\limits_{-\infty}^\infty \mathbf A(x,y,z) e^{-i(k_x x + k_y y + k_z z)}\, \mathrm d x \mathrm d y \mathrm d z \\
@@ -607,49 +659,74 @@ Summary
 \end{align}
 \]</span></p>
 <p>Also required are the differentiation, convolution, and linearity properties of the Fourier transform.</p>
-<p>We recognize that in a Cartesian coordinate system <span class="math display">\[
+<p>We recognize that in a Cartesian coordinate system</p>
+<p><span class="math display">\[
 \laplacian := \partial^2_{xx} + \partial^2_{yy} + \partial^2_{zz}
-\]</span> and therefore <span class="math display">\[
+\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[
 \partial^2_{xx} e^{-i k_x x} = -k_x^2 e^{-i k_x x} \text{ etc.}
 \]</span></p>
-<p>After transformation of <a href="#eq-inhomogeneous-helmholtz-F" class="quarto-xref"><span>7.2</span></a> into the wave number domain, we have <span class="math display">\[
+<p>After transformation of <a href="#eq-inhomogeneous-helmholtz-F" class="quarto-xref"><span>7.2</span></a> into the wave number domain, we have</p>
+<p><span class="math display">\[
 (-k_x^2 - k_y^2 - k_z^2 + k^2) \tilde{\mathbf A} = -\tilde{\mathbf J}^s_m.
-\]</span> Recall that <span class="math inline">\(k^2 = -i \omega \mu (\sigma + i \omega \varepsilon)\)</span>.</p>
-<p>After rearranging we obtain <span id="eq-AGJ"><span class="math display">\[
+\]</span></p>
+<p>Recall that <span class="math inline">\(k^2 = -i \omega \mu (\sigma + i \omega \varepsilon)\)</span>.</p>
+<p>After rearranging we obtain</p>
+<p><span id="eq-AGJ"><span class="math display">\[
 \tilde{\mathbf A} = \tilde{\tilde{G}} \tilde{\mathbf J}^s_m
-\tag{7.4}\]</span></span> with the scalar function <span class="math display">\[
+\tag{7.4}\]</span></span></p>
+<p>with the scalar function</p>
+<p><span class="math display">\[
 \tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
-\]</span> <span class="math inline">\(\tilde{\tilde{G}}\)</span> is the 3-D Fourier transform of what we will later refer to as <em>Green’s function</em>.</p>
+\]</span></p>
+<p><span class="math inline">\(\tilde{\tilde{G}}\)</span> is the 3-D Fourier transform of what we will later refer to as <em>Green’s function</em>.</p>
 <p>We can obtain <span class="math inline">\(\mathbf A\)</span> directly in the spatial domain by evaluating a 3-D convolution integral, since <a href="#eq-AGJ" class="quarto-xref"><span>7.4</span></a> is a multiplication in the wave number domain by exploiting the convolution property of the Fourier transform. Unfortunately, we still have not found an expression for <span class="math inline">\(G\)</span>.</p>
 <p>To this end, let’s consider a PDE similar to <a href="#eq-inhomogeneous-helmholtz-A" class="quarto-xref"><span>7.3</span></a>. The differences are important: First, the solution to the PDE is a scalar function <span class="math inline">\(G\)</span>, second, the right-hand side of the equation is a Dirac impulse in space.</p>
-<p>We depart from <span id="eq-pde-G"><span class="math display">\[
+<p>We depart from</p>
+<p><span id="eq-pde-G"><span class="math display">\[
 \laplacian G + k^2 G = -\delta(x) \delta(y) \delta(z)
 \tag{7.5}\]</span></span></p>
-<p>We take steps 1 and 2 as outlined above and obtain <span class="math display">\[
+<p>We take steps 1 and 2 as outlined above and obtain</p>
+<p><span class="math display">\[
 \tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
-\]</span> To find <span class="math inline">\(G\)</span>, we first transform back into space domain w.r.t. <span class="math inline">\(z\)</span> and obtain <span class="math display">\[
+\]</span></p>
+<p>To find <span class="math inline">\(G\)</span>, we first transform back into space domain w.r.t. <span class="math inline">\(z\)</span> and obtain</p>
+<p><span class="math display">\[
 \tilde{G(k_x, k_y, z)} = \frac{ 1 }{ 2 \pi} \int\limits_{-\infty}^{\infty}
 \tilde{\tilde{G}} e^{i k_z z} \, \mathrm d k_z = \frac{ e^{-u|z|} }{ 2 u}
-\]</span> with <span class="math inline">\(u = \sqrt{k_x^2 + k_y^2 - k^2}\)</span>.</p>
-<p>Next, we carry out a 2-D Fourier transform w.r.t. <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>: <span class="math display">\[
+\]</span></p>
+<p>with <span class="math inline">\(u = \sqrt{k_x^2 + k_y^2 - k^2}\)</span>.</p>
+<p>Next, we carry out a 2-D Fourier transform w.r.t. <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>:</p>
+<p><span class="math display">\[
 G(x,y,z) = \frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} \frac{ e^{-u|z|} }{ 2 u}
 e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y
 \]</span></p>
-<p>Since <span class="math inline">\(u\)</span> is an axisymmetric function of <span class="math inline">\(k_x\)</span> and <span class="math inline">\(k_y\)</span>, we use of the following <em>Hankel transform</em>: <span class="math display">\[
+<p>Since <span class="math inline">\(u\)</span> is an axisymmetric function of <span class="math inline">\(k_x\)</span> and <span class="math inline">\(k_y\)</span>, we use of the following <em>Hankel transform</em>:</p>
+<p><span class="math display">\[
 \frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} F(k_x^2 + k_y^2)
 e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y
 =
 2 \pi \int\limits_0^\infty F(\lambda) J_0(\lambda R) \lambda \, \mathrm d \lambda,
-\]</span> where <span class="math display">\[
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
 \lambda^2 = k_x^2 + k_y^2
-\]</span> the horizontal wave number, <span class="math display">\[
+\]</span></p>
+<p>the horizontal wave number,</p>
+<p><span class="math display">\[
 R^2 = x^2 + y^2
-\]</span> the radial distance from the <span class="math inline">\(z\)</span>-axis, and <span class="math display">\[
+\]</span></p>
+<p>the radial distance from the <span class="math inline">\(z\)</span>-axis, and</p>
+<p><span class="math display">\[
 F :=   \frac{ e^{-u|z|} }{ 2 u}, \quad u^2 = \lambda^2 - k^2.
 \]</span></p>
-<p>Finally, we obtain the integral <span class="math display">\[
+<p>Finally, we obtain the integral</p>
+<p><span class="math display">\[
 G(R, z) = \frac{ 1 }{ 4 \pi } \int\limits_0^\infty \frac{ \lambda  }{ u} e^{-u|z|} J_0(\lambda R) \, \mathrm d \lambda
-\]</span> This is the <em>Sommerfeld integral</em>, from which we get with <span class="math inline">\(r^2 = R^2 + z^2\)</span> the function <span class="math display">\[
+\]</span></p>
+<p>This is the <em>Sommerfeld integral</em>, from which we get with <span class="math inline">\(r^2 = R^2 + z^2\)</span> the function</p>
+<p><span class="math display">\[
 G(r) = \frac{ 1 }{ 4 \pi r} e^{- i k r}.
 \]</span></p>
 <p>This is the <em>Green’s function for the uniform conductive fullspace in the frequenccy domain</em>.</p>
@@ -659,7 +736,9 @@ G(r) = \frac{ 1 }{ 4 \pi r} e^{- i k r}.
 <p>The Green’s function or the <em>impulse response</em> of the conductive fullspace in the frequency domain is</p>
 <p><span class="math display">\[
 G(r, \omega) = \frac{1}{4 \pi r} e^{- i k r} = \frac{1}{4 \pi r} e^{- i r \sqrt{\omega^2 \mu \varepsilon - i \omega \mu \sigma}}.
-\]</span> To obtain the time-domain response <span class="math inline">\(g(r,t)\)</span>, we apply the inverse Fourier transform, i.e., <span class="math display">\[
+\]</span></p>
+<p>To obtain the time-domain response <span class="math inline">\(g(r,t)\)</span>, we apply the inverse Fourier transform, i.e.,</p>
+<p><span class="math display">\[
 g(r, t) = \frac{1}{2 \pi} \frac{1}{4 \pi r} \int\limits_{-\infty}^\infty
 e^{- i r \sqrt{\omega^2 \mu \varepsilon - i \omega \mu \sigma}}
 e^{i \omega t}
@@ -667,29 +746,42 @@ e^{i \omega t}
 \]</span></p>
 <section id="free-space" class="level3" data-number="7.6.1">
 <h3 data-number="7.6.1" class="anchored" data-anchor-id="free-space"><span class="header-section-number">7.6.1</span> Free space</h3>
-<p>First, let’s restrict to the free space case, where <span class="math inline">\(\sigma=0\)</span>. We obtain <span class="math display">\[
+<p>First, let’s restrict to the free space case, where <span class="math inline">\(\sigma=0\)</span>. We obtain</p>
+<p><span class="math display">\[
 g(r,t) = \frac{1}{8 \pi^2 r} \int \limits_{-\infty}^\infty
 e^{i \omega (t \pm r \sqrt{\mu \varepsilon}) } \mathrm{d}\omega.
-\]</span> To obtain <span class="math inline">\(g\)</span>, we need the <em>shifting property</em> of the Fourier transform: <span class="math display">\[
+\]</span></p>
+<p>To obtain <span class="math inline">\(g\)</span>, we need the <em>shifting property</em> of the Fourier transform:</p>
+<p><span class="math display">\[
 \delta(t \pm t') =  \frac{1}{2 \pi} \int \limits_{-\infty}^\infty
 e^{i \omega (t \pm t')}
 \mathrm{d}\omega
-\]</span> It follows that <span class="math display">\[
+\]</span></p>
+<p>It follows that</p>
+<p><span class="math display">\[
 g(r, t) = \frac{1 }{4 \pi r}  \delta(t - r / c)
-\]</span> The sign is chosen such that causality is guaranteed, i.e., <span class="math display">\[
+\]</span></p>
+<p>The sign is chosen such that causality is guaranteed, i.e.,</p>
+<p><span class="math display">\[
 g(r, t) = 0 \text{ for } t &lt; 0.
-\]</span> The result obtained above is called the <em>retarded potential</em>.</p>
+\]</span></p>
+<p>The result obtained above is called the <em>retarded potential</em>.</p>
 </section>
 <section id="quasi-static-approximation" class="level3" data-number="7.6.2">
 <h3 data-number="7.6.2" class="anchored" data-anchor-id="quasi-static-approximation"><span class="header-section-number">7.6.2</span> Quasi-static approximation</h3>
 <p>For moderate to high conductivities and/or low frequencies, we have introduced the <em>quasi-static approximation</em>, which justifies that displacement currents may safely be neglected in geo-electromagnetic applications.</p>
-<p>We start from the Green’s function under quasi-static approximation: <span class="math display">\[
+<p>We start from the Green’s function under quasi-static approximation:</p>
+<p><span class="math display">\[
 G(r, \omega) = \frac{1}{4 \pi r} e^{-i r \sqrt{-i \omega \mu \sigma}} =
 \frac{1}{4 \pi r} e^{-r \sqrt{i \omega \mu \sigma}}
-\]</span> To obtain the time-domain Green’s function, we apply the Laplace transform, which is as an integral transform similar to the Fourier transform, except that the former is restricted to transformations of functions of <span class="math inline">\(t\)</span> with <span class="math inline">\(t \ge 0\)</span>. This is in accordance to the causality requirement stated above.</p>
-<p>With the Laplace variable <span class="math inline">\(s := i \omega\)</span> we rewrite <span class="math display">\[
+\]</span></p>
+<p>To obtain the time-domain Green’s function, we apply the Laplace transform, which is as an integral transform similar to the Fourier transform, except that the former is restricted to transformations of functions of <span class="math inline">\(t\)</span> with <span class="math inline">\(t \ge 0\)</span>. This is in accordance to the causality requirement stated above.</p>
+<p>With the Laplace variable <span class="math inline">\(s := i \omega\)</span> we rewrite</p>
+<p><span class="math display">\[
 G(r, s) = \frac{1}{4 \pi r} e^{-r \sqrt{s \mu \sigma}}
-\]</span> From <span class="citation" data-cites="Abramowitz1972">Abramowitz &amp; Stegun (<a href="references.html#ref-Abramowitz1972" role="doc-biblioref">1972</a>)</span> we obtain <span class="math display">\[
+\]</span></p>
+<p>From <span class="citation" data-cites="Abramowitz1972">Abramowitz &amp; Stegun (<a href="references.html#ref-Abramowitz1972" role="doc-biblioref">1972</a>)</span> we obtain</p>
+<p><span class="math display">\[
 g(r, t) = \frac{(\mu \sigma)^{1/2}}{(2 \pi t)^{3/2}}
 e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
 \]</span></p>
@@ -703,7 +795,7 @@ e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
 <p>We implement the Green’s function in <code>Python</code> and plot it as a function of time or source-receiver-offset, resp.</p>
 <p>At first, let’s calculate the Green’s function at a fixed distance of <span class="math inline">\(r=100\)</span> m for a time range of <span class="math inline">\(t \in [10^{-6}, 10^{-2}]\)</span> seconds.</p>
 <p>The late time asymptotic <span class="math inline">\(g(r,t) \sim t^{-3/2}\)</span> as <span class="math inline">\(t \to \infty\)</span> is indicated as a straight line in the log-log plot.</p>
-<div id="ff4bfbe4" class="cell" data-execution_count="1">
+<div id="425d5015" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -749,18 +841,25 @@ e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
 </section>
 <section id="the-fields-of-a-dipole-source-in-full-space" class="level2" data-number="7.7">
 <h2 data-number="7.7" class="anchored" data-anchor-id="the-fields-of-a-dipole-source-in-full-space"><span class="header-section-number">7.7</span> The fields of a dipole source in full-space</h2>
-<p>If we compare <a href="#eq-pde-G" class="quarto-xref"><span>7.5</span></a> and <a href="#eq-inhomogeneous-helmholtz-F" class="quarto-xref"><span>7.2</span></a>, we recognize the similarity of both PDEs. More specifically, if we would be able to orientate <span class="math inline">\(\mathbf J\)</span> in such a way that it would be aligned to one of the Cartesian axis, then <span class="math display">\[
+<p>If we compare <a href="#eq-pde-G" class="quarto-xref"><span>7.5</span></a> and <a href="#eq-inhomogeneous-helmholtz-F" class="quarto-xref"><span>7.2</span></a>, we recognize the similarity of both PDEs. More specifically, if we would be able to orientate <span class="math inline">\(\mathbf J\)</span> in such a way that it would be aligned to one of the Cartesian axis, then</p>
+<p><span class="math display">\[
 \mathbf J_m^s(\mathbf r) = i \omega \mu \mathbf m \delta^3(\mathbf r)
-\]</span> would simplify for a vertically aligned dipole to <span class="math display">\[
+\]</span></p>
+<p>would simplify for a vertically aligned dipole to</p>
+<p><span class="math display">\[
 \mathbf J_m^s(\mathbf r) = i \omega \mu \begin{bmatrix}
 0 \\ 0 \\ m
 \end{bmatrix} \delta^3(\mathbf r) =
 \begin{bmatrix}
 0 \\ 0 \\ J_m^s
 \end{bmatrix}
-\]</span> The vector-valued PDE <a href="#eq-inhomogeneous-helmholtz-F" class="quarto-xref"><span>7.2</span></a> would turn into <span class="math display">\[
+\]</span></p>
+<p>The vector-valued PDE <a href="#eq-inhomogeneous-helmholtz-F" class="quarto-xref"><span>7.2</span></a> would turn into</p>
+<p><span class="math display">\[
 \laplacian \mathbf F + k^2 \mathbf F = -i \omega \mu m \delta^3(\mathbf r) \mathbf e_z,
-\]</span> hence, the scalar potential for a magnetic dipole aligned with the <span class="math inline">\(z\)</span>-axis is <span class="math display">\[
+\]</span></p>
+<p>hence, the scalar potential for a magnetic dipole aligned with the <span class="math inline">\(z\)</span>-axis is</p>
+<p><span class="math display">\[
 F_z = \mathbf F \cdot \mathbf e_z = \frac{ i \omega \mu m }{ 4 \pi r } e^{-i k r}.
 \]</span></p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -777,11 +876,15 @@ Tip
 <p>Dipole induction problems become particularly easy to solve when the dipole axis is aligned with a Cartesian axis.</p>
 </div>
 </div>
-<p>With the ansatz defined above <span class="math display">\[
+<p>With the ansatz defined above</p>
+<p><span class="math display">\[
 \mathbf E_m = - \curl \mathbf F
-\]</span> and <span class="math display">\[
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
 \mathbf H_m = \frac{ 1 }{ i \omega \mu } (\grad \divergence \mathbf F + k^2 \mathbf F)
-\]</span> we can calculate the components of the electric and magnetic fields in a straightforward manner.</p>
+\]</span></p>
+<p>we can calculate the components of the electric and magnetic fields in a straightforward manner.</p>
 <p>Note that there are just spatial derivatives involved.</p>
 <p>However, the symmetry of the problem suggests using cylindrical coordinates.</p>
 <p><span id="eq-rot-cylindrical"><span class="math display">\[
@@ -800,9 +903,11 @@ Tip
     \right){\mathbf e_z}.
 \end{align}
 \tag{7.6}\]</span></span></p>
-<p>In the case of a dipole oriented in <span class="math inline">\(z\)</span>-direction, the curl simplifies to <span id="eq-rot-F"><span class="math display">\[
+<p>In the case of a dipole oriented in <span class="math inline">\(z\)</span>-direction, the curl simplifies to</p>
+<p><span id="eq-rot-F"><span class="math display">\[
 \curl \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi,
-\tag{7.7}\]</span></span> where <span class="math inline">\(\mathbf e_\varphi\)</span> is the unit coordinate vector in <span class="math inline">\(\varphi\)</span>-direction.</p>
+\tag{7.7}\]</span></span></p>
+<p>where <span class="math inline">\(\mathbf e_\varphi\)</span> is the unit coordinate vector in <span class="math inline">\(\varphi\)</span>-direction.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -815,7 +920,8 @@ Note
 <div class="callout-body-container callout-body">
 <p>Since the dipole axis is aligned with the <span class="math inline">\(z\)</span>-axis, we expect axisymmetric field components.</p>
 <p>The magnetic field forms closed field lines which are uniform in the azimuthal <span class="math inline">\(\varphi\)</span>-direction.</p>
-<p>For a magnetic dipole aligned with the <span class="math inline">\(z\)</span>-direction we observe the field components <span class="math display">\[
+<p>For a magnetic dipole aligned with the <span class="math inline">\(z\)</span>-direction we observe the field components</p>
+<p><span class="math display">\[
 E_\varphi,\quad H_r,\quad H_z.
 \]</span></p>
 <p>The components are mutual orthogonal!</p>
@@ -823,11 +929,16 @@ E_\varphi,\quad H_r,\quad H_z.
 </div>
 <section id="electric-field" class="level3" data-number="7.7.1">
 <h3 data-number="7.7.1" class="anchored" data-anchor-id="electric-field"><span class="header-section-number">7.7.1</span> Electric field</h3>
-<p>With the definition <span class="math display">\[
+<p>With the definition</p>
+<p><span class="math display">\[
 \mathbf E = -\curl \mathbf F
-\]</span> we find using <a href="#eq-rot-F" class="quarto-xref"><span>7.7</span></a> that <span class="math display">\[
+\]</span></p>
+<p>we find using <a href="#eq-rot-F" class="quarto-xref"><span>7.7</span></a> that</p>
+<p><span class="math display">\[
 E_\varphi = \frac{\partial F_z}{\partial r}.
-\]</span> Hence, <span class="math display">\[
+\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[
 E_\varphi = \partial_r F_z = -\frac{i \omega \mu m }{4 \pi r^2} (1 + i k r) \exp(-i k r).
 \]</span></p>
 <div class="callout callout-style-simple callout-none no-icon callout-titled" title="Self study">
@@ -840,10 +951,11 @@ Self study
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Do the derivation by yourself.</p>
+<p>Carry out the derivation by yourself.</p>
 </div>
 </div>
-<p>The change of the basis from cylindrical to Cartesian coordinates requires for the horizontal components <span class="math display">\[
+<p>The change of the basis from cylindrical to Cartesian coordinates requires for the horizontal components</p>
+<p><span class="math display">\[
 \mathbf E = E_\varphi \mathbf e_\varphi = E_\varphi
 \begin{pmatrix}
 -\sin\varphi \\
@@ -869,7 +981,8 @@ Self study
 <p><span class="math display">\[
 \cos\varphi = \frac{x}{r}, \quad \sin\varphi = \frac{y}{r}.
 \]</span></p>
-<p>Hence, <span class="math display">\[
+<p>Hence,</p>
+<p><span class="math display">\[
 \begin{align}
 E_x &amp; = +i \omega \mu m \frac{\sin\varphi}{4 \pi r^2}(1 + i k r) \exp(-i k r) \\
 E_y &amp; = -i \omega \mu m \frac{\cos\varphi}{4 \pi r^2}(1 + i k r) \exp(-i k r)
@@ -881,12 +994,15 @@ E_y &amp; = -i \omega \mu m \frac{\cos\varphi}{4 \pi r^2}(1 + i k r) \exp(-i k r
 \]</span></p>
 <p>where the components of <span class="math inline">\(\mathbf E\)</span> depend on both the direction of the dipole moment and the direction to the source.</p>
 <p>Check:</p>
-<p>With <span class="math display">\[
+<p>With</p>
+<p><span class="math display">\[
 \mathbf m =
 \begin{bmatrix}
 0 \\ 0 \\ m
 \end{bmatrix}
-\]</span> and <span class="math display">\[
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
 \mathbf r =
 \begin{bmatrix}
 x \\ y \\ z
@@ -917,33 +1033,43 @@ Note
 </section>
 <section id="magnetic-field" class="level3" data-number="7.7.2">
 <h3 data-number="7.7.2" class="anchored" data-anchor-id="magnetic-field"><span class="header-section-number">7.7.2</span> Magnetic field</h3>
-<p>For the magnetic field, we need <span class="math display">\[
+<p>For the magnetic field, we need</p>
+<p><span class="math display">\[
 \mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \grad \divergence \mathbf F = \frac{1}{i\omega\mu} \left(
     k^2 \mathbf F + \grad\divergence \mathbf F
 \right).
 \]</span></p>
 <p>The <span class="math inline">\(\nabla\cdot\)</span>-operator requires the calculation of <span class="math inline">\(\partial_z F_z\)</span>, whereas the gradient requires to provide all partial derivatives of <span class="math inline">\(\partial_z F_z\)</span> with respect to <span class="math inline">\(r\)</span> and <span class="math inline">\(z\)</span>.</p>
-<p>We recall that <span class="math display">\[
+<p>We recall that</p>
+<p><span class="math display">\[
 r = \sqrt{x^2 + y^2 + z^2}
-\]</span> and use the chain rule to obtain <span class="math display">\[
+\]</span></p>
+<p>and use the chain rule to obtain</p>
+<p><span class="math display">\[
 \partial_z F_z = \partial_r F_z \cdot \partial_z r,
-\]</span> where <span class="math display">\[
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
 \partial_z r = \frac{ z }{ r}.
 \]</span></p>
-<p>Further, the divergence and gradient operators generally read in cylindrical coordinates for a vector field <span class="math inline">\(\mathbf F\)</span> and a scalar field <span class="math inline">\(f\)</span> <span class="math display">\[
+<p>Further, the divergence and gradient operators generally read in cylindrical coordinates for a vector field <span class="math inline">\(\mathbf F\)</span> and a scalar field <span class="math inline">\(f\)</span></p>
+<p><span class="math display">\[
 \divergence \mathbf F = \frac{1}{r} \partial_r(r F_r) +
 \frac{1}{r} \partial_\varphi F_\varphi +
 \partial_z F_z
-\]</span> and <span class="math display">\[
-\nabla f = \partial_r f \mathbf e_r +
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\grad f = \partial_r f \mathbf e_r +
 \frac{1}{r} \partial_\varphi f \mathbf e_\varphi +
 \partial_z f \mathbf e_z.
 \]</span></p>
-<p>In our case we need to calculate <span class="math display">\[
+<p>In our case we need to calculate</p>
+<p><span class="math display">\[
 \divergence \mathbf F = \partial_z F_z.
 \]</span></p>
 <p>To compute the derivatives, we use <code>sympy</code>:</p>
-<div id="5028bd4c" class="cell" data-execution_count="2">
+<div id="53cc0220" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> diff, symbols, sqrt, pi, exp, I, simplify, Derivative, Matrix</span>
@@ -957,12 +1083,12 @@ r = \sqrt{x^2 + y^2 + z^2}
 <div class="cell-output cell-output-stdout">
 <pre><code>Fz = </code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="783">
 <p><span class="math inline">\(\displaystyle \frac{i m \mu_{0} \omega e^{- i k r}}{4 \pi r}\)</span></p>
 </div>
 </div>
 <p>Next, we implement an expression for <span class="math inline">\(\divergence \mathbf F\)</span>:</p>
-<div id="424f2bbf" class="cell" data-execution_count="3">
+<div id="72683b56" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>divF <span class="op">=</span> diff(Fz.subs(r, sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>)), z).subs(sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>), r).simplify()</span>
@@ -972,12 +1098,12 @@ r = \sqrt{x^2 + y^2 + z^2}
 <div class="cell-output cell-output-stdout">
 <pre><code>divF = </code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="784">
 <p><span class="math inline">\(\displaystyle \frac{m \mu_{0} \omega z \left(k r - i\right) e^{- i k r}}{4 \pi r^{3}}\)</span></p>
 </div>
 </div>
 <p>The chain rule can be implemented by a <code>lambda</code> function <code>chain</code> which first substitutes <span class="math inline">\(r\)</span> by the square root, forms the derivative, and finally substitutes all square root expressions by <span class="math inline">\(r\)</span> or powers thereof.</p>
-<div id="f89e1460" class="cell" data-execution_count="4">
+<div id="e03b041a" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> <span class="kw">lambda</span> F, v: diff(F.subs(r, sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>)), v).subs(sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>), r).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -986,7 +1112,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <p>A call to <code>chain</code>, i.e., the implementation of <span class="math inline">\(\partial_z \partial_z F_z\)</span> would simply look as follows:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>chain(Fz, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>However, to get the magentic field components, we need to divide by the term <span class="math inline">\(i \omega \mu_0\)</span>.</p>
-<div id="7cab3441" class="cell" data-execution_count="5">
+<div id="99910940" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Hx <span class="op">=</span> chain(divF, x).factor() <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -996,11 +1122,11 @@ r = \sqrt{x^2 + y^2 + z^2}
 <div class="cell-output cell-output-stdout">
 <pre><code>Hx =</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="5">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="786">
 <p><span class="math inline">\(\displaystyle - \frac{m x z \left(k^{2} r^{2} - 3 i k r - 3\right) e^{- i k r}}{4 \pi r^{5}}\)</span></p>
 </div>
 </div>
-<div id="93e8e3a0" class="cell" data-execution_count="6">
+<div id="8ab0cfd9" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Hy <span class="op">=</span> chain(divF, y).factor() <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -1010,12 +1136,12 @@ r = \sqrt{x^2 + y^2 + z^2}
 <div class="cell-output cell-output-stdout">
 <pre><code>Hy =</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="787">
 <p><span class="math inline">\(\displaystyle - \frac{m y z \left(k^{2} r^{2} - 3 i k r - 3\right) e^{- i k r}}{4 \pi r^{5}}\)</span></p>
 </div>
 </div>
 <p>To get <span class="math inline">\(H_z\)</span> we have to add the term <span class="math inline">\(k^2 F_z\)</span> as</p>
-<div id="1dc1210a" class="cell" data-execution_count="7">
+<div id="b635f237" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Hz <span class="op">=</span> (chain(divF, z) <span class="op">+</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> Fz) <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -1025,18 +1151,19 @@ r = \sqrt{x^2 + y^2 + z^2}
 <div class="cell-output cell-output-stdout">
 <pre><code>Hz =</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="788">
 <p><span class="math inline">\(\displaystyle \frac{m \left(k^{2} r^{4} - k^{2} r^{2} z^{2} - i k r^{3} + 3 i k r z^{2} - r^{2} + 3 z^{2}\right) e^{- i k r}}{4 \pi r^{5}}\)</span></p>
 </div>
 </div>
-<p>We can generalize using the following notation: <span class="math display">\[
+<p>We can generalize using the following notation:</p>
+<p><span class="math display">\[
 \mathbf H(\mathbf r) = \frac{1}{4 \pi r^3} \left[
     \frac{\mathbf m \cdot \mathbf r}{r^2} (3 + 3 i k r - k^2 r^2) \mathbf r - (1 + i k r - k^2 r^2) \mathbf m
     \right] e^{-i k r}.
 \]</span></p>
 <p>Let’s check the validity on our example.</p>
 <p>We introduce the symbolic vector quantities <code>M</code> and <code>R</code>, and implement a <code>lambda</code> function to express the magnetic field with respect to the orientation of the magnetic dipole moment:</p>
-<div id="843f2011" class="cell" data-execution_count="8">
+<div id="8f597dfa" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> Matrix([<span class="dv">0</span>, <span class="dv">0</span>, m])</span>
@@ -1048,7 +1175,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <div class="cell-output cell-output-stdout">
 <pre><code>H(M) =</code></pre>
 </div>
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="789">
 <p><span class="math inline">\(\displaystyle \left[\begin{matrix}\frac{m x z \left(- k^{2} r^{2} + i k r + 3\right) e^{- i k r}}{4 \pi r^{5}}\\\frac{m y z \left(- k^{2} r^{2} + i k r + 3\right) e^{- i k r}}{4 \pi r^{5}}\\\frac{\left(- m \left(- k^{2} r^{2} + i k r + 1\right) + \frac{m z^{2} \left(- k^{2} r^{2} + i k r + 3\right)}{r^{2}}\right) e^{- i k r}}{4 \pi r^{3}}\end{matrix}\right]\)</span></p>
 </div>
 </div>
@@ -1067,7 +1194,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <li>What are the differences compared to homogeneous excitation (MT)?</li>
 </ul>
 <p>We implement the general equations for the electric and magnetic fields as <code>Python</code> functions <code>E</code> and <code>H</code>, resp.:</p>
-<div id="b607de83" class="cell" data-execution_count="9">
+<div id="b5f3ade6" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> E(r, m, f, sigma):</span>
@@ -1104,14 +1231,15 @@ r = \sqrt{x^2 + y^2 + z^2}
 <span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> H</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>We check with the following parameters:</p>
+<p>We check with the parameters defining a VMD in horizontal coplanar configuration oscillating at a frequency of 100 Hz located at the origin of a uniform fullspace:</p>
 <ul>
 <li><span class="math inline">\(\mathbf r = [100, 0, 0]^\top\)</span> m</li>
 <li><span class="math inline">\(\mathbf m = [0, 0, 1]^\top\)</span> A<span class="math inline">\(\cdot m^2\)</span></li>
 <li><span class="math inline">\(f = 100\)</span> Hz</li>
 <li><span class="math inline">\(\sigma = 0.01\)</span> S/m.</li>
 </ul>
-<div id="2bbdab81" class="cell" data-execution_count="10">
+<p>Let’s have a look at the electric field evaluated with the function <code>E</code>:</p>
+<div id="21356b18" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.array([<span class="fl">100.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>])</span>
@@ -1120,219 +1248,218 @@ r = \sqrt{x^2 + y^2 + z^2}
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> E(r, m, f, sigma)</span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>Ey <span class="op">=</span> e[<span class="dv">1</span>]</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>e</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.array_str(e, precision<span class="op">=</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>array([ 0.00000000e+00-0.00000000e+00j, -2.15431872e-10-6.25496586e-09j,
-        0.00000000e+00-0.00000000e+00j])</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 0.00e+00-0.00e+00j -2.15e-10-6.25e-09j  0.00e+00-0.00e+00j]</code></pre>
 </div>
 </div>
-<div id="d57df109" class="cell" data-execution_count="11">
+<p>Now let’s evaluate the magnetic field using <code>H</code>:</p>
+<div id="6286c2b2" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> H(r, m, f, sigma)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Hz <span class="op">=</span> h[<span class="dv">2</span>]</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.array_str(h, precision<span class="op">=</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="11">
-<pre><code>array([ 0.00000000e+00+0.00000000e+00j,  0.00000000e+00+0.00000000e+00j,
-       -8.02368029e-08-2.32115274e-09j])</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 0.00e+00+0.00e+00j  0.00e+00+0.00e+00j -8.02e-08-2.32e-09j]</code></pre>
 </div>
 </div>
 <p>We recognize that for a vertically aligned dipole, when observed at the <span class="math inline">\(x\)</span>-axis, only the <span class="math inline">\(y\)</span>-component of <span class="math inline">\(\mathbf E\)</span> and the <span class="math inline">\(z\)</span>-component of <span class="math inline">\(\mathbf H\)</span> are non-zero.</p>
-<p>Now we try to calculate the <em>impedance</em> from the ratio of two mutually orthogonal components of <span class="math inline">\(\mathbf E\)</span> and <span class="math inline">\(\mathbf H\)</span>, e.g., <span class="math display">\[
+<p>Now we try to calculate the <em>impedance</em> from the ratio of two mutually orthogonal components of <span class="math inline">\(\mathbf E\)</span> and <span class="math inline">\(\mathbf H\)</span>, e.g.,</p>
+<p><span class="math display">\[
 Z = \frac{ E_y }{ H_z}.
 \]</span></p>
-<div id="949097b3" class="cell" data-execution_count="12">
+<p>The result is complex number:</p>
+<div id="10af0732" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> Ey <span class="op">/</span> Hz</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>np.set_printoptions()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">2</span>, floatmode<span class="op">=</span><span class="st">'fixed'</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Z = '</span> <span class="op">+</span> <span class="bu">str</span>(np.<span class="bu">round</span>(Z, <span class="dv">4</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>(0.004936001185549236+0.07781352726165937j)</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>Z = (0.0049+0.0778j)</code></pre>
 </div>
 </div>
-<p>For the calculation of the apparent resistivity, we use <span class="math display">\[
+<p>For the calculation of the apparent resistivity, we use</p>
+<p><span class="math display">\[
 \rho_a = \frac{ 1 }{ \omega \mu_0} |Z|^2
 \]</span></p>
-<div id="48ec740a" class="cell" data-execution_count="13">
+<div id="d124892f" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhoa(Z, f):</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">abs</span>(Z)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (omega <span class="op">*</span> mu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">abs</span>(Z)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (omega <span class="op">*</span> mu)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The apparent resistivity is '</span> <span class="op">+</span> <span class="bu">str</span>(np.<span class="bu">round</span>(rhoa(Z, f), <span class="dv">4</span>)) <span class="op">+</span> <span class="st">' Ohm*m.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
-<div id="6ca58762" class="cell" data-execution_count="14">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>rhoa(Z, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>7.699534963039838</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>The apparent resistivity is 7.6995 Ohm*m.</code></pre>
 </div>
 </div>
 <p>This does not meet our expectations. We are therefore investigating whether the impedance depends on the frequency and/or the distance to the dipole.</p>
 <p>We vary the frequencies and observe <span class="math inline">\(\rho_a\)</span> as a function of frequency.</p>
-<div id="cc13c32c" class="cell" data-execution_count="15">
+<div id="c665a9a3" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>nf <span class="op">=</span> <span class="dv">41</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> np.logspace(<span class="dv">1</span>, <span class="dv">5</span>, nf, endpoint<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>Rhoa_f <span class="op">=</span> [rhoa(E(r,m,v,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(r,m,v,sigma)[<span class="dv">2</span>], v) <span class="cf">for</span> v <span class="kw">in</span> freq]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>nf <span class="op">=</span> <span class="dv">41</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> np.logspace(<span class="dv">1</span>, <span class="dv">5</span>, nf, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Rhoa_f <span class="op">=</span> [rhoa(E(r,m,v,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(r,m,v,sigma)[<span class="dv">2</span>], v) <span class="cf">for</span> v <span class="kw">in</span> freq]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="2020b512" class="cell" data-execution_count="16">
+<div id="91b0de18" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>ax.loglog(freq, Rhoa_f, label<span class="op">=</span><span class="vs">r'$\rho_a$'</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'f in Hz'</span>)</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$\rho_a~in~\Omega\cdot m$'</span>)</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Dipole offset '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(r)) <span class="op">+</span> <span class="st">' m'</span>)</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">1e2</span>, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="vs">r'true $\rho$'</span>)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>ax.loglog(freq, Rhoa_f, label<span class="op">=</span><span class="vs">r'$\rho_a$'</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'f in Hz'</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$\rho_a~in~\Omega\cdot m$'</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Dipole offset '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(r)) <span class="op">+</span> <span class="st">' m'</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">1e2</span>, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="vs">r'true $\rho$'</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="potentials_files/figure-html/cell-17-output-1.png" width="519" height="377" class="figure-img"></p>
+<p><img src="potentials_files/figure-html/cell-16-output-1.png" width="519" height="377" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Obviously, the value of <span class="math inline">\(\rho_a\)</span> depends on the frequency and asymptotically approaches the expected full-space value of the resistivity as <span class="math inline">\(f \to \infty\)</span>.</p>
 <p>We gain more insight, when we vary the distance to the dipole while keeping the frequency fixed.</p>
-<div id="e01f241c" class="cell" data-execution_count="17">
+<div id="f9229e03" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>nr <span class="op">=</span> <span class="dv">41</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.logspace(<span class="dv">0</span>, <span class="dv">4</span>, nr, endpoint<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>Rhoa_x <span class="op">=</span> np.array([rhoa(E(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">2</span>], f) <span class="cf">for</span> v <span class="kw">in</span> x])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>nr <span class="op">=</span> <span class="dv">41</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.logspace(<span class="dv">0</span>, <span class="dv">4</span>, nr, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>Rhoa_x <span class="op">=</span> np.array([rhoa(E(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">2</span>], f) <span class="cf">for</span> v <span class="kw">in</span> x])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="20626b46" class="cell" data-execution_count="18">
+<div id="41d68cb9" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Rhoa_x, label<span class="op">=</span><span class="vs">r'$\rho_a$'</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">1e2</span>, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="vs">r'true $\rho$'</span>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'r in m'</span>)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$\rho_a~in~\Omega\cdot m$'</span>)</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Frequency '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(f)) <span class="op">+</span> <span class="st">' Hz'</span>)</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Rhoa_x, label<span class="op">=</span><span class="vs">r'$\rho_a$'</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">1e2</span>, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="vs">r'true $\rho$'</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'r in m'</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$\rho_a~in~\Omega\cdot m$'</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Frequency '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(f)) <span class="op">+</span> <span class="st">' Hz'</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="potentials_files/figure-html/cell-19-output-1.png" width="526" height="377" class="figure-img"></p>
+<p><img src="potentials_files/figure-html/cell-18-output-1.png" width="526" height="377" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Is there a consistent explanation for these observations? We look at the induction parameter <span class="math inline">\(|k|r\)</span> and revisit the parameters from the previous examples.</p>
-<div id="ba2e3d74" class="cell" data-execution_count="19">
+<div id="ff042d1b" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kr(f, sigma, r):</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r <span class="op">*</span> np.<span class="bu">abs</span>(np.sqrt(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> mu <span class="op">*</span> sigma))</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pos(data, threshold):</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.where(np.array(data) <span class="op">&gt;</span> threshold, data, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kr(f, sigma, r):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> r <span class="op">*</span> np.<span class="bu">abs</span>(np.sqrt(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> mu <span class="op">*</span> sigma))</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pos(data, threshold):</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.where(np.array(data) <span class="op">&gt;</span> threshold, data, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="691b5f3d" class="cell" data-execution_count="20">
+<div id="f7f47762" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(v, sigma, np.linalg.norm(r)) <span class="cf">for</span> v <span class="kw">in</span> freq])</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>ax.loglog(freq, KR, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="vs">r'|k|r &gt; 1'</span>)</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>iind <span class="op">=</span> np.argwhere(KR <span class="op">&lt;</span> <span class="dv">1</span>)</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>ax.loglog(freq[iind], KR[iind], color<span class="op">=</span><span class="st">'C0'</span>, label<span class="op">=</span><span class="vs">r'|k|r &lt; 1'</span>)</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$|k|r$'</span>)</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'f in Hz'</span>)</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Dipole offset '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(r)) <span class="op">+</span> <span class="st">' m'</span>)</span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(v, sigma, np.linalg.norm(r)) <span class="cf">for</span> v <span class="kw">in</span> freq])</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>ax.loglog(freq, KR, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="vs">r'|k|r &gt; 1'</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>iind <span class="op">=</span> np.argwhere(KR <span class="op">&lt;</span> <span class="dv">1</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>ax.loglog(freq[iind], KR[iind], color<span class="op">=</span><span class="st">'C0'</span>, label<span class="op">=</span><span class="vs">r'|k|r &lt; 1'</span>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$|k|r$'</span>)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'f in Hz'</span>)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Dipole offset '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(r)) <span class="op">+</span> <span class="st">' m'</span>)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="potentials_files/figure-html/cell-21-output-1.png" width="527" height="377" class="figure-img"></p>
+<p><img src="potentials_files/figure-html/cell-20-output-1.png" width="527" height="377" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>With the indicator <span class="math inline">\(|k|r\)</span> just introduced, it is easier to determine which branch of the asymptotic we are on.</p>
-<div id="bdd51bc9" class="cell" data-execution_count="21">
+<div id="bc071b87" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(f, sigma, v) <span class="cf">for</span> v <span class="kw">in</span> x])</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Rhoa_x, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="vs">r'$|k|r &gt; 1$'</span>)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>iind <span class="op">=</span> np.argwhere(KR <span class="op">&lt;</span> <span class="dv">1</span>)</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>ax.loglog(x[iind], Rhoa_x[iind], color<span class="op">=</span><span class="st">'C0'</span>, label<span class="op">=</span><span class="vs">r'$|k|r &lt; 1$'</span>)</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'r in m'</span>)</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$\rho_a~in~\Omega\cdot m$'</span>)</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Frequency '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(f)) <span class="op">+</span> <span class="st">' Hz'</span>)</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(f, sigma, v) <span class="cf">for</span> v <span class="kw">in</span> x])</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>ax.loglog(x, Rhoa_x, color<span class="op">=</span><span class="st">'C1'</span>, label<span class="op">=</span><span class="vs">r'$|k|r &gt; 1$'</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>iind <span class="op">=</span> np.argwhere(KR <span class="op">&lt;</span> <span class="dv">1</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>ax.loglog(x[iind], Rhoa_x[iind], color<span class="op">=</span><span class="st">'C0'</span>, label<span class="op">=</span><span class="vs">r'$|k|r &lt; 1$'</span>)</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'r in m'</span>)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$\rho_a~in~\Omega\cdot m$'</span>)</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Frequency '</span> <span class="op">+</span> <span class="bu">str</span>(np.linalg.norm(f)) <span class="op">+</span> <span class="st">' Hz'</span>)</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="potentials_files/figure-html/cell-22-output-1.png" width="526" height="377" class="figure-img"></p>
+<p><img src="potentials_files/figure-html/cell-21-output-1.png" width="526" height="377" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>In contrast to homogeneous excitation, the impedance and thus the apparent resistivity for dipole excitation depends not only on the frequency but also on the distance between the dipole source and the receiver. At <span class="math inline">\(|k|r \gg 1\)</span> we speak of the far zone. The impedance relationships there are similar to those for the MT. At <span class="math inline">\(|k|r \ll 1\)</span> we are in the near zone. The induction parameter is small. The low induction number (LIN) methods work in this regime. With the Geonics EM-34, for example, a coil distance of around 10 m is selected at a frequency of 6,400 Hz. The induction parameter for this configuration is less than 1 if the conductivity is sufficiently low.</p>
 <p>We check these findings for a range of conductivities.</p>
-<div id="cell-fig-lin-response" class="cell" data-execution_count="22">
+<div id="cell-fig-lin-response" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ns <span class="op">=</span> <span class="dv">41</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">0</span>, ns, endpoint<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">10.0</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">6400.0</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(f, v, r) <span class="cf">for</span> v <span class="kw">in</span> sigma])</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>Hz <span class="op">=</span> np.array([H(np.array([r, <span class="dv">0</span>, <span class="dv">0</span>]), np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]), f, v)[<span class="dv">2</span>] <span class="cf">for</span> v <span class="kw">in</span> sigma])</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>ax1.loglog(KR, np.<span class="bu">abs</span>(np.real(Hz)))</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>ax1.axvspan(KR[<span class="dv">0</span>], <span class="fl">1.0</span>, facecolor<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, label<span class="op">=</span><span class="vs">r'$|k|r&lt;1$'</span>)</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>ax1.axvspan(<span class="fl">1.0</span>, KR[<span class="op">-</span><span class="dv">1</span>], facecolor<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, label<span class="op">=</span><span class="vs">r'$|k|r&gt;1$'</span>)</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>)</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>ax1.legend()</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="vs">r'$|Re(H_z)|$'</span>)</span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>ax2.loglog(KR, np.<span class="bu">abs</span>(np.imag(Hz)))</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>ax2.axvspan(KR[<span class="dv">0</span>], <span class="fl">1.0</span>, facecolor<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, label<span class="op">=</span><span class="vs">r'$|k|r&lt;1$'</span>)</span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>ax2.axvspan(<span class="fl">1.0</span>, KR[<span class="op">-</span><span class="dv">1</span>], facecolor<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, label<span class="op">=</span><span class="vs">r'$|k|r&gt;1$'</span>)</span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>)</span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="vs">r'$|k|r$'</span>)</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'$|Im(H_z)|$'</span>)</span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>ax2.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ns <span class="op">=</span> <span class="dv">41</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">0</span>, ns, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">6400.0</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(f, v, r) <span class="cf">for</span> v <span class="kw">in</span> sigma])</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>Hz <span class="op">=</span> np.array([H(np.array([r, <span class="dv">0</span>, <span class="dv">0</span>]), np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]), f, v)[<span class="dv">2</span>] <span class="cf">for</span> v <span class="kw">in</span> sigma])</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>), sharex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>ax1.loglog(KR, np.<span class="bu">abs</span>(np.real(Hz)))</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>ax1.axvspan(KR[<span class="dv">0</span>], <span class="fl">1.0</span>, facecolor<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, label<span class="op">=</span><span class="vs">r'$|k|r&lt;1$'</span>)</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>ax1.axvspan(<span class="fl">1.0</span>, KR[<span class="op">-</span><span class="dv">1</span>], facecolor<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, label<span class="op">=</span><span class="vs">r'$|k|r&gt;1$'</span>)</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>ax1.legend()</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="vs">r'$|Re(H_z)|$'</span>)</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>ax2.loglog(KR, np.<span class="bu">abs</span>(np.imag(Hz)))</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>ax2.axvspan(KR[<span class="dv">0</span>], <span class="fl">1.0</span>, facecolor<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, label<span class="op">=</span><span class="vs">r'$|k|r&lt;1$'</span>)</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>ax2.axvspan(<span class="fl">1.0</span>, KR[<span class="op">-</span><span class="dv">1</span>], facecolor<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, label<span class="op">=</span><span class="vs">r'$|k|r&gt;1$'</span>)</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>)</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="vs">r'$|k|r$'</span>)</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="vs">r'$|Im(H_z)|$'</span>)</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>ax2.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-lin-response" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -1348,15 +1475,16 @@ Figure&nbsp;7.1: Real and imaginary part of the magnetic field of an oscillating
 </div>
 </div>
 <p>As we can see from Fig. <a href="#fig-lin-response" class="quarto-xref">Figure&nbsp;<span>7.1</span></a>, the real part of the magnetic field goes to a constant value for <span class="math inline">\(|k|r \to 0\)</span>, whereas the imaginary part shows a straight line in the log-log plot.</p>
-<p>For <span class="math inline">\(|k|r \to 0\)</span>, i.e., for very small conductivities, we approach free-space conditions. The magnetic field of a vertical dipole in horizontal co-planar configuration is <span class="math display">\[
+<p>For <span class="math inline">\(|k|r \to 0\)</span>, i.e., for very small conductivities, we approach free-space conditions. The magnetic field of a vertical dipole in horizontal co-planar configuration is</p>
+<p><span class="math display">\[
 H_z = -\frac{ m }{4 \pi r^3 }.
 \]</span></p>
 <p>We evaluate this equation with the given values of <span class="math inline">\(r\)</span> and <span class="math inline">\(m\)</span>. We obtain</p>
-<div id="35dfb176" class="cell" data-execution_count="23">
+<div id="a52f46b5" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'H_z   = '</span> <span class="op">+</span> <span class="bu">str</span>(<span class="op">-</span><span class="dv">1</span> <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> r<span class="op">**</span><span class="dv">3</span>)))</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hz[0] = '</span> <span class="op">+</span> <span class="bu">str</span>(np.real(Hz[<span class="dv">0</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'H_z   = '</span> <span class="op">+</span> <span class="bu">str</span>(<span class="op">-</span><span class="dv">1</span> <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> r<span class="op">**</span><span class="dv">3</span>)))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hz[0] = '</span> <span class="op">+</span> <span class="bu">str</span>(np.real(Hz[<span class="dv">0</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>H_z   = -7.957747154594768e-05
@@ -1372,7 +1500,8 @@ Hz[0] = -7.957789009530794e-05</code></pre>
 <p><span class="math display">\[
 \Delta H_z = \left| \frac{\partial H_z}{\partial r} \right| \Delta r.
 \]</span></p>
-<p>For the magnetic field in the coplanar coil configuration in free space, we obtain <span class="math display">\[
+<p>For the magnetic field in the coplanar coil configuration in free space, we obtain</p>
+<p><span class="math display">\[
 \Delta H_z = \frac{3 m}{4 \pi r^4} \Delta r,
 \]</span></p>
 <p>which results in an estimate of the relative error</p>
