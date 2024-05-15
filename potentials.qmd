@@ -387,7 +387,7 @@ $$
 To find $G$, we first transform back into space domain w.r.t. $z$ and obtain 
 
 $$
-\tilde{G(k_x, k_y, z)} = \frac{ 1 }{ 2 \pi} \int\limits_{-\infty}^{\infty}
+\tilde{G}(k_x, k_y, z) = \frac{ 1 }{ 2 \pi} \int\limits_{-\infty}^{\infty}
 \tilde{\tilde{G}} e^{i k_z z} \, \mathrm d k_z = \frac{ e^{-u|z|} }{ 2 u}
 $$ 
  
