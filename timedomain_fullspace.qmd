@@ -140,7 +140,8 @@ The impulse response $h(t)$ used here a physically unspecified function of time,
 We then obtain the [step function response](https://en.wikipedia.org/wiki/Step_response) $f(t)$ from the *convolution* of the impulse response $h(t)$ with the Heaviside function $u(t)$:
 
 $$
-f(t)=h * u(t)=u * h(t)=\int_{-\infty}^{\infty} h(t') u(t-t') \dd t' =\int_{-\infty}^{t} h(t') \dd t'
+f(t)=(h * u)(t)=(u * h)(t) =\underbrace{\int_{-\infty}^{\infty} h(t') u(t-t') \dd t'}_{f_1(t)} = \underbrace{\int_{-\infty}^{t} h(t') \dd t'}_{
+f_2(t)}
 $$
 
 The step function response at time $t$ is therefore the result of the time integration over the impulse response from $-\infty$ to $t$.
@@ -159,7 +160,7 @@ $$
 f_1(\tau) = \int_{-\infty}^{\infty} h(t) u(\tau-t) \dd t
 $$
 $$
-f_2(\tau) = \int_{-\infty}^{\tau} h(t') \dd t'
+f_2(\tau) = \int_{-\infty}^{\tau} h(t) \dd t
 $$
 
 ```{python}
@@ -185,7 +186,7 @@ f2(tau)
 We see that both integrals yield the same result, so $f(t) = f_1(t) = f_2(t)$. For further calculations, it is sufficient to use the integral
 
 $$
-f(t) = \int_{-\infty}^t h(t') \, \dd t'.
+f(\tau) = \int_{-\infty}^\tau h(t) \, \dd t.
 $$
 
 ::: {.callout-note}
@@ -314,7 +315,7 @@ $$
 Formally, the Fourier transform must be added to half the value of the field at $\omega = 0$, 
 where the values of $F$ to be transformed are multiplied by $\frac{1}{i\omega}$.
 
-This corresponds to the known integration rule of integral transforms.
+This corresponds to the well-known integration property of integral transforms.
 
 Mathematical problems in connection with switch-on or switch-off processes can be solved elegantly with the Laplace transform.
 
@@ -331,13 +332,13 @@ with $x$ as parameter.
 The Laplace parameter $s$ is complex and extends the imaginary frequency term $i\omega$ of the FT by the real part $a$, so that with $s = a + i\omega$ we have a complex-valued "frequency". In this way, the Laplace transform can also deal with unstable signals $f$, since for $t \to \infty$ the real part of $s$ ensures that the integrand is limited. 
 
 In connection with PDEs, we also need the LT of the 
-time derivative of $f(t)$ ($f_t(x, t) = \partial_t f(x, t)$)
+time derivative of $f(t)$, or short $f_t(x, t) = \partial_t f(x, t)$
 
 $$
 \mathcal L(f_t(x, t)),
 $$
 
-which we calculate using the Laplace integral introduced above via partial integration:
+which we calculate using the Laplace integral introduced above via integration by parts:
 $$
 \begin{align}
 \mathcal L(f_t(x, t) & = \int\limits_{0}^{\infty} e^{-s t} f_{t}(x, t) \dd t \\ & = \left.e^{-s t} f(x, t)\right|_{0} ^{\infty}+s \int\limits_{0}^{\infty} e^{-s t} f(x, t) \dd t \\ & = s F(x, s)-f(x, 0).
