@@ -56,6 +56,8 @@ g(r) = \int_0^\infty f(\lambda, z) J_\nu(\lambda r)\, \dd\lambda, \qquad \nu > -
 $$
 with $\nu$ indicating the order of the Bessel function.
 
+## The oscillating nature of the integrands
+
 To evaluate, e.g., the component $B_z$, one needs the function $f(\lambda, z)$ as
 $$
 f(\lambda, z) = \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
@@ -87,7 +89,7 @@ Given these definitions, we are now able to evaluate the complete integrand func
 To this end, we first illustrate the integrand graphically:
 
 ```{python}
-nlam = 1001
+nlam = 801
 lam = np.logspace(0, 5, nlam, endpoint=True)
 r = 100.0
 freq = 100.0
@@ -109,4 +111,142 @@ ax2.grid(True)
 ```
 As we see from the above illustration, the behaviour of $f(\lambda,z)$ itself does not impose any numerical problems to the integration.
 
-Later we will study the behaviour of the heaviliy oscillating Bessel function and how to solve the problem of the numerical quadrature of oscillating integrands.
+The following graphs show the real and imaginary part of the _complete integrand_:
+
+```{python}
+from scipy.special import j0
+fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, figsize=(6,4))
+ax1.semilogx(lam, np.real(f) * j0(lam * r))
+ax1.grid(True)
+ax1.set_title(r'$\mathrm{Re}(f(\lambda)) J_0(\lambda r)$')
+ax2.semilogx(lam, np.imag(f) * j0(lam * r))
+ax2.grid(True)
+ax2.set_title(r'$\mathrm{Im}(f(\lambda)) J_0(\lambda r)$')
+ax2.set_xlabel(r'$\lambda$');
+```
+We observe that the numerical integration will be a major challenge.
+
+This is due to the following reasons:
+
+* The Bessel function brings into play an _oscillation_ of the integrand
+* The upper limit of integration is at _infinity_ 
+
+In practice, the following three numerical techniques have proven effective:
+
+1. Fast Hankel Transform (FHT)
+2. Gauss quadrature with an adapted weighting function
+3. Representation of the integrand function by Chebyshew polynomials
+
+In the following, we briefly outline the idea of the FHT.
+
+## The Fast Hankel Transform
+
+Important work on this problem has been done by @ghosh1971, @johansen1979, @anderson1982fast, @christensen1990, among others.
+
+The method is based on the following idea:
+
+To cover the range of $\lambda$ from $0$ to $\infty$ as quickly as possible, we take the following *variable transformation*:
+
+$$\begin{equation}
+\begin{split}
+x & = \log(r/r_0) \\
+y & = -\log(\lambda r_0), \qquad r_0 > 0 \\
+G(x) & = r g(r) \\
+F(y) & = f(\lambda) \\
+H(x) & = e^x J_\nu(e^x)
+\end{split}
+\end{equation}$$
+
+Then, the integral for computing $g(r)$, i.e.,
+
+$$\begin{equation}
+g(r) = \int_0^\infty f(\lambda, z) J_\nu(\lambda r)\, \dd\lambda, \qquad \nu > -1.
+\end{equation}$$
+
+can be rewritten as a convolution integral, such that
+
+$$\begin{equation}
+G(x) = \int_{-\infty}^\infty F(y) H(x - y) \dd y.
+\end{equation}$$
+
+For discrete values of $F$ with $F_n := F(y_n)$ this integral becomes a _discrete convolution_
+
+$$\begin{equation}
+G_m = \sum_{n=-\infty} ^\infty F_n H_{m-n} = \sum_{n=-\infty} ^\infty F_{m-n} H_{n}
+\end{equation}$$
+
+In the publications given at the beginning of this section, it has been explained how to compute the optimal _filter coefficients_ $\overline H_n$ with finite length $-\infty < n_1 \le n \le n_2 < \infty$.
+
+There are two approaches to this:
+
+1. Complex analysis: calculation of closed line integrals in the complex plane (@christensen1990, @johansen1979).
+1. Least Squares fitting of filter coefficients based on known Hankel transform pairs (e.g., the well-known Sommerfeld or Weber integrals) (@anderson1982fast).
+
+Regardless of the choice of the method for determining the coefficients
+we have to implement
+
+$$\begin{equation}
+G_m = \sum_{n=n_1} ^{n_2} F_n \overline H_{m-n} = \sum_{n=n_1} ^{n_2} F_{m-n} \overline H_{n}
+\end{equation}$$
+
+using standard methods of discrete convolution.
+
+## Numerical implementation of the convolution
+
+We implement a `Python` function that computes the convolution:
+
+```{python}
+def convolve(fc, kernel, style="valid"):
+    nc = len(fc)
+    nu = len(kernel)
+    n = nu + nc - 1
+    result = np.zeros(n, dtype=type(kernel))
+    
+    for i in range(nc):
+        for j in range(nu):
+            result[j + i] += kernel[j] * fc[i]
+    
+    if style == "full":
+        result = result
+    elif style == "valid":
+        result = result[nc - 1:n - nc + 1]
+    
+    return result
+```
+
+::: {.callout-note}
+
+When the keyword `style="valid"` is specified in the call to `convolve`, then the result of the convolution is restricted to the non-zero part of the result. Otherwise, when `style="full"` is provided, the result has leading and trailing zeros (zero padding).
+
+We always use `style="valid"` as a default.
+
+:::
+
+The following example confirms that our code is correct.
+
+The convolution of two rectangular sequences results in a triangular sequence:
+
+```{python}
+f = [0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0]
+h = [1, 1, 1, 1, 1]
+g = convolve(h, f)
+print(f)
+print(h)
+print(g)
+```
+
+```{python}
+fig, ax = plt.subplots(1, 1, figsize=(6,2))
+ax.stem(convolve(h, f, style="full"))
+ax.set_title('style="full"')
+ax.set_ylim((-0.25, 6.0))
+ax.grid(True)
+```
+
+```{python}
+fig, ax = plt.subplots(1, 1, figsize=(6,2))
+ax.stem(g)
+ax.set_title('style="valid"')
+ax.set_ylim((-0.25, 6.0))
+ax.grid(True)
+```

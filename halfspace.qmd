@@ -225,7 +225,7 @@ F^0(r,z) = \frac{i\omega\mu m}{4 \pi}
 $$
 Again, it is required that $F^0 \to 0$ for $z \to -\infty$ which is met by setting $\gamma^-(\lambda) = 0$ in $z<0$.
 
-To make both terms in brackets compatible, we use the _Sommerfeld integral_
+To make both terms in brackets compatible, we use the _Weber integral_
 $$
  \frac{1}{R} = \int_0^\infty e^{-\lambda |z+h|} J_0(\lambda r)\, \dd\lambda.
 $$ {#eq-sommerfeld}

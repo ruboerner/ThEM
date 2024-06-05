@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -318,8 +338,16 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-oscillating-nature-of-the-integrands" id="toc-the-oscillating-nature-of-the-integrands" class="nav-link active" data-scroll-target="#the-oscillating-nature-of-the-integrands"><span class="header-section-number">10.1</span> The oscillating nature of the integrands</a></li>
+  <li><a href="#the-fast-hankel-transform" id="toc-the-fast-hankel-transform" class="nav-link" data-scroll-target="#the-fast-hankel-transform"><span class="header-section-number">10.2</span> The Fast Hankel Transform</a></li>
+  <li><a href="#numerical-implementation-of-the-convolution" id="toc-numerical-implementation-of-the-convolution" class="nav-link" data-scroll-target="#numerical-implementation-of-the-convolution"><span class="header-section-number">10.3</span> Numerical implementation of the convolution</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -377,6 +405,8 @@ window.Quarto = {
 g(r) = \int_0^\infty f(\lambda, z) J_\nu(\lambda r)\, \dd\lambda, \qquad \nu &gt; -1
 \end{equation}
 \]</span> with <span class="math inline">\(\nu\)</span> indicating the order of the Bessel function.</p>
+<section id="the-oscillating-nature-of-the-integrands" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="the-oscillating-nature-of-the-integrands"><span class="header-section-number">10.1</span> The oscillating nature of the integrands</h2>
 <p>To evaluate, e.g., the component <span class="math inline">\(B_z\)</span>, one needs the function <span class="math inline">\(f(\lambda, z)\)</span> as <span class="math display">\[
 f(\lambda, z) = \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
 e^{-\lambda h}e^{\lambda z}
@@ -390,7 +420,7 @@ e^{-\lambda h}e^{\lambda z}
 </ul>
 <p>The surface admittance <span class="math inline">\(\lambda_1 = \sqrt{\lambda^2 + i \omega \mu_0 \sigma_1}\)</span> will be calculated using the function <code>lambda_1</code> given below.</p>
 <p>This is the <code>Python</code> implementation of the admittance of the uniform halfspace, <span class="math inline">\(\lambda_1\)</span>:</p>
-<div id="0974782c" class="cell" data-execution_count="2">
+<div id="b7012425" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lambda_1(lam, sigma, mu, f):</span>
@@ -402,10 +432,10 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 <p>Given these definitions, we are now able to evaluate the complete integrand functions in <a href="#eq-fields-in-air" class="quarto-xref"><span>10.1</span></a>.</p>
 <p>To this end, we first illustrate the integrand graphically:</p>
-<div id="ef915a92" class="cell" data-execution_count="3">
+<div id="a8442f15" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nlam <span class="op">=</span> <span class="dv">1001</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nlam <span class="op">=</span> <span class="dv">801</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> np.logspace(<span class="dv">0</span>, <span class="dv">5</span>, nlam, endpoint<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">100.0</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> <span class="fl">100.0</span></span>
@@ -434,9 +464,187 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 </div>
 <p>As we see from the above illustration, the behaviour of <span class="math inline">\(f(\lambda,z)\)</span> itself does not impose any numerical problems to the integration.</p>
-<p>Later we will study the behaviour of the heaviliy oscillating Bessel function and how to solve the problem of the numerical quadrature of oscillating integrands.</p>
+<p>The following graphs show the real and imaginary part of the <em>complete integrand</em>:</p>
+<div id="098c02bd" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> j0</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, sharex<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax1.semilogx(lam, np.real(f) <span class="op">*</span> j0(lam <span class="op">*</span> r))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="vs">r'$\mathrm</span><span class="sc">{Re}</span><span class="vs">(f(\lambda)) J_0(\lambda r)$'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ax2.semilogx(lam, np.imag(f) <span class="op">*</span> j0(lam <span class="op">*</span> r))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>ax2.grid(<span class="va">True</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="vs">r'$\mathrm</span><span class="sc">{Im}</span><span class="vs">(f(\lambda)) J_0(\lambda r)$'</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="vs">r'$\lambda$'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hankel_transform_files/figure-html/cell-5-output-1.png" width="495" height="378" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We observe that the numerical integration will be a major challenge.</p>
+<p>This is due to the following reasons:</p>
+<ul>
+<li>The Bessel function brings into play an <em>oscillation</em> of the integrand</li>
+<li>The upper limit of integration is at <em>infinity</em></li>
+</ul>
+<p>In practice, the following three numerical techniques have proven effective:</p>
+<ol type="1">
+<li>Fast Hankel Transform (FHT)</li>
+<li>Gauss quadrature with an adapted weighting function</li>
+<li>Representation of the integrand function by Chebyshew polynomials</li>
+</ol>
+<p>In the following, we briefly outline the idea of the FHT.</p>
+</section>
+<section id="the-fast-hankel-transform" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="the-fast-hankel-transform"><span class="header-section-number">10.2</span> The Fast Hankel Transform</h2>
+<p>Important work on this problem has been done by <span class="citation" data-cites="ghosh1971">Ghosh (<a href="references.html#ref-ghosh1971" role="doc-biblioref">1971</a>)</span>, <span class="citation" data-cites="johansen1979">Johansen &amp; Sørensen (<a href="references.html#ref-johansen1979" role="doc-biblioref">1979</a>)</span>, <span class="citation" data-cites="anderson1982fast">Anderson (<a href="references.html#ref-anderson1982fast" role="doc-biblioref">1982</a>)</span>, <span class="citation" data-cites="christensen1990">Christensen (<a href="references.html#ref-christensen1990" role="doc-biblioref">1990</a>)</span>, among others.</p>
+<p>The method is based on the following idea:</p>
+<p>To cover the range of <span class="math inline">\(\lambda\)</span> from <span class="math inline">\(0\)</span> to <span class="math inline">\(\infty\)</span> as quickly as possible, we take the following <em>variable transformation</em>:</p>
+<p><span class="math display">\[\begin{equation}
+\begin{split}
+x &amp; = \log(r/r_0) \\
+y &amp; = -\log(\lambda r_0), \qquad r_0 &gt; 0 \\
+G(x) &amp; = r g(r) \\
+F(y) &amp; = f(\lambda) \\
+H(x) &amp; = e^x J_\nu(e^x)
+\end{split}
+\end{equation}\]</span></p>
+<p>Then, the integral for computing <span class="math inline">\(g(r)\)</span>, i.e.,</p>
+<p><span class="math display">\[\begin{equation}
+g(r) = \int_0^\infty f(\lambda, z) J_\nu(\lambda r)\, \dd\lambda, \qquad \nu &gt; -1.
+\end{equation}\]</span></p>
+<p>can be rewritten as a convolution integral, such that</p>
+<p><span class="math display">\[\begin{equation}
+G(x) = \int_{-\infty}^\infty F(y) H(x - y) \dd y.
+\end{equation}\]</span></p>
+<p>For discrete values of <span class="math inline">\(F\)</span> with <span class="math inline">\(F_n := F(y_n)\)</span> this integral becomes a <em>discrete convolution</em></p>
+<p><span class="math display">\[\begin{equation}
+G_m = \sum_{n=-\infty} ^\infty F_n H_{m-n} = \sum_{n=-\infty} ^\infty F_{m-n} H_{n}
+\end{equation}\]</span></p>
+<p>In the publications given at the beginning of this section, it has been explained how to compute the optimal <em>filter coefficients</em> <span class="math inline">\(\overline H_n\)</span> with finite length <span class="math inline">\(-\infty &lt; n_1 \le n \le n_2 &lt; \infty\)</span>.</p>
+<p>There are two approaches to this:</p>
+<ol type="1">
+<li>Complex analysis: calculation of closed line integrals in the complex plane (<span class="citation" data-cites="christensen1990">Christensen (<a href="references.html#ref-christensen1990" role="doc-biblioref">1990</a>)</span>, <span class="citation" data-cites="johansen1979">Johansen &amp; Sørensen (<a href="references.html#ref-johansen1979" role="doc-biblioref">1979</a>)</span>).</li>
+<li>Least Squares fitting of filter coefficients based on known Hankel transform pairs (e.g., the well-known Sommerfeld or Weber integrals) (<span class="citation" data-cites="anderson1982fast">Anderson (<a href="references.html#ref-anderson1982fast" role="doc-biblioref">1982</a>)</span>).</li>
+</ol>
+<p>Regardless of the choice of the method for determining the coefficients we have to implement</p>
+<p><span class="math display">\[\begin{equation}
+G_m = \sum_{n=n_1} ^{n_2} F_n \overline H_{m-n} = \sum_{n=n_1} ^{n_2} F_{m-n} \overline H_{n}
+\end{equation}\]</span></p>
+<p>using standard methods of discrete convolution.</p>
+</section>
+<section id="numerical-implementation-of-the-convolution" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="numerical-implementation-of-the-convolution"><span class="header-section-number">10.3</span> Numerical implementation of the convolution</h2>
+<p>We implement a <code>Python</code> function that computes the convolution:</p>
+<div id="404f64e4" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convolve(fc, kernel, style<span class="op">=</span><span class="st">"valid"</span>):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    nc <span class="op">=</span> <span class="bu">len</span>(fc)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    nu <span class="op">=</span> <span class="bu">len</span>(kernel)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> nu <span class="op">+</span> nc <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> np.zeros(n, dtype<span class="op">=</span><span class="bu">type</span>(kernel))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nc):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(nu):</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            result[j <span class="op">+</span> i] <span class="op">+=</span> kernel[j] <span class="op">*</span> fc[i]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> style <span class="op">==</span> <span class="st">"full"</span>:</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> result</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> style <span class="op">==</span> <span class="st">"valid"</span>:</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> result[nc <span class="op">-</span> <span class="dv">1</span>:n <span class="op">-</span> nc <span class="op">+</span> <span class="dv">1</span>]</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When the keyword <code>style="valid"</code> is specified in the call to <code>convolve</code>, then the result of the convolution is restricted to the non-zero part of the result. Otherwise, when <code>style="full"</code> is provided, the result has leading and trailing zeros (zero padding).</p>
+<p>We always use <code>style="valid"</code> as a default.</p>
+</div>
+</div>
+<p>The following example confirms that our code is correct.</p>
+<p>The convolution of two rectangular sequences results in a triangular sequence:</p>
+<div id="04be2427" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> convolve(h, f)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(h)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0]
+[1, 1, 1, 1, 1]
+[1 2 3 4 5 4 3 2 1]</code></pre>
+</div>
+</div>
+<div id="51f77da3" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ax.stem(convolve(h, f, style<span class="op">=</span><span class="st">"full"</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'style="full"'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((<span class="op">-</span><span class="fl">0.25</span>, <span class="fl">6.0</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hankel_transform_files/figure-html/cell-8-output-1.png" width="483" height="209" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="4fc25e44" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ax.stem(g)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'style="valid"'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ax.set_ylim((<span class="op">-</span><span class="fl">0.25</span>, <span class="fl">6.0</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hankel_transform_files/figure-html/cell-9-output-1.png" width="483" height="209" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-anderson1982fast" class="csl-entry" role="listitem">
+Anderson, W.L., 1982. Fast <span>Hankel</span> transforms using related and lagged convolutions. <em>ACM Transactions on Mathematical Software (TOMS)</em>, <strong>8</strong>, 344–368, <span>ACM</span>.
+</div>
+<div id="ref-christensen1990" class="csl-entry" role="listitem">
+Christensen, N.B., 1990. Optimized fast <span>Hankel</span> transform filters. <em>Geophysical Prospecting</em>, <strong>38</strong>, 545–568. doi:<a href="https://doi.org/10.1111/j.1365-2478.1990.tb01861.x">10.1111/j.1365-2478.1990.tb01861.x</a>
+</div>
+<div id="ref-ghosh1971" class="csl-entry" role="listitem">
+Ghosh, D.P., 1971. The application of linear filter theory to the direct interpretation of geoelectrical resistivity sounding measurements. <em>Geophysical Prospecting</em>, <strong>19</strong>, 192–217. doi:<a href="https://doi.org/10.1111/j.1365-2478.1971.tb00593.x">10.1111/j.1365-2478.1971.tb00593.x</a>
+</div>
+<div id="ref-johansen1979" class="csl-entry" role="listitem">
+Johansen, H.K. &amp; Sørensen, K., 1979. Fast hankel transforms. <em>Geophysical Prospecting</em>, <strong>27</strong>, 876–901. doi:<a href="https://doi.org/10.1111/j.1365-2478.1979.tb01005.x">10.1111/j.1365-2478.1979.tb01005.x</a>
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

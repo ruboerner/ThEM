@@ -85,8 +85,8 @@ How does a jump of conductivity $\sigma_{n+1} - \sigma_n \ne 0$ in the plane $z=
 
 To answer this question, knowledge about the behaviour of field components (or the potential) is required.
 
-We already know that the potential and its vertical derivative are continuous in $ z=0$.
-In the case of a layered halfspace, this can be assumed for any $z=h_n$, $ 1 \le n \le N$.
+We already know that the potential and its vertical derivative are continuous in $z=0$.
+In the case of a layered halfspace, this can be assumed for any $z=h_n$, $1 \le n \le N$.
 
 The continuity still holds for the function
 $$
@@ -268,7 +268,15 @@ $$
 :::
 
 ## Algorithm
+We implement the calculation of the admittance as a function called `admittance(λ, σ, μ, d, f)`. The function returns $B_1$ as a complex-valued number.
 
+The input parameters for an $n$-layered halfspace are:
+
+* separation variable $\lambda$, $0 \le \lambda < \infty$
+* array of layer conductivities $\sigma_i$, $i=1,\dots n$
+* array of layer magnetic permeabilities $\mu_i = \mu_{ri} \mu_0$, $i=1,\dots n$
+* array of layer thicknesses $d_i$, $i=1,\dots,n-1$
+* frequency in Hz.
 
 ```{python}
 def admittance(λ, σ, μ, d, f):
@@ -290,6 +298,7 @@ def admittance(λ, σ, μ, d, f):
     return B[0]
 
 ```
+For $\lambda = 10$ m$^{-1}$, $\sigma=[1, 1]^\top$ S/m, $\mu=[\mu_0, \mu_0]^\top$ Vs/Am, $d=1$ m, $f=1$ Hz we obtain for $B_1$:
 
 ```{python}
 admittance(10.0, np.array([1, 1]), np.array([1, 1]), np.array([1]), 1.0)
@@ -330,6 +339,8 @@ $$
 
 Finally, it remains to evaluate the _Hankel integrals_ numerically.
 
+To this end, we have to implement a discrete convolution. 
+
 ```{python}
 def convolve(fc, kernel, style="valid"):
     nc = len(fc)
@@ -350,12 +361,7 @@ def convolve(fc, kernel, style="valid"):
 
 ```
 
-```{python}
-f = [0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0]
-h = [1, 1, 1, 1, 1]
-g = convolve(h, f, style="valid")
-g
-```
+Here we define the function `gethankelfcJ0` that returns the numerical filter coeffients for the function $J_0(\lambda r)$ `fc`, the length of the filter `nc` as well the index which corresponds with the zero position, `nc0`.
 
 ```{python}
 import numpy as np
