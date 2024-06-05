@@ -47,9 +47,10 @@ The dipole has a dipole moment of $\mathbf m = (0, 0, m)^\top$
 and is located at the point $\mathbf r_0 = (0, 0, -h)^\top$.
 
 For $h$ being sufficiently large, the conducting halfspace has only negligible induction effects in the upper halfspace, therefore we could approximate the vector potential at a point $\mathbf r$  in the neighborhood of the dipole as
-$`math
+$$
  F_z^* = \frac{i\omega\mu_0 m}{4 \pi R},
-$`
+$$
+
 where $R = |\mathbf r - \mathbf r_0| = \sqrt{r^2 + (z + h)^2}$ is the Euclidean distance between the dipole and the point of observation.
 
 ### Superposition of source field and induced field within the halfspace
