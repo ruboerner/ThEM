@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.40">
+<meta name="generator" content="quarto-1.5.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods – 12&nbsp; Dipole induction over a layered halfspace in the time domain</title>
+<title>Theory of Electromagnetic Methods – 13&nbsp; Dipole induction over a layered halfspace in the time domain</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -154,7 +154,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./timedomain_halfspace.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./timedomain_halfspace.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -272,20 +272,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./explicit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Explicit expressions for the fields in HCP configuration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./hankel_transform.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./layered_halfspace.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./timedomain_halfspace.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,7 +308,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -323,25 +329,25 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#inverse-fourier-transform-from-frequency-to-time-domain" id="toc-inverse-fourier-transform-from-frequency-to-time-domain" class="nav-link active" data-scroll-target="#inverse-fourier-transform-from-frequency-to-time-domain"><span class="header-section-number">12.1</span> Inverse Fourier transform from frequency to time domain</a>
+  <li><a href="#inverse-fourier-transform-from-frequency-to-time-domain" id="toc-inverse-fourier-transform-from-frequency-to-time-domain" class="nav-link active" data-scroll-target="#inverse-fourier-transform-from-frequency-to-time-domain"><span class="header-section-number">13.1</span> Inverse Fourier transform from frequency to time domain</a>
   <ul class="collapse">
-  <li><a href="#properties-of-the-step-response" id="toc-properties-of-the-step-response" class="nav-link" data-scroll-target="#properties-of-the-step-response"><span class="header-section-number">12.1.1</span> Properties of the step response</a></li>
+  <li><a href="#properties-of-the-step-response" id="toc-properties-of-the-step-response" class="nav-link" data-scroll-target="#properties-of-the-step-response"><span class="header-section-number">13.1.1</span> Properties of the step response</a></li>
   </ul></li>
-  <li><a href="#how-sines-and-cosines-are-related-to-bessel-functions" id="toc-how-sines-and-cosines-are-related-to-bessel-functions" class="nav-link" data-scroll-target="#how-sines-and-cosines-are-related-to-bessel-functions"><span class="header-section-number">12.2</span> How sine’s and cosine’s are related to Bessel functions</a></li>
-  <li><a href="#the-fast-hankel-transform-fht" id="toc-the-fast-hankel-transform-fht" class="nav-link" data-scroll-target="#the-fast-hankel-transform-fht"><span class="header-section-number">12.3</span> The Fast Hankel Transform (FHT)</a>
+  <li><a href="#how-sines-and-cosines-are-related-to-bessel-functions" id="toc-how-sines-and-cosines-are-related-to-bessel-functions" class="nav-link" data-scroll-target="#how-sines-and-cosines-are-related-to-bessel-functions"><span class="header-section-number">13.2</span> How sine’s and cosine’s are related to Bessel functions</a></li>
+  <li><a href="#the-fast-hankel-transform-fht" id="toc-the-fast-hankel-transform-fht" class="nav-link" data-scroll-target="#the-fast-hankel-transform-fht"><span class="header-section-number">13.3</span> The Fast Hankel Transform (FHT)</a>
   <ul class="collapse">
-  <li><a href="#how-many-frequency-solutions-are-required" id="toc-how-many-frequency-solutions-are-required" class="nav-link" data-scroll-target="#how-many-frequency-solutions-are-required"><span class="header-section-number">12.3.1</span> How many frequency solutions are required?</a></li>
+  <li><a href="#how-many-frequency-solutions-are-required" id="toc-how-many-frequency-solutions-are-required" class="nav-link" data-scroll-target="#how-many-frequency-solutions-are-required"><span class="header-section-number">13.3.1</span> How many frequency solutions are required?</a></li>
   </ul></li>
-  <li><a href="#numerical-experiments" id="toc-numerical-experiments" class="nav-link" data-scroll-target="#numerical-experiments"><span class="header-section-number">12.4</span> Numerical experiments</a></li>
+  <li><a href="#numerical-experiments" id="toc-numerical-experiments" class="nav-link" data-scroll-target="#numerical-experiments"><span class="header-section-number">13.4</span> Numerical experiments</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./timedomain_halfspace.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./timedomain_halfspace.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></h1>
 </div>
 
 
@@ -358,8 +364,8 @@ window.Quarto = {
 </header>
 
 
-<section id="inverse-fourier-transform-from-frequency-to-time-domain" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="inverse-fourier-transform-from-frequency-to-time-domain"><span class="header-section-number">12.1</span> Inverse Fourier transform from frequency to time domain</h2>
+<section id="inverse-fourier-transform-from-frequency-to-time-domain" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="inverse-fourier-transform-from-frequency-to-time-domain"><span class="header-section-number">13.1</span> Inverse Fourier transform from frequency to time domain</h2>
 <p>We have already learned that the inverse transform (<em>Fourier synthesis</em>) back to the time domain can be performed using the Laplace transform when the source current in the transmitter dipole is turned on or off. The current waveform can be described mathematically by a <em>Heaviside step function</em>.</p>
 <p>Key idea ist the <em>step response</em>.</p>
 <p>The step response is the impulse response convolved with the transfer function of the step function. In the frequency domain we realize this by a multiplication of the Fourier transform of the considered field component with the Fourier transform of the step function.</p>
@@ -370,8 +376,8 @@ f(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \frac{F(\omega)}{i \omega} e^{i \om
 \]</span> describes the relation formally correct, but suffers from a singularity when <span class="math inline">\(\omega=0\)</span>.</p>
 <p>Therefore the Fourier transformation is not applicable, since the function <span class="math inline">\(1/i\omega\)</span> to be transformed is not integrable. However, this deficiency can be solved with a trick.</p>
 <p>We will formulate the approach to the inverse Fourier transform a little more elegantly below.</p>
-<section id="properties-of-the-step-response" class="level3" data-number="12.1.1">
-<h3 data-number="12.1.1" class="anchored" data-anchor-id="properties-of-the-step-response"><span class="header-section-number">12.1.1</span> Properties of the step response</h3>
+<section id="properties-of-the-step-response" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="properties-of-the-step-response"><span class="header-section-number">13.1.1</span> Properties of the step response</h3>
 <p>First, we put together some pleasant properties of the function <span class="math inline">\(f(t)\)</span> we are looking for:</p>
 <ul>
 <li><span class="math inline">\(f(t)\)</span> is real, hence</li>
@@ -465,8 +471,8 @@ f_\mathrm{o n}(\mathbf{r}, t) &amp; = -\frac{2}{\pi} \int_{0}^{\infty} \operator
 \]</span> is finite for <span class="math inline">\(\omega \to 0\)</span>, such that the stabilizing term <span class="math inline">\(\epsilon\)</span> is not required.</p>
 </section>
 </section>
-<section id="how-sines-and-cosines-are-related-to-bessel-functions" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="how-sines-and-cosines-are-related-to-bessel-functions"><span class="header-section-number">12.2</span> How sine’s and cosine’s are related to Bessel functions</h2>
+<section id="how-sines-and-cosines-are-related-to-bessel-functions" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="how-sines-and-cosines-are-related-to-bessel-functions"><span class="header-section-number">13.2</span> How sine’s and cosine’s are related to Bessel functions</h2>
 <p>We now want to establish the connection to the Hankel transformation via Bessel functions of half-integer order. There holds (<a href="http://people.math.sfu.ca/~cbm/aands/page_437.htm">Abramowitz &amp; Stegun</a>, 10.1.1, 10.1.10 and 10.1.11) <span class="math display">\[
 \begin{equation}
 \begin{aligned}
@@ -518,8 +524,8 @@ Impulse response via Hankel transform
 </div>
 </div>
 </section>
-<section id="the-fast-hankel-transform-fht" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="the-fast-hankel-transform-fht"><span class="header-section-number">12.3</span> The Fast Hankel Transform (FHT)</h2>
+<section id="the-fast-hankel-transform-fht" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="the-fast-hankel-transform-fht"><span class="header-section-number">13.3</span> The Fast Hankel Transform (FHT)</h2>
 <p>We follow the basic ideas of the FHT as introduced above where we have considered dipole induction in the frequency domain over a (layered) half-space.</p>
 <p>After a substitution of variables, a convolution integral and later a convolution sum with finitely many terms can be established.</p>
 <p>Likewise, we make the transformations <span class="math display">\[
@@ -533,8 +539,8 @@ Impulse response via Hankel transform
 \end{aligned}
 \end{equation}
 \]</span></p>
-<section id="how-many-frequency-solutions-are-required" class="level3" data-number="12.3.1">
-<h3 data-number="12.3.1" class="anchored" data-anchor-id="how-many-frequency-solutions-are-required"><span class="header-section-number">12.3.1</span> How many frequency solutions are required?</h3>
+<section id="how-many-frequency-solutions-are-required" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="how-many-frequency-solutions-are-required"><span class="header-section-number">13.3.1</span> How many frequency solutions are required?</h3>
 <p>Which frequencies have to be calculated and how do they depend on the desired time interval?</p>
 <p>The following rule applies:</p>
 <p>Let <span class="math inline">\(n_c\)</span> be the number of filter coefficients, <span class="math inline">\(n_t\)</span> the number of logarithmically equidistant time points <span class="math inline">\(t_i\)</span>, <span class="math inline">\(i=1,\dots,n_t\)</span>.</p>
@@ -549,7 +555,7 @@ Impulse response via Hankel transform
 <p>Let <span class="math inline">\(n_c = 80\)</span>, <span class="math inline">\(n_t = 31\)</span> sampled from the interval <span class="math inline">\(t_0 = 10^{-6} \le t \le 10^{-3}\)</span> s with 10 log-equidistant samples per decade.</p>
 <p>Then <span class="math inline">\(n_c + n_t - 1 = 110\)</span>.</p>
 <p>Let’s compute the <span class="math inline">\(\omega_n\)</span>.</p>
-<div id="7fc95f19" class="cell" data-execution_count="3">
+<div id="1ce04fea" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nt <span class="op">=</span> <span class="dv">31</span></span>
@@ -565,9 +571,9 @@ Impulse response via Hankel transform
 <p>The required 110 frequencies <span class="math inline">\(f_n = \omega_n / (2 \pi)\)</span> are located between 0.02 Hz and 1.592 GHz.</p>
 </section>
 </section>
-<section id="numerical-experiments" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="numerical-experiments"><span class="header-section-number">12.4</span> Numerical experiments</h2>
-<div id="b214e021" class="cell" data-execution_count="4">
+<section id="numerical-experiments" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="numerical-experiments"><span class="header-section-number">13.4</span> Numerical experiments</h2>
+<div id="1d161205" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gethankelfcsin():</span>
@@ -599,7 +605,7 @@ Impulse response via Hankel transform
 </details>
 </div>
 <p>We plot of the filter coefficients for <span class="math inline">\(J_{+1/2}(\omega t)\)</span>, i.e., the <em>sine</em> transform:</p>
-<div id="80ae9d57" class="cell" data-execution_count="5">
+<div id="f97aeaf8" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fc, nc, nc0 <span class="op">=</span> gethankelfcsin()</span>
@@ -622,7 +628,7 @@ Impulse response via Hankel transform
 <li><code>Bz_analytical()</code> provides all required frequency domain solutions to be used in the sine transform,</li>
 <li><code>dBzdt_halfspace()</code> provides an analytical reference solution for the <em>impulse response</em> of a uniform halfspace.</li>
 </ul>
-<div id="5f4bc90f" class="cell" data-execution_count="6">
+<div id="750ef58d" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Bz_analytical(r, omega, sigma):</span>
@@ -672,7 +678,7 @@ Note
 <p>Note that the call of <code>Bz_analytical</code> in the code below may be replaced by a call to any appropriate function which provides the frequency domain field components of any dipole type and orientation.</p>
 </div>
 </div>
-<div id="1a84022c" class="cell" data-execution_count="7">
+<div id="2a012583" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
@@ -686,7 +692,7 @@ Note
 </details>
 </div>
 <p>Plot of the results</p>
-<div id="e5498807" class="cell" data-execution_count="8">
+<div id="a5ebce27" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
@@ -1139,12 +1145,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./layered_halfspace.html" class="pagination-link" aria-label="Dipole sources above a layered halfspace">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

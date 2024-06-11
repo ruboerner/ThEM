@@ -24,6 +24,7 @@ book:
       - potentials.qmd
       - timedomain_fullspace.qmd
       - halfspace.qmd
+      - explicit.qmd
       - hankel_transform.qmd
       - layered_halfspace.qmd
       - timedomain_halfspace.qmd

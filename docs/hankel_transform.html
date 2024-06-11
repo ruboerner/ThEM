@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.40">
+<meta name="generator" content="quarto-1.5.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods – 10&nbsp; Numerical calculation of the EM Hankel integrals</title>
+<title>Theory of Electromagnetic Methods – 11&nbsp; Numerical calculation of the EM Hankel integrals</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -85,7 +85,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./layered_halfspace.html" rel="next">
-<link href="./halfspace.html" rel="prev">
+<link href="./explicit.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -174,7 +174,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./hankel_transform.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./hankel_transform.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -292,20 +292,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./explicit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Explicit expressions for the fields in HCP configuration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./hankel_transform.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./layered_halfspace.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./timedomain_halfspace.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></span></a>
   </div>
 </li>
       </ul>
@@ -322,7 +328,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -343,18 +349,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-oscillating-nature-of-the-integrands" id="toc-the-oscillating-nature-of-the-integrands" class="nav-link active" data-scroll-target="#the-oscillating-nature-of-the-integrands"><span class="header-section-number">10.1</span> The oscillating nature of the integrands</a></li>
-  <li><a href="#the-fast-hankel-transform" id="toc-the-fast-hankel-transform" class="nav-link" data-scroll-target="#the-fast-hankel-transform"><span class="header-section-number">10.2</span> The Fast Hankel Transform</a></li>
-  <li><a href="#numerical-implementation-of-the-convolution" id="toc-numerical-implementation-of-the-convolution" class="nav-link" data-scroll-target="#numerical-implementation-of-the-convolution"><span class="header-section-number">10.3</span> Numerical implementation of the convolution</a></li>
+  <li><a href="#the-oscillating-nature-of-the-integrands" id="toc-the-oscillating-nature-of-the-integrands" class="nav-link active" data-scroll-target="#the-oscillating-nature-of-the-integrands"><span class="header-section-number">11.1</span> The oscillating nature of the integrands</a></li>
+  <li><a href="#the-fast-hankel-transform" id="toc-the-fast-hankel-transform" class="nav-link" data-scroll-target="#the-fast-hankel-transform"><span class="header-section-number">11.2</span> The Fast Hankel Transform</a></li>
+  <li><a href="#numerical-implementation-of-the-convolution" id="toc-numerical-implementation-of-the-convolution" class="nav-link" data-scroll-target="#numerical-implementation-of-the-convolution"><span class="header-section-number">11.3</span> Numerical implementation of the convolution</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./hankel_transform.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./potentials.html">Dipole induction</a></li><li class="breadcrumb-item"><a href="./hankel_transform.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Numerical calculation of the EM Hankel integrals</span></h1>
 </div>
 
 
@@ -397,16 +403,16 @@ window.Quarto = {
     e^{-\lambda h}e^{\lambda z}J_0(\lambda r)\, \dd\lambda
     \right]
 \end{align}
-\tag{10.1}\]</span></span></p>
-<p>The first terms in the brackets of <a href="#eq-fields-in-air" class="quarto-xref"><span>10.1</span></a> describe the geometric damping of the source field in free space. These terms are trivial to calculate.</p>
+\tag{11.1}\]</span></span></p>
+<p>The first terms in the brackets of <a href="#eq-fields-in-air" class="quarto-xref"><span>11.1</span></a> describe the geometric damping of the source field in free space. These terms are trivial to calculate.</p>
 <p>The contribution to the field components in <span class="math inline">\(z&lt;0\)</span> caused by induction in <span class="math inline">\(z&gt;0\)</span> is provided by the integral expressions in the brackets.</p>
 <p>They have the general form <span class="math display">\[
 \begin{equation}
 g(r) = \int_0^\infty f(\lambda, z) J_\nu(\lambda r)\, \dd\lambda, \qquad \nu &gt; -1
 \end{equation}
 \]</span> with <span class="math inline">\(\nu\)</span> indicating the order of the Bessel function.</p>
-<section id="the-oscillating-nature-of-the-integrands" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="the-oscillating-nature-of-the-integrands"><span class="header-section-number">10.1</span> The oscillating nature of the integrands</h2>
+<section id="the-oscillating-nature-of-the-integrands" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="the-oscillating-nature-of-the-integrands"><span class="header-section-number">11.1</span> The oscillating nature of the integrands</h2>
 <p>To evaluate, e.g., the component <span class="math inline">\(B_z\)</span>, one needs the function <span class="math inline">\(f(\lambda, z)\)</span> as <span class="math display">\[
 f(\lambda, z) = \frac{\lambda - \lambda_1}{\lambda + \lambda_1}\lambda^2
 e^{-\lambda h}e^{\lambda z}
@@ -420,7 +426,7 @@ e^{-\lambda h}e^{\lambda z}
 </ul>
 <p>The surface admittance <span class="math inline">\(\lambda_1 = \sqrt{\lambda^2 + i \omega \mu_0 \sigma_1}\)</span> will be calculated using the function <code>lambda_1</code> given below.</p>
 <p>This is the <code>Python</code> implementation of the admittance of the uniform halfspace, <span class="math inline">\(\lambda_1\)</span>:</p>
-<div id="b7012425" class="cell" data-execution_count="2">
+<div id="9b143c09" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lambda_1(lam, sigma, mu, f):</span>
@@ -430,9 +436,9 @@ e^{-\lambda h}e^{\lambda z}
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> alpha <span class="op">/</span> mu0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Given these definitions, we are now able to evaluate the complete integrand functions in <a href="#eq-fields-in-air" class="quarto-xref"><span>10.1</span></a>.</p>
+<p>Given these definitions, we are now able to evaluate the complete integrand functions in <a href="#eq-fields-in-air" class="quarto-xref"><span>11.1</span></a>.</p>
 <p>To this end, we first illustrate the integrand graphically:</p>
-<div id="a8442f15" class="cell" data-execution_count="3">
+<div id="32ade625" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nlam <span class="op">=</span> <span class="dv">801</span></span>
@@ -465,7 +471,7 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 <p>As we see from the above illustration, the behaviour of <span class="math inline">\(f(\lambda,z)\)</span> itself does not impose any numerical problems to the integration.</p>
 <p>The following graphs show the real and imaginary part of the <em>complete integrand</em>:</p>
-<div id="098c02bd" class="cell" data-execution_count="4">
+<div id="607b0cf1" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> j0</span>
@@ -500,8 +506,8 @@ e^{-\lambda h}e^{\lambda z}
 </ol>
 <p>In the following, we briefly outline the idea of the FHT.</p>
 </section>
-<section id="the-fast-hankel-transform" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="the-fast-hankel-transform"><span class="header-section-number">10.2</span> The Fast Hankel Transform</h2>
+<section id="the-fast-hankel-transform" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="the-fast-hankel-transform"><span class="header-section-number">11.2</span> The Fast Hankel Transform</h2>
 <p>Important work on this problem has been done by <span class="citation" data-cites="ghosh1971">Ghosh (<a href="references.html#ref-ghosh1971" role="doc-biblioref">1971</a>)</span>, <span class="citation" data-cites="johansen1979">Johansen &amp; Sørensen (<a href="references.html#ref-johansen1979" role="doc-biblioref">1979</a>)</span>, <span class="citation" data-cites="anderson1982fast">Anderson (<a href="references.html#ref-anderson1982fast" role="doc-biblioref">1982</a>)</span>, <span class="citation" data-cites="christensen1990">Christensen (<a href="references.html#ref-christensen1990" role="doc-biblioref">1990</a>)</span>, among others.</p>
 <p>The method is based on the following idea:</p>
 <p>To cover the range of <span class="math inline">\(\lambda\)</span> from <span class="math inline">\(0\)</span> to <span class="math inline">\(\infty\)</span> as quickly as possible, we take the following <em>variable transformation</em>:</p>
@@ -538,10 +544,10 @@ G_m = \sum_{n=n_1} ^{n_2} F_n \overline H_{m-n} = \sum_{n=n_1} ^{n_2} F_{m-n} \o
 \end{equation}\]</span></p>
 <p>using standard methods of discrete convolution.</p>
 </section>
-<section id="numerical-implementation-of-the-convolution" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="numerical-implementation-of-the-convolution"><span class="header-section-number">10.3</span> Numerical implementation of the convolution</h2>
+<section id="numerical-implementation-of-the-convolution" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="numerical-implementation-of-the-convolution"><span class="header-section-number">11.3</span> Numerical implementation of the convolution</h2>
 <p>We implement a <code>Python</code> function that computes the convolution:</p>
-<div id="404f64e4" class="cell" data-execution_count="5">
+<div id="907b7e88" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convolve(fc, kernel, style<span class="op">=</span><span class="st">"valid"</span>):</span>
@@ -578,7 +584,7 @@ Note
 </div>
 <p>The following example confirms that our code is correct.</p>
 <p>The convolution of two rectangular sequences results in a triangular sequence:</p>
-<div id="04be2427" class="cell" data-execution_count="6">
+<div id="67999944" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
@@ -594,7 +600,7 @@ Note
 [1 2 3 4 5 4 3 2 1]</code></pre>
 </div>
 </div>
-<div id="51f77da3" class="cell" data-execution_count="7">
+<div id="cb914707" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>))</span>
@@ -611,7 +617,7 @@ Note
 </div>
 </div>
 </div>
-<div id="4fc25e44" class="cell" data-execution_count="8">
+<div id="e539fc16" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>))</span>
@@ -1069,13 +1075,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./halfspace.html" class="pagination-link" aria-label="Dipole sources above a uniform halfspace">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dipole sources above a uniform halfspace</span></span>
+      <a href="./explicit.html" class="pagination-link" aria-label="Explicit expressions for the fields in HCP configuration">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Explicit expressions for the fields in HCP configuration</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./layered_halfspace.html" class="pagination-link" aria-label="Dipole sources above a layered halfspace">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dipole sources above a layered halfspace</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
