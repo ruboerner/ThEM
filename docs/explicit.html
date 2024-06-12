@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -333,13 +353,14 @@ window.Quarto = {
   <li><a href="#recall-of-vmd-expressions" id="toc-recall-of-vmd-expressions" class="nav-link" data-scroll-target="#recall-of-vmd-expressions"><span class="header-section-number">10.2</span> Recall of VMD expressions</a></li>
   <li><a href="#electric-field" id="toc-electric-field" class="nav-link" data-scroll-target="#electric-field"><span class="header-section-number">10.3</span> Electric field</a>
   <ul class="collapse">
-  <li><a href="#the-weber-integral" id="toc-the-weber-integral" class="nav-link" data-scroll-target="#the-weber-integral"><span class="header-section-number">10.3.1</span> The Weber integral</a></li>
-  <li><a href="#the-sommerfeld-integral" id="toc-the-sommerfeld-integral" class="nav-link" data-scroll-target="#the-sommerfeld-integral"><span class="header-section-number">10.3.2</span> The Sommerfeld integral</a></li>
+  <li><a href="#useful-integral-identities" id="toc-useful-integral-identities" class="nav-link" data-scroll-target="#useful-integral-identities"><span class="header-section-number">10.3.1</span> Useful integral identities</a></li>
   </ul></li>
-  <li><a href="#magnetic-field" id="toc-magnetic-field" class="nav-link" data-scroll-target="#magnetic-field"><span class="header-section-number">10.4</span> Magnetic field</a></li>
-  <li><a href="#implementation-for-e_varphi" id="toc-implementation-for-e_varphi" class="nav-link" data-scroll-target="#implementation-for-e_varphi"><span class="header-section-number">10.5</span> Implementation for <span class="math inline">\(E_\varphi\)</span></a></li>
-  <li><a href="#implementation-for-h_r-and-h_z" id="toc-implementation-for-h_r-and-h_z" class="nav-link" data-scroll-target="#implementation-for-h_r-and-h_z"><span class="header-section-number">10.6</span> Implementation for <span class="math inline">\(H_r\)</span> and <span class="math inline">\(H_z\)</span></a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">10.7</span> Examples</a></li>
+  <li><a href="#implementation-for-e_varphi" id="toc-implementation-for-e_varphi" class="nav-link" data-scroll-target="#implementation-for-e_varphi"><span class="header-section-number">10.4</span> Implementation for <span class="math inline">\(E_\varphi\)</span></a></li>
+  <li><a href="#magnetic-field" id="toc-magnetic-field" class="nav-link" data-scroll-target="#magnetic-field"><span class="header-section-number">10.5</span> Magnetic field</a></li>
+  <li><a href="#implementation-for-b_r-and-b_z" id="toc-implementation-for-b_r-and-b_z" class="nav-link" data-scroll-target="#implementation-for-b_r-and-b_z"><span class="header-section-number">10.6</span> Implementation for <span class="math inline">\(B_r\)</span> and <span class="math inline">\(B_z\)</span></a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">10.7</span> Summary</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><span class="header-section-number">10.8</span> Examples</a></li>
+  <li><a href="#explicit-expressions-for-the-fields-in-the-time-domain" id="toc-explicit-expressions-for-the-fields-in-the-time-domain" class="nav-link" data-scroll-target="#explicit-expressions-for-the-fields-in-the-time-domain"><span class="header-section-number">10.9</span> Explicit expressions for the fields in the time domain</a></li>
   </ul>
 </nav>
     </div>
@@ -388,7 +409,7 @@ Expressions for coplanar configuration at z=0, h=0:
 <div class="callout-body-container callout-body">
 <p><span class="math display">\[
     \begin{equation}
-        E_\varphi = -\frac{i \omega \mu m}{2 \pi} \int_0^\infty \frac{\lambda^2}{\lambda + \lambda_1}
+        E_\varphi = -\frac{i \omega \mu_0 m}{2 \pi} \int_0^\infty \frac{\lambda^2}{\lambda + \lambda_1}
         J_1(\lambda r) \, \dd\lambda
     \end{equation}
 \]</span></p>
@@ -411,7 +432,7 @@ Expressions for coplanar configuration at z=0, h=0:
 <h2 data-number="10.3" class="anchored" data-anchor-id="electric-field"><span class="header-section-number">10.3</span> Electric field</h2>
 <p>In the following we try to <em>rewrite</em> the integral. Recalling the properties of the Bessel function we first write <span class="math display">\[
 \begin{equation}
-    E_\varphi = \frac{i \omega \mu m}{2 \pi}
+    E_\varphi = \frac{i \omega \mu_0 m}{2 \pi}
     \partial_r
     \int_0^\infty \frac{\lambda}{\lambda + \lambda_1}
     J_0(\lambda r) \, \dd\lambda
@@ -423,9 +444,9 @@ Expressions for coplanar configuration at z=0, h=0:
 \lambda^2 - \lambda \lambda_1
 \right)
 \]</span></p>
-<p>We obtain <span class="math display">\[
+<p>We obtain <span id="eq-Ephi-new"><span class="math display">\[
 \begin{equation}
-    E_\varphi = \frac{i \omega \mu m}{2 \pi k_1^2}
+    E_\varphi = \frac{i \omega \mu_0 m}{2 \pi k_1^2}
     \partial_r
     \left[
     \int_0^\infty \lambda^2
@@ -434,15 +455,15 @@ Expressions for coplanar configuration at z=0, h=0:
     J_0(\lambda r) \, \dd\lambda
     \right].
 \end{equation}
-\]</span></p>
-<section id="the-weber-integral" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="the-weber-integral"><span class="header-section-number">10.3.1</span> The Weber integral</h3>
-<p>With <span class="math inline">\(R^2 = r^2 + z^2\)</span> there holds the following identity (<em>Weber</em> integral) <span class="math display">\[
+\tag{10.1}\]</span></span></p>
+<section id="useful-integral-identities" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="useful-integral-identities"><span class="header-section-number">10.3.1</span> Useful integral identities</h3>
+<p>With <span class="math inline">\(R^2 = r^2 + z^2\)</span> there holds the following identity (<em>Weber integral</em>) <span id="eq-weber"><span class="math display">\[
 \begin{equation}
 \frac{1}{R} = \int_0^\infty
 e^{-\lambda z} J_0(\lambda r)\, d\lambda.
 \end{equation}
-\]</span> After differentiating twice w.r.t. <span class="math inline">\(z\)</span>, we obtain <span class="math display">\[
+\tag{10.2}\]</span></span> After differentiating both sides of <a href="#eq-weber" class="quarto-xref"><span>10.2</span></a> twice w.r.t. <span class="math inline">\(z\)</span>, we obtain <span class="math display">\[
 \frac{\partial^2}{\partial z^2} \frac{1}{R} = \int_0^\infty
 \lambda^2 e^{-\lambda z} J_0(\lambda r)\, \dd\lambda.
 \]</span></p>
@@ -450,17 +471,15 @@ e^{-\lambda z} J_0(\lambda r)\, d\lambda.
 \frac{\partial^2}{\partial z^2} \frac{1}{R}  \bigg|_{z=0} =
 \int_0^\infty
 \lambda^2 J_0(\lambda r)\, \dd\lambda.
-\]</span> We see, that for <span class="math inline">\(z=0\)</span> this is the first integral in the above expression of <span class="math inline">\(E_\varphi\)</span>.</p>
-</section>
-<section id="the-sommerfeld-integral" class="level3" data-number="10.3.2">
-<h3 data-number="10.3.2" class="anchored" data-anchor-id="the-sommerfeld-integral"><span class="header-section-number">10.3.2</span> The Sommerfeld integral</h3>
-<p>The <em>Sommerfeld</em> integral is <span class="math display">\[
+\]</span> We see, that for <span class="math inline">\(z=0\)</span> this resembles the first integral in the xpression of <span class="math inline">\(E_\varphi\)</span> given in <a href="#eq-Ephi-new" class="quarto-xref"><span>10.1</span></a>.</p>
+<p>The <em>Sommerfeld</em> integral is <span id="eq-sommerfeld"><span class="math display">\[
 \begin{equation}
 \frac{e^{-i k_1 R}}{R} = \int_0^\infty
 \frac{\lambda}{\lambda_1}
 e^{-\lambda_1 z} J_0(\lambda r)\, \dd\lambda.
 \end{equation}
-\]</span> Likewise, we obtain the second integral expression when we differentiate the <em>Sommerfeld</em> integral twice w.r.t. <span class="math inline">\(z\)</span>: <span class="math display">\[
+\tag{10.3}\]</span></span></p>
+<p>Likewise, we obtain the second integral expression when we differentiate the <em>Sommerfeld</em> integral <a href="#eq-sommerfeld" class="quarto-xref"><span>10.3</span></a> twice w.r.t. <span class="math inline">\(z\)</span>: <span class="math display">\[
 \frac{\partial^2}{\partial z^2} \frac{e^{-i k_1 R}}{R} = \int_0^\infty
 {\lambda}{\lambda_1}
 e^{-\lambda_1 z} J_0(\lambda r)\, \dd\lambda
@@ -474,15 +493,10 @@ J_0(\lambda r)\, \dd\lambda
 <p>The point is, that we can replace the integrals <em>just by functions of</em> <span class="math inline">\(R\)</span>!</p>
 </section>
 </section>
-<section id="magnetic-field" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="magnetic-field"><span class="header-section-number">10.4</span> Magnetic field</h2>
-<p>The expressions for <span class="math inline">\(B_z\)</span> and <span class="math inline">\(B_r\)</span> can be obtained in a similar fashion.</p>
-<p>Note that the conversion for <span class="math inline">\(B_r\)</span> is slightly more involved.</p>
-</section>
-<section id="implementation-for-e_varphi" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="implementation-for-e_varphi"><span class="header-section-number">10.5</span> Implementation for <span class="math inline">\(E_\varphi\)</span></h2>
+<section id="implementation-for-e_varphi" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="implementation-for-e_varphi"><span class="header-section-number">10.4</span> Implementation for <span class="math inline">\(E_\varphi\)</span></h2>
 <p>We define <code>sympy</code> expressions and let <code>Python</code> do the work for us.</p>
-<div id="aae05dfb" class="cell" data-execution_count="2">
+<div id="b3f51989" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> sp.symbols(<span class="st">'r'</span>, positive<span class="op">=</span><span class="va">True</span>, real<span class="op">=</span><span class="va">True</span>)</span>
@@ -497,7 +511,7 @@ J_0(\lambda r)\, \dd\lambda
 </div>
 </div>
 <p>The second derivative of the Weber integral, i.e., <span class="math inline">\(1/R\)</span>, w.r.t. <span class="math inline">\(z\)</span> is</p>
-<div id="524766f7" class="cell" data-execution_count="3">
+<div id="0f356d00" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Rzz <span class="op">=</span> sp.diff(<span class="dv">1</span> <span class="op">/</span> R, z, <span class="dv">2</span>)</span>
@@ -508,7 +522,7 @@ J_0(\lambda r)\, \dd\lambda
 </div>
 </div>
 <p>Now, we set <span class="math inline">\(z=0\)</span> and obtain</p>
-<div id="4d014550" class="cell" data-execution_count="4">
+<div id="6ef2f3b2" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Rzz.subs(z, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -522,7 +536,7 @@ J_0(\lambda r)\, \dd\lambda
 \]</span> Further, the left-hand side of the Sommerfeld integral is <span class="math display">\[
 \frac{e^{-i k_1 R}}{R},
 \]</span> and its second derivative w.r.t. <span class="math inline">\(z\)</span> is</p>
-<div id="92db76e5" class="cell" data-execution_count="5">
+<div id="9e12ce20" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Gzz <span class="op">=</span> sp.diff(G, z, <span class="dv">2</span>)</span>
@@ -533,7 +547,7 @@ J_0(\lambda r)\, \dd\lambda
 </div>
 </div>
 <p>which, after setting <span class="math inline">\(z=0\)</span>, becomes</p>
-<div id="67ff0f57" class="cell" data-execution_count="6">
+<div id="9ad80ffe" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Gzz.subs(z, <span class="dv">0</span>).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -543,7 +557,7 @@ J_0(\lambda r)\, \dd\lambda
 </div>
 </div>
 <p>Finally, we apply the derivative w.r.t. <span class="math inline">\(r\)</span> to both results and obtain</p>
-<div id="d0b73685" class="cell" data-execution_count="7">
+<div id="96a4ac59" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ex <span class="op">=</span> sp.diff(Rzz, r).subs(z,<span class="dv">0</span>) <span class="op">-</span> sp.diff(Gzz, r).subs(z, <span class="dv">0</span>)</span>
@@ -564,12 +578,12 @@ J_0(\lambda r)\, \dd\lambda
     3 - (3 + 3 ikr - k^2 r^2) e^{-ikr}}{r^4}.
 \]</span></p>
 <p>Incorporating the leading factor of <span class="math inline">\(E_\varphi\)</span> we get the result <span class="math display">\[
-E_\varphi(r, \omega) = \frac{i \omega \mu m}{2 \pi k^2 r^4} \left[
+E_\varphi(r, \omega) = -\frac{m}{2 \pi \sigma r^4} \left[
 3 - (3 + 3 ikr - k^2 r^2) e^{-ikr}
 \right]
 \]</span></p>
 <p>For later evaluation we implement this result as a function:</p>
-<div id="95df6a32" class="cell" data-execution_count="8">
+<div id="e40802c2" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Ephi(r, omega, sigma):</span>
@@ -577,27 +591,33 @@ E_\varphi(r, \omega) = \frac{i \omega \mu m}{2 \pi k^2 r^4} \left[
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> np.sqrt(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> mu_0 <span class="op">*</span> sigma)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    E <span class="op">=</span> <span class="dv">3</span> <span class="op">-</span> (<span class="dv">3</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> <span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> r <span class="op">-</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> <span class="op">\</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        np.exp(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> r)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    E <span class="op">*=</span> <span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> mu_0 <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">4</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    E <span class="op">*=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> sigma <span class="op">*</span> r<span class="op">**</span><span class="dv">4</span>)</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="implementation-for-h_r-and-h_z" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="implementation-for-h_r-and-h_z"><span class="header-section-number">10.6</span> Implementation for <span class="math inline">\(H_r\)</span> and <span class="math inline">\(H_z\)</span></h2>
+<section id="magnetic-field" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="magnetic-field"><span class="header-section-number">10.5</span> Magnetic field</h2>
+<p>The expressions for <span class="math inline">\(B_z\)</span> and <span class="math inline">\(B_r\)</span> for <span class="math inline">\(z=0\)</span> and <span class="math inline">\(h=0\)</span> can be obtained in a similar fashion.</p>
+<p>Note that the conversion for <span class="math inline">\(B_r\)</span> is slightly more involved.</p>
+</section>
+<section id="implementation-for-b_r-and-b_z" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="implementation-for-b_r-and-b_z"><span class="header-section-number">10.6</span> Implementation for <span class="math inline">\(B_r\)</span> and <span class="math inline">\(B_z\)</span></h2>
 <p>For the magnetic field we find closed-form expressions using similar tricks.</p>
-<p>Specifically, we obtain <span class="math display">\[
-B_r(r, \omega) = -\frac{\mu m k^2}{4 \pi r} \left[
-I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
+<p>Specifically, we obtain</p>
+<p><span class="math display">\[
+B_z(r, \omega) = \frac{\mu_0 m}{2 \pi k^2 r^5} \left[
+9 - (9 + 9ikr - 4k^2 r^2 - ik^3r^3) e^{-ikr}
 \right]
 \]</span></p>
 <p><span class="math display">\[
-B_z(r, \omega) = \frac{\mu m}{2 \pi k^2 r^5} \left[
-9 - (9 + 9ikr - 4k^2 r^2 - ik^3r^3) e^{-ikr}
+B_r(r, \omega) = -\frac{\mu_0 m k^2}{4 \pi r} \left[
+I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
 \right]
 \]</span></p>
 <p>The functions <span class="math inline">\(I_1, I_2, K_1, K_2\)</span> are the <em>modified Bessel functions</em> of the first kind and order 1 and 2 with complex argument <span class="math inline">\(\alpha = \dfrac{ikr}{2}\)</span>.</p>
 <p><code>Python</code> implementation:</p>
-<div id="a2a94112" class="cell" data-execution_count="9">
+<div id="af64ee4e" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> kv, iv</span>
@@ -621,10 +641,40 @@ B_z(r, \omega) = \frac{\mu m}{2 \pi k^2 r^5} \left[
 </details>
 </div>
 </section>
-<section id="examples" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="examples"><span class="header-section-number">10.7</span> Examples</h2>
+<section id="summary" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="summary"><span class="header-section-number">10.7</span> Summary</h2>
+<p>The final expressions in the frequency domain are given by</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Frequency domain fields">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Frequency domain fields
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span id="eq-allfields-freq"><span class="math display">\[
+\begin{align}
+E_\varphi(r, \omega) &amp; = -\frac{m}{2 \pi \sigma r^4} \left[
+3 - (3 + 3 ikr - k^2 r^2) e^{-ikr}
+\right] \\
+B_z(r, \omega) &amp; = \frac{\mu_0 m}{2 \pi k^2 r^5} \left[
+9 - (9 + 9ikr - 4k^2 r^2 - ik^3r^3) e^{-ikr}
+\right] \\
+B_r(r, \omega) &amp; = -\frac{\mu_0 m k^2}{4 \pi r} \left[
+I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
+\right]
+\end{align}
+\tag{10.4}\]</span></span></p>
+<p><span class="math inline">\(\alpha = \dfrac{i k r}{2}\)</span></p>
+</div>
+</div>
+</section>
+<section id="examples" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="examples"><span class="header-section-number">10.8</span> Examples</h2>
 <p>As an example, we choose a homogeneous ground with conductivity <span class="math inline">\(\sigma = 0.01\)</span> S/m. The transmitter-receiver offset is <span class="math inline">\(100\)</span> m. The frequencies cover a range from <span class="math inline">\(10^{-1} \le f \le 10^5\)</span> Hz.</p>
-<div id="905fd289" class="cell" data-execution_count="10">
+<div id="6ddb2f6e" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">100.0</span></span>
@@ -635,7 +685,7 @@ B_z(r, \omega) = \frac{\mu m}{2 \pi k^2 r^5} \left[
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>B_z <span class="op">=</span> [Bz(r, <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> v, sigma) <span class="cf">for</span> v <span class="kw">in</span> f]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="c533f37c" class="cell" data-execution_count="11">
+<div id="4e673589" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pos(data):</span>
@@ -654,7 +704,7 @@ B_z(r, \omega) = \frac{\mu m}{2 \pi k^2 r^5} \left[
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="f9a0633e" class="cell" data-execution_count="12">
+<div id="15758fb0" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plotfield(f, E_phi)</span>
@@ -669,7 +719,7 @@ B_z(r, \omega) = \frac{\mu m}{2 \pi k^2 r^5} \left[
 </div>
 </div>
 </div>
-<div id="45e1389e" class="cell" data-execution_count="13">
+<div id="301ebf0a" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plotfield(f, B_r)</span>
@@ -684,7 +734,7 @@ B_z(r, \omega) = \frac{\mu m}{2 \pi k^2 r^5} \left[
 </div>
 </div>
 </div>
-<div id="8c07d2c1" class="cell" data-execution_count="14">
+<div id="1c9ff98e" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plotfield(f, B_z)</span>
@@ -699,13 +749,55 @@ B_z(r, \omega) = \frac{\mu m}{2 \pi k^2 r^5} \left[
 </div>
 </div>
 </div>
-<p>The last plot for <span class="math inline">\(B_z\)</span> can be verified using Fig. 4.2 in Ward &amp; Hohmann:</p>
+<p>The last plot for <span class="math inline">\(B_z\)</span> can be verified using Fig. 4.2 in <span class="citation" data-cites="ward1988electromagnetic">Ward &amp; Hohmann (<a href="references.html#ref-ward1988electromagnetic" role="doc-biblioref">1988</a>)</span>. Note that <span class="math inline">\(H_z\)</span> is plotted in the following reference figure:</p>
 <p><img src="https://ruboerner.github.io/images/Hz_VMD.png" class="img-fluid"></p>
-<p>Note that <span class="math inline">\(H_z\)</span> is plotted in the above figure.</p>
-<p>For completeness, this is Fig. 4.3 of Ward &amp; Hohmann, which displays <span class="math inline">\(H_r\)</span>:</p>
+<p>For completeness, this is Fig. 4.3 of <span class="citation" data-cites="ward1988electromagnetic">Ward &amp; Hohmann (<a href="references.html#ref-ward1988electromagnetic" role="doc-biblioref">1988</a>)</span>, which displays <span class="math inline">\(H_r\)</span>:</p>
 <p><img src="https://ruboerner.github.io/images/Hr_VMD.png" class="img-fluid"></p>
+</section>
+<section id="explicit-expressions-for-the-fields-in-the-time-domain" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="explicit-expressions-for-the-fields-in-the-time-domain"><span class="header-section-number">10.9</span> Explicit expressions for the fields in the time domain</h2>
+<p>Following the ideas outlined in <a href="timedomain_fullspace.html#sec-laplace" class="quarto-xref"><span>Section 8.2.5</span></a>, we transform the field expressions <a href="#eq-allfields-freq" class="quarto-xref"><span>10.4</span></a> for a VMD in HCP configuration at <span class="math inline">\(z=0\)</span> into the time domain.</p>
+<p>The final expressions for <span class="math inline">\(e_\varphi\)</span>, <span class="math inline">\(b_z\)</span>, and <span class="math inline">\(\pdv{b_z}{t}\)</span> can be easily obtained using <a href="timedomain_fullspace.html#eq-laplace-1" class="quarto-xref"><span>8.1</span></a>, <a href="timedomain_fullspace.html#eq-laplace-ikr" class="quarto-xref"><span>8.2</span></a>, and <a href="timedomain_fullspace.html#eq-laplace-k2r2" class="quarto-xref"><span>8.3</span></a>, and are given by</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Time domain fields">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Time domain fields
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{align}
+e_\varphi &amp;= -\frac{m}{2 \pi \sigma r^4} \left[
+3 \mathrm{erfc}(\Theta r) - \frac{2}{\sqrt{\pi}} \Theta r (3 + 2 \Theta^2 r^2 ) e^{-\Theta^2 r^2}
+\right] \\
+b_z &amp;= \frac{\mu_0 m}{4 \pi r^3} \left[
+    \frac{9}{2 \theta^2 r^2} -\mathrm{erf}(\Theta r) - \frac{1}{\sqrt{\pi}} \left(
+        \frac{9}{\Theta r} + 4 \Theta r
+    \right)
+    e^{-\Theta^2 r^2}
+\right] \\
+\pdv{b_z}{t}  &amp;= \frac{m}{2 \pi \sigma r^5} \left[
+    9 \mathrm{erf}(\Theta r) - \frac{2 \Theta r}{\sqrt{\pi}}
+    \left(
+        9 + 6 \Theta^2 r^2 + 4 \Theta^4 r^4
+    \right)
+    e^{-\Theta^2 r^2}
+\right]
+\end{align}
+\]</span></p>
+<p><span class="math inline">\(\Theta = \left( \dfrac{\sigma \mu_0}{4 t}\right)^{1/2}\)</span></p>
+</div>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-ward1988electromagnetic" class="csl-entry" role="listitem">
+Ward, S.H. &amp; Hohmann, G.W., 1988. Electromagnetic theory for geophysical applications. <em>Electromagnetic methods in applied geophysics</em>, Vol. 1, pp. 131–311.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

@@ -319,7 +319,7 @@ This corresponds to the well-known integration property of integral transforms.
 
 Mathematical problems in connection with switch-on or switch-off processes can be solved elegantly with the Laplace transform.
 
-### Laplace transform
+### Laplace transform {#sec-laplace}
 
 Consider a function $f(t)$, $t > 0$.
 
@@ -381,27 +381,28 @@ With the function $\Theta(t) = \sqrt{\frac{\mu\sigma}{4 t}}$ we obtain the follo
 
 $$
 \mathcal L^{-1} \left( \frac{1}{s} e^{-ikr} \right) = \mathrm{erfc}(\Theta r)
-$$
+$$ {#eq-laplace-1}
 
 $$
 \mathcal L^{-1} \left( \frac{ikr}{s} e^{-ikr} \right) = \frac{2}{\sqrt{\pi}} \Theta r e^{-\Theta^2 r^2}
-$$
+$$ {#eq-laplace-ikr}
 
 $$
 \mathcal L^{-1} \left( \frac{k^2 r^2}{s} e^{-ikr} \right) = 
 -\frac{4}{\sqrt{\pi}} \Theta^3 r^3 e^{-\Theta^2 r^2}
-$$
+$$ {#eq-laplace-k2r2}
 
 ### Error function
 
 The [error function](https://en.wikipedia.org/wiki/Error_function) erf$(t)$ plays an important role. Its definition is
 $$
 \mathrm{erf}(t) = \frac{2}{\sqrt{\pi}} \int_0^t e^{-\tau^2} \dd\tau.
-$$
+$$ {#eq-erf}
+
 The *complementary error function* erfc$(t)$ is
 $$
 \mathrm{erfc}(t) = 1 - \mathrm{erf}(t).
-$$
+$$ {#eq-erfc}
 
 We implement the error function again with `sympy`.
 

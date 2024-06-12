@@ -32,7 +32,7 @@ In a conducting medium with $\lambda_1^2 = \lambda^2 - k_1^2$, $h=0$, and $z=0$,
 
 $$
 	\begin{equation}
-	    E_\varphi = -\frac{i \omega \mu m}{2 \pi} \int_0^\infty \frac{\lambda^2}{\lambda + \lambda_1}
+	    E_\varphi = -\frac{i \omega \mu_0 m}{2 \pi} \int_0^\infty \frac{\lambda^2}{\lambda + \lambda_1}
 	    J_1(\lambda r) \, \dd\lambda
 	\end{equation}
 $$
@@ -58,7 +58,7 @@ $$
 In the following we try to _rewrite_ the integral. Recalling the properties of the Bessel function we first write
 $$
 \begin{equation}
-    E_\varphi = \frac{i \omega \mu m}{2 \pi}
+    E_\varphi = \frac{i \omega \mu_0 m}{2 \pi}
     \partial_r
     \int_0^\infty \frac{\lambda}{\lambda + \lambda_1}
     J_0(\lambda r) \, \dd\lambda
@@ -76,7 +76,7 @@ $$
 We obtain
 $$
 \begin{equation}
-    E_\varphi = \frac{i \omega \mu m}{2 \pi k_1^2}
+    E_\varphi = \frac{i \omega \mu_0 m}{2 \pi k_1^2}
     \partial_r
     \left[
     \int_0^\infty \lambda^2
@@ -85,17 +85,17 @@ $$
     J_0(\lambda r) \, \dd\lambda
     \right].
 \end{equation}
-$$
+$$ {#eq-Ephi-new}
 
-### The Weber integral
-With $R^2 = r^2 + z^2$ there holds the following identity (_Weber_ integral)
+### Useful integral identities
+With $R^2 = r^2 + z^2$ there holds the following identity (_Weber integral_)
 $$
 \begin{equation}
 \frac{1}{R} = \int_0^\infty
 e^{-\lambda z} J_0(\lambda r)\, d\lambda.
-\end{equation}
-$$
-After differentiating twice w.r.t. $z$, we obtain
+\end{equation} 
+$$ {#eq-weber}
+After differentiating both sides of @eq-weber twice w.r.t. $z$, we obtain
 $$
 \frac{\partial^2}{\partial z^2} \frac{1}{R} = \int_0^\infty
 \lambda^2 e^{-\lambda z} J_0(\lambda r)\, \dd\lambda.
@@ -106,9 +106,8 @@ $$
 \int_0^\infty
 \lambda^2 J_0(\lambda r)\, \dd\lambda.
 $$
-We see, that for $z=0$ this is the first integral in the above expression of $E_\varphi$.
+We see, that for $z=0$ this resembles the first integral in the xpression of $E_\varphi$ given in @eq-Ephi-new.
 
-### The Sommerfeld integral
 The _Sommerfeld_ integral is
 $$
 \begin{equation}
@@ -116,8 +115,9 @@ $$
 \frac{\lambda}{\lambda_1}
 e^{-\lambda_1 z} J_0(\lambda r)\, \dd\lambda.
 \end{equation}
-$$
-Likewise, we obtain the second integral expression when we differentiate the _Sommerfeld_ integral twice w.r.t. $z$:
+$$ {#eq-sommerfeld}
+
+Likewise, we obtain the second integral expression when we differentiate the _Sommerfeld_ integral @eq-sommerfeld twice w.r.t. $z$:
 $$
 \frac{\partial^2}{\partial z^2} \frac{e^{-i k_1 R}}{R} = \int_0^\infty
 {\lambda}{\lambda_1}
@@ -134,11 +134,6 @@ We see that we are able to express the above integrals in the expression for $E_
 
 The point is, that we can replace the integrals _just by functions of_ $R$!
 
-## Magnetic field
-
-The expressions for $B_z$ and $B_r$ can be obtained in a similar fashion.
-
-Note that the conversion for $B_r$ is slightly more involved.
 
 ## Implementation for $E_\varphi$
 
@@ -199,7 +194,7 @@ $$
 
 Incorporating the leading factor of $E_\varphi$ we get the result
 $$
-E_\varphi(r, \omega) = \frac{i \omega \mu m}{2 \pi k^2 r^4} \left[
+E_\varphi(r, \omega) = -\frac{m}{2 \pi \sigma r^4} \left[
 3 - (3 + 3 ikr - k^2 r^2) e^{-ikr}
 \right]
 $$
@@ -211,26 +206,34 @@ def Ephi(r, omega, sigma):
     k = np.sqrt(-1j * omega * mu_0 * sigma)
     E = 3 - (3 + 3 * 1j * k * r - k**2 * r**2) * \
         np.exp(-1j * k * r)
-    E *= 1j * omega * mu_0 / (2 * np.pi * k**2 * r**4)
+    E *= -1 / (2 * np.pi * sigma * r**4)
     return E
 ```
 
-## Implementation for $H_r$ and $H_z$
+## Magnetic field
+
+The expressions for $B_z$ and $B_r$ for $z=0$ and $h=0$ can be obtained in a similar fashion.
+
+Note that the conversion for $B_r$ is slightly more involved.
+
+## Implementation for $B_r$ and $B_z$
 
 For the magnetic field we find closed-form expressions using similar tricks.
 
 Specifically, we obtain
+
 $$
-B_r(r, \omega) = -\frac{\mu m k^2}{4 \pi r} \left[
-I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
+B_z(r, \omega) = \frac{\mu_0 m}{2 \pi k^2 r^5} \left[
+9 - (9 + 9ikr - 4k^2 r^2 - ik^3r^3) e^{-ikr}
 \right]
 $$
 
 $$
-B_z(r, \omega) = \frac{\mu m}{2 \pi k^2 r^5} \left[
-9 - (9 + 9ikr - 4k^2 r^2 - ik^3r^3) e^{-ikr}
+B_r(r, \omega) = -\frac{\mu_0 m k^2}{4 \pi r} \left[
+I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
 \right]
 $$
+
 
 The functions $I_1, I_2, K_1, K_2$ are the _modified Bessel functions_ of the first kind and order 1 and 2 with complex argument $\alpha = \dfrac{ikr}{2}$.
 
@@ -256,6 +259,30 @@ def Bz(r, omega, sigma):
     B *= mu_0 / (2 * np.pi * k**2 * r**5)
     return B
 ```
+
+## Summary
+
+The final expressions in the frequency domain are given by
+
+::: {.callout-tip title="Frequency domain fields"}
+
+$$
+\begin{align}
+E_\varphi(r, \omega) & = -\frac{m}{2 \pi \sigma r^4} \left[
+3 - (3 + 3 ikr - k^2 r^2) e^{-ikr}
+\right] \\
+B_z(r, \omega) & = \frac{\mu_0 m}{2 \pi k^2 r^5} \left[
+9 - (9 + 9ikr - 4k^2 r^2 - ik^3r^3) e^{-ikr}
+\right] \\
+B_r(r, \omega) & = -\frac{\mu_0 m k^2}{4 \pi r} \left[
+I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
+\right]
+\end{align}
+$$ {#eq-allfields-freq}
+
+$\alpha = \dfrac{i k r}{2}$
+
+:::
 
 ## Examples
 
@@ -308,12 +335,44 @@ ax
 ```
 
 
-The last plot for $B_z$ can be verified using Fig. 4.2 in Ward & Hohmann:
+The last plot for $B_z$ can be verified using Fig. 4.2 in @ward1988electromagnetic.
+Note that $H_z$ is plotted in the following reference figure:
 
 ![](https://ruboerner.github.io/images/Hz_VMD.png)
 
-Note that $H_z$ is plotted in the above figure.
 
-For completeness, this is Fig. 4.3 of Ward & Hohmann, which displays $H_r$:
+For completeness, this is Fig. 4.3 of @ward1988electromagnetic, which displays $H_r$:
 
 ![](https://ruboerner.github.io/images/Hr_VMD.png)
+
+## Explicit expressions for the fields in the time domain
+
+Following the ideas outlined in @sec-laplace, we transform the field expressions @eq-allfields-freq for a VMD in HCP configuration at $z=0$ into the time domain.
+
+The final expressions for $e_\varphi$, $b_z$, and $\pdv{b_z}{t}$ can be easily obtained using @eq-laplace-1, @eq-laplace-ikr, and @eq-laplace-k2r2, and are given by
+
+::: {.callout-tip title="Time domain fields"}
+
+$$
+\begin{align}
+e_\varphi &= -\frac{m}{2 \pi \sigma r^4} \left[
+3 \mathrm{erfc}(\Theta r) - \frac{2}{\sqrt{\pi}} \Theta r (3 + 2 \Theta^2 r^2 ) e^{-\Theta^2 r^2}
+\right] \\
+b_z &= \frac{\mu_0 m}{4 \pi r^3} \left[ 
+    \frac{9}{2 \theta^2 r^2} -\mathrm{erf}(\Theta r) - \frac{1}{\sqrt{\pi}} \left(
+        \frac{9}{\Theta r} + 4 \Theta r
+    \right)
+    e^{-\Theta^2 r^2}
+\right] \\
+\pdv{b_z}{t}  &= \frac{m}{2 \pi \sigma r^5} \left[
+    9 \mathrm{erf}(\Theta r) - \frac{2 \Theta r}{\sqrt{\pi}}
+    \left(
+        9 + 6 \Theta^2 r^2 + 4 \Theta^4 r^4
+    \right)
+    e^{-\Theta^2 r^2}
+\right]
+\end{align}
+$$
+
+$\Theta = \left( \dfrac{\sigma \mu_0}{4 t}\right)^{1/2}$
+:::
