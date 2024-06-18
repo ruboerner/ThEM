@@ -1,0 +1,429 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Explicit expressions for the fields in HCP configuration\"\n",
+        "jupyter: python3\n",
+        "---"
+      ],
+      "id": "90766b44"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: false\n",
+        "import sympy as sp\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt"
+      ],
+      "id": "53f40233",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Motivation\n",
+        "\n",
+        "Often, the knowledge of the electric and/or magnetic field at the surface of a homogeneous Earth is sufficient.\n",
+        "However, the calculation of the Hankel integral is -- even in the homogeneous case -- numerically not trivial.\n",
+        "\n",
+        "Later we will learn how to evaluate them properly.\n",
+        "\n",
+        "For now, let's simplify the configuration by setting $h=0$ and $z=0$.\n",
+        "We refer to this configuration as the _horizontal coplanar configuration_ (which is generally not restricted to the plane $z=0$).\n",
+        "\n",
+        "With the help of this simplification it is possible to rewrite the integrals.\n",
+        "The results are closed form expressions.\n",
+        "\n",
+        "It is possible to estimate what field amplitudes can be expected at a given offset-frequency regime.\n",
+        "\n",
+        "## Recall of VMD expressions\n",
+        "\n",
+        "In a conducting medium with $\\lambda_1^2 = \\lambda^2 - k_1^2$, $h=0$, and $z=0$, there holds\n",
+        "\n",
+        "::: {.callout-tip title=\"Expressions for coplanar configuration at z=0, h=0:\"}\n",
+        "\n",
+        "$$\n",
+        "\t\\begin{equation}\n",
+        "\t    E_\\varphi = -\\frac{i \\omega \\mu m}{2 \\pi} \\int_0^\\infty \\frac{\\lambda^2}{\\lambda + \\lambda_1}\n",
+        "\t    J_1(\\lambda r) \\, \\dd\\lambda\n",
+        "\t\\end{equation}\n",
+        "$$\n",
+        "\t\n",
+        "$$\n",
+        "\t\\begin{equation}\n",
+        "\t    H_r = \\frac{m}{2 \\pi} \\int_0^\\infty \\frac{\\lambda_1 \\lambda^2}{\\lambda + \\lambda_1}\n",
+        "\t    J_1(\\lambda r) \\, \\dd\\lambda\n",
+        "\t\\end{equation}\n",
+        "$$\n",
+        "\t\n",
+        "$$\n",
+        "\t\\begin{equation}\n",
+        "\t    H_z = \\frac{m}{2 \\pi} \\int_0^\\infty \\frac{\\lambda^3}{\\lambda + \\lambda_1}\n",
+        "\t    J_0(\\lambda r) \\, \\dd\\lambda\n",
+        "\t\\end{equation}\n",
+        "$$\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "## Electric field\n",
+        "\n",
+        "In the following we try to _rewrite_ the integral. Recalling the properties of the Bessel function we first write\n",
+        "$$\n",
+        "\\begin{equation}\n",
+        "    E_\\varphi = \\frac{i \\omega \\mu m}{2 \\pi}\n",
+        "    \\partial_r\n",
+        "    \\int_0^\\infty \\frac{\\lambda}{\\lambda + \\lambda_1}\n",
+        "    J_0(\\lambda r) \\, \\dd\\lambda\n",
+        "\\end{equation}\n",
+        "$$\n",
+        "Second, we expand the integrand with $\\lambda - \\lambda_1$, i.e.,\n",
+        "$$\n",
+        "\\frac{\\lambda}{\\lambda + \\lambda_1} = \n",
+        "\\frac{\\lambda(\\lambda - \\lambda_1)}{\\lambda^2 - \\lambda_1^2} =\n",
+        "\\frac{1}{k_1^2} \\left(\n",
+        "\\lambda^2 - \\lambda \\lambda_1\n",
+        "\\right)\n",
+        "$$\n",
+        "\n",
+        "We obtain\n",
+        "$$\n",
+        "\\begin{equation}\n",
+        "    E_\\varphi = \\frac{i \\omega \\mu m}{2 \\pi k_1^2}\n",
+        "    \\partial_r\n",
+        "    \\left[\n",
+        "    \\int_0^\\infty \\lambda^2\n",
+        "    J_0(\\lambda r) \\, d\\lambda -\n",
+        "    \\int_0^\\infty \\lambda \\lambda_1\n",
+        "    J_0(\\lambda r) \\, \\dd\\lambda\n",
+        "    \\right].\n",
+        "\\end{equation}\n",
+        "$$\n",
+        "\n",
+        "### The Weber integral\n",
+        "With $R^2 = r^2 + z^2$ there holds the following identity (_Weber_ integral)\n",
+        "$$\n",
+        "\\begin{equation}\n",
+        "\\frac{1}{R} = \\int_0^\\infty\n",
+        "e^{-\\lambda z} J_0(\\lambda r)\\, d\\lambda.\n",
+        "\\end{equation}\n",
+        "$$\n",
+        "After differentiating twice w.r.t. $z$, we obtain\n",
+        "$$\n",
+        "\\frac{\\partial^2}{\\partial z^2} \\frac{1}{R} = \\int_0^\\infty\n",
+        "\\lambda^2 e^{-\\lambda z} J_0(\\lambda r)\\, \\dd\\lambda.\n",
+        "$$\n",
+        "\n",
+        "$$\n",
+        "\\frac{\\partial^2}{\\partial z^2} \\frac{1}{R}  \\bigg|_{z=0} = \n",
+        "\\int_0^\\infty\n",
+        "\\lambda^2 J_0(\\lambda r)\\, \\dd\\lambda.\n",
+        "$$\n",
+        "We see, that for $z=0$ this is the first integral in the above expression of $E_\\varphi$.\n",
+        "\n",
+        "### The Sommerfeld integral\n",
+        "The _Sommerfeld_ integral is\n",
+        "$$\n",
+        "\\begin{equation}\n",
+        "\\frac{e^{-i k_1 R}}{R} = \\int_0^\\infty\n",
+        "\\frac{\\lambda}{\\lambda_1}\n",
+        "e^{-\\lambda_1 z} J_0(\\lambda r)\\, \\dd\\lambda.\n",
+        "\\end{equation}\n",
+        "$$\n",
+        "Likewise, we obtain the second integral expression when we differentiate the _Sommerfeld_ integral twice w.r.t. $z$:\n",
+        "$$\n",
+        "\\frac{\\partial^2}{\\partial z^2} \\frac{e^{-i k_1 R}}{R} = \\int_0^\\infty\n",
+        "{\\lambda}{\\lambda_1}\n",
+        "e^{-\\lambda_1 z} J_0(\\lambda r)\\, \\dd\\lambda\n",
+        "$$\n",
+        "\n",
+        "$$\n",
+        "\\frac{\\partial^2}{\\partial z^2} \\frac{e^{-i k_1 R}}{R}\\bigg|_{z=0} = \\int_0^\\infty\n",
+        "{\\lambda}{\\lambda_1}\n",
+        "J_0(\\lambda r)\\, \\dd\\lambda\n",
+        "$$\n",
+        "\n",
+        "We see that we are able to express the above integrals in the expression for $E_\\varphi$ by means of derivatives of the _Weber_ and _Sommerfeld_ integrals.\n",
+        "\n",
+        "The point is, that we can replace the integrals _just by functions of_ $R$!\n",
+        "\n",
+        "## Magnetic field\n",
+        "\n",
+        "The expressions for $B_z$ and $B_r$ can be obtained in a similar fashion.\n",
+        "\n",
+        "Note that the conversion for $B_r$ is slightly more involved.\n",
+        "\n",
+        "## Implementation for $E_\\varphi$\n",
+        "\n",
+        "We define `sympy` expressions and let `Python` do the work for us.\n"
+      ],
+      "id": "af2a7ae3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "r = sp.symbols('r', positive=True, real=True)\n",
+        "z = sp.symbols('z', real=True)\n",
+        "k = sp.symbols('k')\n",
+        "R = sp.sqrt(r**2 + z**2)\n",
+        "G = sp.exp(-sp.I * k * R ) / R\n",
+        "G"
+      ],
+      "id": "5e3de179",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The second derivative of the Weber integral, i.e., $1/R$, w.r.t. $z$ is\n"
+      ],
+      "id": "c47ea035"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "Rzz = sp.diff(1 / R, z, 2)\n",
+        "Rzz.simplify()"
+      ],
+      "id": "6e44bed4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Now, we set $z=0$ and obtain\n"
+      ],
+      "id": "e67956c8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "Rzz.subs(z, 0)"
+      ],
+      "id": "4b5e3168",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "i.e.,\n",
+        "$$\n",
+        "\\pdv[2]{}{z} \\frac{1}{R} \\bigg|_{z=0} = -\\frac{1}{r^3}.\n",
+        "$$\n",
+        "Further, the left-hand side of the Sommerfeld integral is\n",
+        "$$\n",
+        "\\frac{e^{-i k_1 R}}{R},\n",
+        "$$\n",
+        "and its second derivative w.r.t. $z$ is\n"
+      ],
+      "id": "6bfed506"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "Gzz = sp.diff(G, z, 2)\n",
+        "Gzz.simplify()"
+      ],
+      "id": "3da3e5b0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "which, after setting $z=0$, becomes\n"
+      ],
+      "id": "5a0d06d6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "Gzz.subs(z, 0).simplify()"
+      ],
+      "id": "c02c7432",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Finally, we apply the derivative w.r.t. $r$ to both results and obtain\n"
+      ],
+      "id": "25102210"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ex = sp.diff(Rzz, r).subs(z,0) - sp.diff(Gzz, r).subs(z, 0)\n",
+        "ex.simplify()"
+      ],
+      "id": "7c079dca",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "We recognize that\n",
+        "$$\n",
+        "\\pdv{}{r} \\left[\n",
+        "    \\int_0^\\infty \\lambda^2\n",
+        "    J_0(\\lambda r) \\, \\dd\\lambda -\n",
+        "    \\int_0^\\infty \\lambda \\lambda_1\n",
+        "    J_0(\\lambda r) \\, \\dd\\lambda\n",
+        "    \\right] = \n",
+        "    \\frac{\n",
+        "    3 - (3 + 3 ikr - k^2 r^2) e^{-ikr}}{r^4}.\n",
+        "$$\n",
+        "\n",
+        "Incorporating the leading factor of $E_\\varphi$ we get the result\n",
+        "$$\n",
+        "E_\\varphi(r, \\omega) = \\frac{i \\omega \\mu m}{2 \\pi k^2 r^4} \\left[\n",
+        "3 - (3 + 3 ikr - k^2 r^2) e^{-ikr}\n",
+        "\\right]\n",
+        "$$\n",
+        "\n",
+        "For later evaluation we implement this result as a function:\n"
+      ],
+      "id": "dc36d80e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def Ephi(r, omega, sigma):\n",
+        "    mu_0 = np.pi * 4e-7\n",
+        "    k = np.sqrt(-1j * omega * mu_0 * sigma)\n",
+        "    E = 3 - (3 + 3 * 1j * k * r - k**2 * r**2) * \\\n",
+        "        np.exp(-1j * k * r)\n",
+        "    E *= 1j * omega * mu_0 / (2 * np.pi * k**2 * r**4)\n",
+        "    return E"
+      ],
+      "id": "2a418757",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Implementation for $H_r$ and $H_z$\n",
+        "\n",
+        "For the magnetic field we find closed-form expressions using similar tricks.\n",
+        "\n",
+        "Specifically, we obtain\n",
+        "$$\n",
+        "B_r(r, \\omega) = -\\frac{\\mu m k^2}{4 \\pi r} \\left[\n",
+        "I_1(\\alpha)K_1(\\alpha) - I_2(\\alpha)K_2(\\alpha)\n",
+        "\\right]\n",
+        "$$\n",
+        "\n",
+        "$$\n",
+        "B_z(r, \\omega) = \\frac{\\mu m}{2 \\pi k^2 r^5} \\left[\n",
+        "9 - (9 + 9ikr - 4k^2 r^2 - ik^3r^3) e^{-ikr}\n",
+        "\\right]\n",
+        "$$\n",
+        "\n",
+        "The functions $I_1, I_2, K_1, K_2$ are the _modified Bessel functions_ of the first kind and order 1 and 2 with complex argument $\\alpha = \\dfrac{ikr}{2}$.\n",
+        "\n",
+        "`Python` implementation:\n"
+      ],
+      "id": "1eeb2fdb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from scipy.special import kv, iv\n",
+        "\n",
+        "# iv = lambda n, z: 1j ** (-n) * jv(n, 1j * z)\n",
+        "\n",
+        "def Br(r, omega, sigma):\n",
+        "    mu_0 = np.pi * 4e-7\n",
+        "    k = np.sqrt(-1j * omega * mu_0 * sigma)\n",
+        "    alpha = 1j * k * r / 2.0\n",
+        "    B = iv(1, alpha) * kv(1, alpha) - iv(2, alpha) * kv(2, alpha)\n",
+        "    B *= -mu_0 * k**2 / (4 * np.pi * r)\n",
+        "    return B\n",
+        "\n",
+        "def Bz(r, omega, sigma):\n",
+        "    mu_0 = np.pi * 4e-7\n",
+        "    k = np.sqrt(-1j * omega * mu_0 * sigma)\n",
+        "    B = 9 - (9 + 9 * 1j * k * r - 4 * k**2 * r**2 - 1j * k**3 * r**3) * np.exp(-1j * k * r)\n",
+        "    B *= mu_0 / (2 * np.pi * k**2 * r**5)\n",
+        "    return B"
+      ],
+      "id": "5e88fb2e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Examples\n",
+        "\n",
+        "As an example, we choose a homogeneous ground with conductivity $\\sigma = 0.01$ S/m.\n",
+        "The transmitter-receiver offset is $100$ m.\n",
+        "The frequencies cover a range from $10^{-1} \\le f \\le 10^5$ Hz.\n"
+      ],
+      "id": "283f3590"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "iv(0, 1 + 1j)"
+      ],
+      "id": "af8bbb0f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "rr = 100.0\n",
+        "sigma = 0.01\n",
+        "f = np.logspace(-1, 5, 301, endpoint=True)\n",
+        "# E_phi = [Ephi(r, 2 * np.pi * v, sigma) for v in f]\n",
+        "B_r = [Br(r, 2 * np.pi * v, sigma) for v in f]\n",
+        "B_z = [Bz(r, 2 * np.pi * v, sigma) for v in f]"
+      ],
+      "id": "fd546e05",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/rub/miniconda3/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

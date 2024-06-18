@@ -359,7 +359,7 @@ e_\varphi &= -\frac{m}{2 \pi \sigma r^4} \left[
 3 \mathrm{erfc}(\Theta r) - \frac{2}{\sqrt{\pi}} \Theta r (3 + 2 \Theta^2 r^2 ) e^{-\Theta^2 r^2}
 \right] \\
 b_z &= \frac{\mu_0 m}{4 \pi r^3} \left[ 
-    \frac{9}{2 \theta^2 r^2} -\mathrm{erf}(\Theta r) - \frac{1}{\sqrt{\pi}} \left(
+    \frac{9}{2 \theta^2 r^2}\mathrm{erf}(\Theta r) -\mathrm{erf}(\Theta r) - \frac{1}{\sqrt{\pi}} \left(
         \frac{9}{\Theta r} + 4 \Theta r
     \right)
     e^{-\Theta^2 r^2}

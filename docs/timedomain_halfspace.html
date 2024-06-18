@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.43">
+<meta name="generator" content="quarto-1.5.45">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Theory of Electromagnetic Methods – 13&nbsp; Dipole induction over a layered halfspace in the time domain</title>
+<title>13&nbsp; Dipole induction over a layered halfspace in the time domain – Theory of Electromagnetic Methods</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -555,7 +555,7 @@ Impulse response via Hankel transform
 <p>Let <span class="math inline">\(n_c = 80\)</span>, <span class="math inline">\(n_t = 31\)</span> sampled from the interval <span class="math inline">\(t_0 = 10^{-6} \le t \le 10^{-3}\)</span> s with 10 log-equidistant samples per decade.</p>
 <p>Then <span class="math inline">\(n_c + n_t - 1 = 110\)</span>.</p>
 <p>Let’s compute the <span class="math inline">\(\omega_n\)</span>.</p>
-<div id="204e92e2" class="cell" data-execution_count="3">
+<div id="b9307afa" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nt <span class="op">=</span> <span class="dv">31</span></span>
@@ -573,7 +573,7 @@ Impulse response via Hankel transform
 </section>
 <section id="numerical-experiments" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="numerical-experiments"><span class="header-section-number">13.4</span> Numerical experiments</h2>
-<div id="0c6ebe1a" class="cell" data-execution_count="4">
+<div id="02a11986" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gethankelfcsin():</span>
@@ -605,7 +605,7 @@ Impulse response via Hankel transform
 </details>
 </div>
 <p>We plot of the filter coefficients for <span class="math inline">\(J_{+1/2}(\omega t)\)</span>, i.e., the <em>sine</em> transform:</p>
-<div id="6c594b1b" class="cell" data-execution_count="5">
+<div id="31b82fe6" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fc, nc, nc0 <span class="op">=</span> gethankelfcsin()</span>
@@ -628,7 +628,7 @@ Impulse response via Hankel transform
 <li><code>Bz_analytical()</code> provides all required frequency domain solutions to be used in the sine transform,</li>
 <li><code>dBzdt_halfspace()</code> provides an analytical reference solution for the <em>impulse response</em> of a uniform halfspace.</li>
 </ul>
-<div id="c0fef9c2" class="cell" data-execution_count="6">
+<div id="ffd1af4d" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Bz_analytical(r, omega, sigma):</span>
@@ -678,7 +678,7 @@ Note
 <p>Note that the call of <code>Bz_analytical</code> in the code below may be replaced by a call to any appropriate function which provides the frequency domain field components of any dipole type and orientation.</p>
 </div>
 </div>
-<div id="73ad8b09" class="cell" data-execution_count="7">
+<div id="68b181bc" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
@@ -692,7 +692,7 @@ Note
 </details>
 </div>
 <p>Plot of the results</p>
-<div id="410f8fae" class="cell" data-execution_count="8">
+<div id="b6e98976" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
