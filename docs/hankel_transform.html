@@ -351,7 +351,11 @@ window.Quarto = {
   <ul>
   <li><a href="#the-oscillating-nature-of-the-integrands" id="toc-the-oscillating-nature-of-the-integrands" class="nav-link active" data-scroll-target="#the-oscillating-nature-of-the-integrands"><span class="header-section-number">11.1</span> The oscillating nature of the integrands</a></li>
   <li><a href="#the-fast-hankel-transform" id="toc-the-fast-hankel-transform" class="nav-link" data-scroll-target="#the-fast-hankel-transform"><span class="header-section-number">11.2</span> The Fast Hankel Transform</a></li>
-  <li><a href="#numerical-implementation-of-the-convolution" id="toc-numerical-implementation-of-the-convolution" class="nav-link" data-scroll-target="#numerical-implementation-of-the-convolution"><span class="header-section-number">11.3</span> Numerical implementation of the convolution</a></li>
+  <li><a href="#numerical-implementation-of-the-convolution" id="toc-numerical-implementation-of-the-convolution" class="nav-link" data-scroll-target="#numerical-implementation-of-the-convolution"><span class="header-section-number">11.3</span> Numerical implementation of the convolution</a>
+  <ul class="collapse">
+  <li><a href="#example-calculation-of-b_z" id="toc-example-calculation-of-b_z" class="nav-link" data-scroll-target="#example-calculation-of-b_z"><span class="header-section-number">11.3.1</span> Example: Calculation of <span class="math inline">\(B_z\)</span></a></li>
+  <li><a href="#comparison-to-the-analytical-solution" id="toc-comparison-to-the-analytical-solution" class="nav-link" data-scroll-target="#comparison-to-the-analytical-solution"><span class="header-section-number">11.3.2</span> Comparison to the analytical solution</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -426,7 +430,7 @@ e^{-\lambda h}e^{\lambda z}
 </ul>
 <p>The surface admittance <span class="math inline">\(\lambda_1 = \sqrt{\lambda^2 + i \omega \mu_0 \sigma_1}\)</span> will be calculated using the function <code>lambda_1</code> given below.</p>
 <p>This is the <code>Python</code> implementation of the admittance of the uniform halfspace, <span class="math inline">\(\lambda_1\)</span>:</p>
-<div id="48f05d97" class="cell" data-execution_count="2">
+<div id="f60b614d" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lambda_1(lam, sigma, mu, f):</span>
@@ -438,7 +442,7 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 <p>Given these definitions, we are now able to evaluate the complete integrand functions in <a href="#eq-fields-in-air" class="quarto-xref"><span>11.1</span></a>.</p>
 <p>To this end, we first illustrate the integrand graphically:</p>
-<div id="76a2a122" class="cell" data-execution_count="3">
+<div id="2f94dcc5" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nlam <span class="op">=</span> <span class="dv">801</span></span>
@@ -471,7 +475,7 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 <p>As we see from the above illustration, the behaviour of <span class="math inline">\(f(\lambda,z)\)</span> itself does not impose any numerical problems to the integration.</p>
 <p>The following graphs show the real and imaginary part of the <em>complete integrand</em>:</p>
-<div id="9e410432" class="cell" data-execution_count="4">
+<div id="b5b41d46" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> j0</span>
@@ -547,7 +551,7 @@ G_m = \sum_{n=n_1} ^{n_2} F_n \overline H_{m-n} = \sum_{n=n_1} ^{n_2} F_{m-n} \o
 <section id="numerical-implementation-of-the-convolution" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="numerical-implementation-of-the-convolution"><span class="header-section-number">11.3</span> Numerical implementation of the convolution</h2>
 <p>We implement a <code>Python</code> function that computes the convolution:</p>
-<div id="46a7f79b" class="cell" data-execution_count="5">
+<div id="54364a48" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convolve(fc, kernel, style<span class="op">=</span><span class="st">"valid"</span>):</span>
@@ -584,7 +588,7 @@ Note
 </div>
 <p>The following example confirms that our code is correct.</p>
 <p>The convolution of two rectangular sequences results in a triangular sequence:</p>
-<div id="f9a1d816" class="cell" data-execution_count="6">
+<div id="6e2abf51" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
@@ -600,7 +604,7 @@ Note
 [1 2 3 4 5 4 3 2 1]</code></pre>
 </div>
 </div>
-<div id="9ce37548" class="cell" data-execution_count="7">
+<div id="3cd9d9f3" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>))</span>
@@ -617,7 +621,7 @@ Note
 </div>
 </div>
 </div>
-<div id="ddad5aaf" class="cell" data-execution_count="8">
+<div id="cad12f30" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>))</span>
@@ -632,6 +636,238 @@ Note
 <p><img src="hankel_transform_files/figure-html/cell-9-output-1.png" width="483" height="209" class="figure-img"></p>
 </figure>
 </div>
+</div>
+</div>
+<section id="example-calculation-of-b_z" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="example-calculation-of-b_z"><span class="header-section-number">11.3.1</span> Example: Calculation of <span class="math inline">\(B_z\)</span></h3>
+<p>For the calculation of <span class="math inline">\(B_z\)</span> we need the kernel <span class="math inline">\(F\)</span> and the filter coefficients <span class="math inline">\(H\)</span>.</p>
+<p>The filter coefficients are provided by the function <code>gethankelfcJ0</code>.</p>
+<div id="869ea920" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gethankelfcJ0():</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    fc <span class="op">=</span> np.array([</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">2.898782880000e-07</span>, <span class="op">+</span><span class="fl">3.649351440000e-07</span>, <span class="op">+</span><span class="fl">4.594261260000e-07</span>, <span class="op">+</span><span class="fl">5.783832260000e-07</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">7.281413380000e-07</span>, <span class="op">+</span><span class="fl">9.166756390000e-07</span>, <span class="op">+</span><span class="fl">1.154026250000e-06</span>, <span class="op">+</span><span class="fl">1.452832980000e-06</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.829008340000e-06</span>, <span class="op">+</span><span class="fl">2.302585110000e-06</span>, <span class="op">+</span><span class="fl">2.898782860000e-06</span>, <span class="op">+</span><span class="fl">3.649351480000e-06</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">4.594261190000e-06</span>, <span class="op">+</span><span class="fl">5.783832360000e-06</span>, <span class="op">+</span><span class="fl">7.281413220000e-06</span>, <span class="op">+</span><span class="fl">9.166756640000e-06</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.154026210000e-05</span>, <span class="op">+</span><span class="fl">1.452833050000e-05</span>, <span class="op">+</span><span class="fl">1.829008240000e-05</span>, <span class="op">+</span><span class="fl">2.302585270000e-05</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">2.898782590000e-05</span>, <span class="op">+</span><span class="fl">3.649351860000e-05</span>, <span class="op">+</span><span class="fl">4.594260510000e-05</span>, <span class="op">+</span><span class="fl">5.783833290000e-05</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">7.281411440000e-05</span>, <span class="op">+</span><span class="fl">9.166758820000e-05</span>, <span class="op">+</span><span class="fl">1.154025730000e-04</span>, <span class="op">+</span><span class="fl">1.452833540000e-04</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.829006940000e-04</span>, <span class="op">+</span><span class="fl">2.302586300000e-04</span>, <span class="op">+</span><span class="fl">2.898778910000e-04</span>, <span class="op">+</span><span class="fl">3.649353620000e-04</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">4.594249600000e-04</span>, <span class="op">+</span><span class="fl">5.783834370000e-04</span>, <span class="op">+</span><span class="fl">7.281377380000e-04</span>, <span class="op">+</span><span class="fl">9.166748280000e-04</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.154014530000e-03</span>, <span class="op">+</span><span class="fl">1.452825610000e-03</span>, <span class="op">+</span><span class="fl">1.828968260000e-03</span>, <span class="op">+</span><span class="fl">2.302545350000e-03</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">2.898639790000e-03</span>, <span class="op">+</span><span class="fl">3.649167030000e-03</span>, <span class="op">+</span><span class="fl">4.593733080000e-03</span>, <span class="op">+</span><span class="fl">5.783032380000e-03</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">7.279414970000e-03</span>, <span class="op">+</span><span class="fl">9.163407050000e-03</span>, <span class="op">+</span><span class="fl">1.153256910000e-02</span>, <span class="op">+</span><span class="fl">1.451458320000e-02</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.826011990000e-02</span>, <span class="op">+</span><span class="fl">2.297010420000e-02</span>, <span class="op">+</span><span class="fl">2.887026190000e-02</span>, <span class="op">+</span><span class="fl">3.626918100000e-02</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">4.547940310000e-02</span>, <span class="op">+</span><span class="fl">5.694081920000e-02</span>, <span class="op">+</span><span class="fl">7.098730720000e-02</span>, <span class="op">+</span><span class="fl">8.809954260000e-02</span>,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.082238890000e-01</span>, <span class="op">+</span><span class="fl">1.312504830000e-01</span>, <span class="op">+</span><span class="fl">1.550557150000e-01</span>, <span class="op">+</span><span class="fl">1.763715060000e-01</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.856277380000e-01</span>, <span class="op">+</span><span class="fl">1.697780440000e-01</span>, <span class="op">+</span><span class="fl">1.034052450000e-01</span>, <span class="op">-</span><span class="fl">3.025832330000e-02</span>,</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="fl">2.275743930000e-01</span>, <span class="op">-</span><span class="fl">3.621732170000e-01</span>, <span class="op">-</span><span class="fl">2.055004460000e-01</span>, <span class="op">+</span><span class="fl">3.373948730000e-01</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">3.176898970000e-01</span>, <span class="op">-</span><span class="fl">5.137621600000e-01</span>, <span class="op">+</span><span class="fl">3.091302640000e-01</span>, <span class="op">-</span><span class="fl">1.267575920000e-01</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">4.619678900000e-02</span>, <span class="op">-</span><span class="fl">1.809686740000e-02</span>, <span class="op">+</span><span class="fl">8.354260500000e-03</span>, <span class="op">-</span><span class="fl">4.473683040000e-03</span>,</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">2.619747830000e-03</span>, <span class="op">-</span><span class="fl">1.601713570000e-03</span>, <span class="op">+</span><span class="fl">9.977178820000e-04</span>, <span class="op">-</span><span class="fl">6.262758150000e-04</span>,</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">3.943388180000e-04</span>, <span class="op">-</span><span class="fl">2.486063540000e-04</span>, <span class="op">+</span><span class="fl">1.568086040000e-04</span>, <span class="op">-</span><span class="fl">9.892662880000e-05</span>,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">6.241523980000e-05</span>, <span class="op">-</span><span class="fl">3.938053930000e-05</span>, <span class="op">+</span><span class="fl">2.484723580000e-05</span>, <span class="op">-</span><span class="fl">1.567749450000e-05</span>,</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">9.891817410000e-06</span>, <span class="op">-</span><span class="fl">6.241311600000e-06</span>, <span class="op">+</span><span class="fl">3.938000580000e-06</span>, <span class="op">-</span><span class="fl">2.484710180000e-06</span>,</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.567746090000e-06</span>, <span class="op">-</span><span class="fl">9.891808960000e-07</span>, <span class="op">+</span><span class="fl">6.241309480000e-07</span>, <span class="op">-</span><span class="fl">3.938000050000e-07</span>,</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">2.484710050000e-07</span>, <span class="op">-</span><span class="fl">1.567746050000e-07</span>, <span class="op">+</span><span class="fl">9.891808880000e-08</span>, <span class="op">-</span><span class="fl">6.241309460000e-08</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    ])</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    nc <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    nc0 <span class="op">=</span> <span class="dv">60</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fc, nc, nc0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The function returns 100 filter coefficients.</p>
+<p>Let’s have a closer look at the coefficients:</p>
+<div id="03b098e1" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fc, nc, nc0 <span class="op">=</span> gethankelfcJ0()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="op">-</span>nc0 <span class="op">+</span> np.linspace(<span class="dv">0</span>, nc, num<span class="op">=</span>nc), fc)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hankel_transform_files/figure-html/cell-11-output-1.png" width="507" height="337" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>These are the filter coefficients which carry out the weighting of the functions <span class="math inline">\(J_\nu\)</span> on the kernel <span class="math inline">\(f\)</span>.</p>
+<p>We obtain the discrete values of <span class="math inline">\(F_n\)</span> by evaluating the function <span class="math inline">\(f\)</span> at given interpolation points.</p>
+<p>The choice of these interpolation points depends on the source-receiver offsets <span class="math inline">\(r\)</span> for which the integral is to be calculated. If the offsets <span class="math inline">\(r_i\)</span> are also logarithmically equidistant, the convolution sum can use all values of <span class="math inline">\(r_i\)</span> in one pass.</p>
+<section id="calculation-of-the-discrete-kernel" class="level4" data-number="11.3.1.1">
+<h4 data-number="11.3.1.1" class="anchored" data-anchor-id="calculation-of-the-discrete-kernel"><span class="header-section-number">11.3.1.1</span> Calculation of the discrete kernel</h4>
+<p>The kernel function <span class="math inline">\(F_n\)</span> is calculated as a function of the length <span class="math inline">\(n_c\)</span> of the filter coefficients <span class="math inline">\(H\)</span> and the number <span class="math inline">\(n_r\)</span> of distances <span class="math inline">\(r\)</span>.</p>
+<p>The number of required function evaluations of <span class="math inline">\(f\)</span> is <span class="math inline">\(n_c + n_r - 1\)</span>. The location of the discrete <span class="math inline">\(\lambda_n\)</span> depends on the minimum spacing <span class="math inline">\(r_{min}\)</span>.</p>
+<p>We set <span class="math inline">\(r=100\)</span> m, such that <span class="math inline">\(n_r = 1\)</span>.</p>
+<div id="fe8b45fc" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rmin <span class="op">=</span> <span class="fl">100.0</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>nr <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ncnr <span class="op">=</span> nc <span class="op">+</span> nr <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>rr <span class="op">=</span> rmin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We consider a homogeneous halfspace with conductivity <span class="math inline">\(\sigma = 0.01\)</span> S/m.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Unlike our example, we usually provide logarithmically equidistant distances. Source and receiver points are both in the plane <span class="math inline">\(z=0\)</span>. The Euclidean distance between the two is denoted by <span class="math inline">\(R\)</span>.</p>
+<p>The discrete distances <span class="math inline">\(r_i\)</span> would then grow exponentially with 10 grid points per decade.</p>
+</div>
+</div>
+<div id="01f8bd32" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>z0 <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="fl">10.0</span><span class="op">**</span><span class="fl">0.1</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> np.sqrt(rr<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (z <span class="op">-</span> z0)<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We calculate the field values for several logarithmically equidistant frequencies at once. For our example we choose <span class="math inline">\(0.1 &lt; f &lt; 10^5\)</span> Hz.</p>
+<p>The next loop provides the discrete wavenumbers <span class="math inline">\(\lambda_n\)</span> and from them the kernel function <span class="math inline">\(F_n(\lambda_n, z)\)</span>.</p>
+<div id="d5417410" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> admittance(λ, σ, μ, d, f):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    nl <span class="op">=</span> <span class="bu">len</span>(σ)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    ω <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    α <span class="op">=</span> [np.sqrt(λ<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> μ[i] <span class="op">*</span> ω <span class="op">*</span> σ[i]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nl)]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    η <span class="op">=</span> [a <span class="op">/</span> m <span class="cf">for</span> a, m <span class="kw">in</span> <span class="bu">zip</span>(α, μ)]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> np.zeros(nl, dtype<span class="op">=</span>np.complex128)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    B[nl <span class="op">-</span> <span class="dv">1</span>] <span class="op">=</span> η[nl <span class="op">-</span> <span class="dv">1</span>]</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nl <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(nl <span class="op">-</span> <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            B[n] <span class="op">=</span> η[n] <span class="op">*</span> <span class="op">\</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>                    (B[n <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> η[n] <span class="op">*</span> np.tanh(α[n] <span class="op">*</span> d[n])) <span class="op">/</span> <span class="op">\</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>                    (η[n] <span class="op">+</span> B[n <span class="op">+</span> <span class="dv">1</span>] <span class="op">*</span> np.tanh(α[n] <span class="op">*</span> d[n]))</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="7bc534b0" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nf <span class="op">=</span> <span class="dv">61</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mu_0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">61</span>, endpoint<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> np.zeros(ncnr).astype(<span class="bu">complex</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>Bz <span class="op">=</span> np.zeros(nf).astype(<span class="bu">complex</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>Bz0 <span class="op">=</span> (<span class="dv">3</span> <span class="op">*</span> (z <span class="op">-</span> z0)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> R<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> R<span class="op">**</span><span class="dv">5</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, freq <span class="kw">in</span> <span class="bu">enumerate</span>(f):</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> freq</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> nu <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, ncnr):</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> nc0 <span class="op">-</span> nc <span class="op">+</span> nu</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        lam <span class="op">=</span> np.exp(<span class="op">-</span>n <span class="op">*</span> <span class="fl">0.1</span> <span class="op">*</span> np.log(<span class="fl">10.0</span>)) <span class="op">/</span> rmin</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># B1 = np.sqrt(lam**2 + 1j * omega * mu_0 * sigma)</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># B1 = admittance(lam, [sigma], [mu_0], [], freq)</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        B1 <span class="op">=</span> lambda_1(lam, sigma, mu_0, freq)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>        E <span class="op">=</span> np.exp(<span class="op">-</span>lam <span class="op">*</span> np.<span class="bu">abs</span>(z <span class="op">+</span> z0))</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>        eta <span class="op">=</span> lam <span class="op">/</span> mu_0</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>        gamma <span class="op">=</span> (B1 <span class="op">-</span> eta) <span class="op">/</span> (B1 <span class="op">+</span> eta) <span class="op">*</span> E</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>        kernel[nu] <span class="op">=</span> gamma <span class="op">*</span> lam<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        hankelint <span class="op">=</span> convolve(fc, kernel)</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    Bz[k] <span class="op">=</span> mu_0 <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi) <span class="op">*</span> (Bz0 <span class="op">-</span> hankelint[<span class="dv">0</span>] <span class="op">/</span> rr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="4062c458" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pos(data):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return positive data; set negative data to NaN."""</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.where(data <span class="op">&gt;</span> <span class="dv">0</span>, data, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="3e520eec" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, pos(np.real(Bz)), color<span class="op">=</span><span class="st">'C0'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, label<span class="op">=</span><span class="st">'real'</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, pos(<span class="op">-</span>np.real(Bz)), color<span class="op">=</span><span class="st">'C0'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, pos(np.imag(Bz)), color<span class="op">=</span><span class="st">'C1'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, label<span class="op">=</span><span class="st">'imag'</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, pos(<span class="op">-</span>np.imag(Bz)), color<span class="op">=</span><span class="st">'C1'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'f in Hz'</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$B_z$ in Vs/m$^2$'</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ax.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hankel_transform_files/figure-html/cell-17-output-1.png" width="534" height="357" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><img src="https://ruboerner.github.io/images/Hz_VMD.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="comparison-to-the-analytical-solution" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="comparison-to-the-analytical-solution"><span class="header-section-number">11.3.2</span> Comparison to the analytical solution</h3>
+<p>For the purpose of comparison we use the function <code>Bz_analytical(r, omega, sigma)</code> that computes <span class="math inline">\(B_z\)</span> using the closed form expression derived for <span class="math inline">\(z=h=0\)</span> (see <a href="explicit.html#sec-H" class="quarto-xref"><span>Section 10.6</span></a>).</p>
+<div id="a1f8b1cc" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Bz_analytical(r, omega, sigma):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    mu_0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> np.sqrt(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> mu_0 <span class="op">*</span> sigma)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="dv">9</span> <span class="op">-</span> (<span class="dv">9</span> <span class="op">+</span> <span class="dv">9</span> <span class="op">*</span> <span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> r <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="ot">1j</span> <span class="op">*</span> k<span class="op">**</span><span class="dv">3</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">3</span>) <span class="op">*</span> np.exp(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> r)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    B <span class="op">*=</span> mu_0 <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">5</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>Bz_ana <span class="op">=</span> [Bz_analytical(R, <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> v, sigma) <span class="cf">for</span> v <span class="kw">in</span> f]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="9fb697a7" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, pos(np.real(Bz_ana)), color<span class="op">=</span><span class="st">'C0'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, label<span class="op">=</span><span class="st">'real'</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, pos(<span class="op">-</span>np.real(Bz_ana)), color<span class="op">=</span><span class="st">'C0'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, pos(np.imag(Bz_ana)), color<span class="op">=</span><span class="st">'C1'</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, label<span class="op">=</span><span class="st">'imag'</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>ax.loglog(f, pos(<span class="op">-</span>np.imag(Bz_ana)), color<span class="op">=</span><span class="st">'C1'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'f in Hz'</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$B_z$ in Vs/m$^2$'</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>ax.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hankel_transform_files/figure-html/cell-19-output-1.png" width="534" height="357" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As expected, the function plot matches the previous one.</p>
+<p>The relative norm of the residual is</p>
+<div id="8ae464cc" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> Bz_ana <span class="op">-</span> Bz</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.linalg.norm(res) <span class="op">/</span> np.linalg.norm(Bz_ana))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>9.118814351996068e-07</code></pre>
 </div>
 </div>
 
@@ -650,6 +886,7 @@ Ghosh, D.P., 1971. The application of linear filter theory to the direct interpr
 Johansen, H.K. &amp; Sørensen, K., 1979. Fast hankel transforms. <em>Geophysical Prospecting</em>, <strong>27</strong>, 876–901. doi:<a href="https://doi.org/10.1111/j.1365-2478.1979.tb01005.x">10.1111/j.1365-2478.1979.tb01005.x</a>
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->

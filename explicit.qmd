@@ -216,7 +216,7 @@ The expressions for $B_z$ and $B_r$ for $z=0$ and $h=0$ can be obtained in a sim
 
 Note that the conversion for $B_r$ is slightly more involved.
 
-## Implementation for $B_r$ and $B_z$
+## Implementation for $B_r$ and $B_z$ {#sec-H}
 
 For the magnetic field we find closed-form expressions using similar tricks.
 

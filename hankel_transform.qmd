@@ -250,3 +250,204 @@ ax.set_title('style="valid"')
 ax.set_ylim((-0.25, 6.0))
 ax.grid(True)
 ```
+
+### Example: Calculation of $B_z$
+
+For the calculation of $B_z$ we need the kernel $F$ and the filter coefficients $H$.
+
+The filter coefficients are provided by the function `gethankelfcJ0`.
+
+```{python}
+def gethankelfcJ0():
+    fc = np.array([
+        +2.898782880000e-07, +3.649351440000e-07, +4.594261260000e-07, +5.783832260000e-07,
+        +7.281413380000e-07, +9.166756390000e-07, +1.154026250000e-06, +1.452832980000e-06,
+        +1.829008340000e-06, +2.302585110000e-06, +2.898782860000e-06, +3.649351480000e-06,
+        +4.594261190000e-06, +5.783832360000e-06, +7.281413220000e-06, +9.166756640000e-06,
+        +1.154026210000e-05, +1.452833050000e-05, +1.829008240000e-05, +2.302585270000e-05,
+        +2.898782590000e-05, +3.649351860000e-05, +4.594260510000e-05, +5.783833290000e-05,
+        +7.281411440000e-05, +9.166758820000e-05, +1.154025730000e-04, +1.452833540000e-04,
+        +1.829006940000e-04, +2.302586300000e-04, +2.898778910000e-04, +3.649353620000e-04,
+        +4.594249600000e-04, +5.783834370000e-04, +7.281377380000e-04, +9.166748280000e-04,
+        +1.154014530000e-03, +1.452825610000e-03, +1.828968260000e-03, +2.302545350000e-03,
+        +2.898639790000e-03, +3.649167030000e-03, +4.593733080000e-03, +5.783032380000e-03,
+        +7.279414970000e-03, +9.163407050000e-03, +1.153256910000e-02, +1.451458320000e-02,
+        +1.826011990000e-02, +2.297010420000e-02, +2.887026190000e-02, +3.626918100000e-02,
+        +4.547940310000e-02, +5.694081920000e-02, +7.098730720000e-02, +8.809954260000e-02,
+        +1.082238890000e-01, +1.312504830000e-01, +1.550557150000e-01, +1.763715060000e-01,
+        +1.856277380000e-01, +1.697780440000e-01, +1.034052450000e-01, -3.025832330000e-02,
+        -2.275743930000e-01, -3.621732170000e-01, -2.055004460000e-01, +3.373948730000e-01,
+        +3.176898970000e-01, -5.137621600000e-01, +3.091302640000e-01, -1.267575920000e-01,
+        +4.619678900000e-02, -1.809686740000e-02, +8.354260500000e-03, -4.473683040000e-03,
+        +2.619747830000e-03, -1.601713570000e-03, +9.977178820000e-04, -6.262758150000e-04,
+        +3.943388180000e-04, -2.486063540000e-04, +1.568086040000e-04, -9.892662880000e-05,
+        +6.241523980000e-05, -3.938053930000e-05, +2.484723580000e-05, -1.567749450000e-05,
+        +9.891817410000e-06, -6.241311600000e-06, +3.938000580000e-06, -2.484710180000e-06,
+        +1.567746090000e-06, -9.891808960000e-07, +6.241309480000e-07, -3.938000050000e-07,
+        +2.484710050000e-07, -1.567746050000e-07, +9.891808880000e-08, -6.241309460000e-08
+    ])
+    nc = 100
+    nc0 = 60
+    return fc, nc, nc0
+```
+
+The function returns 100 filter coefficients.
+
+Let's have a closer look at the coefficients:
+
+```{python}
+fc, nc, nc0 = gethankelfcJ0()
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+ax.plot(-nc0 + np.linspace(0, nc, num=nc), fc)
+ax.grid(True)
+```
+These are the filter coefficients which carry out the weighting of the functions $J_\nu$ on the kernel $f$.
+
+We obtain the discrete values of $F_n$ by evaluating the function $f$ at given interpolation points.
+
+The choice of these interpolation points depends on the source-receiver offsets $r$ for which the integral is to be calculated.
+If the offsets $r_i$ are also logarithmically equidistant, the convolution sum can use all values of $r_i$ in one pass.
+
+#### Calculation of the discrete kernel
+
+The kernel function $F_n$ is calculated as a function of the length $n_c$ of the filter coefficients $H$ and the number $n_r$ of distances $r$. 
+
+The number of required function evaluations of $f$ is $n_c + n_r - 1$.
+The location of the discrete $\lambda_n$ depends on the minimum spacing $r_{min}$.
+
+We set $r=100$ m, such that $n_r = 1$.
+
+```{python}
+rmin = 100.0
+nr = 1
+ncnr = nc + nr - 1
+
+rr = rmin
+```
+
+We consider a homogeneous halfspace with conductivity $\sigma = 0.01$ S/m.
+
+
+::: {.callout-note}
+
+Unlike our example, we usually provide logarithmically equidistant distances.
+Source and receiver points are both in the plane $z=0$.
+The Euclidean distance between the two is denoted by $R$.
+
+The discrete distances $r_i$ would then grow exponentially with 10 grid points per decade.
+
+:::
+
+```{python}
+z = 0.0
+z0 = 0.0
+q = 10.0**0.1
+
+R = np.sqrt(rr**2 + (z - z0)**2)
+```
+
+We calculate the field values for several logarithmically equidistant frequencies at once.
+For our example we choose $0.1 < f < 10^5$ Hz.
+
+The next loop provides the discrete wavenumbers $\lambda_n$ and from them the kernel function $F_n(\lambda_n, z)$.
+
+```{python}
+def admittance(λ, σ, μ, d, f):
+    nl = len(σ)
+    ω = 2 * np.pi * f
+    α = [np.sqrt(λ**2 + 1j * μ[i] * ω * σ[i]) for i in range(nl)]
+    η = [a / m for a, m in zip(α, μ)]
+    
+    B = np.zeros(nl, dtype=np.complex128)
+
+    B[nl - 1] = η[nl - 1]
+
+    if nl > 1:
+        for n in range(nl - 2, -1, -1):
+            B[n] = η[n] * \
+                    (B[n + 1] + η[n] * np.tanh(α[n] * d[n])) / \
+                    (η[n] + B[n + 1] * np.tanh(α[n] * d[n]))
+
+    return B[0]
+
+```
+
+
+```{python}
+nf = 61
+mu_0 = np.pi * 4e-7
+f = np.logspace(-1, 5, 61, endpoint=True)
+kernel = np.zeros(ncnr).astype(complex)
+Bz = np.zeros(nf).astype(complex)
+
+Bz0 = (3 * (z - z0)**2 - R**2) / R**5
+
+for k, freq in enumerate(f):
+    omega = 2 * np.pi * freq
+    for nu in range(0, ncnr):
+        n = nc0 - nc + nu
+        lam = np.exp(-n * 0.1 * np.log(10.0)) / rmin
+
+        # B1 = np.sqrt(lam**2 + 1j * omega * mu_0 * sigma)
+        # B1 = admittance(lam, [sigma], [mu_0], [], freq)
+        B1 = lambda_1(lam, sigma, mu_0, freq)
+        E = np.exp(-lam * np.abs(z + z0))
+        eta = lam / mu_0
+        gamma = (B1 - eta) / (B1 + eta) * E
+        kernel[nu] = gamma * lam**2
+        hankelint = convolve(fc, kernel)
+    Bz[k] = mu_0 / (4 * np.pi) * (Bz0 - hankelint[0] / rr)
+```
+
+```{python}
+def pos(data):
+    """Return positive data; set negative data to NaN."""
+    return np.where(data > 0, data, np.nan)
+```
+
+```{python}
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+ax.loglog(f, pos(np.real(Bz)), color='C0', linestyle='-', label='real')
+ax.loglog(f, pos(-np.real(Bz)), color='C0', linestyle='--')
+ax.loglog(f, pos(np.imag(Bz)), color='C1', linestyle='-', label='imag')
+ax.loglog(f, pos(-np.imag(Bz)), color='C1', linestyle='--')
+ax.set_xlabel('f in Hz')
+ax.set_ylabel(r'$B_z$ in Vs/m$^2$')
+ax.legend()
+```
+
+![](https://ruboerner.github.io/images/Hz_VMD.png)
+
+### Comparison to the analytical solution
+
+For the purpose of comparison we use the function `Bz_analytical(r, omega, sigma)` that computes $B_z$ using the closed form expression derived for $z=h=0$ (see @sec-H).
+
+```{python}
+def Bz_analytical(r, omega, sigma):
+    mu_0 = np.pi * 4e-7
+    k = np.sqrt(-1j * omega * mu_0 * sigma)
+    B = 9 - (9 + 9 * 1j * k * r - 4 * k**2 * r**2 - 1j * k**3 * r**3) * np.exp(-1j * k * r)
+    B *= mu_0 / (2 * np.pi * k**2 * r**5)
+    return B
+
+Bz_ana = [Bz_analytical(R, 2 * np.pi * v, sigma) for v in f]
+```
+
+```{python}
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+ax.loglog(f, pos(np.real(Bz_ana)), color='C0', linestyle='-', label='real')
+ax.loglog(f, pos(-np.real(Bz_ana)), color='C0', linestyle='--')
+ax.loglog(f, pos(np.imag(Bz_ana)), color='C1', linestyle='-', label='imag')
+ax.loglog(f, pos(-np.imag(Bz_ana)), color='C1', linestyle='--')
+ax.set_xlabel('f in Hz')
+ax.set_ylabel(r'$B_z$ in Vs/m$^2$')
+ax.legend()
+```
+
+As expected, the function plot matches the previous one.
+
+The relative norm of the residual is
+```{python}
+res = Bz_ana - Bz
+print(np.linalg.norm(res) / np.linalg.norm(Bz_ana))
+```
