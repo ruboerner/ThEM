@@ -352,28 +352,6 @@ For our example we choose $0.1 < f < 10^5$ Hz.
 The next loop provides the discrete wavenumbers $\lambda_n$ and from them the kernel function $F_n(\lambda_n, z)$.
 
 ```{python}
-def admittance(λ, σ, μ, d, f):
-    nl = len(σ)
-    ω = 2 * np.pi * f
-    α = [np.sqrt(λ**2 + 1j * μ[i] * ω * σ[i]) for i in range(nl)]
-    η = [a / m for a, m in zip(α, μ)]
-    
-    B = np.zeros(nl, dtype=np.complex128)
-
-    B[nl - 1] = η[nl - 1]
-
-    if nl > 1:
-        for n in range(nl - 2, -1, -1):
-            B[n] = η[n] * \
-                    (B[n + 1] + η[n] * np.tanh(α[n] * d[n])) / \
-                    (η[n] + B[n + 1] * np.tanh(α[n] * d[n]))
-
-    return B[0]
-
-```
-
-
-```{python}
 nf = 61
 mu_0 = np.pi * 4e-7
 f = np.logspace(-1, 5, 61, endpoint=True)
@@ -389,13 +367,12 @@ for k, freq in enumerate(f):
         lam = np.exp(-n * 0.1 * np.log(10.0)) / rmin
 
         # B1 = np.sqrt(lam**2 + 1j * omega * mu_0 * sigma)
-        # B1 = admittance(lam, [sigma], [mu_0], [], freq)
         B1 = lambda_1(lam, sigma, mu_0, freq)
         E = np.exp(-lam * np.abs(z + z0))
         eta = lam / mu_0
         gamma = (B1 - eta) / (B1 + eta) * E
         kernel[nu] = gamma * lam**2
-        hankelint = convolve(fc, kernel)
+    hankelint = convolve(fc, kernel)
     Bz[k] = mu_0 / (4 * np.pi) * (Bz0 - hankelint[0] / rr)
 ```
 
@@ -403,9 +380,7 @@ for k, freq in enumerate(f):
 def pos(data):
     """Return positive data; set negative data to NaN."""
     return np.where(data > 0, data, np.nan)
-```
 
-```{python}
 fig, ax = plt.subplots(1, 1, figsize=(6,4))
 ax.loglog(f, pos(np.real(Bz)), color='C0', linestyle='-', label='real')
 ax.loglog(f, pos(-np.real(Bz)), color='C0', linestyle='--')
@@ -449,5 +424,6 @@ As expected, the function plot matches the previous one.
 The relative norm of the residual is
 ```{python}
 res = Bz_ana - Bz
-print(np.linalg.norm(res) / np.linalg.norm(Bz_ana))
+relnorm = np.linalg.norm(res) / np.linalg.norm(Bz_ana)
+print(f'Relative residual norm = {relnorm:.2e}')
 ```

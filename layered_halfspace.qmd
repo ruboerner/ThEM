@@ -7,6 +7,8 @@ jupyter: python3
 #| echo: false
 from sympy import *
 import numpy as np
+from IPython.display import display, Latex, HTML
+print_latex = lambda ex: display(HTML("\(" + ex  + "\)"))
 ```
 
 We consider a vertical magnetic dipole (VMD) over a layered halfspace.
@@ -42,12 +44,12 @@ Inside the layer with index $n$ we define the function $\lambda_n = \lambda_n(\l
 
 We assume that there are both upward and downward travelling waves arising from reflections at the discontinuities (jumps) of the electrical conductivity between adjacent uniform layers.
 
-Let
+Let the function
 $$
 \begin{equation}
 \begin{aligned}
 V(z, \lambda) &=\gamma_{n}^{-}(\lambda) e^{-\lambda_{n}\left(z-h_{n}\right)}+\gamma_{n}^{+}(\lambda) e^{+\lambda_{n}\left(z-h_{n}\right)} \\
-&=\gamma_{n}^{-}\left[e^{-\lambda_{n}\left(z-h_{n}\right)}+r_{n} e^{+\lambda_{n}\left(z-h_{n}\right)}\right].
+&=\gamma_{n}^{-}\left[e^{-\lambda_{n}\left(z-h_{n}\right)}+ \textcolor{red}{r_{n}} e^{+\lambda_{n}\left(z-h_{n}\right)}\right]
 \end{aligned}
 \end{equation}
 $$
@@ -59,7 +61,7 @@ V''(z) = \lambda_n^2 V(z)
 $$
 for $h_n < z < h_{n+1}$.
 
-Note that $r_n := \dfrac{\gamma_n^+}{\gamma_n^-}$ is the ratio of the amplitudes of upward (reflected) and downward (transmitted) travelling waves at the interface at $z=h_n$.
+Note that $\textcolor{red}{r_n} := \dfrac{\gamma_n^+}{\gamma_n^-}$ is the ratio of the amplitudes of upward (reflected) and downward (transmitted) travelling waves at the interface at $z=h_n$.
 
 ::: {.callout-note}
 
@@ -153,14 +155,14 @@ Further, we define `V(z)` as a symbolic expression for $V(z)$:
 
 ```{python}
 V = lambda z: gamma_minus * (exp(-lambda_n * (z - h_n)) + r_n * exp(lambda_n * (z - h_n)))
-print('V(z) =')
+print_latex('V(z) =')
 V(z)
 ```
 
 `B(z)` is the implementation of the admittance function $B(z)$:
 ```{python}
 B = lambda z: -diff(V(z), z) / V(z)
-print('B(z) = ')
+print_latex('B(z) = ')
 B(z).simplify()
 ```
 
@@ -168,7 +170,7 @@ B(z).simplify()
 
 ```{python}
 B_n = B(z).subs(z, h_n).simplify()
-print('B_n = ')
+print_latex("B_n = ")
 B_n
 ```
 We observe that
@@ -208,7 +210,7 @@ Thus, we have found an expression which introduces a link to the layer $n+1$, an
 
 ```{python}
 r = solve(B(z).subs(z - h_n, d_n) - B_np1, r_n)
-print('r = ')
+display(HTML("\(r_n = \)"))
 r[0]
 ```
 Given this intermediate result, we are now prepared to substitute the expression $r_n$ in equation @eq-Bn.
@@ -219,7 +221,7 @@ B_n \leftarrow B_{n+1} \qquad\text{for } n= N-1, N-2, \dots, 1.
 $$
 
 ```{python}
-print('B_n = ')
+display(HTML("\( B_n = \)"))
 B_n.subs(r_n, r[0]).simplify().simplify()
 ```
 
