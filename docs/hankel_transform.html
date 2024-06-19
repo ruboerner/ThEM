@@ -430,7 +430,7 @@ e^{-\lambda h}e^{\lambda z}
 </ul>
 <p>The surface admittance <span class="math inline">\(\lambda_1 = \sqrt{\lambda^2 + i \omega \mu_0 \sigma_1}\)</span> will be calculated using the function <code>lambda_1</code> given below.</p>
 <p>This is the <code>Python</code> implementation of the admittance of the uniform halfspace, <span class="math inline">\(\lambda_1\)</span>:</p>
-<div id="9ed2a5ad" class="cell" data-execution_count="2">
+<div id="52a92f89" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lambda_1(lam, sigma, mu, f):</span>
@@ -442,7 +442,7 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 <p>Given these definitions, we are now able to evaluate the complete integrand functions in <a href="#eq-fields-in-air" class="quarto-xref"><span>11.1</span></a>.</p>
 <p>To this end, we first illustrate the integrand graphically:</p>
-<div id="9a0b93fc" class="cell" data-execution_count="3">
+<div id="ca94007b" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nlam <span class="op">=</span> <span class="dv">801</span></span>
@@ -475,7 +475,7 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 <p>As we see from the above illustration, the behaviour of <span class="math inline">\(f(\lambda,z)\)</span> itself does not impose any numerical problems to the integration.</p>
 <p>The following graphs show the real and imaginary part of the <em>complete integrand</em>:</p>
-<div id="4d3641c7" class="cell" data-execution_count="4">
+<div id="a6bd820c" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> j0</span>
@@ -551,7 +551,7 @@ G_m = \sum_{n=n_1} ^{n_2} F_n \overline H_{m-n} = \sum_{n=n_1} ^{n_2} F_{m-n} \o
 <section id="numerical-implementation-of-the-convolution" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="numerical-implementation-of-the-convolution"><span class="header-section-number">11.3</span> Numerical implementation of the convolution</h2>
 <p>We implement a <code>Python</code> function that computes the convolution:</p>
-<div id="f37fdea5" class="cell" data-execution_count="5">
+<div id="a1ba0f7a" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convolve(fc, kernel, style<span class="op">=</span><span class="st">"valid"</span>):</span>
@@ -588,7 +588,7 @@ Note
 </div>
 <p>The following example confirms that our code is correct.</p>
 <p>The convolution of two rectangular sequences results in a triangular sequence:</p>
-<div id="7fb3a82f" class="cell" data-execution_count="6">
+<div id="78c50b99" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
@@ -604,7 +604,7 @@ Note
 [1 2 3 4 5 4 3 2 1]</code></pre>
 </div>
 </div>
-<div id="115bfd39" class="cell" data-execution_count="7">
+<div id="8a6c5eef" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>))</span>
@@ -621,7 +621,7 @@ Note
 </div>
 </div>
 </div>
-<div id="e7ee4cdd" class="cell" data-execution_count="8">
+<div id="228a4333" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>))</span>
@@ -642,7 +642,7 @@ Note
 <h3 data-number="11.3.1" class="anchored" data-anchor-id="example-calculation-of-b_z"><span class="header-section-number">11.3.1</span> Example: Calculation of <span class="math inline">\(B_z\)</span></h3>
 <p>For the calculation of <span class="math inline">\(B_z\)</span> we need the kernel <span class="math inline">\(F\)</span> and the filter coefficients <span class="math inline">\(H\)</span>.</p>
 <p>The filter coefficients are provided by the function <code>gethankelfcJ0</code>.</p>
-<div id="25a708b0" class="cell" data-execution_count="9">
+<div id="3435da47" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gethankelfcJ0():</span>
@@ -680,7 +680,7 @@ Note
 </div>
 <p>The function returns 100 filter coefficients.</p>
 <p>Let’s have a closer look at the coefficients:</p>
-<div id="77bb2a0c" class="cell" data-execution_count="10">
+<div id="58551916" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fc, nc, nc0 <span class="op">=</span> gethankelfcJ0()</span>
@@ -704,7 +704,7 @@ Note
 <p>The kernel function <span class="math inline">\(F_n\)</span> is calculated as a function of the length <span class="math inline">\(n_c\)</span> of the filter coefficients <span class="math inline">\(H\)</span> and the number <span class="math inline">\(n_r\)</span> of distances <span class="math inline">\(r\)</span>.</p>
 <p>The number of required function evaluations of <span class="math inline">\(f\)</span> is <span class="math inline">\(n_c + n_r - 1\)</span>. The location of the discrete <span class="math inline">\(\lambda_n\)</span> depends on the minimum spacing <span class="math inline">\(r_{min}\)</span>.</p>
 <p>We set <span class="math inline">\(r=100\)</span> m, such that <span class="math inline">\(n_r = 1\)</span>.</p>
-<div id="7056742b" class="cell" data-execution_count="11">
+<div id="45ebbf1d" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rmin <span class="op">=</span> <span class="fl">100.0</span></span>
@@ -729,7 +729,7 @@ Note
 <p>The discrete distances <span class="math inline">\(r_i\)</span> would then grow exponentially with 10 grid points per decade.</p>
 </div>
 </div>
-<div id="f51d43d0" class="cell" data-execution_count="12">
+<div id="0f3cad3e" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="fl">0.0</span></span>
@@ -741,7 +741,7 @@ Note
 </div>
 <p>We calculate the field values for several logarithmically equidistant frequencies at once. For our example we choose <span class="math inline">\(0.1 &lt; f &lt; 10^5\)</span> Hz.</p>
 <p>The next loop provides the discrete wavenumbers <span class="math inline">\(\lambda_n\)</span> and from them the kernel function <span class="math inline">\(F_n(\lambda_n, z)\)</span>.</p>
-<div id="285d64e2" class="cell" data-execution_count="13">
+<div id="872feb04" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nf <span class="op">=</span> <span class="dv">61</span></span>
@@ -768,7 +768,7 @@ Note
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    Bz[k] <span class="op">=</span> mu_0 <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi) <span class="op">*</span> (Bz0 <span class="op">-</span> hankelint[<span class="dv">0</span>] <span class="op">/</span> rr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="93085b2f" class="cell" data-execution_count="14">
+<div id="df93d524" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pos(data):</span>
@@ -798,7 +798,7 @@ Note
 <section id="comparison-to-the-analytical-solution" class="level3" data-number="11.3.2">
 <h3 data-number="11.3.2" class="anchored" data-anchor-id="comparison-to-the-analytical-solution"><span class="header-section-number">11.3.2</span> Comparison to the analytical solution</h3>
 <p>For the purpose of comparison we use the function <code>Bz_analytical(r, omega, sigma)</code> that computes <span class="math inline">\(B_z\)</span> using the closed form expression derived for <span class="math inline">\(z=h=0\)</span> (see <a href="explicit.html#sec-H" class="quarto-xref"><span>Section 10.6</span></a>).</p>
-<div id="c1c61bec" class="cell" data-execution_count="15">
+<div id="8bd8c3e5" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Bz_analytical(r, omega, sigma):</span>
@@ -811,7 +811,7 @@ Note
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>Bz_ana <span class="op">=</span> [Bz_analytical(R, <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> v, sigma) <span class="cf">for</span> v <span class="kw">in</span> f]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="8b2c4606" class="cell" data-execution_count="16">
+<div id="dfc1e51a" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
@@ -833,7 +833,7 @@ Note
 </div>
 <p>As expected, the function plot matches the previous one.</p>
 <p>The relative norm of the residual is</p>
-<div id="dd1c605e" class="cell" data-execution_count="17">
+<div id="1fa7da85" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> Bz_ana <span class="op">-</span> Bz</span>
