@@ -500,7 +500,7 @@ Summary
 <li><code>dₙ</code>: thickness of layer <span class="math inline">\(n\)</span></li>
 <li><code>hₙ</code>: <span class="math inline">\(z\)</span>-coordinate at the top of layer <span class="math inline">\(n\)</span></li>
 </ul>
-<div id="8aef0b65" class="cell" data-execution_count="2">
+<div id="ba82be51" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>z, r_n, d_n <span class="op">=</span> symbols(<span class="st">"z r_n d_n"</span>, real<span class="op">=</span><span class="va">True</span>)</span>
@@ -509,7 +509,7 @@ Summary
 </details>
 </div>
 <p>Further, we define <code>V(z)</code> as a symbolic expression for <span class="math inline">\(V(z)\)</span>:</p>
-<div id="28568bc7" class="cell" data-execution_count="3">
+<div id="e9e09c94" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> <span class="kw">lambda</span> z: gamma_minus <span class="op">*</span> (exp(<span class="op">-</span>lambda_n <span class="op">*</span> (z <span class="op">-</span> h_n)) <span class="op">+</span> r_n <span class="op">*</span> exp(lambda_n <span class="op">*</span> (z <span class="op">-</span> h_n)))</span>
@@ -524,7 +524,7 @@ Summary
 </div>
 </div>
 <p><code>B(z)</code> is the implementation of the admittance function <span class="math inline">\(B(z)\)</span>:</p>
-<div id="23836141" class="cell" data-execution_count="4">
+<div id="3714f043" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> <span class="kw">lambda</span> z: <span class="op">-</span>diff(V(z), z) <span class="op">/</span> V(z)</span>
@@ -539,7 +539,7 @@ Summary
 </div>
 </div>
 <p><code>B_n</code> is the interface admittance at the top of layer <span class="math inline">\(n\)</span>:</p>
-<div id="0440f61b" class="cell" data-execution_count="5">
+<div id="5a387837" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>B_n <span class="op">=</span> B(z).subs(z, h_n).simplify()</span>
@@ -560,7 +560,7 @@ B_{n}=\lambda_{n} \frac{1-r_{n}}{1+r_{n}}.
 \tag{12.1}\]</span></span> We now have a representation of the interface admittance in terms of the layer properties <span class="math inline">\(\lambda_n\)</span> and the reflection coefficient <span class="math inline">\(r_n\)</span>.</p>
 <p>However, the <span class="math inline">\(r_n\)</span> remains undetermined. We try to eliminate <span class="math inline">\(r_n\)</span> from the equation above.</p>
 <p>To this end, we express <span class="math inline">\(B(z)\)</span> at <span class="math inline">\(z=h_{n+1}\)</span> using the layer thickness <span class="math inline">\(d_n\)</span>.</p>
-<div id="2140c648" class="cell" data-execution_count="6">
+<div id="7f88d610" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>B(z).subs(z <span class="op">-</span> h_n, d_n).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -584,7 +584,7 @@ B_{n+1}=\lambda_{n} \frac{1-r_{n} e^{2 \lambda_{n} d_{n}}}{1+r_{n} e^{2 \lambda_
 <li>Save the result as <code>r</code> in <code>sympy</code></li>
 </ul>
 <p>Thus, we have found an expression which introduces a link to the layer <span class="math inline">\(n+1\)</span>, and enables us to eliminate <span class="math inline">\(r_n\)</span>.</p>
-<div id="cb04533c" class="cell" data-execution_count="7">
+<div id="88415687" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> solve(B(z).subs(z <span class="op">-</span> h_n, d_n) <span class="op">-</span> B_np1, r_n)</span>
@@ -602,7 +602,7 @@ B_{n+1}=\lambda_{n} \frac{1-r_{n} e^{2 \lambda_{n} d_{n}}}{1+r_{n} e^{2 \lambda_
 <p>We have obtained an important, yet unfinished, intermediate result, which already contains a recursion <span class="math display">\[
 B_n \leftarrow B_{n+1} \qquad\text{for } n= N-1, N-2, \dots, 1.
 \]</span></p>
-<div id="94f3e162" class="cell" data-execution_count="8">
+<div id="7f3d3bca" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>display(HTML(<span class="st">"\( B_n = \)"</span>))</span>
@@ -687,7 +687,7 @@ Wait algorithm incorporating <span class="math inline">\(\mu_r \ne 1\)</span>
 <li>array of layer thicknesses <span class="math inline">\(d_i\)</span>, <span class="math inline">\(i=1,\dots,n-1\)</span></li>
 <li>frequency in Hz.</li>
 </ul>
-<div id="54c4cb31" class="cell" data-execution_count="9">
+<div id="75943324" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> admittance(λ, σ, μ, d, f):</span>
@@ -710,7 +710,7 @@ Wait algorithm incorporating <span class="math inline">\(\mu_r \ne 1\)</span>
 </details>
 </div>
 <p>For <span class="math inline">\(\lambda = 10\)</span> m<span class="math inline">\(^{-1}\)</span>, <span class="math inline">\(\sigma=[1, 1]^\top\)</span> S/m, <span class="math inline">\(\mu=[\mu_0, \mu_0]^\top\)</span> Vs/Am, <span class="math inline">\(d=1\)</span> m, <span class="math inline">\(f=1\)</span> Hz we obtain for <span class="math inline">\(B_1\)</span>:</p>
-<div id="fb9fe568" class="cell" data-execution_count="10">
+<div id="e33d9dd5" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'B_1 = '</span>)</span>
@@ -720,7 +720,7 @@ Wait algorithm incorporating <span class="math inline">\(\mu_r \ne 1\)</span>
 <pre><code>B_1 = </code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>(10.004928726718875+0.3140045011215269j)</code></pre>
+<pre><code>(10.004928726718877+0.31400450112152684j)</code></pre>
 </div>
 </div>
 </section>
@@ -764,7 +764,7 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 </div>
 <p>Finally, it remains to evaluate the <em>Hankel integrals</em> numerically.</p>
 <p>To this end, we need an implementation of a discrete convolution. We use the function <code>convolve</code>:</p>
-<div id="3c14b09c" class="cell" data-execution_count="11">
+<div id="71d4c8dd" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convolve(fc, kernel, style<span class="op">=</span><span class="st">"valid"</span>):</span>
@@ -786,7 +786,7 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 </details>
 </div>
 <p>Here we define the function <code>gethankelfcJ0</code> that returns the numerical filter coeffients for the function <span class="math inline">\(J_0(\lambda r)\)</span> <code>fc</code>, the length of the filter <code>nc</code> as well the index which corresponds with the zero position, <code>nc0</code>.</p>
-<div id="5287bafa" class="cell" data-execution_count="12">
+<div id="d17e82e5" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -825,7 +825,7 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 </details>
 </div>
 <p>We illustrate the filter coefficients associated with <span class="math inline">\(J_0(\lambda r)\)</span>:</p>
-<div id="eaa18374" class="cell" data-execution_count="13">
+<div id="38996571" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -843,7 +843,7 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 </div>
 </div>
 </div>
-<div id="fd44b1bd" class="cell" data-execution_count="14">
+<div id="cbea85cf" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pos(data):</span>
@@ -922,7 +922,7 @@ Figure&nbsp;12.2: Vertical magnetic field of a VMD over a uniform halfspace in t
 </div>
 </div>
 </div>
-<div id="e565fa88" class="cell" data-execution_count="16">
+<div id="60e15f91" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Hz_analytical(r, f, sigma):</span>

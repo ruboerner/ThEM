@@ -397,3 +397,40 @@ $$
 \delta = \frac{\left \| \dv{}{t}b_z^{analytical}(t) - \dv{}{t}b_z^{FHT}(t) \right \|_2}{{\left \| \dv{}{t}b_z^{analytical}(t) \right \|_2}}
 $$
 which evaluates for our experiment to `{python} '{0:.2e}'.format(np.linalg.norm(dBzdt_ana - dBzdt) / np.linalg.norm(dBzdt_ana))`.
+
+## Example using `empymod`
+
+With `empymod` we can model any type of dipole embedded in a layered halfspace and evaluate fields both in frequency and time domain.
+
+We consider the example introduced above and provide the fields with `empymod`.
+
+```{python}
+import empymod
+time = np.logspace(-6, -3, 31)
+mu_0 = np.pi * 4e-7
+src = [0, 0, 0, 0, 90]
+rec = [100, 0, 0.1, 0, 90]
+depth = 0
+res = [2e14, 100]
+eperm = [0, 0]
+inp = {
+        "src": src,
+        "rec": rec,
+        "depth": depth,
+        "res": res,
+        "freqtime": time,
+        "verb": 1,
+        "xdirect": True,
+        "epermH": eperm,
+}
+
+dbz_num = empymod.loop(signal=0, **inp) * mu_0
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+
+ax.loglog(time, np.abs(dbz_num), marker='o', label='empymod')
+ax.legend()
+ax.set_label('t in s')
+ax.set_ylabel(r'$db_z(t)/dt$ in V/$m^2$')
+ax.set_title('Impulse response')
+ax.grid(True)
+```
