@@ -2,7 +2,9 @@
 title: "Fields in the time domain"
 jupyter: python3
 ---
+
 ## Introduction
+
 So far, we have investigated fields as a function of location and frequency. This is adequate as long as we consider time-harmonic dipole excitation with a time dependency of the dipole moment of $e^{i\omega t}$, i.e.
 
 $$
@@ -13,14 +15,11 @@ The relationships immediately become different if we allow abrupt changes in the
 
 $$
 \mathbf m(\mathbf r, t) = \mathbf m(\mathbf r) \delta(t)
-$$
-or
-$$
+$$ or $$
 \mathbf m(\mathbf r, t) = \mathbf m(\mathbf r) u(t).
 $$
 
-$u(t)$ is the *Heaviside step function*
-$$
+$u(t)$ is the *Heaviside step function* $$
 \begin{equation}
 u(t) = 
 \begin{cases}
@@ -47,8 +46,7 @@ The following figure shows the result of the time integration of the Dirac delta
 plot(integrate(DiracDelta(t), t), (t, -1, 1), size=(6,3), title=r'$\int_{-\infty}^t\delta(\tau) d\tau$')
 ```
 
-Both figures obviously show the same result. So the following applies
-$$
+Both figures obviously show the same result. So the following applies $$
 u(t) = \int\limits_{-\infty}^t \delta(\tau) \, \mathrm d \tau.
 $$
 
@@ -61,11 +59,9 @@ We can reproduce the result using symbolic mathematics.
 integrate(DiracDelta(t), t)
 ```
 
-Conversely, the following applies to the time derivative of the Heaviside function
-$$
+Conversely, the following applies to the time derivative of the Heaviside function $$
 \frac{\mathrm d}{\mathrm dt} u(t) = \delta(t),
-$$
-of which we can convince ourselves by symbolic differentiation:
+$$ of which we can convince ourselves by symbolic differentiation:
 
 ```{python}
 #| code-fold: False
@@ -73,15 +69,15 @@ diff(Heaviside(t), t)
 ```
 
 ## Terminology
+
 We will use two important terms in the time domain, namely
 
-* step function response and
-* impulse response.
+-   step function response and
+-   impulse response.
 
 These terms are related to the time dependence of the current function of the dipole moment.
 
-In general, the dipole moment is a function of location and time, i.e., $\mathbf m(\mathbf r, t) = \mathbf q(\mathbf r) I(t)$. 
-Here, $\mathbf q(\mathbf r)$ describes the exact position of the current-carrying cable (e.g., a large horizontal coil on the Earth's surface) and $I(t)$ the time dependence of the current in this coil.
+In general, the dipole moment is a function of location and time, i.e., $\mathbf m(\mathbf r, t) = \mathbf q(\mathbf r) I(t)$. Here, $\mathbf q(\mathbf r)$ describes the exact position of the current-carrying cable (e.g., a large horizontal coil on the Earth's surface) and $I(t)$ the time dependence of the current in this coil.
 
 In the following, we only consider the time dependence of the dipole moment, i.e., $I(t)$.
 
@@ -95,11 +91,10 @@ $$
 I(t) = I_0 u(t)
 $$
 
-describes the switching on of a current in the source at the time $t=0$ in the form of a step function.
-The fields $\mathbf e(t)$ and $\mathbf b(t)$ observed for $t > 0$ are called step function response.
-These fields are measured with electrodes or magnetometers.
+describes the switching on of a current in the source at the time $t=0$ in the form of a step function. The fields $\mathbf e(t)$ and $\mathbf b(t)$ observed for $t > 0$ are called step function response. These fields are measured with electrodes or magnetometers.
 
 ### Impulse response
+
 The current function
 
 $$
@@ -116,13 +111,12 @@ Induction coils measure $\partial_t b(t)$, i.e. the time derivative of the step 
 
 How can this relationship be described?
 
-We have already seen above that the integration of the Dirac delta function with respect to time yields the Heaviside jump function.
-Conversely, the time derivative of the step function yields the delta function, i.e. a *Dirac impulse*.
+We have already seen above that the integration of the Dirac delta function with respect to time yields the Heaviside jump function. Conversely, the time derivative of the step function yields the delta function, i.e. a *Dirac impulse*.
 
 We transfer this concept to the fields:
 
 | field size | time dependence of the source | term |
-|----------------|------------------|-------------------|
+|----|----|----|
 | $\mathbf e(t),\mathbf b(t)$ | $u(t)$ | Step function response |
 | $\frac{d}{dt} \mathbf b(t)$ | $\frac{d}{dt} u(t)$ | impulse response |
 | $\frac{d}{dt} \mathbf b(t)$ | $\delta(t)$ | impulse response |
@@ -133,7 +127,7 @@ We now derive an important relationship between the impulse response and the ste
 
 Let $h(t)$ be the impulse response.
 
-::: {.callout-note}
+::: callout-note
 The impulse response $h(t)$ used here a physically unspecified function of time, **not the magnetic field**!
 :::
 
@@ -158,8 +152,7 @@ We define symbolic expressions for the integrals introduced above to calculate $
 
 $$
 f_1(\tau) = \int_{-\infty}^{\infty} h(t) u(\tau-t) \dd t
-$$
-$$
+$$ $$
 f_2(\tau) = \int_{-\infty}^{\tau} h(t) \dd t
 $$
 
@@ -189,15 +182,13 @@ $$
 f(\tau) = \int_{-\infty}^\tau h(t) \, \dd t.
 $$
 
-::: {.callout-note}
-Both integrals involve the _complementary error function_ _erfc_, which will be discussed later in more detail.
+::: callout-note
+Both integrals involve the *complementary error function* *erfc*, which will be discussed later in more detail.
 :::
 
 ### Causal systems
 
-Only causal systems occur in geophysics.
-In causal processes, no fields (or changes in the fields) can be measured before the source has been switched on (or changed).
-The effect is observed as a consequence of one of the causes.
+Only causal systems occur in geophysics. In causal processes, no fields (or changes in the fields) can be measured before the source has been switched on (or changed). The effect is observed as a consequence of one of the causes.
 
 The step function response for *causal systems* is
 
@@ -233,18 +224,15 @@ def f_off(tau):
 plot(f_off(t), (t, 0, 10), ylim=(0, 1), size=(6,3), title=r'$f_\text{off}(t)$')
 ```
 
-
-::: {.callout-note}
+::: callout-note
 The figure for $f_\text{on}(t)$ shows the typical behaviour of a field build-up after the source is switched on. We observe an increase in the field and a transition to a stationary state for $t \to \infty$.
 
 $f_\text{off}(t)$ shows the decay of the field, where the initial value at $t=0$ decreases monotonically for $t > 0$ to disappear for $t \to \infty$.
 :::
 
-We will now deal with the transformation between the time and frequency domains.
-To do this, we need the **Laplace transformation** (LT) and its properties.
+We will now deal with the transformation between the time and frequency domains. To do this, we need the **Laplace transformation** (LT) and its properties.
 
 The starting point is the comparison of the curl-curl equation in the time domain and in the frequency domain.
-
 
 In the **frequency domain** we require $F$ to be a solution to the PDE
 
@@ -252,9 +240,7 @@ $$
 \begin{equation}
 -\partial_{xx}^2 F + i\omega\mu\sigma F = -i\omega J^{e}
 \end{equation}
-$$
-with
-$$
+$$ with $$
 \begin{equation}
 J^e(\mathbf r, \omega) = q(\mathbf r).
 \end{equation}
@@ -266,9 +252,7 @@ $$
 \begin{equation}
 -\partial_{xx}^2 f + \mu\sigma \partial_{t} f = -\partial_{t} j^{e}
 \end{equation}
-$$
-with
-$$
+$$ with $$
 \begin{equation}
 j^e(\mathbf r, t) = q(\mathbf r) \delta(t).
 \end{equation}
@@ -278,8 +262,7 @@ Observations:
 
 In the frequency domain, there is no explicit dependence of the source current density $J^e(\mathbf r, \omega)$ on the frequency.
 
-We conclude from this that in the time domain, the source current function $j^e$ can be explicitly represented by a Dirac impulse on the time axis.
-The solution of this curl-curl equation is the impulse response.
+We conclude from this that in the time domain, the source current function $j^e$ can be explicitly represented by a Dirac impulse on the time axis. The solution of this curl-curl equation is the impulse response.
 
 The solution of the curl-curl equation in the frequency domain is then obtained from the Fourier transform of the impulse response in the time domain.
 
@@ -295,8 +278,7 @@ $$
 J^e_s(\omega) = q(\mathbf r) \left(\pi \delta(\omega) + \frac{1}{i \omega}\right)
 $$
 
-The step function response in the frequency domain, $F_s(\omega)$, is thus obtained formally by multiplying the Fourier transform of the impulse response by the Fourier transform of the step function as
-$$
+The step function response in the frequency domain, $F_s(\omega)$, is thus obtained formally by multiplying the Fourier transform of the impulse response by the Fourier transform of the step function as $$
 F_s(\omega) = F(\omega) \left(\pi \delta(\omega) + \frac{1}{i \omega}\right) .
 $$
 
@@ -312,8 +294,7 @@ e^{i\omega t} \, \dd\omega
 \end{align}
 $$
 
-Formally, the Fourier transform must be added to half the value of the field at $\omega = 0$, 
-where the values of $F$ to be transformed are multiplied by $\frac{1}{i\omega}$.
+Formally, the Fourier transform must be added to half the value of the field at $\omega = 0$, where the values of $F$ to be transformed are multiplied by $\frac{1}{i\omega}$.
 
 This corresponds to the well-known integration property of integral transforms.
 
@@ -323,23 +304,19 @@ Mathematical problems in connection with switch-on or switch-off processes can b
 
 Consider a function $f(t)$, $t > 0$.
 
-The Laplace transform can be applied to $f(t)$ as follows:
-$$
+The Laplace transform can be applied to $f(t)$ as follows: $$
 \mathcal L(f(x, t))=\int_{0}^{\infty} e^{-s t} f(x, t) \dd t \equiv F(x, s)
-$$
-with $x$ as parameter.
+$$ with $x$ as parameter.
 
-The Laplace parameter $s$ is complex and extends the imaginary frequency term $i\omega$ of the FT by the real part $a$, so that with $s = a + i\omega$ we have a complex-valued "frequency". In this way, the Laplace transform can also deal with unstable signals $f$, since for $t \to \infty$ the real part of $s$ ensures that the integrand is limited. 
+The Laplace parameter $s$ is complex and extends the imaginary frequency term $i\omega$ of the FT by the real part $a$, so that with $s = a + i\omega$ we have a complex-valued "frequency". In this way, the Laplace transform can also deal with unstable signals $f$, since for $t \to \infty$ the real part of $s$ ensures that the integrand is limited.
 
-In connection with PDEs, we also need the LT of the 
-time derivative of $f(t)$, or short $f_t(x, t) = \partial_t f(x, t)$
+In connection with PDEs, we also need the LT of the time derivative of $f(t)$, or short $f_t(x, t) = \partial_t f(x, t)$
 
 $$
 \mathcal L(f_t(x, t)),
 $$
 
-which we calculate using the Laplace integral introduced above via integration by parts:
-$$
+which we calculate using the Laplace integral introduced above via integration by parts: $$
 \begin{align}
 \mathcal L(f_t(x, t) & = \int\limits_{0}^{\infty} e^{-s t} f_{t}(x, t) \dd t \\ & = \left.e^{-s t} f(x, t)\right|_{0} ^{\infty}+s \int\limits_{0}^{\infty} e^{-s t} f(x, t) \dd t \\ & = s F(x, s)-f(x, 0).
 \end{align}
@@ -347,11 +324,11 @@ $$
 
 The following table contains some important Laplace transform pairs:
 
-| $f(t)$ | $\mathcal L(f(t))$ |
-|-----------------|---------------|
-| $u(t-a)$ | $\dfrac{e^{-as}}{s}$ |
-| $\delta(t-a)$ | $e^{-as}$ |
-| $1$ | $\dfrac{1}{s}$ |
+| $f(t)$        | $\mathcal L(f(t))$   |
+|---------------|----------------------|
+| $u(t-a)$      | $\dfrac{e^{-as}}{s}$ |
+| $\delta(t-a)$ | $e^{-as}$            |
+| $1$           | $\dfrac{1}{s}$       |
 
 ## Inverse transform of the electric field with step function excitation
 
@@ -394,13 +371,11 @@ $$ {#eq-laplace-k2r2}
 
 ### Error function
 
-The [error function](https://en.wikipedia.org/wiki/Error_function) erf$(t)$ plays an important role. Its definition is
-$$
+The [error function](https://en.wikipedia.org/wiki/Error_function) erf$(t)$ plays an important role. Its definition is $$
 \mathrm{erf}(t) = \frac{2}{\sqrt{\pi}} \int_0^t e^{-\tau^2} \dd\tau.
 $$ {#eq-erf}
 
-The *complementary error function* erfc$(t)$ is
-$$
+The *complementary error function* erfc$(t)$ is $$
 \mathrm{erfc}(t) = 1 - \mathrm{erf}(t).
 $$ {#eq-erfc}
 
@@ -411,6 +386,7 @@ plot(erf(t), (t,0,2), size=(6,3), title='erf(t)')
 plot(erfc(t), (t,0,2), size=(6,3), title='erfc(t)')
 
 ```
+
 ### Summary of all terms
 
 After the LT we first have
@@ -528,8 +504,7 @@ def Ht(r, m, t, sigma):
 Ht(np.array([0, 100, 0]), np.array([0, 0, 1]), 1e-0, 0.01)
 ```
 
-However, the time derivative of the magnetic field is important, which is why we differentiate w.r.t. time. 
-Using the chain rule, we obtain 
+However, the time derivative of the magnetic field is important, which is why we differentiate w.r.t. time. Using the chain rule, we obtain
 
 $$
     \partial_t \mathbf h(\mathbf r, t) = \frac{\Theta^3}{\sqrt{\pi}^3 t} \left[
@@ -561,9 +536,7 @@ def dHdt(r, m, t, sigma):
 
 We now simulate the step function and impulse response of the electrically conductive full space.
 
-We choose $\mathbf r = [100, 0, 0]^\top$ as the observation point.
-The conductivity is 0.01 S/m.
-The dipole moment is $\mathbf m = [0 ,0 , 1]^\top$.
+We choose $\mathbf r = [100, 0, 0]^\top$ as the observation point. The conductivity is 0.01 S/m. The dipole moment is $\mathbf m = [0 ,0 , 1]^\top$.
 
 We simulate the fields for logarithmically equidistant times in the interval $10^{-7} \le t \le 1$ s.
 
@@ -582,6 +555,7 @@ dhzdt = np.array([dHdt(r, m, v, sigma)[2] for v in tt])
 ```
 
 The electric field exhibits an asymptotic behaviour of $e \sim t^{-5/2}$ as $t \to \infty$
+
 ```{python}
 #| label: fig-ey
 #| fig-cap: "Electric field component $e_y$ due to a step-on vertical magnetic dipole in fullspace. The red and green shading indicates the regime where $\\Theta r > 1$ and $\\Theta r < 1$, resp."
@@ -606,14 +580,15 @@ ax.legend()
 ax.set_title(r'$e_y(t)$, r = 100 m')
 ax.grid(True)
 ```
+
 The magnetic field approaches a stationary value as $t \to \infty$.
 
-Obviously,
-$$
+Obviously, $$
 h(r, t) = -\frac{1}{4 \pi r^3} \text{ for } t \to \infty.
 $$
 
 The numerical evaluations are identical up to rounding errors.
+
 ```{python}
 print('h_z(r,t) = ' + str(-1.0 / (4 * np.pi * np.linalg.norm(r)**3)))
 print('hz[-1]   = ' + str(hz[-1]))
