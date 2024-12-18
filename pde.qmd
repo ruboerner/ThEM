@@ -1,6 +1,7 @@
 ---
 title: "Partial Differential Equations"
 jupyter: python3
+editor: source
 ---
 
 As we have seen, Maxwell's equations can be coupled using the constitutive equations and Ohm's law.
@@ -29,7 +30,9 @@ $$
 \begin{bmatrix}
 0 \\ \rho_E
 \end{bmatrix}
-$$ Note that the sources of the fields--- $\mathbf J$ and $\rho_E$ ---always appear on the right-hand side of the equations. $\mathbf I$ denotes the 3-by-3 identity matrix.
+$$ 
+
+Note that the sources of the fields-- $\mathbf J$ and $\rho_E$ --always appear on the right-hand side of the equations. $\mathbf I$ denotes the 3-by-3 identity matrix.
 
 By elimination of one field, e.g., the magnetic field, we are able to cast the system of first-order ODEs into a *second-order partial differential equation* (PDE).
 
@@ -539,7 +542,7 @@ $$
 ::: {.callout-tip title="Python code" collapse="true"}
 This is the Python code that you can use to create the following animation:
 
-``` python
+```python
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
@@ -559,25 +562,33 @@ zair = np.arange(start=-10000, stop=0, step=100)
 zz = np.arange(start=0, stop=6e4, step=600)
 tau = 1.0 / kk
 
-fig, ax = plt.subplots(figsize=(4, 6), layout='constrained')
+fig, ax = plt.subplots(figsize=(4, 4), layout='constrained')
+t = 0
+hsub = h(zz, a, b, w, t)
+hr, = ax.plot(np.real(hsub), zz/1000, label='Re', zorder=2)
+hi, = ax.plot(np.imag(hsub), zz/1000, label='Im', zorder=3)
+hair = np.ones_like(zair) * np.exp(1j * w * t)
+ha, = ax.plot(np.real(hair), zair/1000, color='C0', label='', zorder=1)
+ax.fill_betweenx(zz/1000, -np.exp(-b * zz), np.exp(-b * zz), color='grey', alpha=0.5, label='')
+zp = w * t / a if a > 0.0 else np.max(zz) + w * t / a
+st = ax.scatter(np.real(h(zp, a, b, w, t)), zp/1000, marker='*', color='black', label='phase')
+ax.axhline(y=tau/1000, color='red', label='τ')
+ax.axhline(y=2*np.pi*tau/1000, color='green', label='λ')
+ax.set_ylabel('Depth in km')
+ax.set_xlabel('Normalized amplitude')
+ax.set_xlim(-1.0, 1.0)
+ax.set_ylim(min(zair)/1000, max(zz)/1000)
+ax.invert_yaxis()
+ax.grid()
+ax.legend(loc='lower left')
 
 def update(frame):
-    ax.clear()
     t = frame * T / 100.0
-    ax.plot([np.real(np.exp(1j * w * t)) for _ in zair], zair, color='blue', label='', zorder=1)
-    ax.plot([np.real(h(z, a, b, w, t)) for z in zz], zz, color='blue', label='Re', zorder=2)
-    ax.plot([np.imag(h(z, a, b, w, t)) for z in zz], zz, label='Im', zorder=3)
-    ax.fill_betweenx(zz, -np.exp(-b * zz), np.exp(-b * zz), color='grey', alpha=0.5, label='')
-    zp = w * t / a if a > 0.0 else np.max(zz) + w * t / a
-    ax.scatter(np.real(h(zp, a, b, w, t)), zp, marker='*', color='black', label='phase')
-    ax.axhline(y=tau, color='red', label='τ')
-    ax.axhline(y=2 * np.pi * tau, color='green', label='λ')
-    ax.set_ylabel('Depth in km')
-    ax.set_xlabel('Normalized amplitude')
-    ax.set_xlim(-1.0, 1.0)
-    ax.set_ylim(min(zair), max(zz))
-    ax.invert_yaxis()
-    ax.legend(loc='lower left')
+    hsub = h(zz, a, b, w, t)
+    hr.set_xdata(hsub.real)
+    hi.set_xdata(hsub.imag)
+    hair = np.ones_like(zair) * np.exp(1j * w * t)
+    ha.set_xdata(hair.real)
 
 ani = FuncAnimation(fig, update, frames=100, interval=50)
 
@@ -585,4 +596,4 @@ ani.save('animation.gif')
 ```
 :::
 
-![](ani.gif){fig-align="center"}
+![](animation.gif){fig-align="center"}

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,10 +91,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0615981f0f11b1670b07f78b9ae6e573.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -801,7 +801,7 @@ e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
 <p>We implement the Green’s function in <code>Python</code> and plot it as a function of time or source-receiver-offset, resp.</p>
 <p>At first, let’s calculate the Green’s function at a fixed distance of <span class="math inline">\(r=100\)</span> m for a time range of <span class="math inline">\(t \in [10^{-6}, 10^{-2}]\)</span> seconds.</p>
 <p>The late time asymptotic <span class="math inline">\(g(r,t) \sim t^{-3/2}\)</span> as <span class="math inline">\(t \to \infty\)</span> is indicated as a straight line in the log-log plot.</p>
-<div id="d4d0b346" class="cell" data-execution_count="1">
+<div id="5f7b1dfe" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1075,7 +1075,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 \divergence \mathbf F = \partial_z F_z.
 \]</span></p>
 <p>To compute the derivatives, we use <code>sympy</code>:</p>
-<div id="eb36a4e9" class="cell" data-execution_count="2">
+<div id="c009020c" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> diff, symbols, sqrt, pi, exp, I, simplify, Derivative, Matrix</span>
@@ -1094,7 +1094,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 </div>
 </div>
 <p>Next, we implement an expression for <span class="math inline">\(\divergence \mathbf F\)</span>:</p>
-<div id="ad64fbbe" class="cell" data-execution_count="3">
+<div id="5d680450" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>divF <span class="op">=</span> diff(Fz.subs(r, sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>)), z).subs(sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>), r).simplify()</span>
@@ -1109,7 +1109,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 </div>
 </div>
 <p>The chain rule can be implemented by a <code>lambda</code> function <code>chain</code> which first substitutes <span class="math inline">\(r\)</span> by the square root, forms the derivative, and finally substitutes all square root expressions by <span class="math inline">\(r\)</span> or powers thereof.</p>
-<div id="c885672a" class="cell" data-execution_count="4">
+<div id="50675947" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> <span class="kw">lambda</span> F, v: diff(F.subs(r, sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>)), v).subs(sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>), r).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1118,7 +1118,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <p>A call to <code>chain</code>, i.e., the implementation of <span class="math inline">\(\partial_z \partial_z F_z\)</span> would simply look as follows:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>chain(Fz, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>However, to get the magentic field components, we need to divide by the term <span class="math inline">\(i \omega \mu_0\)</span>.</p>
-<div id="24be3283" class="cell" data-execution_count="5">
+<div id="6bdaad0a" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Hx <span class="op">=</span> chain(divF, x).factor() <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -1132,7 +1132,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <p><span class="math inline">\(\displaystyle - \frac{m x z \left(k^{2} r^{2} - 3 i k r - 3\right) e^{- i k r}}{4 \pi r^{5}}\)</span></p>
 </div>
 </div>
-<div id="d538ac95" class="cell" data-execution_count="6">
+<div id="1795a445" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Hy <span class="op">=</span> chain(divF, y).factor() <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -1147,7 +1147,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 </div>
 </div>
 <p>To get <span class="math inline">\(H_z\)</span> we have to add the term <span class="math inline">\(k^2 F_z\)</span> as</p>
-<div id="2fc18486" class="cell" data-execution_count="7">
+<div id="1d372b8a" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Hz <span class="op">=</span> (chain(divF, z) <span class="op">+</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> Fz) <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -1169,7 +1169,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 \]</span></p>
 <p>Let’s check the validity on our example.</p>
 <p>We introduce the symbolic vector quantities <code>M</code> and <code>R</code>, and implement a <code>lambda</code> function to express the magnetic field with respect to the orientation of the magnetic dipole moment:</p>
-<div id="19be3c36" class="cell" data-execution_count="8">
+<div id="120d5df9" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> Matrix([<span class="dv">0</span>, <span class="dv">0</span>, m])</span>
@@ -1200,7 +1200,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <li>What are the differences compared to homogeneous excitation (MT)?</li>
 </ul>
 <p>We implement the general equations for the electric and magnetic fields as <code>Python</code> functions <code>E</code> and <code>H</code>, resp.:</p>
-<div id="5bc7bec5" class="cell" data-execution_count="9">
+<div id="00dec531" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> E(r, m, f, sigma):</span>
@@ -1245,7 +1245,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <li><span class="math inline">\(\sigma = 0.01\)</span> S/m.</li>
 </ul>
 <p>Let’s have a look at the electric field evaluated with the function <code>E</code>:</p>
-<div id="59d47d02" class="cell" data-execution_count="10">
+<div id="5f74f61f" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.array([<span class="fl">100.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>])</span>
@@ -1261,7 +1261,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 </div>
 </div>
 <p>Now let’s evaluate the magnetic field using <code>H</code>:</p>
-<div id="b81e9b7c" class="cell" data-execution_count="11">
+<div id="af94ce7b" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> H(r, m, f, sigma)</span>
@@ -1278,7 +1278,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 Z = \frac{ E_y }{ H_z}.
 \]</span></p>
 <p>The result is complex number:</p>
-<div id="0350020b" class="cell" data-execution_count="12">
+<div id="c35ea5bf" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> Ey <span class="op">/</span> Hz</span>
@@ -1294,7 +1294,7 @@ Z = \frac{ E_y }{ H_z}.
 <p><span class="math display">\[
 \rho_a = \frac{ 1 }{ \omega \mu_0} |Z|^2
 \]</span></p>
-<div id="add17070" class="cell" data-execution_count="13">
+<div id="c5cd05a0" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhoa(Z, f):</span>
@@ -1309,7 +1309,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 <p>This does not meet our expectations. We are therefore investigating whether the impedance depends on the frequency and/or the distance to the dipole.</p>
 <p>We vary the frequencies and observe <span class="math inline">\(\rho_a\)</span> as a function of frequency.</p>
-<div id="22a31a17" class="cell" data-execution_count="14">
+<div id="52c228de" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>nf <span class="op">=</span> <span class="dv">41</span></span>
@@ -1317,7 +1317,7 @@ Z = \frac{ E_y }{ H_z}.
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Rhoa_f <span class="op">=</span> [rhoa(E(r,m,v,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(r,m,v,sigma)[<span class="dv">2</span>], v) <span class="cf">for</span> v <span class="kw">in</span> freq]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="fc710500" class="cell" data-execution_count="15">
+<div id="747c123e" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1342,7 +1342,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 <p>Obviously, the value of <span class="math inline">\(\rho_a\)</span> depends on the frequency and asymptotically approaches the expected full-space value of the resistivity as <span class="math inline">\(f \to \infty\)</span>.</p>
 <p>We gain more insight, when we vary the distance to the dipole while keeping the frequency fixed.</p>
-<div id="dc7c280e" class="cell" data-execution_count="16">
+<div id="7fa525e8" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>nr <span class="op">=</span> <span class="dv">41</span></span>
@@ -1350,7 +1350,7 @@ Z = \frac{ E_y }{ H_z}.
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>Rhoa_x <span class="op">=</span> np.array([rhoa(E(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">2</span>], f) <span class="cf">for</span> v <span class="kw">in</span> x])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="f2f14927" class="cell" data-execution_count="17">
+<div id="947ae3ac" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
@@ -1373,7 +1373,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 </div>
 <p>Is there a consistent explanation for these observations? We look at the induction parameter <span class="math inline">\(|k|r\)</span> and revisit the parameters from the previous examples.</p>
-<div id="cdc4690a" class="cell" data-execution_count="18">
+<div id="96508d15" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kr(f, sigma, r):</span>
@@ -1385,7 +1385,7 @@ Z = \frac{ E_y }{ H_z}.
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.where(np.array(data) <span class="op">&gt;</span> threshold, data, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="3d89c1ff" class="cell" data-execution_count="19">
+<div id="b51bcf9b" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(v, sigma, np.linalg.norm(r)) <span class="cf">for</span> v <span class="kw">in</span> freq])</span>
@@ -1412,7 +1412,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 </div>
 <p>With the indicator <span class="math inline">\(|k|r\)</span> just introduced, it is easier to determine which branch of the asymptotic we are on.</p>
-<div id="ff3e7e5f" class="cell" data-execution_count="20">
+<div id="c587a281" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(f, sigma, v) <span class="cf">for</span> v <span class="kw">in</span> x])</span>
@@ -1486,7 +1486,7 @@ Figure&nbsp;7.1: Real and imaginary part of the magnetic field of an oscillating
 H_z = -\frac{ m }{4 \pi r^3 }.
 \]</span></p>
 <p>We evaluate this equation with the given values of <span class="math inline">\(r\)</span> and <span class="math inline">\(m\)</span>. We obtain</p>
-<div id="d745c1af" class="cell" data-execution_count="22">
+<div id="e97ebe1d" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'H_z   = '</span> <span class="op">+</span> <span class="bu">str</span>(<span class="op">-</span><span class="dv">1</span> <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> r<span class="op">**</span><span class="dv">3</span>)))</span>
@@ -1608,8 +1608,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1720,7 +1718,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

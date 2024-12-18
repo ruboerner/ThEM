@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ralph-Uwe Börner">
-<meta name="dcterms.date" content="2024-07-05">
+<meta name="dcterms.date" content="2024-12-18">
 
 <title>Theory of Electromagnetic Methods</title>
 <style>
@@ -58,10 +58,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0615981f0f11b1670b07f78b9ae6e573.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -290,7 +290,6 @@ window.MathJax = {
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link active" data-scroll-target="#prerequisites">Prerequisites</a></li>
   <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#self-study" id="toc-self-study" class="nav-link" data-scroll-target="#self-study">Self study</a></li>
   <li><a href="#recommended-reading" id="toc-recommended-reading" class="nav-link" data-scroll-target="#recommended-reading">Recommended Reading</a></li>
   <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
   </ul>
@@ -319,7 +318,7 @@ window.MathJax = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 5, 2024</p>
+      <p class="date">December 18, 2024</p>
     </div>
   </div>
   
@@ -355,26 +354,9 @@ window.MathJax = {
 </ul>
 <p>Working with Jupyter Notebooks in Visual Studio Code is <a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">exceptionally straightforward</a>.</p>
 </section>
-<section id="self-study" class="level2">
-<h2 class="anchored" data-anchor-id="self-study">Self study</h2>
-<p>There are individual small tasks for self-study that are scattered throughout the lecture.</p>
-<div class="callout callout-style-simple callout-none no-icon callout-titled" title="Self study">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Self study
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You can easily identify these callouts.</p>
-</div>
-</div>
-</section>
 <section id="recommended-reading" class="level2">
 <h2 class="anchored" data-anchor-id="recommended-reading">Recommended Reading</h2>
-<p>The most important source of supplementary information is the book by <span class="citation" data-cites="ward1988electromagnetic">Ward &amp; Hohmann (<a href="references.html#ref-ward1988electromagnetic" role="doc-biblioref">1988</a>)</span>.</p>
+<p><span class="citation" data-cites="ward1988electromagnetic">Ward &amp; Hohmann (<a href="references.html#ref-ward1988electromagnetic" role="doc-biblioref">1988</a>)</span></p>
 </section>
 <section id="license" class="level2">
 <h2 class="anchored" data-anchor-id="license">License</h2>
@@ -471,8 +453,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -583,7 +563,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

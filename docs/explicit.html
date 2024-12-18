@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,10 +91,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0615981f0f11b1670b07f78b9ae6e573.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -496,7 +496,7 @@ J_0(\lambda r)\, \dd\lambda
 <section id="implementation-for-e_varphi" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="implementation-for-e_varphi"><span class="header-section-number">10.4</span> Implementation for <span class="math inline">\(E_\varphi\)</span></h2>
 <p>We define <code>sympy</code> expressions and let <code>Python</code> do the work for us.</p>
-<div id="48552781" class="cell" data-execution_count="2">
+<div id="fe6b2d2b" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> sp.symbols(<span class="st">'r'</span>, positive<span class="op">=</span><span class="va">True</span>, real<span class="op">=</span><span class="va">True</span>)</span>
@@ -511,7 +511,7 @@ J_0(\lambda r)\, \dd\lambda
 </div>
 </div>
 <p>The second derivative of the Weber integral, i.e., <span class="math inline">\(1/R\)</span>, w.r.t. <span class="math inline">\(z\)</span> is</p>
-<div id="b5ba3897" class="cell" data-execution_count="3">
+<div id="178cb243" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Rzz <span class="op">=</span> sp.diff(<span class="dv">1</span> <span class="op">/</span> R, z, <span class="dv">2</span>)</span>
@@ -522,7 +522,7 @@ J_0(\lambda r)\, \dd\lambda
 </div>
 </div>
 <p>Now, we set <span class="math inline">\(z=0\)</span> and obtain</p>
-<div id="b485f04f" class="cell" data-execution_count="4">
+<div id="757e8801" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Rzz.subs(z, <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -536,7 +536,7 @@ J_0(\lambda r)\, \dd\lambda
 \]</span> Further, the left-hand side of the Sommerfeld integral is <span class="math display">\[
 \frac{e^{-i k_1 R}}{R},
 \]</span> and its second derivative w.r.t. <span class="math inline">\(z\)</span> is</p>
-<div id="a9a54d1f" class="cell" data-execution_count="5">
+<div id="eb76f6ff" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Gzz <span class="op">=</span> sp.diff(G, z, <span class="dv">2</span>)</span>
@@ -547,7 +547,7 @@ J_0(\lambda r)\, \dd\lambda
 </div>
 </div>
 <p>which, after setting <span class="math inline">\(z=0\)</span>, becomes</p>
-<div id="b3ca2757" class="cell" data-execution_count="6">
+<div id="f39dddc6" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Gzz.subs(z, <span class="dv">0</span>).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -557,7 +557,7 @@ J_0(\lambda r)\, \dd\lambda
 </div>
 </div>
 <p>Finally, we apply the derivative w.r.t. <span class="math inline">\(r\)</span> to both results and obtain</p>
-<div id="1b7d8a86" class="cell" data-execution_count="7">
+<div id="21adabdb" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ex <span class="op">=</span> sp.diff(Rzz, r).subs(z,<span class="dv">0</span>) <span class="op">-</span> sp.diff(Gzz, r).subs(z, <span class="dv">0</span>)</span>
@@ -583,7 +583,7 @@ E_\varphi(r, \omega) = -\frac{m}{2 \pi \sigma r^4} \left[
 \right]
 \]</span></p>
 <p>For later evaluation we implement this result as a function:</p>
-<div id="7323ab00" class="cell" data-execution_count="8">
+<div id="a90364bc" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Ephi(r, omega, sigma):</span>
@@ -617,7 +617,7 @@ I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
 \]</span></p>
 <p>The functions <span class="math inline">\(I_1, I_2, K_1, K_2\)</span> are the <em>modified Bessel functions</em> of the first kind and order 1 and 2 with complex argument <span class="math inline">\(\alpha = \dfrac{ikr}{2}\)</span>.</p>
 <p><code>Python</code> implementation:</p>
-<div id="f74d80c1" class="cell" data-execution_count="9">
+<div id="16668d48" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> kv, iv</span>
@@ -674,7 +674,7 @@ I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
 <section id="examples" class="level2" data-number="10.8">
 <h2 data-number="10.8" class="anchored" data-anchor-id="examples"><span class="header-section-number">10.8</span> Examples</h2>
 <p>As an example, we choose a homogeneous ground with conductivity <span class="math inline">\(\sigma = 0.01\)</span> S/m. The transmitter-receiver offset is <span class="math inline">\(100\)</span> m. The frequencies cover a range from <span class="math inline">\(10^{-1} \le f \le 10^5\)</span> Hz.</p>
-<div id="6d3f37fa" class="cell" data-execution_count="10">
+<div id="eaf3a5b5" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">100.0</span></span>
@@ -685,7 +685,7 @@ I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>B_z <span class="op">=</span> [Bz(r, <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> v, sigma) <span class="cf">for</span> v <span class="kw">in</span> f]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="7ecf73e7" class="cell" data-execution_count="11">
+<div id="3b5bf695" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pos(data):</span>
@@ -704,7 +704,7 @@ I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="78ae4d61" class="cell" data-execution_count="12">
+<div id="78c150f9" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plotfield(f, E_phi)</span>
@@ -719,7 +719,7 @@ I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
 </div>
 </div>
 </div>
-<div id="e9598771" class="cell" data-execution_count="13">
+<div id="7c9a2081" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plotfield(f, B_r)</span>
@@ -734,7 +734,7 @@ I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
 </div>
 </div>
 </div>
-<div id="74b45fcf" class="cell" data-execution_count="14">
+<div id="c4a01f7d" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plotfield(f, B_z)</span>
@@ -883,8 +883,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -995,7 +993,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

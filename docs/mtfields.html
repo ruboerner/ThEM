@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0615981f0f11b1670b07f78b9ae6e573.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -539,7 +539,7 @@ Self study
 <p>We illustrate our results with a simple example of a uniform halfspace with a conductivity of 0.01 S/m and a frequency of 10 Hz.</p>
 <p>Shown are real (<code>Re</code>) and imaginary (<code>Im</code>) part of the fields along with their magnitude (<code>Abs</code>) as a function of depth.</p>
 <p>Clearly visible is the exponential decay with depth.</p>
-<div id="9d70e146" class="cell" data-execution_count="1">
+<div id="bfb2116c" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -573,8 +573,8 @@ Self study
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>E0 <span class="op">=</span> e(omega, sigma, <span class="fl">0.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>In our example, the skin depth is 1590.63 m.</p>
-<div id="f513a992" class="cell" data-execution_count="2">
+<p>In our example, the skin depth is np.float64(1590.63) m.</p>
+<div id="90d05795" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
@@ -601,7 +601,7 @@ Self study
 </div>
 </div>
 </div>
-<div id="345b2b96" class="cell" data-execution_count="3">
+<div id="59c621b0" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
@@ -651,7 +651,7 @@ Z_1 = \frac{ \omega \mu_0 }{ k_1 } = Z_s.
 \]</span></p>
 <section id="example" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="example"><span class="header-section-number">6.2.1</span> Example</h3>
-<div id="a2397c03" class="cell" data-execution_count="4">
+<div id="9ed53b82" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">100.0</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mu0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
@@ -664,7 +664,7 @@ Z_1 = \frac{ \omega \mu_0 }{ k_1 } = Z_s.
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>rhoa <span class="op">=</span> <span class="kw">lambda</span> Z, f: np.<span class="bu">abs</span>(Z)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> ( <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f <span class="op">*</span> mu0)</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> <span class="kw">lambda</span> Z: np.arctan(np.imag(Z) <span class="op">/</span> np.real(Z)) <span class="op">*</span> <span class="dv">180</span> <span class="op">/</span> np.pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For our example, the apparent resistivity is 100.0 <span class="math inline">\(\Omega \cdot m\)</span>. The phase angle is 45.0 degrees.</p>
+<p>For our example, the apparent resistivity is np.float64(100.0) <span class="math inline">\(\Omega \cdot m\)</span>. The phase angle is np.float64(45.0) degrees.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -791,8 +791,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -903,7 +901,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
