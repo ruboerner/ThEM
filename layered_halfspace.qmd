@@ -8,7 +8,7 @@ jupyter: python3
 from sympy import *
 import numpy as np
 from IPython.display import display, Latex, HTML
-print_latex = lambda ex: display(HTML("\(" + ex  + "\)"))
+print_latex = lambda ex: display(HTML("\\(" + ex  + "\\)"))
 ```
 
 We consider a vertical magnetic dipole (VMD) over a layered halfspace.

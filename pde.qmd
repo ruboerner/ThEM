@@ -6,7 +6,8 @@ editor: source
 
 As we have seen, Maxwell's equations can be coupled using the constitutive equations and Ohm's law.
 
-After Fourier transform w.r.t. time $t$, but in a slightly different notation, we obtain $$
+After Fourier transform w.r.t. time $t$, but in a slightly different notation, we obtain 
+$$
 \begin{bmatrix}
 \curl & -i\omega\varepsilon \mathbf I \\
 +i\omega\mu_0 \mathbf I & \curl
@@ -30,9 +31,9 @@ $$
 \begin{bmatrix}
 0 \\ \rho_E
 \end{bmatrix}
-$$ 
+$$
 
-Note that the sources of the fields-- $\mathbf J$ and $\rho_E$ --always appear on the right-hand side of the equations. $\mathbf I$ denotes the 3-by-3 identity matrix.
+Note that the sources of the fields---$\mathbf J$ and $\rho_E$---always appear on the right-hand side of the equations. $\mathbf I$ denotes the 3-by-3 identity matrix.
 
 By elimination of one field, e.g., the magnetic field, we are able to cast the system of first-order ODEs into a *second-order partial differential equation* (PDE).
 
@@ -76,7 +77,8 @@ $$
 $$
 :::
 
-Finally, we obtain the **curl-curl equation** for the electric field $\mathbf e$ as $$
+Finally, we obtain the **curl-curl equation** for the electric field $\mathbf e$ as 
+$$
 \curl \curl \mathbf e  +\mu \sigma \partial_t \mathbf e + \mu \varepsilon \partial^2_{tt} \mathbf e = \mathbf 0.
 $$ {#eq-curlcurl}
 
@@ -86,7 +88,8 @@ Note that you obtain a similar PDE for the magnetic field $\mathbf h$ if you app
 
 Often, a slightly different form of @eq-curlcurl is used.
 
-The following identity is useful for any vector field $\mathbf f$: $$
+The following identity is useful for any vector field $\mathbf f$: 
+$$
 \curl \curl \mathbf f = \grad \divergence \mathbf f - \laplacian \mathbf f 
 $$ {#eq-vector-identity}
 
@@ -127,7 +130,8 @@ $$
 \end{align}
 $$
 
-With $$
+With 
+$$
 \begin{align}
 \divergence \mathbf d & = \rho_E \\
 \divergence \mathbf j & = \divergence (\sigma \mathbf e) = \grad \sigma \cdot \mathbf e + \sigma \divergence \mathbf e \\
@@ -265,7 +269,8 @@ This can be achieved by introducing *scale lengths* in space and time.
 
 We introduce a typical scale length $L$ and a typical period $T$ and scale all spatial variables $\ell$ as well as the time $t$.
 
-The dimensionless variables are $$
+The dimensionless variables are 
+$$
 \ell' = \ell / L \qquad t' = t / T
 $$
 
@@ -277,11 +282,13 @@ $$
 \frac{\partial f}{\partial t} = \frac{\partial f}{\partial t'} \frac{\partial t'}{\partial t} = \frac{1}{T} \frac{\partial f}{\partial t'}
 $$
 
-This carries over to the differential operators, i.e., $$
+This carries over to the differential operators, i.e., 
+$$
 \curl \curl \mathbf f = \frac{1}{L^2} \nabla' \times \nabla' \times \mathbf f.
 $$
 
-We obtain a PDE with scaled coefficients, i.e., $$
+We obtain a PDE with scaled coefficients, i.e., 
+$$
 \nabla' \times \nabla' \times \mathbf e + \eta_1 \partial_{t'} \mathbf e + \eta_2 \partial^{2}_{t't'} \mathbf e = \mathbf 0
 $$
 
@@ -298,13 +305,15 @@ The exercise is now to show under which conditions there holds that $\eta_1 \gg 
 
 What is the physical interpretation of $\eta_2$?
 
-We see that $$
+We see that 
+$$
 \eta_2 = \frac{L^2}{T^2} \mu\varepsilon = \left( \frac{L}{T c_0} \right)^2.
 $$
 
 $L/c_0$ is the time an electromagnetic wave needs in free space to travel over the distance $L$. If $\eta_2$ is small, this time is much less than a typical time $T$ during which significant changes in the field occur. Such changes can be regarded as happening instantaneously over the region spanned by $L$.
 
-Until now, we have not considered the conductivities in that region. This can be studied with the ratio of both coefficients. We want to show that $$
+Until now, we have not considered the conductivities in that region. This can be studied with the ratio of both coefficients. We want to show that 
+$$
 \frac{\eta_1}{\eta_2} = \frac{\mu\sigma}{\mu\varepsilon} T = c_0^2 \mu\sigma T \gg 1.
 $$
 
@@ -352,7 +361,8 @@ In the last example we have used a conductivity of $10^{-5}$ S/m as a reasonable
 
 To conclude, we can safely assume that the second term, $\eta_2$, and correspondingly the term $\mu\varepsilon$, can be neglected for frequencies less than $10^5$ Hz for the lowest reasonable value of the conductivity in the Earth. For higher conductivities, the result becomes even more pronounced.
 
-As a consequence, the displacement current density in Ampere's law can be neglected as well, such that $$
+As a consequence, the displacement current density in Ampere's law can be neglected as well, such that 
+$$
 \curl \mathbf{h} = \mathbf j
 $$
 
@@ -360,15 +370,22 @@ We call this the *quasi-static approximation* of Maxwell's equations.
 
 Note that this corresponds to the classical formulation of Maxwell's equations, which have later been extended to account for displacement currents.
 
-The quasi-static approximation however comes at a price: The coefficient of the second-order time derivative term of @eq-curlcurl has the physical dimension of the inverse square of the wave velocity, i.e., $$
+The quasi-static approximation however comes at a price: The coefficient of the second-order time derivative term of @eq-curlcurl has the physical dimension of the inverse square of the wave velocity, i.e., 
+$$
 \mu\varepsilon = \frac{1}{c_0^2}.
 $$
 
-When we neglect this term, we implicitly assume that $$
- \frac{1}{c_0^2} \to 0,
-$$ which violates the generally recognized fact that the speed of light is finite. On the other hand, this makes it clear that changes in the fields happen everywhere at the same time.
+When we neglect this term, we implicitly assume that 
 
-The curl-curl equation for the electric field under quasi-static approximation reads $$
+$$
+ \frac{1}{c_0^2} \to 0,
+$$ 
+
+which violates the generally recognized fact that the speed of light is finite. On the other hand, this makes it clear that changes in the fields happen everywhere at the same time.
+
+The curl-curl equation for the electric field under quasi-static approximation reads
+
+$$
 \curl \curl \mathbf e + \mu\sigma \partial_t \mathbf e = \mathbf 0
 $$ {#eq-curlcurl-quasistatic}
 
@@ -542,7 +559,7 @@ $$
 ::: {.callout-tip title="Python code" collapse="true"}
 This is the Python code that you can use to create the following animation:
 
-```python
+``` python
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation

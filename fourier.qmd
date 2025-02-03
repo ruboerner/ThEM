@@ -1,10 +1,10 @@
 ---
 title: Fourier transform
 jupyter: python3
+editor: source
 ---
 
-We associate both sets of fields @eq-fields-time and @eq-fields-frequency by a *Fourier transform*:
-$$
+We associate both sets of fields @eq-fields-time and @eq-fields-frequency by a *Fourier transform*: $$
 \begin{align}
 F(\omega) & = \int\limits_{-\infty}^\infty f(t) e^{-i\omega t}\,\mathrm d t
 \end{align}
@@ -18,7 +18,7 @@ $$ {#eq-fourier}
 
 Here $\omega = 2 \pi f$ is the angular frequency.
 
-::: {.callout-warning}
+::: callout-warning
 Note that there exist different definitions of the above transform pair. For a detailed overview see [this Wikipedia page](https://en.wikipedia.org/wiki/Fourier_transform).
 
 We use a positive exponent in the time-dependency expressed by $\exp(+i \omega t)$.
@@ -30,7 +30,7 @@ The Fourier transform can also be used to transform a function of spatial variab
 
 The first equation @eq-fourier-analysis is called *harmonic analysis*, whereas the second equation @eq-fourier is called *harmonic synthesis*.
 
-::: {.callout-note}
+::: callout-note
 In the following, we most often make use of the synthesis to construct field components from their spectral content, the partial or plane waves.
 
 To put it in simple words, we try to combine simple things to create complex things. More precisely, we add many sine and cosine wave harmonics to approximate a function in space or time.
@@ -38,10 +38,9 @@ To put it in simple words, we try to combine simple things to create complex thi
 
 ## Example
 
-In  this example we use a *Fourier series expansion* to approximate the periodic *square function* $u(x)$ of length $2L$.
+In this example we use a *Fourier series expansion* to approximate the periodic *square function* $u(x)$ of length $2L$.
 
-An analytic formula for a square wave with unit amplitude and period $2L$ is given by 
-$u(x) = \mathrm{sign}(\sin(\frac{\pi x}{L})$.
+An analytic formula for a square wave with unit amplitude and period $2L$ is given by $u(x) = \mathrm{sign}(\sin(\frac{\pi x}{L})$.
 
 ```{python}
 #| echo: false
@@ -74,10 +73,11 @@ $$
 u(x) = \lim_{N \to \infty} \frac{4}{\pi} \sum_{k=1}^{N} \frac{1}{2k-1} \sin \left(\frac{(2k-1) \pi x}{L}\right).
 $$
 
-In theory, the sequence of summations is infinite, whereas in general we deal with a _truncated series_, i.e., $N \ll \infty$.
+In theory, the sequence of summations is infinite, whereas in general we deal with a *truncated series*, i.e., $N \ll \infty$.
 
 ### Implementation
-First we write a `Python` function which calculates the individual _sine_ terms
+
+First we write a `Python` function which calculates the individual *sine* terms
 
 $$
 u_k(x) =  \frac{1}{2k-1} \sin \left(\frac{(2k-1) \pi x}{L}\right)
@@ -90,8 +90,7 @@ def uk(x, k, L=0.5):
     return np.sin(np.pi * (2 * k - 1) * x / L) / (2 * k - 1)
 ```
 
-Next, we implement the summation over all $k$ sine terms, i.e.,
-$$ 
+Next, we implement the summation over all $k$ sine terms, i.e., $$ 
 u(x) \approx \frac{4}{\pi} \sum_{k=1}^N u_k(x)
 $$
 
@@ -126,8 +125,8 @@ ax[1].set_aspect('equal')
 ax[1].grid(True);
 ```
 
-::: {.callout-note}
-Note the _Gibbs phenomenon_ at the jumps of the square wave. This is a typical behaviour of a piecewise differentiable continuous periodic function. As the expansion order gets large, the overshoot does not die out, but approaches a finite limit.
+::: callout-note
+Note the *Gibbs phenomenon* at the jumps of the square wave. This is a typical behaviour of a piecewise differentiable continuous periodic function. As the expansion order gets large, the overshoot does not die out, but approaches a finite limit.
 
 It can be shown that, for sufficiently large $N$, the full overshooting is around **17.9 % larger** than the jump in the original function.
 :::

@@ -1,5 +1,6 @@
 ---
 #jupyter: python3
+editor: source
 ---
 
 ## Prerequisites {.unnumbered}
