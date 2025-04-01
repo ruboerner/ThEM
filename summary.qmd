@@ -2,4 +2,22 @@
 title: Summary
 ---
 
-WIP
+What were the most important insights?
+
+-   Understanding of Maxwell's equations
+-   Derivation of the curl-curl equation of electromagnetics
+-   Dipole sources
+-   Incremental modifications of the underlying model: From uniform full-space to layered half-space
+-   Understanding time-domain induction
+-   Implementation of Hankel integrals
+-   Excurse to 2D and 3D modelling applications
+
+Why is the lecture on the *Theory of EM* important?
+
+-   All EM geophysics - from magnetotellurics (MT) to controlled-source EM (CSEM) - relies on solving Maxwell's equations under specific boundary conditions
+
+-   Knowing how fields decay, diffuse, or reflect allows for optimal sensor placement, source design, and noise mitigation
+
+-   Understanding the theory is essential for developing accurate forward solvers and stable, regularized inverse algorithms
+
+-   Time-domain EM, airborne EM, and marine EM all evolved from theoretical insights
