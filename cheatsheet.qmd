@@ -1,0 +1,23 @@
+---
+title: Theory of electromagnetic methods cheatsheet
+format:
+   quarto-cheatsheet-pdf
+editor: source
+---
+
+# Basics
+
+::: {.cheat title="Maxwell"}
+$$
+\nabla \times \mathbf{E} + i\omega \mathbf{B}  = \mathbf{0}
+$$
+$$
+\nabla \times \mathbf{H} - i\omega \mathbf{D}  = \mathbf{j}
+$$
+$$
+\nabla \cdot \mathbf{B} = 0
+$$
+$$
+\nabla \cdot \mathbf{D} = \rho_E
+$$
+:::

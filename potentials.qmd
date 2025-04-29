@@ -17,76 +17,75 @@ We will address the following topics:
 
 ## Polarization vectors
 
-In the absence of matter, we observe that 
+In the absence of matter, we observe that
 
 $$
 \mathbf d - \varepsilon_0 \mathbf e = \mathbf 0
-$$ 
+$$
 
-and 
+and
 
 $$
 \mu_0^{-1} \mathbf b - \mathbf h = \mathbf 0.
-$$ 
-
-When the differences are non-zero, then we observe the response of matter. We define the *electrical polarization* $\mathbf p$ 
 $$
-\mathbf p = \mathbf d - \varepsilon_0 \mathbf e
-$$ 
 
-and the magnetic polarization or magnetization $\mathbf m$ 
+When the differences are non-zero, then we observe the response of matter. We define the *electrical polarization* $\mathbf p$ $$
+\mathbf p = \mathbf d - \varepsilon_0 \mathbf e
+$$
+
+and the magnetic polarization or magnetization $\mathbf m$
 
 $$
 \mathbf m = \mu_0^{-1} \mathbf b - \mathbf h
-$$ 
+$$
 
 The polarization vectors $\mathbf p$ and $\mathbf m$ are parallel and proportional to $\mathbf e$ and $\mathbf h$, resp.
 
 We are able to quantify the polarization properties by the electrical susceptibility $\chi_e$ and magnetic susceptibility $\chi_m$. The latter is often referred to as the magnetic susceptibility $\kappa$.
 
-We define 
+We define
 
 $$
 \mathbf p := \chi_e \varepsilon_0 \mathbf e = \mathbf d - \varepsilon_0 \mathbf e
-$$ 
+$$
 
-and likewise 
+and likewise
 
 $$
 \mathbf m := \chi_m \mathbf h = \mu_0^{-1} \mathbf b - \mathbf h.
-$$ 
+$$
 
-It follows for the relative dielectric permittivity 
+It follows for the relative dielectric permittivity
 
 $$
 \varepsilon_r = 1 + \chi_e
-$$ 
+$$
 
-and for the relative magnetic permeability 
+and for the relative magnetic permeability
 
 $$
 \mu_r = 1 + \chi_m = 1 + \kappa.
 $$
 
-To implement technical sources, we separate the polarization into induced (superscript $i$) and external (superscript $s$) contributions to the observed fields: 
+To implement technical sources, we separate the polarization into induced (superscript $i$) and external (superscript $s$) contributions to the observed fields:
 
 $$
 \mathbf p = \mathbf p^i + \mathbf p^s = \mathbf d - \varepsilon_0 \mathbf e.
-$$ 
+$$
 
-Then, 
+Then,
 
 $$
 \mathbf d = [\underbrace{\varepsilon_0 \mathbf e}_\text{free space} + \underbrace{\mathbf p^i}_\text{matter}] + \mathbf p^s
-$$ 
+$$
 
-and 
+and
 
 $$
 \mathbf b = [\underbrace{\mu_0 \mathbf h}_\text{free space} + \underbrace{\mu_0 \mathbf m^i}_\text{matter}] + \mu_0 \mathbf m^s
 $$
 
-With the introduction of the polarization vectors, we are now able to augment Maxwell's equations, such that 
+With the introduction of the polarization vectors, we are now able to augment Maxwell's equations, such that
 
 $$
 \begin{align}
@@ -95,25 +94,25 @@ $$
 \end{align}
 $$
 
-We define the *source current densities* in the magnetic and electric case as 
+We define the *source current densities* in the magnetic and electric case as
 
 $$
 \mathbf j_m^s := \mu_0 \partial_t \mathbf m^s 
-$$ 
+$$
 
-and 
+and
 
 $$
 \mathbf j_e^s := \phantom{\mu_0} \partial_t \mathbf p^s .
 $$
 
-Now, we extend our definitions to the frequency domain: 
+Now, we extend our definitions to the frequency domain:
 
 $$
 \mathbf J_m^s := i \omega \mu_0 \mathbf M^s 
-$$ 
+$$
 
-and 
+and
 
 $$
 \mathbf J_e^s := i \omega \mathbf P^s .
@@ -126,11 +125,11 @@ The point of observation is at $\mathbf r = [x, y, z]^\top$.
 
 The location of the dipole can now be pinned to $\mathbf r_0$ using a Dirac delta function.
 
-We obtain 
+We obtain
 
 $$
 \mathbf M^s(\mathbf r) = \mathbf m \, \delta(\mathbf r - \mathbf r_0)
-$$ 
+$$
 
 with $\mathbf m$ the oriented *magnetic dipole moment*. The dipole moment has the physical dimension of $[\mathbf m] =$ A$\cdot m^2$. It can be interpreted as a current $I$ measured in A enclosing a surface measured in $m^2$.
 
@@ -143,20 +142,20 @@ This way, we can define a vertical or horizontal dipole.
 
 ## Electromagnetic potentials
 
-Let's assume that electric and magnetic fields originate from *either* a magnetic or an electric source, i.e., 
+Let's assume that electric and magnetic fields originate from *either* a magnetic or an electric source, i.e.,
 
 $$
 \begin{align}
 \mathbf E & = \mathbf E_m + \mathbf E_e \\
 \mathbf H & = \mathbf H_m + \mathbf H_e
 \end{align}
-$$ 
+$$
 
 When $\mathbf J_e \equiv 0$, then we only observe the set of fields $[\mathbf E_m, \mathbf H_m]$.
 
 When $\mathbf J_m \equiv 0$, then we only observe the set of fields $[\mathbf E_e, \mathbf H_e]$.
 
-The two sets are disjoint. We insert into Maxwell's equations 
+The two sets are disjoint. We insert into Maxwell's equations
 
 $$
 \begin{align}
@@ -172,19 +171,19 @@ $$
 \end{align}
 $$
 
-Now we apply the divergence to all of the above equations. Here we employ the identity 
+Now we apply the divergence to all of the above equations. Here we employ the identity
 
 $$
 \divergence (\curl \mathbf F) = 0,
-$$ {#eq-divrot} 
+$$ {#eq-divrot}
 
 such that, e.g.,
 
 $$
 \underbrace{\divergence (\curl \mathbf E_m)}_{=0}  = -i \omega \mu \divergence \mathbf H_m - \divergence \mathbf J_m^s.
-$$ 
+$$
 
-We obtain 
+We obtain
 
 $$
 \begin{align}
@@ -193,40 +192,40 @@ $$
 \divergence \mathbf H_e & = 0 \\
 \divergence \mathbf E_m & = 0.
 \end{align}
-$$ 
+$$
 
-Since the divergence of $\mathbf H_e$ and $\mathbf E_m$ are zero, we can express both fields by the curl of an arbitrary vector field according to @eq-divrot. However, this vector field must fulfill Maxwell's equations. The following ansatz employing the vector potentials $\mathbf F$ and $\mathbf A$ meets this requirement: 
+Since the divergence of $\mathbf H_e$ and $\mathbf E_m$ are zero, we can express both fields by the curl of an arbitrary vector field according to @eq-divrot. However, this vector field must fulfill Maxwell's equations. The following ansatz employing the vector potentials $\mathbf F$ and $\mathbf A$ meets this requirement:
 
 $$
 \begin{align}
 \mathbf E_m & = -\curl \mathbf F \\
 \mathbf H_e & = \phantom{-} \curl \mathbf A.
 \end{align}
-$$ 
+$$
 
-It follows 
+It follows
 
 $$
 \begin{align}
 \curl \mathbf H_m & = -(\sigma + i \omega \varepsilon) \curl \mathbf F \\
 \curl \mathbf E_e & = -i \omega \mu \curl \mathbf A 
 \end{align}
-$$ 
+$$
 
-from which we obtain 
+from which we obtain
 
 $$
 \begin{align}
 \mathbf H_m & = -(\sigma + i \omega \varepsilon) \mathbf F - \grad V \\
 \mathbf E_e & = -i \omega \mu \mathbf A - \grad U
 \end{align}
-$$ 
+$$
 
-because 
+because
 
 $$
-\curl \nabla u = \mathbf 0
-$$ 
+\curl \nabla U = \mathbf 0
+$$
 
 for any scalar function $u: \mathbb R^3 \mapsto \mathbb R$.
 
@@ -265,7 +264,7 @@ $$
 
 Question: How to get rid of $V$ and $U$?
 
-We choose the arbitrary scalar potential $V, U$ such that it cancels with the expression $\divergence \mathbf F$ and $\divergence \mathbf A$, resp. 
+We choose the arbitrary scalar potential $V, U$ such that it cancels with the expression $\divergence \mathbf F$ and $\divergence \mathbf A$, resp.
 
 $$
 \begin{align}
@@ -289,13 +288,13 @@ Repeat the steps above for the case of $\mathbf A$.
 ::: {.callout-note title="Summary"}
 We have eliminated the scalar potentials $V$ and $U$ by use of the *Lorenz gauge*.
 
-The vector potentials are solutions to 
+The vector potentials are solutions to
 
 $$
 \laplacian \mathbf F + k^2 \mathbf F  = -\mathbf J^s_m
-$$ {#eq-inhomogeneous-helmholtz-F} 
+$$ {#eq-inhomogeneous-helmholtz-F}
 
-and 
+and
 
 $$
 \laplacian \mathbf A + k^2 \mathbf A = -\mathbf J^s_e.
@@ -304,15 +303,13 @@ $$ {#eq-inhomogeneous-helmholtz-A}
 These equations are called *inhomogeneous Helmholtz equations*.
 
 Note that the vector potentials are *aligned* with the direction of the source current densities!
-
 :::
 
 ## Solutions of the inhomogeneous Helmholtz equation
 
 We now want to find solutions to the inhomogeneous vector Helmholtz equations.
 
-Let's consider the potential $\mathbf A$ as defined in
-@eq-inhomogeneous-helmholtz-A.
+Let's consider the potential $\mathbf A$ as defined in @eq-inhomogeneous-helmholtz-A.
 
 To obtain a solution, we take the following steps:
 
@@ -322,7 +319,7 @@ To obtain a solution, we take the following steps:
 
 First, we need a useful definition of the Fourier transform. We follow a similar notation like that given in @eq-fourier, but instead of time and angular frequency we choose as variables the Cartesian coordinates $x, y, z$ and the corresponding wave numbers $k_x, k_y, k_z$.
 
-We define the *3-D Fourier transform pair* 
+We define the *3-D Fourier transform pair*
 
 $$
 \begin{align}
@@ -334,37 +331,37 @@ $$
 
 Also required are the differentiation, convolution, and linearity properties of the Fourier transform.
 
-We recognize that in a Cartesian coordinate system 
+We recognize that in a Cartesian coordinate system
 
 $$
 \laplacian := \partial^2_{xx} + \partial^2_{yy} + \partial^2_{zz}
-$$ 
+$$
 
-and therefore 
+and therefore
 
 $$
 \partial^2_{xx} e^{-i k_x x} = -k_x^2 e^{-i k_x x} \text{ etc.}
 $$
 
-After transformation of @eq-inhomogeneous-helmholtz-F into the wave number domain, we have 
+After transformation of @eq-inhomogeneous-helmholtz-F into the wave number domain, we have
 
 $$
 (-k_x^2 - k_y^2 - k_z^2 + k^2) \tilde{\mathbf A} = -\tilde{\mathbf J}^s_m.
-$$ 
+$$
 
 Recall that $k^2 = -i \omega \mu (\sigma + i \omega \varepsilon)$.
 
-After rearranging we obtain 
+After rearranging we obtain
 
 $$
 \tilde{\mathbf A} = \tilde{\tilde{G}} \tilde{\mathbf J}^s_m
-$$ {#eq-AGJ} 
+$$ {#eq-AGJ}
 
-with the scalar function 
+with the scalar function
 
 $$
 \tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
-$$ 
+$$
 
 $\tilde{\tilde{G}}$ is the 3-D Fourier transform of what we will later refer to as *Green's function*.
 
@@ -372,35 +369,35 @@ We can obtain $\mathbf A$ directly in the spatial domain by evaluating a 3-D con
 
 To this end, let's consider a PDE similar to @eq-inhomogeneous-helmholtz-A. The differences are important: First, the solution to the PDE is a scalar function $G$, second, the right-hand side of the equation is a Dirac impulse in space.
 
-We depart from 
+We depart from
 
 $$
 \laplacian G + k^2 G = -\delta(x) \delta(y) \delta(z)
 $$ {#eq-pde-G}
 
-We take steps 1 and 2 as outlined above and obtain 
+We take steps 1 and 2 as outlined above and obtain
 
 $$
 \tilde{\tilde{G}} = (k_x^2 + k_y^2 + k_z^2 - k^2)^{-1}.
-$$ 
+$$
 
-To find $G$, we first transform back into space domain w.r.t. $z$ and obtain 
+To find $G$, we first transform back into space domain w.r.t. $z$ and obtain
 
 $$
 \tilde{G}(k_x, k_y, z) = \frac{ 1 }{ 2 \pi} \int\limits_{-\infty}^{\infty}
 \tilde{\tilde{G}} e^{i k_z z} \, \mathrm d k_z = \frac{ e^{-u|z|} }{ 2 u}
-$$ 
- 
+$$
+
 with $u = \sqrt{k_x^2 + k_y^2 - k^2}$.
 
-Next, we carry out a 2-D Fourier transform w.r.t. $x$ and $y$: 
+Next, we carry out a 2-D Fourier transform w.r.t. $x$ and $y$:
 
 $$
 G(x,y,z) = \frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} \frac{ e^{-u|z|} }{ 2 u}
 e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y
 $$
 
-Since $u$ is an axisymmetric function of $k_x$ and $k_y$, we use of the following *Hankel transform*: 
+Since $u$ is an axisymmetric function of $k_x$ and $k_y$, we use of the following *Hankel transform*:
 
 $$
 \frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} F(k_x^2 + k_y^2) 
@@ -409,37 +406,37 @@ e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y
 2 \pi \int\limits_0^\infty F(\lambda) J_0(\lambda R) \lambda \, \mathrm d \lambda,
 $$
 
-where 
+where
 
 $$
 \lambda^2 = k_x^2 + k_y^2
-$$ 
+$$
 
-the horizontal wave number, 
+the horizontal wave number,
 
 $$
 R^2 = x^2 + y^2
-$$ 
+$$
 
-the radial distance from the $z$-axis, and 
+the radial distance from the $z$-axis, and
 
 $$
 F :=   \frac{ e^{-u|z|} }{ 2 u}, \quad u^2 = \lambda^2 - k^2.
 $$
 
-Finally, we obtain the integral 
+Finally, we obtain the integral
 
 $$
 G(R, z) = \frac{ 1 }{ 4 \pi } \int\limits_0^\infty \frac{ \lambda  }{ u} e^{-u|z|} J_0(\lambda R) \, \mathrm d \lambda
-$$ 
+$$
 
-This is the *Sommerfeld integral*, from which we get with $r^2 = R^2 + z^2$ the function 
+This is the *Sommerfeld integral*, from which we get with $r^2 = R^2 + z^2$ the function
 
 $$
 G(r) = \frac{ 1 }{ 4 \pi r} e^{- i k r}.
 $$
 
-This is the *Green's function for the uniform conductive fullspace in the frequenccy domain*.
+This is the *Green's function for the uniform conductive fullspace in the frequency domain*.
 
 ## The Green's function
 
@@ -447,9 +444,9 @@ The Green's function or the *impulse response* of the conductive fullspace in th
 
 $$
 G(r, \omega) = \frac{1}{4 \pi r} e^{- i k r} = \frac{1}{4 \pi r} e^{- i r \sqrt{\omega^2 \mu \varepsilon - i \omega \mu \sigma}}.
-$$ 
+$$
 
-To obtain the time-domain response $g(r,t)$, we apply the inverse Fourier transform, i.e., 
+To obtain the time-domain response $g(r,t)$, we apply the inverse Fourier transform, i.e.,
 
 $$
 g(r, t) = \frac{1}{2 \pi} \frac{1}{4 \pi r} \int\limits_{-\infty}^\infty
@@ -460,32 +457,32 @@ $$
 
 ### Free space
 
-First, let's restrict to the free space case, where $\sigma=0$. We obtain 
+First, let's restrict to the free space case, where $\sigma=0$. We obtain
 
 $$ 
 g(r,t) = \frac{1}{8 \pi^2 r} \int \limits_{-\infty}^\infty
 e^{i \omega (t \pm r \sqrt{\mu \varepsilon}) } \mathrm{d}\omega.
-$$ 
+$$
 
-To obtain $g$, we need the *shifting property* of the Fourier transform: 
+To obtain $g$, we need the *shifting property* of the Fourier transform:
 
 $$ 
 \delta(t \pm t') =  \frac{1}{2 \pi} \int \limits_{-\infty}^\infty
 e^{i \omega (t \pm t')}
 \mathrm{d}\omega
-$$ 
+$$
 
-It follows that 
+It follows that
 
 $$
 g(r, t) = \frac{1 }{4 \pi r}  \delta(t - r / c)
-$$ 
+$$
 
-The sign is chosen such that causality is guaranteed, i.e., 
+The sign is chosen such that causality is guaranteed, i.e.,
 
 $$
 g(r, t) = 0 \text{ for } t < 0.
-$$ 
+$$
 
 The result obtained above is called the *retarded potential*.
 
@@ -493,22 +490,22 @@ The result obtained above is called the *retarded potential*.
 
 For moderate to high conductivities and/or low frequencies, we have introduced the *quasi-static approximation*, which justifies that displacement currents may safely be neglected in geo-electromagnetic applications.
 
-We start from the Green's function under quasi-static approximation: 
+We start from the Green's function under quasi-static approximation:
 
 $$ 
 G(r, \omega) = \frac{1}{4 \pi r} e^{-i r \sqrt{-i \omega \mu \sigma}} =
 \frac{1}{4 \pi r} e^{-r \sqrt{i \omega \mu \sigma}}
-$$ 
+$$
 
 To obtain the time-domain Green's function, we apply the Laplace transform, which is as an integral transform similar to the Fourier transform, except that the former is restricted to transformations of functions of $t$ with $t \ge 0$. This is in accordance to the causality requirement stated above.
 
-With the Laplace variable $s := i \omega$ we rewrite 
+With the Laplace variable $s := i \omega$ we rewrite
 
 $$ 
 G(r, s) = \frac{1}{4 \pi r} e^{-r \sqrt{s \mu \sigma}}
-$$ 
+$$
 
-From @Abramowitz1972 we obtain 
+From @Abramowitz1972 we obtain
 
 $$ 
 g(r, t) = \frac{(\mu \sigma)^{1/2}}{(2 \pi t)^{3/2}}
@@ -567,13 +564,13 @@ Note the red dots and the red horizontal lines which links both subfigures to ea
 
 ## The fields of a dipole source in full-space
 
-If we compare @eq-pde-G and @eq-inhomogeneous-helmholtz-F, we recognize the similarity of both PDEs. More specifically, if we would be able to orientate $\mathbf J$ in such a way that it would be aligned to one of the Cartesian axis, then 
+If we compare @eq-pde-G and @eq-inhomogeneous-helmholtz-F, we recognize the similarity of both PDEs. More specifically, if we would be able to orientate $\mathbf J$ in such a way that it would be aligned to one of the Cartesian axis, then
 
 $$
 \mathbf J_m^s(\mathbf r) = i \omega \mu \mathbf m \delta^3(\mathbf r)
-$$ 
+$$
 
-would simplify for a vertically aligned dipole to 
+would simplify for a vertically aligned dipole to
 
 $$
 \mathbf J_m^s(\mathbf r) = i \omega \mu \begin{bmatrix}
@@ -582,15 +579,15 @@ $$
 \begin{bmatrix}
 0 \\ 0 \\ J_m^s
 \end{bmatrix}
-$$ 
+$$
 
-The vector-valued PDE @eq-inhomogeneous-helmholtz-F would turn into 
+The vector-valued PDE @eq-inhomogeneous-helmholtz-F would turn into
 
 $$
 \laplacian \mathbf F + k^2 \mathbf F = -i \omega \mu m \delta^3(\mathbf r) \mathbf e_z,
-$$ 
+$$
 
-hence, the scalar potential for a magnetic dipole aligned with the $z$-axis is 
+hence, the scalar potential for a magnetic dipole aligned with the $z$-axis is
 
 $$
 F_z = \mathbf F \cdot \mathbf e_z = \frac{ i \omega \mu m }{ 4 \pi r } e^{-i k r}.
@@ -602,17 +599,17 @@ The potential of a dipole embedded in a uniform fullspace can be calculated with
 Dipole induction problems become particularly easy to solve when the dipole axis is aligned with a Cartesian axis.
 :::
 
-With the ansatz defined above 
+With the ansatz defined above
 
 $$
 \mathbf E_m = - \curl \mathbf F
-$$ 
+$$
 
-and 
+and
 
 $$
 \mathbf H_m = \frac{ 1 }{ i \omega \mu } (\grad \divergence \mathbf F + k^2 \mathbf F)
-$$ 
+$$
 
 we can calculate the components of the electric and magnetic fields in a straightforward manner.
 
@@ -637,7 +634,7 @@ $$
 \end{align}
 $$ {#eq-rot-cylindrical}
 
-In the case of a dipole oriented in $z$-direction, the curl simplifies to 
+In the case of a dipole oriented in $z$-direction, the curl simplifies to
 
 $$
 \curl \mathbf F = - \frac{\partial F_z}{\partial r} \mathbf e_\varphi,
@@ -645,7 +642,7 @@ $$ {#eq-rot-F}
 
 where $\mathbf e_\varphi$ is the unit coordinate vector in $\varphi$-direction.
 
-::: {.callout-note}
+::: callout-note
 Since the dipole axis is aligned with the $z$-axis, we expect axisymmetric field components.
 
 The magnetic field forms closed field lines which are uniform in the azimuthal $\varphi$-direction.
@@ -661,11 +658,11 @@ The components are mutual orthogonal!
 
 ### Electric field
 
-With the definition 
+With the definition
 
 $$
  \mathbf E = -\curl \mathbf F
-$$ 
+$$
 
 we find using @eq-rot-F that
 
@@ -683,7 +680,7 @@ $$
 Carry out the derivation by yourself.
 :::
 
-The change of the basis from cylindrical to Cartesian coordinates requires for the horizontal components 
+The change of the basis from cylindrical to Cartesian coordinates requires for the horizontal components
 
 $$
 \mathbf E = E_\varphi \mathbf e_\varphi = E_\varphi 
@@ -716,7 +713,7 @@ $$
 \cos\varphi = \frac{x}{r}, \quad \sin\varphi = \frac{y}{r}.
 $$
 
-Hence, 
+Hence,
 
 $$
 \begin{align}
@@ -735,16 +732,16 @@ where the components of $\mathbf E$ depend on both the direction of the dipole m
 
 Check:
 
-With 
+With
 
 $$
 \mathbf m = 
 \begin{bmatrix}
 0 \\ 0 \\ m
 \end{bmatrix}
-$$ 
+$$
 
-and 
+and
 
 $$
 \mathbf r = 
@@ -768,13 +765,13 @@ Looking in the direction of the positive $z$-axis of a right-handed coordinate s
 
 ### Magnetic field
 
-For the magnetic field, we need 
+For the magnetic field, we need
 
 $$
 \mathbf H = -\sigma \mathbf F + \frac{1}{i\omega\mu} \grad \divergence \mathbf F = \frac{1}{i\omega\mu} \left(
     k^2 \mathbf F + \grad\divergence \mathbf F
 \right).
-$$ 
+$$
 
 The $\nabla\cdot$-operator requires the calculation of $\partial_z F_z$, whereas the gradient requires to provide all partial derivatives of $\partial_z F_z$ with respect to $r$ and $z$.
 
@@ -796,7 +793,7 @@ $$
 \partial_z r = \frac{ z }{ r}.
 $$
 
-Further, the divergence and gradient operators generally read in cylindrical coordinates for a vector field $\mathbf F$ and  a scalar field $f$
+Further, the divergence and gradient operators generally read in cylindrical coordinates for a vector field $\mathbf F$ and a scalar field $f$
 
 $$
 \divergence \mathbf F = \frac{1}{r} \partial_r(r F_r) + 
@@ -829,6 +826,7 @@ Fz = I * omega * mu * m / (4 * pi * r) * exp(-I * k * r)
 print('Fz = ')
 Fz
 ```
+
 Next, we implement an expression for $\divergence \mathbf F$:
 
 ```{python}
@@ -836,6 +834,7 @@ divF = diff(Fz.subs(r, sqrt(x**2 + y**2 + z**2)), z).subs(sqrt(x**2 + y**2 + z**
 print('divF = ')
 divF
 ```
+
 The chain rule can be implemented by a `lambda` function `chain` which first substitutes $r$ by the square root, forms the derivative, and finally substitutes all square root expressions by $r$ or powers thereof.
 
 ```{python}
@@ -843,9 +842,11 @@ chain = lambda F, v: diff(F.subs(r, sqrt(x**2 + y**2 + z**2)), v).subs(sqrt(x**2
 ```
 
 A call to `chain`, i.e., the implementation of $\partial_z \partial_z F_z$ would simply look as follows:
-```python
+
+``` python
 chain(Fz, z)
 ```
+
 However, to get the magentic field components, we need to divide by the term $i \omega \mu_0$.
 
 ```{python}
@@ -853,6 +854,7 @@ Hx = chain(divF, x).factor() / (I * omega * mu)
 print('Hx =')
 Hx
 ```
+
 ```{python}
 Hy = chain(divF, y).factor() / (I * omega * mu)
 print('Hy =')
@@ -860,6 +862,7 @@ Hy
 ```
 
 To get $H_z$ we have to add the term $k^2 F_z$ as
+
 ```{python}
 Hz = (chain(divF, z) + k**2 * Fz) / (I * omega * mu)
 print('Hz =')
@@ -876,7 +879,8 @@ $$
 
 Let's check the validity on our example.
 
-We introduce the symbolic vector quantities `M` and `R`, and implement a `lambda` function to express the magnetic field with respect to the orientation of the magnetic dipole moment: 
+We introduce the symbolic vector quantities `M` and `R`, and implement a `lambda` function to express the magnetic field with respect to the orientation of the magnetic dipole moment:
+
 ```{python}
 M = Matrix([0, 0, m])
 R = Matrix([x, y, z])
@@ -884,27 +888,22 @@ H = lambda M: (M.dot(R) * (3 + I * k * r - k**2 * r**2) * R / r**2 - (1 + I * k 
 print('H(M) =')
 H(M)
 ```
+
 This confirms the correctness of our derivation.
 
 ## Apparent resistivity
 
-However, geophysics is primarily interested in reconstructing the spatial distribution of electrical conductivity from measured field quantities (inversion). 
-This step is based on a model conception of the spatial conductivity distribution. 
-In general, the conductivity is a function of location with $\sigma=\sigma(x,y,z)>0$.
-In the simplest case, we assume that the halfspace or fullspace is a uniform conductor, i.e., $\sigma= const$. 
-The model of the homogeneous halfspace or fullspace can therefore be completely described by a single number.
-We now try to determine this number mathematically from the measured field quantities.
+However, geophysics is primarily interested in reconstructing the spatial distribution of electrical conductivity from measured field quantities (inversion). This step is based on a model conception of the spatial conductivity distribution. In general, the conductivity is a function of location with $\sigma=\sigma(x,y,z)>0$. In the simplest case, we assume that the halfspace or fullspace is a uniform conductor, i.e., $\sigma= const$. The model of the homogeneous halfspace or fullspace can therefore be completely described by a single number. We now try to determine this number mathematically from the measured field quantities.
 
 This is the simplest form of a geophysical inversion!
 
-We use the _impedance_ to solve the problem. 
-From this we then determine the apparent resistivity.
+We use the *impedance* to solve the problem. From this we then determine the apparent resistivity.
 
 The following questions will be answered:
 
-* Can the concept of impedance be transferred to dipole excitation?
-* Is it possible to reconstruct the electrical resistivity from the impedance?
-* What are the differences compared to homogeneous excitation (MT)?
+-   Can the concept of impedance be transferred to dipole excitation?
+-   Is it possible to reconstruct the electrical resistivity from the impedance?
+-   What are the differences compared to homogeneous excitation (MT)?
 
 We implement the general equations for the electric and magnetic fields as `Python` functions `E` and `H`, resp.:
 
@@ -946,10 +945,10 @@ def H(r, m, f, sigma):
 
 We check with the parameters defining a VMD in horizontal coplanar configuration oscillating at a frequency of 100 Hz located at the origin of a uniform fullspace:
 
-* $\mathbf r = [100, 0, 0]^\top$ m
-* $\mathbf m = [0, 0, 1]^\top$ A$\cdot m^2$
-* $f = 100$ Hz
-* $\sigma = 0.01$ S/m.
+-   $\mathbf r = [100, 0, 0]^\top$ m
+-   $\mathbf m = [0, 0, 1]^\top$ A$\cdot m^2$
+-   $f = 100$ Hz
+-   $\sigma = 0.01$ S/m.
 
 Let's have a look at the electric field evaluated with the function `E`:
 
@@ -970,9 +969,10 @@ h = H(r, m, f, sigma)
 Hz = h[2]
 print(np.array_str(h, precision=2))
 ```
+
 We recognize that for a vertically aligned dipole, when observed at the $x$-axis, only the $y$-component of $\mathbf E$ and the $z$-component of $\mathbf H$ are non-zero.
 
-Now we try to calculate the _impedance_ from the ratio of two mutually orthogonal components of $\mathbf E$ and $\mathbf H$, e.g.,
+Now we try to calculate the *impedance* from the ratio of two mutually orthogonal components of $\mathbf E$ and $\mathbf H$, e.g.,
 
 $$
 Z = \frac{ E_y }{ H_z}.
@@ -1001,8 +1001,7 @@ def rhoa(Z, f):
 print('The apparent resistivity is ' + str(np.round(rhoa(Z, f), 4)) + ' Ohm*m.')
 ```
 
-This does not meet our expectations.
-We are therefore investigating whether the impedance depends on the frequency and/or the distance to the dipole.
+This does not meet our expectations. We are therefore investigating whether the impedance depends on the frequency and/or the distance to the dipole.
 
 We vary the frequencies and observe $\rho_a$ as a function of frequency.
 
@@ -1049,8 +1048,7 @@ ax.set_title('Frequency ' + str(np.linalg.norm(f)) + ' Hz')
 ax
 ```
 
-Is there a consistent explanation for these observations?
-We look at the induction parameter $|k|r$ and revisit the parameters from the previous examples.
+Is there a consistent explanation for these observations? We look at the induction parameter $|k|r$ and revisit the parameters from the previous examples.
 
 ```{python}
 def kr(f, sigma, r):
@@ -1098,13 +1096,7 @@ ax.set_title('Frequency ' + str(np.linalg.norm(f)) + ' Hz')
 ax
 ```
 
-In contrast to homogeneous excitation, the impedance and thus the apparent resistivity for dipole excitation depends not only on the frequency but also on the distance between the dipole source and the receiver.
-At $|k|r \gg 1$ we speak of the far zone. 
-The impedance relationships there are similar to those for the MT.
-At $|k|r \ll 1$ we are in the near zone. 
-The induction parameter is small. 
-The low induction number (LIN) methods work in this regime. With the Geonics EM-34, for example, a coil distance of around 10 m is selected at a frequency of 6,400 Hz. 
-The induction parameter for this configuration is less than 1 if the conductivity is sufficiently low.
+In contrast to homogeneous excitation, the impedance and thus the apparent resistivity for dipole excitation depends not only on the frequency but also on the distance between the dipole source and the receiver. At $|k|r \gg 1$ we speak of the far zone. The impedance relationships there are similar to those for the MT. At $|k|r \ll 1$ we are in the near zone. The induction parameter is small. The low induction number (LIN) methods work in this regime. With the Geonics EM-34, for example, a coil distance of around 10 m is selected at a frequency of 6,400 Hz. The induction parameter for this configuration is less than 1 if the conductivity is sufficiently low.
 
 We check these findings for a range of conductivities.
 
@@ -1138,15 +1130,14 @@ ax2.legend()
 
 As we can see from Fig. @fig-lin-response, the real part of the magnetic field goes to a constant value for $|k|r \to 0$, whereas the imaginary part shows a straight line in the log-log plot.
 
-For $|k|r \to 0$, i.e., for very small conductivities, we approach free-space conditions.
-The magnetic field of a vertical dipole in horizontal co-planar configuration is
+For $|k|r \to 0$, i.e., for very small conductivities, we approach free-space conditions. The magnetic field of a vertical dipole in horizontal co-planar configuration is
 
 $$
 H_z = -\frac{ m }{4 \pi r^3 }.
 $$
 
-We evaluate this equation with the given values of $r$ and $m$.
-We obtain
+We evaluate this equation with the given values of $r$ and $m$. We obtain
+
 ```{python}
 print('H_z   = ' + str(-1 / (4 * np.pi * r**3)))
 print('Hz[0] = ' + str(np.real(Hz[0])))
@@ -1154,16 +1145,13 @@ print('Hz[0] = ' + str(np.real(Hz[0])))
 
 These numbers match very well.
 
-On the other hand, for fixed values of $r$ and $f$ it is possible to calibrate the instrument such that the reading of the imaginary part of $H_z$ for low induction numbers yields the desired apparent resistivity. 
+On the other hand, for fixed values of $r$ and $f$ it is possible to calibrate the instrument such that the reading of the imaginary part of $H_z$ for low induction numbers yields the desired apparent resistivity.
 
 ### Instrument error
 
 What about the uncertainty of the readings of such an instrument?
 
-Frequency stability in the instrument is not a problem.
-The situation is different when measuring the distance between the coils.
-We therefore finally examine the sensitivity of the magnetic field measurement to inaccuracies in the distance measurement.
-To do this, we consider the error according to the linear error propagation law
+Frequency stability in the instrument is not a problem. The situation is different when measuring the distance between the coils. We therefore finally examine the sensitivity of the magnetic field measurement to inaccuracies in the distance measurement. To do this, we consider the error according to the linear error propagation law
 
 $$
 \Delta H_z = \left| \frac{\partial H_z}{\partial r} \right| \Delta r.
@@ -1182,4 +1170,3 @@ $$
 $$
 
 Accordingly, the relative error in the magnetic field measurement is three times as large as the relative error in the distance measurement.
-
