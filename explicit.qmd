@@ -1,7 +1,9 @@
 ---
 title: "Explicit expressions for the fields in HCP configuration"
 jupyter: python3
+editor: source
 ---
+
 ```{python}
 #| echo: false
 import sympy as sp
@@ -11,16 +13,13 @@ import matplotlib.pyplot as plt
 
 ## Motivation
 
-Often, the knowledge of the electric and/or magnetic field at the surface of a homogeneous Earth is sufficient.
-However, the calculation of the Hankel integral is -- even in the homogeneous case -- numerically not trivial.
+Often, the knowledge of the electric and/or magnetic field at the surface of a homogeneous Earth is sufficient. However, the calculation of the Hankel integral is -- even in the homogeneous case -- numerically not trivial.
 
 Later we will learn how to evaluate them properly.
 
-For now, let's simplify the configuration by setting $h=0$ and $z=0$.
-We refer to this configuration as the _horizontal coplanar configuration_ (which is generally not restricted to the plane $z=0$).
+For now, let's simplify the configuration by setting $h=0$ and $z=0$. We refer to this configuration as the *horizontal coplanar configuration* (which is generally not restricted to the plane $z=0$).
 
-With the help of this simplification it is possible to rewrite the integrals.
-The results are closed form expressions.
+With the help of this simplification it is possible to rewrite the integrals. The results are closed form expressions.
 
 It is possible to estimate what field amplitudes can be expected at a given offset-frequency regime.
 
@@ -29,43 +28,38 @@ It is possible to estimate what field amplitudes can be expected at a given offs
 In a conducting medium with $\lambda_1^2 = \lambda^2 - k_1^2$, $h=0$, and $z=0$, there holds
 
 ::: {.callout-tip title="Expressions for coplanar configuration at z=0, h=0:"}
-
 $$
-	\begin{equation}
-	    E_\varphi = -\frac{i \omega \mu_0 m}{2 \pi} \int_0^\infty \frac{\lambda^2}{\lambda + \lambda_1}
-	    J_1(\lambda r) \, \dd\lambda
-	\end{equation}
-$$
-	
-$$
-	\begin{equation}
-	    H_r = \frac{m}{2 \pi} \int_0^\infty \frac{\lambda_1 \lambda^2}{\lambda + \lambda_1}
-	    J_1(\lambda r) \, \dd\lambda
-	\end{equation}
-$$
-	
-$$
-	\begin{equation}
-	    H_z = \frac{m}{2 \pi} \int_0^\infty \frac{\lambda^3}{\lambda + \lambda_1}
-	    J_0(\lambda r) \, \dd\lambda
-	\end{equation}
+    \begin{equation}
+        E_\varphi = -\frac{i \omega \mu_0 m}{2 \pi} \int_0^\infty \frac{\lambda^2}{\lambda + \lambda_1}
+        J_1(\lambda r) \, \dd\lambda
+    \end{equation}
 $$
 
+$$
+    \begin{equation}
+        H_r = \frac{m}{2 \pi} \int_0^\infty \frac{\lambda_1 \lambda^2}{\lambda + \lambda_1}
+        J_1(\lambda r) \, \dd\lambda
+    \end{equation}
+$$
+
+$$
+    \begin{equation}
+        H_z = \frac{m}{2 \pi} \int_0^\infty \frac{\lambda^3}{\lambda + \lambda_1}
+        J_0(\lambda r) \, \dd\lambda
+    \end{equation}
+$$
 :::
 
 ## Electric field
 
-In the following we try to _rewrite_ the integral. Recalling the properties of the Bessel function we first write
-$$
+In the following we try to *rewrite* the integral. Recalling the properties of the Bessel function we first write $$
 \begin{equation}
     E_\varphi = \frac{i \omega \mu_0 m}{2 \pi}
     \partial_r
     \int_0^\infty \frac{\lambda}{\lambda + \lambda_1}
     J_0(\lambda r) \, \dd\lambda
 \end{equation}
-$$
-Second, we expand the integrand with $\lambda - \lambda_1$, i.e.,
-$$
+$$ Second, we expand the integrand with $\lambda - \lambda_1$, i.e., $$
 \frac{\lambda}{\lambda + \lambda_1} = 
 \frac{\lambda(\lambda - \lambda_1)}{\lambda^2 - \lambda_1^2} =
 \frac{1}{k_1^2} \left(
@@ -73,8 +67,7 @@ $$
 \right)
 $$
 
-We obtain
-$$
+We obtain $$
 \begin{equation}
     E_\varphi = \frac{i \omega \mu_0 m}{2 \pi k_1^2}
     \partial_r
@@ -88,15 +81,13 @@ $$
 $$ {#eq-Ephi-new}
 
 ### Useful integral identities
-With $R^2 = r^2 + z^2$ there holds the following identity (_Weber integral_)
-$$
+
+With $R^2 = r^2 + z^2$ there holds the following identity (*Weber integral*) $$
 \begin{equation}
 \frac{1}{R} = \int_0^\infty
 e^{-\lambda z} J_0(\lambda r)\, d\lambda.
 \end{equation} 
-$$ {#eq-weber}
-After differentiating both sides of @eq-weber twice w.r.t. $z$, we obtain
-$$
+$$ {#eq-weber} After differentiating both sides of @eq-weber twice w.r.t. $z$, we obtain $$
 \frac{\partial^2}{\partial z^2} \frac{1}{R} = \int_0^\infty
 \lambda^2 e^{-\lambda z} J_0(\lambda r)\, \dd\lambda.
 $$
@@ -105,11 +96,9 @@ $$
 \frac{\partial^2}{\partial z^2} \frac{1}{R}  \bigg|_{z=0} = 
 \int_0^\infty
 \lambda^2 J_0(\lambda r)\, \dd\lambda.
-$$
-We see, that for $z=0$ this resembles the first integral in the xpression of $E_\varphi$ given in @eq-Ephi-new.
+$$ We see, that for $z=0$ this resembles the first integral in the xpression of $E_\varphi$ given in @eq-Ephi-new.
 
-The _Sommerfeld_ integral is
-$$
+The *Sommerfeld* integral is $$
 \begin{equation}
 \frac{e^{-i k_1 R}}{R} = \int_0^\infty
 \frac{\lambda}{\lambda_1}
@@ -117,8 +106,7 @@ e^{-\lambda_1 z} J_0(\lambda r)\, \dd\lambda.
 \end{equation}
 $$ {#eq-sommerfeld}
 
-Likewise, we obtain the second integral expression when we differentiate the _Sommerfeld_ integral @eq-sommerfeld twice w.r.t. $z$:
-$$
+Likewise, we obtain the second integral expression when we differentiate the *Sommerfeld* integral @eq-sommerfeld twice w.r.t. $z$: $$
 \frac{\partial^2}{\partial z^2} \frac{e^{-i k_1 R}}{R} = \int_0^\infty
 {\lambda}{\lambda_1}
 e^{-\lambda_1 z} J_0(\lambda r)\, \dd\lambda
@@ -130,10 +118,9 @@ $$
 J_0(\lambda r)\, \dd\lambda
 $$
 
-We see that we are able to express the above integrals in the expression for $E_\varphi$ by means of derivatives of the _Weber_ and _Sommerfeld_ integrals.
+We see that we are able to express the above integrals in the expression for $E_\varphi$ by means of derivatives of the *Weber* and *Sommerfeld* integrals.
 
-The point is, that we can replace the integrals _just by functions of_ $R$!
-
+The point is, that we can replace the integrals *just by functions of* $R$!
 
 ## Implementation for $E_\varphi$
 
@@ -147,41 +134,45 @@ R = sp.sqrt(r**2 + z**2)
 G = sp.exp(-sp.I * k * R ) / R
 G
 ```
+
 The second derivative of the Weber integral, i.e., $1/R$, w.r.t. $z$ is
+
 ```{python}
 Rzz = sp.diff(1 / R, z, 2)
 Rzz.simplify()
 ```
 
 Now, we set $z=0$ and obtain
+
 ```{python}
 Rzz.subs(z, 0)
 ```
-i.e.,
-$$
+
+i.e., $$
 \pdv[2]{}{z} \frac{1}{R} \bigg|_{z=0} = -\frac{1}{r^3}.
-$$
-Further, the left-hand side of the Sommerfeld integral is
-$$
+$$ Further, the left-hand side of the Sommerfeld integral is $$
 \frac{e^{-i k_1 R}}{R},
-$$
-and its second derivative w.r.t. $z$ is
+$$ and its second derivative w.r.t. $z$ is
+
 ```{python}
 Gzz = sp.diff(G, z, 2)
 Gzz.simplify()
 ```
+
 which, after setting $z=0$, becomes
+
 ```{python}
 Gzz.subs(z, 0).simplify()
 ```
 
 Finally, we apply the derivative w.r.t. $r$ to both results and obtain
+
 ```{python}
 ex = sp.diff(Rzz, r).subs(z,0) - sp.diff(Gzz, r).subs(z, 0)
 ex.simplify()
 ```
-We recognize that
-$$
+
+We recognize that $$
 \pdv{}{r} \left[
     \int_0^\infty \lambda^2
     J_0(\lambda r) \, \dd\lambda -
@@ -192,14 +183,14 @@ $$
     3 - (3 + 3 ikr - k^2 r^2) e^{-ikr}}{r^4}.
 $$
 
-Incorporating the leading factor of $E_\varphi$ we get the result
-$$
+Incorporating the leading factor of $E_\varphi$ we get the result $$
 E_\varphi(r, \omega) = -\frac{m}{2 \pi \sigma r^4} \left[
 3 - (3 + 3 ikr - k^2 r^2) e^{-ikr}
 \right]
 $$
 
 For later evaluation we implement this result as a function:
+
 ```{python}
 def Ephi(r, omega, sigma):
     mu_0 = np.pi * 4e-7
@@ -234,8 +225,7 @@ I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
 \right]
 $$
 
-
-The functions $I_1, I_2, K_1, K_2$ are the _modified Bessel functions_ of the first kind and order 1 and 2 with complex argument $\alpha = \dfrac{ikr}{2}$.
+The functions $I_1, I_2, K_1, K_2$ are the *modified Bessel functions* of the first kind and order 1 and 2 with complex argument $\alpha = \dfrac{ikr}{2}$.
 
 `Python` implementation:
 
@@ -265,7 +255,6 @@ def Bz(r, omega, sigma):
 The final expressions in the frequency domain are given by
 
 ::: {.callout-tip title="Frequency domain fields"}
-
 $$
 \begin{align}
 E_\varphi(r, \omega) & = -\frac{m}{2 \pi \sigma r^4} \left[
@@ -281,14 +270,11 @@ I_1(\alpha)K_1(\alpha) - I_2(\alpha)K_2(\alpha)
 $$ {#eq-allfields-freq}
 
 $\alpha = \dfrac{i k r}{2}$
-
 :::
 
 ## Examples
 
-As an example, we choose a homogeneous ground with conductivity $\sigma = 0.01$ S/m.
-The transmitter-receiver offset is $100$ m.
-The frequencies cover a range from $10^{-1} \le f \le 10^5$ Hz.
+As an example, we choose a homogeneous ground with conductivity $\sigma = 0.01$ S/m. The transmitter-receiver offset is $100$ m. The frequencies cover a range from $10^{-1} \le f \le 10^5$ Hz.
 
 ```{python}
 r = 100.0
@@ -314,7 +300,7 @@ def plotfield(f, field):
     ax.legend()
     ax.set_xlabel('f in Hz')
     return ax
-```  
+```
 
 ```{python}
 ax = plotfield(f, E_phi)
@@ -334,12 +320,9 @@ ax.set_ylabel(r'$B_z$ in Vs/m$^2$')
 ax
 ```
 
-
-The last plot for $B_z$ can be verified using Fig. 4.2 in @ward1988electromagnetic.
-Note that $H_z$ is plotted in the following reference figure:
+The last plot for $B_z$ can be verified using Fig. 4.2 in @ward1988electromagnetic. Note that $H_z$ is plotted in the following reference figure:
 
 ![](https://ruboerner.github.io/images/Hz_VMD.png)
-
 
 For completeness, this is Fig. 4.3 of @ward1988electromagnetic, which displays $H_r$:
 
@@ -352,7 +335,6 @@ Following the ideas outlined in @sec-laplace, we transform the field expressions
 The final expressions for $e_\varphi$, $b_z$, and $\pdv{b_z}{t}$ can be easily obtained using @eq-laplace-1, @eq-laplace-ikr, and @eq-laplace-k2r2, and are given by
 
 ::: {.callout-tip title="Time domain fields"}
-
 $$
 \begin{align}
 e_\varphi &= -\frac{m}{2 \pi \sigma r^4} \left[

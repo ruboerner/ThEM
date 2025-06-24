@@ -1,6 +1,7 @@
 ---
 title: "Dipole sources above a layered halfspace"
 jupyter: python3
+editor: source
 ---
 
 ```{python}
@@ -492,6 +493,110 @@ ax
 ![Reference to Fig. above above taken from @ward1988electromagnetic](https://ruboerner.github.io/images/Hz_VMD.png){#fig-reference-VMD}
 
 As we can see from visual inspection of all three illustrations given above, the Fast Hankel Transform approach works well.
+
+## Application: Airborne EM {#sec-hem}
+
+The Federal Institute for Geosciences and Natural Resources (BGR Hannover) operates the 5-frequency EM induction system *DIGHEM* (Fugro Airborne Survey, Canada). It employs an HCP configuration, hence our example using the VMD is well suited.
+
+The 5 frequencies used by the *DIGHEM* system are between $10^{2}$ and $10^{5}$ Hz. The distance between transmitter and receilver coils are 8 m. The instrument is contained in a tube (bird), which is towed by a 45 m long cable about 30-40 m above ground.
+
+![Sketch of the BGR airborne geophysical system, Source: BGR (www.bgr.bund.de)](https://www.bgr.bund.de/EN/Themen/GG_Geophysik/Aerogeophysik/Bilder/prinzipskizze_hem_g.jpg?__blob=normal&v=3)
+
+```{python}
+freq = np.array([387, 1820, 8225, 41550, 133200])
+nf = 5
+r = 8.0
+z = -30.0
+z0 = -30.0
+```
+
+To assess the validity of our code, we choose as reference the published 4-layer repsonse from [Siemon et al. (2009)](https://doi.org/10.1016/j.jappgeo.2007.11.003), Table 1:
+
+```{python}
+rho = np.array([200, 100, 5, 1000])
+thk = np.array([20, 30, 10])
+sigma = 1.0 / rho
+mu = np.ones(len(rho)) * mu0
+```
+
+```{python}
+rmin = r
+nr = 1
+ncnr = nc + nr - 1
+
+rr = np.zeros(nr)
+R = np.zeros(nr)
+
+for n in range(0, nr):
+    rr[n] = rmin * q**(n)
+    R[n] = np.sqrt(rr[n]**2 + (z - z0)**2)
+
+kernel = np.zeros(ncnr, dtype=np.complex128)
+Bz = np.zeros((nr, nf), dtype=np.complex128)
+Bz0 = (3 * (z - z0)**2 - R**2) / R**5
+
+for k, f in enumerate(freq):
+    omega = 2 * np.pi * f
+    for nu in range(0, ncnr):
+        n = nc0 - nc + nu
+        lam = np.exp(-n * 0.1 * np.log(10.0)) / rmin
+        B1 = admittance(lam, sigma, mu, thk, f)
+
+        E = np.exp(-lam * np.abs(z + z0))
+
+        eta = lam / mu0
+        gamma = (B1 - eta) / (B1 + eta) * E
+        kernel[nu] = gamma * lam**2
+
+
+    Bz[:, k] = mu0 / 4 / np.pi * (Bz0 - convolve(fc0, kernel) / rr)
+
+```
+
+The quantity relevant to the airborne EM data interpretation is the normalized secondary field
+$$
+\begin{equation}
+\begin{split}
+R & = \Re \left(\frac{B_z}{B_z^{air}} - 1 \right) \\
+Q & = \Im \left(\frac{B_z}{B_z^{air}}\right).
+\end{split}
+\end{equation}
+$$
+
+Those quantities _R_ (for _real part_) and _Q_ (for _quadrature part_) are usually given in units of _ppm_.
+
+```{python}
+Z = Bz / (mu0 * Bz0 / 4 / np.pi)
+R_ppm = 1e6 * (np.real(Z) - 1)
+Q_ppm = 1e6 * np.imag(Z)
+```
+
+The reference data from Siemon et al. is
+
+```{python}
+R_BGR = np.array([21.8, 129.1, 280.4, 734.7, 1506])
+Q_BGR = np.array([68.36, 164.4, 291.5, 747.4, 1047])
+```
+
+```{python}
+fig, ax = plt.subplots(1, 1, figsize=(6,4))
+ax.loglog(freq, R_ppm.ravel(), marker='o', label="R FHT FG")
+ax.loglog(freq, R_BGR.ravel(), marker='o', label="R FHT BGR")
+ax.loglog(freq, Q_ppm.ravel(), marker='o', label="Q FHT FG")
+ax.loglog(freq, Q_BGR.ravel(), marker='o', label="Q FHT BGR")
+ax.legend()
+```
+
+## Summary
+
+We have learned that field values can be computed very accurately and efficiently using the digital filter method.
+
+The numerical effort lies in providing a (large) number of evaluations of the kernel function $f$ at given points $\lambda$.
+
+In a similar manner, the inverse Fourier transform from the frequency domain to the time domain can be implemented.
+
+Corresponding filter coefficients also exist for $J_{-1/2}$ and $J_{+1/2}$.
+
 
 ::: callout-note
 It remains to be said, that the numerical evaluation of the convolution is an expensive bottleneck, when the fields have to be computed at different $z$ levels.

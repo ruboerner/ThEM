@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-2d053c8a602df91ec61aa3379e601c1a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -406,7 +406,7 @@ Note
 <h2 data-number="3.1" class="anchored" data-anchor-id="example"><span class="header-section-number">3.1</span> Example</h2>
 <p>In this example we use a <em>Fourier series expansion</em> to approximate the periodic <em>square function</em> <span class="math inline">\(u(x)\)</span> of length <span class="math inline">\(2L\)</span>.</p>
 <p>An analytic formula for a square wave with unit amplitude and period <span class="math inline">\(2L\)</span> is given by <span class="math inline">\(u(x) = \mathrm{sign}(\sin(\frac{\pi x}{L})\)</span>.</p>
-<div id="d22b7091" class="cell" data-execution_count="2">
+<div id="fc4964d4" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.001</span>)</span>
@@ -444,7 +444,7 @@ u(x) = \lim_{N \to \infty} \frac{4}{\pi} \sum_{k=1}^{N} \frac{1}{2k-1} \sin \lef
 u_k(x) =  \frac{1}{2k-1} \sin \left(\frac{(2k-1) \pi x}{L}\right)
 \]</span></p>
 <p>This function is called <code>uk</code> and takes the arguments <code>x</code> and the index <code>k</code>. The window length <code>L</code> takes the default setting of <code>0.5</code>.</p>
-<div id="800d84e5" class="cell" data-execution_count="3">
+<div id="62f1629e" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> uk(x, k, L<span class="op">=</span><span class="fl">0.5</span>):</span>
@@ -454,7 +454,7 @@ u_k(x) =  \frac{1}{2k-1} \sin \left(\frac{(2k-1) \pi x}{L}\right)
 <p>Next, we implement the summation over all <span class="math inline">\(k\)</span> sine terms, i.e., <span class="math display">\[
 u(x) \approx \frac{4}{\pi} \sum_{k=1}^N u_k(x)
 \]</span></p>
-<div id="4ace68f8" class="cell" data-execution_count="4">
+<div id="1d1bada0" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> u(x, k, L):</span>
@@ -463,7 +463,7 @@ u(x) \approx \frac{4}{\pi} \sum_{k=1}^N u_k(x)
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="78336729" class="cell" data-execution_count="5">
+<div id="d80657eb" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="dv">2</span></span>
