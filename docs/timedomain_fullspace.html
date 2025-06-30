@@ -301,7 +301,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Summary</span></a>
+ <span class="menu-text">Exercises</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -309,8 +309,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./python_problems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exercises in Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Summary</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -396,7 +413,7 @@ u(t) =
 \]</span></p>
 <p>The following figures show the Heaviside function <span class="math inline">\(u(t)\)</span> and the result of the time integration of the Dirac delta function <span class="math inline">\(\delta(t)\)</span>.</p>
 <p>We use the symbolic expressions <code>t</code> for the time as well as <code>Heaviside</code> and <code>DiracDelta</code> for step function and Dirac’s delta function respectively. Furthermore, we use the function <code>integrate</code> for symbolic integration.</p>
-<div id="f843019b" class="cell" data-execution_count="1">
+<div id="4770d506" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -413,7 +430,7 @@ u(t) =
 </div>
 </div>
 <p>The following figure shows the result of the time integration of the Dirac delta function, where the integral over <span class="math inline">\(\delta(t)\)</span> from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(t\)</span> is assigned to the value of a function at time <span class="math inline">\(t\)</span>.</p>
-<div id="e7bdf838" class="cell" data-execution_count="2">
+<div id="dac9c7b3" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plot(integrate(DiracDelta(t), t), (t, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>), title<span class="op">=</span><span class="vs">r'</span><span class="dv">$</span><span class="er">\</span><span class="vs">int_{-</span><span class="er">\</span><span class="vs">infty}</span><span class="dv">^</span><span class="vs">t</span><span class="dv">\d</span><span class="vs">elta</span><span class="kw">(</span><span class="ch">\t</span><span class="vs">au</span><span class="kw">)</span><span class="vs"> d</span><span class="ch">\t</span><span class="vs">au</span><span class="dv">$</span><span class="vs">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -431,7 +448,7 @@ u(t) = \int\limits_{-\infty}^t \delta(\tau) \, \mathrm d \tau.
 \]</span></p>
 <p>We can reproduce the result using symbolic mathematics.</p>
 <p>(In <code>sympy</code> the Heaviside function has the symbol <span class="math inline">\(\theta\)</span>).</p>
-<div id="b24af9d3" class="cell" data-execution_count="3">
+<div id="3abe1686" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>integrate(DiracDelta(t), t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
 <p><span class="math inline">\(\displaystyle \theta\left(t\right)\)</span></p>
@@ -440,7 +457,7 @@ u(t) = \int\limits_{-\infty}^t \delta(\tau) \, \mathrm d \tau.
 <p>Conversely, the following applies to the time derivative of the Heaviside function <span class="math display">\[
 \frac{\mathrm d}{\mathrm dt} u(t) = \delta(t),
 \]</span> of which we can convince ourselves by symbolic differentiation:</p>
-<div id="9699730d" class="cell" data-execution_count="4">
+<div id="e8e3c4ed" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>diff(Heaviside(t), t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
 <p><span class="math inline">\(\displaystyle \delta\left(t\right)\)</span></p>
@@ -530,7 +547,7 @@ f_2(t)}
 \]</span></p>
 <p>The step function response at time <span class="math inline">\(t\)</span> is therefore the result of the time integration over the impulse response from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(t\)</span>.</p>
 <p>In the following example, we assume that the impulse response is <span class="math inline">\(h(t) = e^{-t^2}\)</span>.</p>
-<div id="d6df2536" class="cell" data-execution_count="5">
+<div id="6227d455" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> h(t):</span>
@@ -551,7 +568,7 @@ f_1(\tau) = \int_{-\infty}^{\infty} h(t) u(\tau-t) \dd t
 \]</span> <span class="math display">\[
 f_2(\tau) = \int_{-\infty}^{\tau} h(t) \dd t
 \]</span></p>
-<div id="17b23569" class="cell" data-execution_count="6">
+<div id="6a565743" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> symbols(<span class="st">'tau'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f1(tau):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> integrate(h(t) <span class="op">*</span> Heaviside(tau <span class="op">-</span> t), (t, <span class="op">-</span>oo, oo))</span>
@@ -559,13 +576,13 @@ f_2(\tau) = \int_{-\infty}^{\tau} h(t) \dd t
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f2(tau):</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> integrate(h(t), (t, <span class="op">-</span>oo, tau))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="112aa5b2" class="cell" data-execution_count="7">
+<div id="92815013" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>f1(tau)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
 <p><span class="math inline">\(\displaystyle \frac{\sqrt{\pi} \left(2 - \operatorname{erfc}{\left(\tau \right)}\right)}{2}\)</span></p>
 </div>
 </div>
-<div id="0b1d3273" class="cell" data-execution_count="8">
+<div id="3d301be4" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f2(tau)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
 <p><span class="math inline">\(\displaystyle \frac{\sqrt{\pi} \left(2 - \operatorname{erfc}{\left(\tau \right)}\right)}{2}\)</span></p>
@@ -596,7 +613,7 @@ Note
 <p><span class="math display">\[
 f_{\mathrm{on}}(t)=\int_{0}^{t} h(t') \, \dd t', \quad t \geq 0.
 \]</span></p>
-<div id="00bb77bd" class="cell" data-execution_count="9">
+<div id="2e9c5af0" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_on(tau):</span>
@@ -621,7 +638,7 @@ f_{\text {off }}(t) =\int_{t}^{\infty} h(t') \dd t' = \int_{0}^{\infty} h(t') \d
 f_{\text {off }}(t) = f_{\text {on }}(\infty) - f_{\text {on }}(t), \quad t \geq 0
 \]</span></p>
 <p>This means that all we need to calculate the step function response of transient electromagnetics is a routine that can calculate the step response for the switch-on process!</p>
-<div id="1dcb1ef7" class="cell" data-execution_count="10">
+<div id="30b1e275" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_off(tau):</span>
@@ -779,7 +796,7 @@ e^{-ikr}, \quad ikr e^{-ikr}
 \mathrm{erfc}(t) = 1 - \mathrm{erf}(t).
 \tag{8.5}\]</span></span></p>
 <p>We implement the error function again with <code>sympy</code>.</p>
-<div id="bd259de8" class="cell" data-execution_count="11">
+<div id="6a406e37" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plot(erf(t), (t,<span class="dv">0</span>,<span class="dv">2</span>), size<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">3</span>), title<span class="op">=</span><span class="st">'erf(t)'</span>)</span>
@@ -810,7 +827,7 @@ e^{-ikr}, \quad ikr e^{-ikr}
 \right) \mathbf m \times \mathbf r.
 \]</span></p>
 <p>We now carry out the derivative with respect to time. To do this, we need the chain rule again, since <span class="math inline">\(\Theta = \Theta(t)\)</span>.</p>
-<div id="1153549a" class="cell" data-execution_count="12">
+<div id="f7076518" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mu, sigma, r <span class="op">=</span> symbols(<span class="st">'mu_0 sigma r'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
@@ -839,7 +856,7 @@ e^{-ikr}, \quad ikr e^{-ikr}
 \mathbf m \times \mathbf r.
 \]</span></p>
 <p>We implement this function using <code>Python</code>.</p>
-<div id="ee4a591d" class="cell" data-execution_count="13">
+<div id="d8597273" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Et(r, m, t, sigma):</span>
@@ -854,7 +871,7 @@ e^{-ikr}, \quad ikr e^{-ikr}
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> E</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="c48e0610" class="cell" data-execution_count="14">
+<div id="52955fcd" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Et(np.array([<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>]), np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]), <span class="fl">1e-6</span>, <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -889,7 +906,7 @@ e^{-ikr}, \quad ikr e^{-ikr}
     \end{split}
 \end{align}
 \]</span></p>
-<div id="58ca36f7" class="cell" data-execution_count="15">
+<div id="83b9c0be" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> erf, erfc</span>
@@ -917,7 +934,7 @@ e^{-ikr}, \quad ikr e^{-ikr}
 <span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> H</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="c1c0ca40" class="cell" data-execution_count="16">
+<div id="669f5ad1" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Ht(np.array([<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">0</span>]), np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]), <span class="fl">1e-0</span>, <span class="fl">0.01</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -939,7 +956,7 @@ e^{-ikr}, \quad ikr e^{-ikr}
 </section>
 <section id="numerical-example" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="numerical-example"><span class="header-section-number">8.5</span> Numerical example</h2>
-<div id="dd3eb2f4" class="cell" data-execution_count="17">
+<div id="80cbb4a0" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dHdt(r, m, t, sigma):</span>
@@ -961,7 +978,7 @@ e^{-ikr}, \quad ikr e^{-ikr}
 <p>We choose <span class="math inline">\(\mathbf r = [100, 0, 0]^\top\)</span> as the observation point. The conductivity is 0.01 S/m. The dipole moment is <span class="math inline">\(\mathbf m = [0 ,0 , 1]^\top\)</span>.</p>
 <p>We simulate the fields for logarithmically equidistant times in the interval <span class="math inline">\(10^{-7} \le t \le 1\)</span> s.</p>
 <p>The simulated quantities are <span class="math inline">\(e_y(t)\)</span>, <span class="math inline">\(h_z(t)\)</span> and <span class="math inline">\(\partial_t h_z(t)\)</span>.</p>
-<div id="45371f23" class="cell" data-execution_count="18">
+<div id="58d66236" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
@@ -1018,7 +1035,7 @@ Figure&nbsp;8.1: Electric field component <span class="math inline">\(e_y\)</spa
 h(r, t) = -\frac{1}{4 \pi r^3} \text{ for } t \to \infty.
 \]</span></p>
 <p>The numerical evaluations are identical up to rounding errors.</p>
-<div id="8a0fc017" class="cell" data-execution_count="20">
+<div id="e6198f1c" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'h_z(r,t) = '</span> <span class="op">+</span> <span class="bu">str</span>(<span class="op">-</span><span class="fl">1.0</span> <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> np.linalg.norm(r)<span class="op">**</span><span class="dv">3</span>)))</span>

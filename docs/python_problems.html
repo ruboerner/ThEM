@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – Theory of Electromagnetic Methods</title>
+<title>14&nbsp; Exercises in Python – Theory of Electromagnetic Methods</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,42 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +65,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="prev">
+<link href="./summary.html" rel="next">
+<link href="./timedomain_halfspace.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -98,6 +115,35 @@ window.MathJax = {
 };
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -110,7 +156,7 @@ window.MathJax = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./python_problems.html">Exercises</a></li><li class="breadcrumb-item"><a href="./python_problems.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exercises in Python</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -263,7 +309,7 @@ window.MathJax = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./python_problems.html" class="sidebar-item-text sidebar-link">
+  <a href="./python_problems.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exercises in Python</span></span></a>
   </div>
 </li>
@@ -288,7 +334,7 @@ window.MathJax = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -297,15 +343,27 @@ window.MathJax = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#preparation" id="toc-preparation" class="nav-link active" data-scroll-target="#preparation"><span class="header-section-number">14.1</span> Preparation</a></li>
+  <li><a href="#empymod" id="toc-empymod" class="nav-link" data-scroll-target="#empymod"><span class="header-section-number">14.2</span> <code>empymod</code></a>
+  <ul class="collapse">
+  <li><a href="#vmd-in-full-space" id="toc-vmd-in-full-space" class="nav-link" data-scroll-target="#vmd-in-full-space"><span class="header-section-number">14.2.1</span> VMD in full-space</a></li>
+  <li><a href="#vmd-over-layered-half-space" id="toc-vmd-over-layered-half-space" class="nav-link" data-scroll-target="#vmd-over-layered-half-space"><span class="header-section-number">14.2.2</span> VMD over layered half-space</a></li>
+  <li><a href="#hem-example" id="toc-hem-example" class="nav-link" data-scroll-target="#hem-example"><span class="header-section-number">14.2.3</span> HEM example</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./python_problems.html">Exercises</a></li><li class="breadcrumb-item"><a href="./python_problems.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exercises in Python</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Exercises in Python</span></h1>
 </div>
 
 
@@ -322,39 +380,125 @@ window.MathJax = {
 </header>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-Abramowitz1972" class="csl-entry" role="listitem">
-Abramowitz, M. &amp; Stegun, I.A., 1972. <em>Handbook of mathematical
-functions with formulas, graphs, and mathematical tables</em>, Tenth.,
-<span>Dover Publications</span>.
+<section id="preparation" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="preparation"><span class="header-section-number">14.1</span> Preparation</h2>
+<p>We prepare a working environment with Python and some essential packages. Make sure that the following packages are installed:</p>
+<ul>
+<li><code>numpy</code></li>
+<li><code>matplotlib</code></li>
+<li><code>scipy</code></li>
+<li><code>sympy</code></li>
+</ul>
+<p>Further, we will use <code>empymod</code> to generate reference responses. It can be installed with the following commands:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install pip</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">--upgrade</span> empymod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="empymod" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="empymod"><span class="header-section-number">14.2</span> <code>empymod</code></h2>
+<p>When in doubt, see the <a href="https://empymod.emsig.xyz/en/stable/index.html">documentation</a>.</p>
+<p>The coordinate system is either</p>
+<ul>
+<li>left-handed, where <span class="math inline">\(x\)</span> points to East, <span class="math inline">\(y\)</span> points to North, and <span class="math inline">\(z\)</span> points downwards, angle <span class="math inline">\(\theta\)</span> between E and N, <span class="math inline">\(\phi\)</span> down</li>
+<li>right-handed, where <span class="math inline">\(x\)</span> points to East, <span class="math inline">\(y\)</span> points to North, and <span class="math inline">\(z\)</span> points upwards, angle <span class="math inline">\(\theta\)</span> between E and N, <span class="math inline">\(\phi\)</span> up</li>
+</ul>
+<section id="vmd-in-full-space" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="vmd-in-full-space"><span class="header-section-number">14.2.1</span> VMD in full-space</h3>
+<div id="4ca08aab" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> empymod</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div id="ref-anderson1982fast" class="csl-entry" role="listitem">
-Anderson, W.L., 1982. Fast <span>Hankel</span> transforms using related
-and lagged convolutions. <em>ACM Transactions on Mathematical Software
-(TOMS)</em>, <strong>8</strong>, 344–368, <span>ACM</span>.
+<p>Survey paramaters:</p>
+<ul>
+<li>Conductivity <span class="math inline">\(\sigma = 0.01\)</span> S/m</li>
+<li>TX at origin, <span class="math inline">\(z\)</span>-directed</li>
+<li>RX (magnetic) with offset of <span class="math inline">\(100\)</span> m, <span class="math inline">\(z\)</span>-directed</li>
+</ul>
+<div id="6410d862" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">301</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>src <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">90</span>]    <span class="co"># z-dir. source at the origin [x, y, z, azimuth, dip]</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rec <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">90</span>]  <span class="co"># z-dir. receiver 100 m away from source</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>cond <span class="op">=</span> <span class="fl">0.01</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div id="ref-christensen1990" class="csl-entry" role="listitem">
-Christensen, N.B., 1990. Optimized fast <span>Hankel</span> transform
-filters. <em>Geophysical Prospecting</em>, <strong>38</strong>, 545–568.
-doi:<a href="https://doi.org/10.1111/j.1365-2478.1990.tb01861.x">10.1111/j.1365-2478.1990.tb01861.x</a>
+<p>Computation using <code>empymod</code>:</p>
+<div id="b8c119a0" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>inp <span class="op">=</span> {<span class="st">'src'</span>: src, <span class="st">'rec'</span>: rec, <span class="st">'depth'</span>: [], <span class="st">'res'</span>: <span class="dv">1</span><span class="op">/</span>cond, <span class="st">'verb'</span>: <span class="dv">1</span>}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>inp[<span class="st">'freqtime'</span>] <span class="op">=</span> freq</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>inp[<span class="st">'mrec'</span>] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>fmm_dip_dip <span class="op">=</span> empymod.loop(<span class="op">**</span>inp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<div id="ref-ghosh1971" class="csl-entry" role="listitem">
-Ghosh, D.P., 1971. The application of linear filter theory to the direct
-interpretation of geoelectrical resistivity sounding measurements.
-<em>Geophysical Prospecting</em>, <strong>19</strong>, 192–217. doi:<a href="https://doi.org/10.1111/j.1365-2478.1971.tb00593.x">10.1111/j.1365-2478.1971.tb00593.x</a>
+<div id="5f88423e" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>), constrained_layout<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.plot(freq, fmm_dip_dip.real, <span class="st">'C0-'</span>, label<span class="op">=</span><span class="st">'Real'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.plot(freq, <span class="op">-</span>fmm_dip_dip.real, <span class="st">'C0--'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.plot(freq, fmm_dip_dip.imag, <span class="st">'C1-'</span>, label<span class="op">=</span><span class="st">'Imag'</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.plot(freq, <span class="op">-</span>fmm_dip_dip.imag, <span class="st">'C1--'</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">'log'</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">'log'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Frequency (Hz)'</span>, fontsize<span class="op">=</span>fs<span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Amplitude (A/m)'</span>, fontsize<span class="op">=</span>fs<span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="python_problems_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
-<div id="ref-johansen1979" class="csl-entry" role="listitem">
-Johansen, H.K. &amp; Sørensen, K., 1979. Fast hankel transforms.
-<em>Geophysical Prospecting</em>, <strong>27</strong>, 876–901. doi:<a href="https://doi.org/10.1111/j.1365-2478.1979.tb01005.x">10.1111/j.1365-2478.1979.tb01005.x</a>
-</div>
-<div id="ref-ward1988electromagnetic" class="csl-entry" role="listitem">
-Ward, S.H. &amp; Hohmann, G.W., 1988. Electromagnetic theory for
-geophysical applications. <em>Electromagnetic methods in applied
-geophysics</em>, Vol. 1, pp. 131–311.
 </div>
 </div>
+</section>
+<section id="vmd-over-layered-half-space" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="vmd-over-layered-half-space"><span class="header-section-number">14.2.2</span> VMD over layered half-space</h3>
+<p>Survey parameters for a 3-layer model:</p>
+<ul>
+<li>Frequency range <span class="math inline">\(10^2\)</span> to <span class="math inline">\(10^5\)</span> Hz</li>
+<li>TX-RX offset range <span class="math inline">\(1\)</span> to <span class="math inline">\(10^3\)</span> m</li>
+<li>Electrical conductivities: <span class="math inline">\([10^{-2}, 1, 10^{-2}]\)</span> S/m</li>
+<li>Layer thicknesses <span class="math inline">\([10, 10]\)</span> m</li>
+</ul>
+<p>Make plots for</p>
+<ul>
+<li>amplitude vs.&nbsp;frequency</li>
+<li>amplitude vs.&nbsp;offset</li>
+<li>all three components of <span class="math inline">\(\mathbf B\)</span></li>
+<li>all three components of <span class="math inline">\(\mathbf E\)</span></li>
+<li>for all three possible directions of the magnetic dipole</li>
+</ul>
+<p>Notes:</p>
+<ul>
+<li>Use <code>mrec=False</code> to force the calculation of electric fields</li>
+<li>Define the orientation of TX and RX with the appropriate choice of the angles <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\phi\)</span> (parameters 4 and 5 of <code>src</code> and <code>rec</code>, resp.)</li>
+</ul>
+</section>
+<section id="hem-example" class="level3" data-number="14.2.3">
+<h3 data-number="14.2.3" class="anchored" data-anchor-id="hem-example"><span class="header-section-number">14.2.3</span> HEM example</h3>
+<p>Survey parameters for the 5-layer model after Siemon et al.&nbsp;(2009):</p>
+<ul>
+<li>TX-RX offset <span class="math inline">\(8\)</span> m</li>
+<li>Frequencies: <span class="math inline">\([387, 1820, 8225, 41550, 133200]\)</span> Hz</li>
+<li>Bird height: <span class="math inline">\(30\)</span> m above ground</li>
+<li>Resistivities: <span class="math inline">\([200, 100, 5, 1000]\)</span> <span class="math inline">\(\Omega \cdot\)</span>m</li>
+<li>Thicknesses: <span class="math inline">\([20, 30, 10]\)</span> m</li>
+</ul>
+<p>Calculate the HEM responses in terms of real part <span class="math inline">\(R\)</span> and quadrature part <span class="math inline">\(Q\)</span> in ppm!</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -758,11 +902,14 @@ geophysics</em>, Vol. 1, pp. 131–311.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Summary</span></span>
+      <a href="./timedomain_halfspace.html" class="pagination-link" aria-label="Dipole induction over a layered halfspace in the time domain">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dipole induction over a layered halfspace in the time domain</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

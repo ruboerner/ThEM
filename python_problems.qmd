@@ -1,0 +1,113 @@
+---
+title: "Exercises in Python"
+jupyter: python3
+editor: source
+---
+
+## Preparation
+
+We prepare a working environment with Python and some essential packages.
+Make sure that the following packages are installed:
+
+- `numpy`
+- `matplotlib`
+- `scipy`
+- `sympy`
+
+Further, we will use `empymod` to generate reference responses.
+It can be installed with the following commands:
+
+```bash
+conda install pip
+pip install --upgrade empymod
+```
+
+## `empymod`
+
+When in doubt, see the [documentation](https://empymod.emsig.xyz/en/stable/index.html).
+
+The coordinate system is either
+
+- left-handed, where $x$ points to East, $y$ points to North, and $z$ points downwards, angle $\theta$ between E and N, $\phi$ down
+- right-handed, where $x$ points to East, $y$ points to North, and $z$ points upwards, angle $\theta$ between E and N, $\phi$ up
+
+### VMD in full-space
+
+```{python}
+import empymod
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+Survey paramaters:
+
+- Conductivity $\sigma = 0.01$ S/m
+- TX at origin, $z$-directed
+- RX (magnetic) with offset of $100$ m, $z$-directed
+
+```{python}
+freq = np.logspace(-1, 5, 301)
+src = [0, 0, 0, 0, 90]    # z-dir. source at the origin [x, y, z, azimuth, dip]
+rec = [100, 0, 0, 0, 90]  # z-dir. receiver 100 m away from source
+cond = 0.01
+```
+
+Computation using `empymod`:
+
+```{python}
+inp = {'src': src, 'rec': rec, 'depth': [], 'res': 1/cond, 'verb': 1}
+
+inp['freqtime'] = freq
+inp['mrec'] = True
+fmm_dip_dip = empymod.loop(**inp)
+```
+
+```{python}
+fs = 12
+fig = plt.figure(figsize=(8, 6), constrained_layout=True)
+plt.plot(freq, fmm_dip_dip.real, 'C0-', label='Real')
+plt.plot(freq, -fmm_dip_dip.real, 'C0--')
+plt.plot(freq, fmm_dip_dip.imag, 'C1-', label='Imag')
+plt.plot(freq, -fmm_dip_dip.imag, 'C1--')
+plt.xscale('log')
+plt.yscale('log')
+plt.xlabel('Frequency (Hz)', fontsize=fs-2)
+plt.ylabel('Amplitude (A/m)', fontsize=fs-2)
+plt.legend()
+
+```
+
+### VMD over layered half-space
+
+Survey parameters for a 3-layer model: 
+
+- Frequency range $10^2$ to $10^5$ Hz
+- TX-RX offset range $1$ to $10^3$ m
+- Electrical conductivities: $[10^{-2}, 1, 10^{-2}]$ S/m
+- Layer thicknesses $[10, 10]$ m
+
+Make plots for
+
+- amplitude vs. frequency
+- amplitude vs. offset
+- all three components of $\mathbf B$
+- all three components of $\mathbf E$
+- for all three possible directions of the magnetic dipole
+
+Notes: 
+
+- Use `mrec=False` to force the calculation of electric fields
+- Define the orientation of TX and RX with the appropriate choice of the angles $\theta$ and $\phi$ (parameters 4 and 5 of `src` and `rec`, resp.)
+
+
+### HEM example
+
+Survey parameters for the 5-layer model after Siemon et al. (2009):
+
+- TX-RX offset $8$ m
+- Frequencies: $[387, 1820, 8225, 41550, 133200]$ Hz
+- Bird height: $30$ m above ground
+- Resistivities: $[200, 100, 5, 1000]$ $\Omega \cdot$m
+- Thicknesses: $[20, 30, 10]$ m
+
+Calculate the HEM responses in terms of real part $R$ and quadrature part $Q$ in ppm!

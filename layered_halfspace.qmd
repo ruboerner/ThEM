@@ -251,6 +251,8 @@ $$
 $$
 :::
 
+![Sketch of the fundamental relations for the recursion within the layered halfspace](images/layered_halfspace.svg)
+
 ## Algorithm
 
 We implement the calculation of the admittance as a function called `admittance(λ, σ, μ, d, f)`. The function returns $B_1$ as a complex-valued number.
@@ -290,8 +292,6 @@ For $\lambda = 10$ m$^{-1}$, $\sigma=[1, 1]^\top$ S/m, $\mu=[\mu_0, \mu_0]^\top$
 print('B_1 = ')
 admittance(10.0, np.array([1, 1]), np.array([1, 1]), np.array([1]), 1.0)
 ```
-
-## Summary
 
 We are now able to express the anomalous effect of the layers $2 \le n \le N$ by the *surface admittance* $B_1$.
 

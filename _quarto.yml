@@ -28,6 +28,9 @@ book:
       - hankel_transform.qmd
       - layered_halfspace.qmd
       - timedomain_halfspace.qmd
+    - part: "Exercises"
+      chapters:
+      - python_problems.qmd
     - part: "Summary"
       chapters: 
         - summary.qmd
