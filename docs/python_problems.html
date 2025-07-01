@@ -403,7 +403,7 @@ window.Quarto = {
 </ul>
 <section id="vmd-in-full-space" class="level3" data-number="14.2.1">
 <h3 data-number="14.2.1" class="anchored" data-anchor-id="vmd-in-full-space"><span class="header-section-number">14.2.1</span> VMD in full-space</h3>
-<div id="9942245f" class="cell" data-execution_count="1">
+<div id="c22846cc" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> empymod</span>
@@ -417,7 +417,7 @@ window.Quarto = {
 <li>TX at origin, <span class="math inline">\(z\)</span>-directed</li>
 <li>RX (magnetic) with offset of <span class="math inline">\(100\)</span> m, <span class="math inline">\(z\)</span>-directed</li>
 </ul>
-<div id="6b414bd0" class="cell" data-execution_count="2">
+<div id="639b25ba" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">301</span>)</span>
@@ -427,7 +427,7 @@ window.Quarto = {
 </details>
 </div>
 <p>Computation using <code>empymod</code>:</p>
-<div id="992cd368" class="cell" data-execution_count="3">
+<div id="3365e0ec" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>inp <span class="op">=</span> {<span class="st">'src'</span>: src, <span class="st">'rec'</span>: rec, <span class="st">'depth'</span>: [], <span class="st">'res'</span>: <span class="dv">1</span><span class="op">/</span>cond, <span class="st">'verb'</span>: <span class="dv">1</span>}</span>
@@ -437,7 +437,7 @@ window.Quarto = {
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>fmm_dip_dip <span class="op">=</span> empymod.loop(<span class="op">**</span>inp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="ad4513e5" class="cell" data-execution_count="4">
+<div id="712a5f73" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fs <span class="op">=</span> <span class="dv">12</span></span>
