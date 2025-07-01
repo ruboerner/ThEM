@@ -575,7 +575,7 @@ Impulse response via Hankel transform
 <p>Let <span class="math inline">\(n_c = 80\)</span>, <span class="math inline">\(n_t = 31\)</span> sampled from the interval <span class="math inline">\(t_0 = 10^{-6} \le t \le 10^{-3}\)</span> s with 10 log-equidistant samples per decade.</p>
 <p>Then <span class="math inline">\(n_c + n_t - 1 = 110\)</span>.</p>
 <p>Let’s compute the <span class="math inline">\(\omega_n\)</span>.</p>
-<div id="13c6f69a" class="cell" data-execution_count="3">
+<div id="e7c00901" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nt <span class="op">=</span> <span class="dv">31</span></span>
@@ -593,7 +593,7 @@ Impulse response via Hankel transform
 </section>
 <section id="numerical-experiments" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="numerical-experiments"><span class="header-section-number">13.4</span> Numerical experiments</h2>
-<div id="ebdc9202" class="cell" data-execution_count="4">
+<div id="6577d54b" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gethankelfcsin():</span>
@@ -625,7 +625,7 @@ Impulse response via Hankel transform
 </details>
 </div>
 <p>We plot of the filter coefficients for <span class="math inline">\(J_{+1/2}(\omega t)\)</span>, i.e., the <em>sine</em> transform:</p>
-<div id="9b1b3063" class="cell" data-execution_count="5">
+<div id="157b3815" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fc, nc, nc0 <span class="op">=</span> gethankelfcsin()</span>
@@ -648,7 +648,7 @@ Impulse response via Hankel transform
 <li><code>Bz_analytical()</code> provides all required frequency domain solutions to be used in the sine transform,</li>
 <li><code>dBzdt_halfspace()</code> provides an analytical reference solution for the <em>impulse response</em> of a uniform halfspace.</li>
 </ul>
-<div id="018f5776" class="cell" data-execution_count="6">
+<div id="cae01e24" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Bz_analytical(r, omega, sigma):</span>
@@ -698,7 +698,7 @@ Note
 <p>Note that the call of <code>Bz_analytical</code> in the code below may be replaced by a call to any appropriate function which provides the frequency domain field components of any dipole type and orientation.</p>
 </div>
 </div>
-<div id="c2fbb262" class="cell" data-execution_count="7">
+<div id="1687ab22" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
@@ -712,7 +712,7 @@ Note
 </details>
 </div>
 <p>Plot of the results</p>
-<div id="498f67ae" class="cell" data-execution_count="8">
+<div id="b159a90b" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
@@ -720,7 +720,7 @@ Note
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax.loglog(t, np.<span class="bu">abs</span>(dBzdt), marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'FHT'</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ax.loglog(t, np.<span class="bu">abs</span>(dBzdt_ana), label<span class="op">=</span><span class="st">'analytical'</span>)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ax.set_label(<span class="st">'t in s'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'t in s'</span>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">db_z</span><span class="kw">(</span><span class="vs">t</span><span class="kw">)</span><span class="vs">/dt</span><span class="dv">$</span><span class="vs"> in V/</span><span class="dv">$</span><span class="vs">m</span><span class="dv">^</span><span class="vs">2</span><span class="dv">$</span><span class="vs">'</span>)</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Impulse response'</span>)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -742,7 +742,7 @@ Note
 <h2 data-number="13.5" class="anchored" data-anchor-id="example-using-empymod"><span class="header-section-number">13.5</span> Example using <code>empymod</code></h2>
 <p>With <code>empymod</code> we can model any type of dipole embedded in a layered halfspace and evaluate fields both in frequency and time domain.</p>
 <p>We consider the example introduced above and provide the fields with <code>empymod</code>.</p>
-<div id="53c41e46" class="cell" data-execution_count="9">
+<div id="30143c58" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> empymod</span>
