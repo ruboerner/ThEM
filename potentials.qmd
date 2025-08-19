@@ -1,6 +1,7 @@
 ---
 title: "Sources in unbounded media"
 jupyter: python3
+editor: source
 ---
 
 In this chapter, we will consider finite sources in unbounded media. In geo-electromagnetic applications, magnetic dipoles, electric dipoles, long grounded cables, and large loops are used as sources.
@@ -29,7 +30,8 @@ $$
 \mu_0^{-1} \mathbf b - \mathbf h = \mathbf 0.
 $$
 
-When the differences are non-zero, then we observe the response of matter. We define the *electrical polarization* $\mathbf p$ $$
+When the differences are non-zero, then we observe the response of matter. We define the *electrical polarization* $\mathbf p$ 
+$$
 \mathbf p = \mathbf d - \varepsilon_0 \mathbf e
 $$
 
@@ -247,7 +249,7 @@ $$
 \begin{align}
 \mathbf H_e & = \phantom{-} \curl \mathbf A \\
 \curl \mathbf H_e & = \phantom{-} \curl \curl \mathbf A && = (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf E_e} + \mathbf J^s_e \\
- &   && = \textcolor{red}{-i \omega \mu} (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf A} - i \omega \mu \textcolor{red}{\grad U} + \mathbf J^s_e
+ &   && = \textcolor{red}{-i \omega \mu} (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf A} - (\sigma + i \omega \varepsilon) \textcolor{red}{\grad U} + \mathbf J^s_e
 \end{align}
 $$
 
@@ -256,7 +258,7 @@ We use the vector identity @eq-vector-identity and obtain
 $$
 \begin{align}
 -\laplacian \mathbf F + \nabla \divergence \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F + i \omega \mu \grad V & = + \mathbf J^s_m \\
--\laplacian \mathbf A + \nabla \divergence \mathbf A + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf A + i \omega \mu \grad U & = + \mathbf J^s_e
+-\laplacian \mathbf A + \nabla \divergence \mathbf A + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf A + (\sigma + i \omega \varepsilon) \grad U & = + \mathbf J^s_e
 \end{align}
 $$
 
@@ -400,7 +402,7 @@ $$
 Since $u$ is an axisymmetric function of $k_x$ and $k_y$, we use of the following *Hankel transform*:
 
 $$
-\frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} F(k_x^2 + k_y^2) 
+\iint\limits_{-\infty}^{\infty} F(k_x^2 + k_y^2) 
 e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y 
 =
 2 \pi \int\limits_0^\infty F(\lambda) J_0(\lambda R) \lambda \, \mathrm d \lambda,

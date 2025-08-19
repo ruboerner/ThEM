@@ -600,14 +600,14 @@ Example
 \begin{align}
 \mathbf H_e &amp; = \phantom{-} \curl \mathbf A \\
 \curl \mathbf H_e &amp; = \phantom{-} \curl \curl \mathbf A &amp;&amp; = (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf E_e} + \mathbf J^s_e \\
-&amp;   &amp;&amp; = \textcolor{red}{-i \omega \mu} (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf A} - i \omega \mu \textcolor{red}{\grad U} + \mathbf J^s_e
+&amp;   &amp;&amp; = \textcolor{red}{-i \omega \mu} (\sigma + i \omega \varepsilon) \textcolor{red}{\mathbf A} - (\sigma + i \omega \varepsilon) \textcolor{red}{\grad U} + \mathbf J^s_e
 \end{align}
 \]</span></p>
 <p>We use the vector identity <a href="pde.html#eq-vector-identity" class="quarto-xref"><span>5.2</span></a> and obtain</p>
 <p><span class="math display">\[
 \begin{align}
 -\laplacian \mathbf F + \nabla \divergence \mathbf F + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf F + i \omega \mu \grad V &amp; = + \mathbf J^s_m \\
--\laplacian \mathbf A + \nabla \divergence \mathbf A + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf A + i \omega \mu \grad U &amp; = + \mathbf J^s_e
+-\laplacian \mathbf A + \nabla \divergence \mathbf A + i \omega \mu (\sigma + i \omega \varepsilon) \mathbf A + (\sigma + i \omega \varepsilon) \grad U &amp; = + \mathbf J^s_e
 \end{align}
 \]</span></p>
 </section>
@@ -729,7 +729,7 @@ e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y
 \]</span></p>
 <p>Since <span class="math inline">\(u\)</span> is an axisymmetric function of <span class="math inline">\(k_x\)</span> and <span class="math inline">\(k_y\)</span>, we use of the following <em>Hankel transform</em>:</p>
 <p><span class="math display">\[
-\frac{ 1 }{ 4 \pi^2} \iint\limits_{-\infty}^{\infty} F(k_x^2 + k_y^2)
+\iint\limits_{-\infty}^{\infty} F(k_x^2 + k_y^2)
 e^{i (k_x x + k_y y)} \, \mathrm d k_x  \mathrm d k_y
 =
 2 \pi \int\limits_0^\infty F(\lambda) J_0(\lambda R) \lambda \, \mathrm d \lambda,
@@ -820,7 +820,7 @@ e^{- \frac{\mu\sigma r^2}{4 t}} \, u(t)
 <p>We implement the Green’s function in <code>Python</code> and plot it as a function of time or source-receiver-offset, resp.</p>
 <p>At first, let’s calculate the Green’s function at a fixed distance of <span class="math inline">\(r=100\)</span> m for a time range of <span class="math inline">\(t \in [10^{-6}, 10^{-2}]\)</span> seconds.</p>
 <p>The late time asymptotic <span class="math inline">\(g(r,t) \sim t^{-3/2}\)</span> as <span class="math inline">\(t \to \infty\)</span> is indicated as a straight line in the log-log plot.</p>
-<div id="14716484" class="cell" data-execution_count="1">
+<div id="39d282a2" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1094,7 +1094,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 \divergence \mathbf F = \partial_z F_z.
 \]</span></p>
 <p>To compute the derivatives, we use <code>sympy</code>:</p>
-<div id="ac95521b" class="cell" data-execution_count="2">
+<div id="94dad75c" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> diff, symbols, sqrt, pi, exp, I, simplify, Derivative, Matrix</span>
@@ -1113,7 +1113,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 </div>
 </div>
 <p>Next, we implement an expression for <span class="math inline">\(\divergence \mathbf F\)</span>:</p>
-<div id="224316a0" class="cell" data-execution_count="3">
+<div id="b8767825" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>divF <span class="op">=</span> diff(Fz.subs(r, sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>)), z).subs(sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>), r).simplify()</span>
@@ -1128,7 +1128,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 </div>
 </div>
 <p>The chain rule can be implemented by a <code>lambda</code> function <code>chain</code> which first substitutes <span class="math inline">\(r\)</span> by the square root, forms the derivative, and finally substitutes all square root expressions by <span class="math inline">\(r\)</span> or powers thereof.</p>
-<div id="f89ff617" class="cell" data-execution_count="4">
+<div id="b3c9c4ac" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> <span class="kw">lambda</span> F, v: diff(F.subs(r, sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>)), v).subs(sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> z<span class="op">**</span><span class="dv">2</span>), r).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1137,7 +1137,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <p>A call to <code>chain</code>, i.e., the implementation of <span class="math inline">\(\partial_z \partial_z F_z\)</span> would simply look as follows:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>chain(Fz, z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>However, to get the magentic field components, we need to divide by the term <span class="math inline">\(i \omega \mu_0\)</span>.</p>
-<div id="fb1e1683" class="cell" data-execution_count="5">
+<div id="049a8539" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Hx <span class="op">=</span> chain(divF, x).factor() <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -1151,7 +1151,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <p><span class="math inline">\(\displaystyle - \frac{m x z \left(k^{2} r^{2} - 3 i k r - 3\right) e^{- i k r}}{4 \pi r^{5}}\)</span></p>
 </div>
 </div>
-<div id="dbd542f6" class="cell" data-execution_count="6">
+<div id="ab382494" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Hy <span class="op">=</span> chain(divF, y).factor() <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -1166,7 +1166,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 </div>
 </div>
 <p>To get <span class="math inline">\(H_z\)</span> we have to add the term <span class="math inline">\(k^2 F_z\)</span> as</p>
-<div id="1ef31bbd" class="cell" data-execution_count="7">
+<div id="0f30e7f6" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Hz <span class="op">=</span> (chain(divF, z) <span class="op">+</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> Fz) <span class="op">/</span> (I <span class="op">*</span> omega <span class="op">*</span> mu)</span>
@@ -1188,7 +1188,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 \]</span></p>
 <p>Let’s check the validity on our example.</p>
 <p>We introduce the symbolic vector quantities <code>M</code> and <code>R</code>, and implement a <code>lambda</code> function to express the magnetic field with respect to the orientation of the magnetic dipole moment:</p>
-<div id="43367313" class="cell" data-execution_count="8">
+<div id="4362c85f" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> Matrix([<span class="dv">0</span>, <span class="dv">0</span>, m])</span>
@@ -1219,7 +1219,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <li>What are the differences compared to homogeneous excitation (MT)?</li>
 </ul>
 <p>We implement the general equations for the electric and magnetic fields as <code>Python</code> functions <code>E</code> and <code>H</code>, resp.:</p>
-<div id="aece82ab" class="cell" data-execution_count="9">
+<div id="0fec540f" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> E(r, m, f, sigma):</span>
@@ -1264,7 +1264,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 <li><span class="math inline">\(\sigma = 0.01\)</span> S/m.</li>
 </ul>
 <p>Let’s have a look at the electric field evaluated with the function <code>E</code>:</p>
-<div id="d56b8faf" class="cell" data-execution_count="10">
+<div id="8b12e3ad" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.array([<span class="fl">100.0</span>, <span class="fl">0.0</span>, <span class="fl">0.0</span>])</span>
@@ -1280,7 +1280,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 </div>
 </div>
 <p>Now let’s evaluate the magnetic field using <code>H</code>:</p>
-<div id="dd4cb664" class="cell" data-execution_count="11">
+<div id="4a5be1df" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> H(r, m, f, sigma)</span>
@@ -1297,7 +1297,7 @@ r = \sqrt{x^2 + y^2 + z^2}
 Z = \frac{ E_y }{ H_z}.
 \]</span></p>
 <p>The result is complex number:</p>
-<div id="e88d1c6a" class="cell" data-execution_count="12">
+<div id="e611e647" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> Ey <span class="op">/</span> Hz</span>
@@ -1313,7 +1313,7 @@ Z = \frac{ E_y }{ H_z}.
 <p><span class="math display">\[
 \rho_a = \frac{ 1 }{ \omega \mu_0} |Z|^2
 \]</span></p>
-<div id="e375ed1e" class="cell" data-execution_count="13">
+<div id="2fe8eff4" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rhoa(Z, f):</span>
@@ -1328,7 +1328,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 <p>This does not meet our expectations. We are therefore investigating whether the impedance depends on the frequency and/or the distance to the dipole.</p>
 <p>We vary the frequencies and observe <span class="math inline">\(\rho_a\)</span> as a function of frequency.</p>
-<div id="f3248b8c" class="cell" data-execution_count="14">
+<div id="251ef623" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>nf <span class="op">=</span> <span class="dv">41</span></span>
@@ -1336,7 +1336,7 @@ Z = \frac{ E_y }{ H_z}.
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Rhoa_f <span class="op">=</span> [rhoa(E(r,m,v,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(r,m,v,sigma)[<span class="dv">2</span>], v) <span class="cf">for</span> v <span class="kw">in</span> freq]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="6fbc25c7" class="cell" data-execution_count="15">
+<div id="c402e22a" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1361,7 +1361,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 <p>Obviously, the value of <span class="math inline">\(\rho_a\)</span> depends on the frequency and asymptotically approaches the expected full-space value of the resistivity as <span class="math inline">\(f \to \infty\)</span>.</p>
 <p>We gain more insight, when we vary the distance to the dipole while keeping the frequency fixed.</p>
-<div id="2ad46afc" class="cell" data-execution_count="16">
+<div id="0df87abd" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>nr <span class="op">=</span> <span class="dv">41</span></span>
@@ -1369,7 +1369,7 @@ Z = \frac{ E_y }{ H_z}.
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>Rhoa_x <span class="op">=</span> np.array([rhoa(E(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">1</span>] <span class="op">/</span> H(np.array([v, <span class="dv">0</span>, <span class="dv">0</span>]),m,f,sigma)[<span class="dv">2</span>], f) <span class="cf">for</span> v <span class="kw">in</span> x])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="365a1572" class="cell" data-execution_count="17">
+<div id="78b42cef" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
@@ -1392,7 +1392,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 </div>
 <p>Is there a consistent explanation for these observations? We look at the induction parameter <span class="math inline">\(|k|r\)</span> and revisit the parameters from the previous examples.</p>
-<div id="26571d2a" class="cell" data-execution_count="18">
+<div id="50d4e9bb" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kr(f, sigma, r):</span>
@@ -1404,7 +1404,7 @@ Z = \frac{ E_y }{ H_z}.
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.where(np.array(data) <span class="op">&gt;</span> threshold, data, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="cd11c75f" class="cell" data-execution_count="19">
+<div id="aceab76d" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(v, sigma, np.linalg.norm(r)) <span class="cf">for</span> v <span class="kw">in</span> freq])</span>
@@ -1431,7 +1431,7 @@ Z = \frac{ E_y }{ H_z}.
 </div>
 </div>
 <p>With the indicator <span class="math inline">\(|k|r\)</span> just introduced, it is easier to determine which branch of the asymptotic we are on.</p>
-<div id="96bcf6b8" class="cell" data-execution_count="20">
+<div id="a67cc263" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>KR <span class="op">=</span> np.array([kr(f, sigma, v) <span class="cf">for</span> v <span class="kw">in</span> x])</span>
@@ -1505,7 +1505,7 @@ Figure&nbsp;7.1: Real and imaginary part of the magnetic field of an oscillating
 H_z = -\frac{ m }{4 \pi r^3 }.
 \]</span></p>
 <p>We evaluate this equation with the given values of <span class="math inline">\(r\)</span> and <span class="math inline">\(m\)</span>. We obtain</p>
-<div id="ee6a551e" class="cell" data-execution_count="22">
+<div id="8e34d1bb" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'H_z   = '</span> <span class="op">+</span> <span class="bu">str</span>(<span class="op">-</span><span class="dv">1</span> <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi <span class="op">*</span> r<span class="op">**</span><span class="dv">3</span>)))</span>
