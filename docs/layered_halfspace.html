@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>12&nbsp; Dipole sources above a layered halfspace – Theory of Electromagnetic Methods</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -78,7 +81,7 @@ div.csl-indent {
 }</style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -93,10 +96,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2d053c8a602df91ec61aa3379e601c1a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-459f8bc74a7a5c51a38dbeb086eb2f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -124,7 +127,7 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <script>
@@ -139,7 +142,7 @@ window.MathJax = {
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -152,7 +155,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -487,7 +490,7 @@ B_{n}:=B\left(h_{n}\right)=-\frac{V^{\prime}\left(h_{n}\right)}{V\left(h_{n}\rig
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Summary
+<span class="screen-reader-only">Note</span>Summary
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -520,21 +523,21 @@ Summary
 <li><code>dₙ</code>: thickness of layer <span class="math inline">\(n\)</span></li>
 <li><code>hₙ</code>: <span class="math inline">\(z\)</span>-coordinate at the top of layer <span class="math inline">\(n\)</span></li>
 </ul>
-<div id="50372a86" class="cell" data-execution_count="2">
+<div id="6258628e" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>z, r_n, d_n <span class="op">=</span> symbols(<span class="st">"z r_n d_n"</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>z, r_n, d_n <span class="op">=</span> symbols(<span class="st">"z r_n d_n"</span>, real<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>h_n <span class="op">=</span> symbols(<span class="st">"h_n"</span>, real<span class="op">=</span><span class="va">True</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>lambda_n, B_np1, gamma_minus, gamma_plus <span class="op">=</span> symbols(<span class="st">"lambda_n B_{n+1} gamma^- gamma^+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>lambda_n, B_np1, gamma_minus, gamma_plus <span class="op">=</span> symbols(<span class="st">"lambda_n B_{n+1} gamma^- gamma^+"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Further, we define <code>V(z)</code> as a symbolic expression for <span class="math inline">\(V(z)\)</span>:</p>
-<div id="210fb0e3" class="cell" data-execution_count="3">
+<div id="8c31bd77" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> <span class="kw">lambda</span> z: gamma_minus <span class="op">*</span> (exp(<span class="op">-</span>lambda_n <span class="op">*</span> (z <span class="op">-</span> h_n)) <span class="op">+</span> r_n <span class="op">*</span> exp(lambda_n <span class="op">*</span> (z <span class="op">-</span> h_n)))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> <span class="kw">lambda</span> z: gamma_minus <span class="op">*</span> (exp(<span class="op">-</span>lambda_n <span class="op">*</span> (z <span class="op">-</span> h_n)) <span class="op">+</span> r_n <span class="op">*</span> exp(lambda_n <span class="op">*</span> (z <span class="op">-</span> h_n)))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>print_latex(<span class="st">'V(z) ='</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>V(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>V(z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 \(V(z) =\)
@@ -544,12 +547,12 @@ Summary
 </div>
 </div>
 <p><code>B(z)</code> is the implementation of the admittance function <span class="math inline">\(B(z)\)</span>:</p>
-<div id="fb45967c" class="cell" data-execution_count="4">
+<div id="4866fd09" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> <span class="kw">lambda</span> z: <span class="op">-</span>diff(V(z), z) <span class="op">/</span> V(z)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> <span class="kw">lambda</span> z: <span class="op">-</span>diff(V(z), z) <span class="op">/</span> V(z)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>print_latex(<span class="st">'B(z) = '</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>B(z).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>B(z).simplify()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 \(B(z) = \)
@@ -559,12 +562,12 @@ Summary
 </div>
 </div>
 <p><code>B_n</code> is the interface admittance at the top of layer <span class="math inline">\(n\)</span>:</p>
-<div id="52b0214c" class="cell" data-execution_count="5">
+<div id="d544ff18" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>B_n <span class="op">=</span> B(z).subs(z, h_n).simplify()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>B_n <span class="op">=</span> B(z).subs(z, h_n).simplify()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>print_latex(<span class="st">"B_n = "</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>B_n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>B_n</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 \(B_n = \)
@@ -580,10 +583,10 @@ B_{n}=\lambda_{n} \frac{1-r_{n}}{1+r_{n}}.
 \tag{12.1}\]</span></span> We now have a representation of the interface admittance in terms of the layer properties <span class="math inline">\(\lambda_n\)</span> and the reflection coefficient <span class="math inline">\(r_n\)</span>.</p>
 <p>However, the <span class="math inline">\(r_n\)</span> remains undetermined. We try to eliminate <span class="math inline">\(r_n\)</span> from the equation above.</p>
 <p>To this end, we express <span class="math inline">\(B(z)\)</span> at <span class="math inline">\(z=h_{n+1}\)</span> using the layer thickness <span class="math inline">\(d_n\)</span>.</p>
-<div id="19d9a611" class="cell" data-execution_count="6">
+<div id="099e89fd" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>B(z).subs(z <span class="op">-</span> h_n, d_n).simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>B(z).subs(z <span class="op">-</span> h_n, d_n).simplify()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
 <p><span class="math inline">\(\displaystyle \frac{\lambda_{n} \left(- r_{n} e^{2 d_{n} \lambda_{n}} + 1\right)}{r_{n} e^{2 d_{n} \lambda_{n}} + 1}\)</span></p>
@@ -604,12 +607,12 @@ B_{n+1}=\lambda_{n} \frac{1-r_{n} e^{2 \lambda_{n} d_{n}}}{1+r_{n} e^{2 \lambda_
 <li>Save the result as <code>r</code> in <code>sympy</code></li>
 </ul>
 <p>Thus, we have found an expression which introduces a link to the layer <span class="math inline">\(n+1\)</span>, and enables us to eliminate <span class="math inline">\(r_n\)</span>.</p>
-<div id="50f63ff5" class="cell" data-execution_count="7">
+<div id="8e2a388d" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> solve(B(z).subs(z <span class="op">-</span> h_n, d_n) <span class="op">-</span> B_np1, r_n)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> solve(B(z).subs(z <span class="op">-</span> h_n, d_n) <span class="op">-</span> B_np1, r_n)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>display(HTML(<span class="st">"</span><span class="ch">\\</span><span class="st">(r_n = </span><span class="ch">\\</span><span class="st">)"</span>))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>r[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>r[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 \(r_n = \)
@@ -622,11 +625,11 @@ B_{n+1}=\lambda_{n} \frac{1-r_{n} e^{2 \lambda_{n} d_{n}}}{1+r_{n} e^{2 \lambda_
 <p>We have obtained an important, yet unfinished, intermediate result, which already contains a recursion <span class="math display">\[
 B_n \leftarrow B_{n+1} \qquad\text{for } n= N-1, N-2, \dots, 1.
 \]</span></p>
-<div id="2ee6f322" class="cell" data-execution_count="8">
+<div id="a9afd3a7" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>display(HTML(<span class="st">"</span><span class="ch">\\</span><span class="st">( B_n = </span><span class="ch">\\</span><span class="st">)"</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>B_n.subs(r_n, r[<span class="dv">0</span>]).simplify().simplify()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>display(HTML(<span class="st">"</span><span class="ch">\\</span><span class="st">( B_n = </span><span class="ch">\\</span><span class="st">)"</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>B_n.subs(r_n, r[<span class="dv">0</span>]).simplify().simplify()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 \( B_n = \)
@@ -657,7 +660,7 @@ B_n \leftarrow B_{n+1} \qquad\text{for } n= N-1, N-2, \dots, 1.
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Wait algorithm for <span class="math inline">\(\mu_r = 1\)</span>
+<span class="screen-reader-only">Tip</span>Wait algorithm for <span class="math inline">\(\mu_r = 1\)</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -679,7 +682,7 @@ Wait algorithm for <span class="math inline">\(\mu_r = 1\)</span>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Wait algorithm incorporating <span class="math inline">\(\mu_r \ne 1\)</span>
+<span class="screen-reader-only">Tip</span>Wait algorithm incorporating <span class="math inline">\(\mu_r \ne 1\)</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -713,10 +716,10 @@ Wait algorithm incorporating <span class="math inline">\(\mu_r \ne 1\)</span>
 <li>array of layer thicknesses <span class="math inline">\(d_i\)</span>, <span class="math inline">\(i=1,\dots,n-1\)</span></li>
 <li>frequency in Hz.</li>
 </ul>
-<div id="1f1d98ab" class="cell" data-execution_count="9">
+<div id="b3eb4802" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> admittance(λ, σ, μ, d, f):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> admittance(λ, σ, μ, d, f):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    nl <span class="op">=</span> <span class="bu">len</span>(σ)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    ω <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    α <span class="op">=</span> [np.sqrt(λ<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="ot">1j</span> <span class="op">*</span> μ[i] <span class="op">*</span> ω <span class="op">*</span> σ[i]) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nl)]</span>
@@ -732,15 +735,15 @@ Wait algorithm incorporating <span class="math inline">\(\mu_r \ne 1\)</span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>                    (B[n <span class="op">+</span> <span class="dv">1</span>] <span class="op">+</span> η[n] <span class="op">*</span> np.tanh(α[n] <span class="op">*</span> d[n])) <span class="op">/</span> <span class="op">\</span></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>                    (η[n] <span class="op">+</span> B[n <span class="op">+</span> <span class="dv">1</span>] <span class="op">*</span> np.tanh(α[n] <span class="op">*</span> d[n]))</span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>For <span class="math inline">\(\lambda = 10\)</span> m<span class="math inline">\(^{-1}\)</span>, <span class="math inline">\(\sigma=[1, 1]^\top\)</span> S/m, <span class="math inline">\(\mu=[\mu_0, \mu_0]^\top\)</span> Vs/Am, <span class="math inline">\(d=1\)</span> m, <span class="math inline">\(f=1\)</span> Hz we obtain for <span class="math inline">\(B_1\)</span>:</p>
-<div id="2243e636" class="cell" data-execution_count="10">
+<div id="cb8d7dce" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'B_1 = '</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>admittance(<span class="fl">10.0</span>, np.array([<span class="dv">1</span>, <span class="dv">1</span>]), np.array([<span class="dv">1</span>, <span class="dv">1</span>]), np.array([<span class="dv">1</span>]), <span class="fl">1.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'B_1 = '</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>admittance(<span class="fl">10.0</span>, np.array([<span class="dv">1</span>, <span class="dv">1</span>]), np.array([<span class="dv">1</span>, <span class="dv">1</span>]), np.array([<span class="dv">1</span>]), <span class="fl">1.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>B_1 = </code></pre>
@@ -757,7 +760,7 @@ Wait algorithm incorporating <span class="math inline">\(\mu_r \ne 1\)</span>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Fields in <span class="math inline">\(z \le 0\)</span>
+<span class="screen-reader-only">Note</span>Fields in <span class="math inline">\(z \le 0\)</span>
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -787,10 +790,10 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 </div>
 <p>Finally, it remains to evaluate the <em>Hankel integrals</em> numerically.</p>
 <p>To this end, we need an implementation of a discrete convolution. We use the function <code>convolve</code>:</p>
-<div id="02b13d6c" class="cell" data-execution_count="11">
+<div id="ea285d55" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convolve(fc, kernel, style<span class="op">=</span><span class="st">"valid"</span>):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convolve(fc, kernel, style<span class="op">=</span><span class="st">"valid"</span>):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    nc <span class="op">=</span> <span class="bu">len</span>(fc)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    nu <span class="op">=</span> <span class="bu">len</span>(kernel)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> nu <span class="op">+</span> nc <span class="op">-</span> <span class="dv">1</span></span>
@@ -805,14 +808,14 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> style <span class="op">==</span> <span class="st">"valid"</span>:</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> result[nc <span class="op">-</span> <span class="dv">1</span>:n <span class="op">-</span> nc <span class="op">+</span> <span class="dv">1</span>]</span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Here we define the function <code>gethankelfcJ0</code> that returns the numerical filter coeffients for the function <span class="math inline">\(J_0(\lambda r)\)</span> <code>fc</code>, the length of the filter <code>nc</code> as well the index which corresponds with the zero position, <code>nc0</code>.</p>
-<div id="59bc41d9" class="cell" data-execution_count="12">
+<div id="505851fa" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gethankelfcJ0():</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    fc <span class="op">=</span> np.array([</span>
@@ -844,40 +847,40 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 <span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    ])</span>
 <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    nc <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    nc0 <span class="op">=</span> <span class="dv">60</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fc, nc, nc0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fc, nc, nc0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We illustrate the filter coefficients associated with <span class="math inline">\(J_0(\lambda r)\)</span>:</p>
-<div id="364c523e" class="cell" data-execution_count="13">
+<div id="a924f426" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fc0, nc, nc0 <span class="op">=</span> gethankelfcJ0()</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="op">-</span>nc0 <span class="op">+</span> v <span class="cf">for</span> v <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, nc<span class="op">+</span><span class="dv">1</span>)], fc0)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'index of coefficients'</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="layered_halfspace_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="layered_halfspace_files/figure-html/cell-14-output-1.png" width="507" height="356" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="ab97a1ad" class="cell" data-execution_count="14">
+<div id="a9b0127b" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pos(data):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pos(data):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return positive data; set negative data to NaN."""</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.where(data <span class="op">&gt;</span> <span class="dv">0</span>, data, np.nan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.where(data <span class="op">&gt;</span> <span class="dv">0</span>, data, np.nan)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-fig-Bz" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rmin <span class="op">=</span> <span class="fl">10.0</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rmin <span class="op">=</span> <span class="fl">10.0</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>nr <span class="op">=</span> <span class="dv">21</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ncnr <span class="op">=</span> nc <span class="op">+</span> nr <span class="op">-</span><span class="dv">1</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -930,13 +933,13 @@ Fields in <span class="math inline">\(z \le 0\)</span>
 <span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'f in Hz'</span>)</span>
 <span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">H_z</span><span class="dv">$</span><span class="vs"> in A/m'</span>)</span>
 <span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'</span><span class="dv">$\s</span><span class="vs">igma = </span><span class="dv">$</span><span class="vs">'</span> <span class="op">+</span> <span class="bu">str</span>(sigma[<span class="dv">0</span>]) <span class="op">+</span> <span class="st">' S/m, r = '</span> <span class="op">+</span> <span class="st">'</span><span class="sc">{0:.2f}</span><span class="st">'</span>.<span class="bu">format</span>(rr[<span class="dv">10</span>]) <span class="op">+</span> <span class="st">' m'</span>)</span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>ax</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-bz" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="layered_halfspace_files/figure-html/fig-bz-output-1.png" class="img-fluid figure-img">
+<img src="layered_halfspace_files/figure-html/fig-bz-output-1.png" width="532" height="377" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.2: Vertical magnetic field of a VMD over a uniform halfspace in the frequency domain, calculated using the FHT.
@@ -945,21 +948,21 @@ Figure&nbsp;12.2: Vertical magnetic field of a VMD over a uniform halfspace in t
 </div>
 </div>
 </div>
-<div id="55ec2c2e" class="cell" data-execution_count="16">
+<div id="7e0a3044" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Hz_analytical(r, f, sigma):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Hz_analytical(r, f, sigma):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    mu0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> np.sqrt(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f <span class="op">*</span> mu0 <span class="op">*</span> sigma)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="dv">9</span> <span class="op">-</span> (<span class="dv">9</span> <span class="op">+</span> <span class="dv">9</span> <span class="op">*</span> <span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> r <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="ot">1j</span> <span class="op">*</span> k<span class="op">**</span><span class="dv">3</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">3</span>) <span class="op">*</span> np.exp(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> r)</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> B <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">5</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div id="cell-fig-Bz-ana" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> [Hz_analytical(<span class="fl">100.0</span>, v, <span class="fl">0.01</span>) <span class="cf">for</span> v <span class="kw">in</span> freq]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> [Hz_analytical(<span class="fl">100.0</span>, v, <span class="fl">0.01</span>) <span class="cf">for</span> v <span class="kw">in</span> freq]</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -972,13 +975,13 @@ Figure&nbsp;12.2: Vertical magnetic field of a VMD over a uniform halfspace in t
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'f in Hz'</span>)</span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">H_z</span><span class="dv">$</span><span class="vs"> in A/m'</span>)</span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'</span><span class="dv">$\s</span><span class="vs">igma = </span><span class="dv">$</span><span class="vs">'</span> <span class="op">+</span> <span class="bu">str</span>(sigma[<span class="dv">0</span>]) <span class="op">+</span> <span class="st">' S/m, r = '</span> <span class="op">+</span> <span class="st">'</span><span class="sc">{0:.2f}</span><span class="st">'</span>.<span class="bu">format</span>(rr[<span class="dv">10</span>]) <span class="op">+</span> <span class="st">' m'</span>)</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>ax</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>ax</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-bz-ana" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bz-ana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="layered_halfspace_files/figure-html/fig-bz-ana-output-1.png" class="img-fluid figure-img">
+<img src="layered_halfspace_files/figure-html/fig-bz-ana-output-1.png" width="526" height="377" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bz-ana-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;12.3: Vertical magnetic field of a VMD over a uniform halfspace in the frequency domain, calculated using an analytical formula.
@@ -1009,30 +1012,30 @@ Figure&nbsp;12.4: Reference to Fig. above above taken from <span class="citation
 <figcaption>Sketch of the BGR airborne geophysical system, Source: BGR (www.bgr.bund.de)</figcaption>
 </figure>
 </div>
-<div id="2d92783e" class="cell" data-execution_count="18">
+<div id="5c3d95ec" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> np.array([<span class="dv">387</span>, <span class="dv">1820</span>, <span class="dv">8225</span>, <span class="dv">41550</span>, <span class="dv">133200</span>])</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>freq <span class="op">=</span> np.array([<span class="dv">387</span>, <span class="dv">1820</span>, <span class="dv">8225</span>, <span class="dv">41550</span>, <span class="dv">133200</span>])</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>nf <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">8.0</span></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="op">-</span><span class="fl">30.0</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>z0 <span class="op">=</span> <span class="op">-</span><span class="fl">30.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>z0 <span class="op">=</span> <span class="op">-</span><span class="fl">30.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>To assess the validity of our code, we choose as reference the published 4-layer repsonse from <a href="https://doi.org/10.1016/j.jappgeo.2007.11.003">Siemon et al.&nbsp;(2009)</a>, Table 1:</p>
-<div id="ad346c3b" class="cell" data-execution_count="19">
+<div id="21ad3699" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rho <span class="op">=</span> np.array([<span class="dv">200</span>, <span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">1000</span>])</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rho <span class="op">=</span> np.array([<span class="dv">200</span>, <span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">1000</span>])</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>thk <span class="op">=</span> np.array([<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">10</span>])</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">1.0</span> <span class="op">/</span> rho</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> np.ones(<span class="bu">len</span>(rho)) <span class="op">*</span> mu0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> np.ones(<span class="bu">len</span>(rho)) <span class="op">*</span> mu0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="695dcd9c" class="cell" data-execution_count="20">
+<div id="3853b262" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rmin <span class="op">=</span> r</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rmin <span class="op">=</span> r</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>nr <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>ncnr <span class="op">=</span> nc <span class="op">+</span> nr <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1061,7 +1064,7 @@ Figure&nbsp;12.4: Reference to Fig. above above taken from <span class="citation
 <span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>        kernel[nu] <span class="op">=</span> gamma <span class="op">*</span> lam<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>    Bz[:, k] <span class="op">=</span> mu0 <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> np.pi <span class="op">*</span> (Bz0 <span class="op">-</span> convolve(fc0, kernel) <span class="op">/</span> rr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>    Bz[:, k] <span class="op">=</span> mu0 <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> np.pi <span class="op">*</span> (Bz0 <span class="op">-</span> convolve(fc0, kernel) <span class="op">/</span> rr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The quantity relevant to the airborne EM data interpretation is the normalized secondary field <span class="math display">\[
@@ -1073,36 +1076,36 @@ Q &amp; = \Im \left(\frac{B_z}{B_z^{air}}\right).
 \end{equation}
 \]</span></p>
 <p>Those quantities <em>R</em> (for <em>real part</em>) and <em>Q</em> (for <em>quadrature part</em>) are usually given in units of <em>ppm</em>.</p>
-<div id="db490f16" class="cell" data-execution_count="21">
+<div id="04ab800b" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> Bz <span class="op">/</span> (mu0 <span class="op">*</span> Bz0 <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> np.pi)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> Bz <span class="op">/</span> (mu0 <span class="op">*</span> Bz0 <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> np.pi)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>R_ppm <span class="op">=</span> <span class="fl">1e6</span> <span class="op">*</span> (np.real(Z) <span class="op">-</span> <span class="dv">1</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Q_ppm <span class="op">=</span> <span class="fl">1e6</span> <span class="op">*</span> np.imag(Z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Q_ppm <span class="op">=</span> <span class="fl">1e6</span> <span class="op">*</span> np.imag(Z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The reference data from Siemon et al.&nbsp;is</p>
-<div id="74f6820b" class="cell" data-execution_count="22">
+<div id="fab18a92" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>R_BGR <span class="op">=</span> np.array([<span class="fl">21.8</span>, <span class="fl">129.1</span>, <span class="fl">280.4</span>, <span class="fl">734.7</span>, <span class="dv">1506</span>])</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>Q_BGR <span class="op">=</span> np.array([<span class="fl">68.36</span>, <span class="fl">164.4</span>, <span class="fl">291.5</span>, <span class="fl">747.4</span>, <span class="dv">1047</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>R_BGR <span class="op">=</span> np.array([<span class="fl">21.8</span>, <span class="fl">129.1</span>, <span class="fl">280.4</span>, <span class="fl">734.7</span>, <span class="dv">1506</span>])</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>Q_BGR <span class="op">=</span> np.array([<span class="fl">68.36</span>, <span class="fl">164.4</span>, <span class="fl">291.5</span>, <span class="fl">747.4</span>, <span class="dv">1047</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="c27af898" class="cell" data-execution_count="23">
+<div id="16232259" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ax.loglog(freq, R_ppm.ravel(), marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">"R FHT FG"</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ax.loglog(freq, R_BGR.ravel(), marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">"R FHT BGR"</span>)</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>ax.loglog(freq, Q_ppm.ravel(), marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">"Q FHT FG"</span>)</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>ax.loglog(freq, Q_BGR.ravel(), marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">"Q FHT BGR"</span>)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>ax.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>ax.legend()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="layered_halfspace_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="layered_halfspace_files/figure-html/cell-24-output-1.png" width="498" height="338" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1188,13 +1191,14 @@ Ward, S.H. &amp; Hohmann, G.W., 1988. Electromagnetic theory for geophysical app
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

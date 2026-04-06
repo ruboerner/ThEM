@@ -7,3 +7,11 @@
 /.quarto/
 
 /*_files/*
+
+**/*.quarto_ipynb
+
+_freeze/
+
+cheatsheet.pdf
+
+cheatsheet.qmd

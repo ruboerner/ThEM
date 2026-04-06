@@ -2,15 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ralph-Uwe Börner">
-<meta name="dcterms.date" content="2025-08-19">
+<meta name="dcterms.date" content="2026-04-06">
 
 <title>Theory of Electromagnetic Methods</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -59,10 +62,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2d053c8a602df91ec61aa3379e601c1a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-459f8bc74a7a5c51a38dbeb086eb2f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -336,7 +339,7 @@ window.MathJax = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 19, 2025</p>
+      <p class="date">April 6, 2026</p>
     </div>
   </div>
   
@@ -350,7 +353,7 @@ window.MathJax = {
 
 <section id="prerequisites" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="prerequisites">Prerequisites</h2>
-<p>Here are the lecture notes for the 2025 module covering the <strong>Theory of Electromagnetic Methods.</strong> These notes are tailored for Master’s students of Geophysics and Geoinformatics at the <a href="https://tu-freiberg.de/geophysik">Institute of Geophysics and Geoinformatics, TU Bergakademie Freiberg</a>.</p>
+<p>Here are the lecture notes for the 2026 module covering the <strong>Theory of Electromagnetic Methods.</strong> These notes are tailored for Master’s students of Geophysics and Geoinformatics at the <a href="https://tu-freiberg.de/geophysik">Institute of Geophysics and Geoinformatics, TU Bergakademie Freiberg</a>.</p>
 <p>You can access all the materials on the GitHub repository <a href="https://github.com/ruboerner/ThEM" class="uri">https://github.com/ruboerner/ThEM</a>.</p>
 <p>Enjoy studying!</p>
 </section>
@@ -362,7 +365,7 @@ window.MathJax = {
 <h2 class="anchored" data-anchor-id="code">Code</h2>
 <p>The website’s course material includes sections with embedded Python code.</p>
 <p>You can easily copy the code and execute it in a compatible Python runtime environment.</p>
-<p>For an optimal experience, we recommend installing Python via <a href="https://docs.anaconda.com/free/miniconda/index.html"><em>miniconda</em></a>.</p>
+<p>For an optimal experience, we recommend installing Python via <a href="https://conda-forge.org/"><em>miniforge</em></a>.</p>
 <p>Moreover, you have the freedom to explore your own concepts and delve deeper into the course content by creating your personalized Jupyter notebooks. You can utilize any of the following platforms:</p>
 <ul>
 <li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
@@ -440,13 +443,14 @@ Ward, S.H. &amp; Hohmann, G.W., 1988. Electromagnetic theory for geophysical app
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

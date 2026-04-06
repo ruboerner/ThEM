@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>6&nbsp; Plane waves above and inside a homogeneous Earth – Theory of Electromagnetic Methods</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2d053c8a602df91ec61aa3379e601c1a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-459f8bc74a7a5c51a38dbeb086eb2f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -116,7 +119,7 @@ window.MathJax = {
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -129,7 +132,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -413,7 +416,7 @@ H_x(z) = e^{- i k z}
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Self study
+<span class="screen-reader-only">None</span>Self study
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -494,7 +497,7 @@ Tip
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Self study
+<span class="screen-reader-only">Note</span>Self study
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -545,7 +548,7 @@ E_y(z) =
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Self study
+<span class="screen-reader-only">Note</span>Self study
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -558,10 +561,10 @@ Self study
 <p>We illustrate our results with a simple example of a uniform halfspace with a conductivity of 0.01 S/m and a frequency of 10 Hz.</p>
 <p>Shown are real (<code>Re</code>) and imaginary (<code>Im</code>) part of the fields along with their magnitude (<code>Abs</code>) as a function of depth.</p>
 <p>Clearly visible is the exponential decay with depth.</p>
-<div id="4a33d3ad" class="cell" data-execution_count="1">
+<div id="08aa6d52" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="dv">10</span></span>
@@ -589,14 +592,14 @@ Self study
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> [h(omega, sigma, zz) <span class="cf">for</span> zz <span class="kw">in</span> z]</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> [e(omega, sigma, zz) <span class="cf">for</span> zz <span class="kw">in</span> z]</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>H0 <span class="op">=</span> h(omega, sigma, <span class="fl">0.0</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>E0 <span class="op">=</span> e(omega, sigma, <span class="fl">0.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>E0 <span class="op">=</span> e(omega, sigma, <span class="fl">0.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>In our example, the skin depth is np.float64(1590.63) m.</p>
-<div id="b67eb09c" class="cell" data-execution_count="2">
+<div id="040c824d" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ax.plot(np.real(E <span class="op">/</span> E0), z, label<span class="op">=</span><span class="st">'Re'</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>ax.plot(np.imag(E <span class="op">/</span> E0), z, label<span class="op">=</span><span class="st">'Im'</span>)</span>
@@ -610,20 +613,20 @@ Self study
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">E</span><span class="kw">(</span><span class="vs">z</span><span class="kw">)</span><span class="vs">/E</span><span class="kw">(</span><span class="vs">0</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Normalized electric field'</span>)</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>, fontsize<span class="op">=</span><span class="st">'small'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>, fontsize<span class="op">=</span><span class="st">'small'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="mtfields_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="mtfields_files/figure-html/cell-3-output-1.png" width="395" height="395" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="223a1e5a" class="cell" data-execution_count="3">
+<div id="54461d3b" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">4</span>), layout<span class="op">=</span><span class="st">'constrained'</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ax.plot(np.real(H <span class="op">/</span> H0), z, label<span class="op">=</span><span class="st">'Re'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax.plot(np.imag(H <span class="op">/</span> H0), z, label<span class="op">=</span><span class="st">'Im'</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ax.plot(np.<span class="bu">abs</span>(H <span class="op">/</span> H0), z, label<span class="op">=</span><span class="st">'Abs'</span>)</span>
@@ -636,12 +639,12 @@ Self study
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">H</span><span class="kw">(</span><span class="vs">z</span><span class="kw">)</span><span class="vs">/H</span><span class="kw">(</span><span class="vs">0</span><span class="kw">)</span><span class="dv">$</span><span class="vs">'</span>)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Normalized magnetic field'</span>)</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>, fontsize<span class="op">=</span><span class="st">'small'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">'lower right'</span>, fontsize<span class="op">=</span><span class="st">'small'</span>, frameon<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="mtfields_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="mtfields_files/figure-html/cell-4-output-1.png" width="395" height="395" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -670,8 +673,8 @@ Z_1 = \frac{ \omega \mu_0 }{ k_1 } = Z_s.
 \]</span></p>
 <section id="example" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="example"><span class="header-section-number">6.2.1</span> Example</h3>
-<div id="fa60bcc0" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
+<div id="1ecc2037" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">100.0</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mu0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f</span>
@@ -681,7 +684,7 @@ Z_1 = \frac{ \omega \mu_0 }{ k_1 } = Z_s.
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Zs <span class="op">=</span> Ey <span class="op">/</span> Hx</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>rhoa <span class="op">=</span> <span class="kw">lambda</span> Z, f: np.<span class="bu">abs</span>(Z)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> ( <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> f <span class="op">*</span> mu0)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> <span class="kw">lambda</span> Z: np.arctan(np.imag(Z) <span class="op">/</span> np.real(Z)) <span class="op">*</span> <span class="dv">180</span> <span class="op">/</span> np.pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> <span class="kw">lambda</span> Z: np.arctan(np.imag(Z) <span class="op">/</span> np.real(Z)) <span class="op">*</span> <span class="dv">180</span> <span class="op">/</span> np.pi</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For our example, the apparent resistivity is np.float64(100.0) <span class="math inline">\(\Omega \cdot m\)</span>. The phase angle is np.float64(45.0) degrees.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -779,13 +782,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

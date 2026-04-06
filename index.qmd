@@ -5,7 +5,7 @@ editor: source
 
 ## Prerequisites {.unnumbered}
 
-Here are the lecture notes for the 2025 module covering the **Theory of Electromagnetic Methods.** These notes are tailored for Master's students of Geophysics and Geoinformatics at the [Institute of Geophysics and Geoinformatics, TU Bergakademie Freiberg](https://tu-freiberg.de/geophysik).
+Here are the lecture notes for the 2026 module covering the **Theory of Electromagnetic Methods.** These notes are tailored for Master's students of Geophysics and Geoinformatics at the [Institute of Geophysics and Geoinformatics, TU Bergakademie Freiberg](https://tu-freiberg.de/geophysik).
 
 You can access all the materials on the GitHub repository <https://github.com/ruboerner/ThEM>.
 
@@ -21,7 +21,7 @@ The website's course material includes sections with embedded Python code.
 
 You can easily copy the code and execute it in a compatible Python runtime environment.
 
-For an optimal experience, we recommend installing Python via [*miniconda*](https://docs.anaconda.com/free/miniconda/index.html).
+For an optimal experience, we recommend installing Python via [*miniforge*](https://conda-forge.org/).
 
 Moreover, you have the freedom to explore your own concepts and delve deeper into the course content by creating your personalized Jupyter notebooks. You can utilize any of the following platforms:
 

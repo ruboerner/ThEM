@@ -64,5 +64,8 @@ format:
 #    documentclass: scrreprt
 #    papersize: a4
 
-editor: visual
+editor: source
+
+execute:
+  freeze: auto
 

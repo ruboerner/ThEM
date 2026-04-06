@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.35">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>13&nbsp; Dipole induction over a layered halfspace in the time domain – Theory of Electromagnetic Methods</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-46f66b053e56abd73bb6e954d61a315b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2d053c8a602df91ec61aa3379e601c1a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-459f8bc74a7a5c51a38dbeb086eb2f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -116,7 +119,7 @@ window.MathJax = {
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -129,7 +132,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -411,7 +414,7 @@ f(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \frac{F(\omega)}{i \omega} e^{i \om
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Step response via cosine or sine transform
+<span class="screen-reader-only">Tip</span>Step response via cosine or sine transform
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -507,7 +510,7 @@ J_{+1 / 2}(\omega t) &amp;=\sqrt{\frac{2}{\pi \omega t}} \sin (\omega t).
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Step response via Hankel transform
+<span class="screen-reader-only">Tip</span>Step response via Hankel transform
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -529,7 +532,7 @@ Step response via Hankel transform
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Impulse response via Hankel transform
+<span class="screen-reader-only">Tip</span>Impulse response via Hankel transform
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -575,17 +578,17 @@ Impulse response via Hankel transform
 <p>Let <span class="math inline">\(n_c = 80\)</span>, <span class="math inline">\(n_t = 31\)</span> sampled from the interval <span class="math inline">\(t_0 = 10^{-6} \le t \le 10^{-3}\)</span> s with 10 log-equidistant samples per decade.</p>
 <p>Then <span class="math inline">\(n_c + n_t - 1 = 110\)</span>.</p>
 <p>Let’s compute the <span class="math inline">\(\omega_n\)</span>.</p>
-<div id="d4b68d69" class="cell" data-execution_count="3">
+<div id="c1a7840b" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nt <span class="op">=</span> <span class="dv">31</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nt <span class="op">=</span> <span class="dv">31</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">6</span>, <span class="op">-</span><span class="dv">3</span>, nt, endpoint<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> t[<span class="dv">0</span>]</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>nc <span class="op">=</span> <span class="dv">80</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nc0 <span class="op">=</span> <span class="dv">40</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>ncnt <span class="op">=</span> nc <span class="op">+</span> nt <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> np.zeros(ncnt, dtype<span class="op">=</span>np.float64)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> np.array([<span class="dv">10</span><span class="op">**</span>(<span class="fl">0.1</span> <span class="op">*</span> (nc <span class="op">-</span> nc0 <span class="op">-</span> i)) <span class="op">/</span> t0 <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, ncnt)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>omega <span class="op">=</span> np.array([<span class="dv">10</span><span class="op">**</span>(<span class="fl">0.1</span> <span class="op">*</span> (nc <span class="op">-</span> nc0 <span class="op">-</span> i)) <span class="op">/</span> t0 <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, ncnt)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>The required 110 frequencies <span class="math inline">\(f_n = \omega_n / (2 \pi)\)</span> are located between np.float64(0.02) Hz and np.float64(1.592) GHz.</p>
@@ -593,10 +596,10 @@ Impulse response via Hankel transform
 </section>
 <section id="numerical-experiments" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="numerical-experiments"><span class="header-section-number">13.4</span> Numerical experiments</h2>
-<div id="87fb1222" class="cell" data-execution_count="4">
+<div id="a3fb6936" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gethankelfcsin():</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gethankelfcsin():</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    fc <span class="op">=</span> np.array([</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">2.595262360000e-07</span>, <span class="op">+</span><span class="fl">3.665448430000e-07</span>, <span class="op">+</span><span class="fl">5.178307950000e-07</span>, <span class="op">+</span><span class="fl">7.313406220000e-07</span>,</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span><span class="fl">1.033228050000e-06</span>, <span class="op">+</span><span class="fl">1.459185000000e-06</span>, <span class="op">+</span><span class="fl">2.061610650000e-06</span>, <span class="op">+</span><span class="fl">2.911377930000e-06</span>,</span>
@@ -621,23 +624,23 @@ Impulse response via Hankel transform
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    ])</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    nc <span class="op">=</span> <span class="dv">80</span></span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    nc0 <span class="op">=</span> <span class="dv">40</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fc, nc, nc0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fc, nc, nc0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We plot of the filter coefficients for <span class="math inline">\(J_{+1/2}(\omega t)\)</span>, i.e., the <em>sine</em> transform:</p>
-<div id="7d4b0e45" class="cell" data-execution_count="5">
+<div id="26c2c842" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fc, nc, nc0 <span class="op">=</span> gethankelfcsin()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fc, nc, nc0 <span class="op">=</span> gethankelfcsin()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax.plot([nc0 <span class="op">-</span> i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, nc)], fc)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'index of coefficients'</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="timedomain_halfspace_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="timedomain_halfspace_files/figure-html/cell-6-output-1.png" width="507" height="356" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -648,10 +651,10 @@ Impulse response via Hankel transform
 <li><code>Bz_analytical()</code> provides all required frequency domain solutions to be used in the sine transform,</li>
 <li><code>dBzdt_halfspace()</code> provides an analytical reference solution for the <em>impulse response</em> of a uniform halfspace.</li>
 </ul>
-<div id="e9aef710" class="cell" data-execution_count="6">
+<div id="90a6e296" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Bz_analytical(r, omega, sigma):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Bz_analytical(r, omega, sigma):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    μ <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> np.sqrt(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> μ <span class="op">*</span> sigma)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> <span class="dv">9</span> <span class="op">-</span> (<span class="dv">9</span> <span class="op">+</span> <span class="dv">9</span> <span class="op">*</span> <span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> r <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> k<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="ot">1j</span> <span class="op">*</span> k<span class="op">**</span><span class="dv">3</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">3</span>) <span class="op">*</span> np.exp(<span class="op">-</span><span class="ot">1j</span> <span class="op">*</span> k <span class="op">*</span> r)</span>
@@ -675,7 +678,7 @@ Impulse response via Hankel transform
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>            ) <span class="op">*</span></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>            np.exp(<span class="op">-</span>theta<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> r<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hzp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hzp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>We check our implemention and set</p>
@@ -698,24 +701,24 @@ Note
 <p>Note that the call of <code>Bz_analytical</code> in the code below may be replaced by a call to any appropriate function which provides the frequency domain field components of any dipole type and orientation.</p>
 </div>
 </div>
-<div id="e8cfe74b" class="cell" data-execution_count="7">
+<div id="a35ad378" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.01</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">100.0</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Bz_f <span class="op">=</span> [Bz_analytical(r, w, sigma) <span class="cf">for</span> w <span class="kw">in</span> omega]</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>dBzdt <span class="op">=</span> convolve(fc, <span class="op">\</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    np.real(<span class="ot">1j</span> <span class="op">*</span> omega <span class="op">*</span> Bz_f <span class="op">/</span> np.sqrt(omega))</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">*</span> np.sqrt(<span class="dv">2</span> <span class="op">/</span> np.pi <span class="op">/</span> t)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>dBzdt_ana <span class="op">=</span> dBzdt_halfspace(t, r, sigma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>dBzdt_ana <span class="op">=</span> dBzdt_halfspace(t, r, sigma)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Plot of the results</p>
-<div id="d4751faf" class="cell" data-execution_count="8">
+<div id="d11ecd4f" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax.loglog(t, np.<span class="bu">abs</span>(dBzdt), marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'FHT'</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ax.loglog(t, np.<span class="bu">abs</span>(dBzdt_ana), label<span class="op">=</span><span class="st">'analytical'</span>)</span>
@@ -723,12 +726,12 @@ Note
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'t in s'</span>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">db_z</span><span class="kw">(</span><span class="vs">t</span><span class="kw">)</span><span class="vs">/dt</span><span class="dv">$</span><span class="vs"> in V/</span><span class="dv">$</span><span class="vs">m</span><span class="dv">^</span><span class="vs">2</span><span class="dv">$</span><span class="vs">'</span>)</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Impulse response'</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="timedomain_halfspace_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="timedomain_halfspace_files/figure-html/cell-9-output-1.png" width="534" height="377" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -742,10 +745,10 @@ Note
 <h2 data-number="13.5" class="anchored" data-anchor-id="example-using-empymod"><span class="header-section-number">13.5</span> Example using <code>empymod</code></h2>
 <p>With <code>empymod</code> we can model any type of dipole embedded in a layered halfspace and evaluate fields both in frequency and time domain.</p>
 <p>We consider the example introduced above and provide the fields with <code>empymod</code>.</p>
-<div id="d560c71a" class="cell" data-execution_count="9">
+<div id="fd822a08" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> empymod</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> empymod</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">6</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">31</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>mu_0 <span class="op">=</span> np.pi <span class="op">*</span> <span class="fl">4e-7</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>src <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">90</span>]</span>
@@ -772,12 +775,12 @@ Note
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'t in s'</span>)</span>
 <span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'</span><span class="dv">$</span><span class="vs">db_z</span><span class="kw">(</span><span class="vs">t</span><span class="kw">)</span><span class="vs">/dt</span><span class="dv">$</span><span class="vs"> in V/</span><span class="dv">$</span><span class="vs">m</span><span class="dv">^</span><span class="vs">2</span><span class="dv">$</span><span class="vs">'</span>)</span>
 <span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Impulse response'</span>)</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="timedomain_halfspace_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="timedomain_halfspace_files/figure-html/cell-10-output-1.png" width="534" height="377" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -838,13 +841,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
