@@ -424,9 +424,9 @@ In the time domain, the fields are typeset in small letters, e.g., $\mathbf e$.
 :::
 
 Many textbooks use the notation $$
-\laplacian \mathbf e - i \omega \mu \sigma \mathbf e = \mathbf 0
+\laplacian \mathbf E - i \omega \mu \sigma \mathbf E = \mathbf 0
 $$ with the abbreviation $$
-\laplacian \mathbf e + k^2 \mathbf e = \mathbf 0,
+\laplacian \mathbf E + k^2 \mathbf E = \mathbf 0,
 $$ {#eq-vector-helmholtz} where $$
 k^2 = - i \omega \mu \sigma.
 $$
