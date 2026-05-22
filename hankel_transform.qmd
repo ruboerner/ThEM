@@ -166,6 +166,183 @@ $$\begin{equation}
 G(x) = \int_{-\infty}^\infty F(y) H(x - y) \dd y.
 \end{equation}$$
 
+
+::: {.callout-tip title="Derivation" collapse="true"}
+
+Start from the Hankel transform
+
+$$
+g(r) = \int_0^\infty f(\lambda)\, J_0(\lambda r)\, \dd\lambda .
+$$
+
+Introduce logarithmic variables
+
+$$
+x = \log\left(\frac{r}{r_0}\right),
+\qquad
+y = -\log(\lambda r_0).
+$$
+
+From the definition of $x$,
+
+$$
+r = r_0 e^x .
+$$
+
+#### Transform the variables {.unnumbered}
+
+From the definition of $y$,
+
+$$
+\lambda r_0 = e^{-y},
+$$
+
+hence
+
+$$
+\lambda = \frac{e^{-y}}{r_0}.
+$$
+
+Now compute the argument of the Bessel function:
+
+$$
+\lambda r = 
+\left(\frac{e^{-y}}{r_0}\right)
+(r_0 e^x) = 
+e^{x-y}.
+$$
+
+Therefore
+
+$$
+J_0(\lambda r)
+=
+J_0(e^{x-y}).
+$$
+
+#### Transform the differential {.unnumbered}
+
+Since
+
+$$
+\lambda = \frac{e^{-y}}{r_0},
+$$
+
+we differentiate with respect to $y$:
+
+$$
+\frac{\dd\lambda}{\dd y}
+=
+-\frac{e^{-y}}{r_0}.
+$$
+
+Thus
+
+$$
+\dd\lambda
+=
+-\frac{e^{-y}}{r_0}\, \dd y.
+$$
+
+#### Transformation of the integration limits {.unnumbered}
+
+Original limits:
+
+$$
+\lambda \in (0,\infty).
+$$
+
+Now examine the transformed variable:
+
+* If $\lambda \to 0^+$,
+
+$$
+y = -\log(\lambda r_0) \to +\infty.
+$$
+
+* If $\lambda \to \infty$,
+
+$$
+y \to -\infty.
+$$
+
+So the interval transforms as
+
+$$
+\lambda \in (0,\infty)
+\quad\Longrightarrow\quad
+y \in (+\infty,-\infty).
+$$
+
+#### Substitute into the integral {.unnumbered}
+
+$$
+g(r_0 e^x)
+=
+\int_{+\infty}^{-\infty}
+f\left(\frac{e^{-y}}{r_0}\right)
+J_0(e^{x-y})
+\left(
+-\frac{e^{-y}}{r_0}
+\right)
+\,\dd y.
+$$
+
+Now reverse the limits to remove the minus sign:
+
+$$
+g(r_0 e^x)
+=
+\int_{-\infty}^{+\infty}
+\frac{e^{-y}}{r_0}
+f\left(\frac{e^{-y}}{r_0}\right)
+J_0(e^{x-y})
+\,\dd y.
+$$
+
+#### Identify the convolution structure {.unnumbered}
+
+Define 
+
+$$
+G(x) := g(r_0 e^x),
+$$
+
+$$
+F(y)
+:=
+\frac{e^{-y}}{r_0}
+f\left(\frac{e^{-y}}{r_0}\right),
+$$
+
+and the kernel
+
+$$
+H(x-y)
+:=
+J_0(e^{x-y}).
+$$
+
+Then
+
+$$
+G(x)
+=
+\int_{-\infty}^{+\infty}
+F(y)\,H(x-y)\,\dd y.
+$$
+
+This is a convolution in logarithmic coordinates. The key point is that the kernel depends only on the difference
+
+$$
+x-y,
+$$
+
+which enables FFT-based acceleration in the Fast Hankel Transform.
+
+:::
+
+
 For discrete values of $F$ with $F_n := F(y_n)$ this integral becomes a *discrete convolution*
 
 $$\begin{equation}

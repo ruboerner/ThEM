@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -96,7 +96,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e44360b8a8db1e130c7792fece1c8032.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-459f8bc74a7a5c51a38dbeb086eb2f52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -452,7 +452,7 @@ e^{-\lambda h}e^{\lambda z}
 </ul>
 <p>The surface admittance <span class="math inline">\(\lambda_1 = \sqrt{\lambda^2 + i \omega \mu_0 \sigma_1}\)</span> will be calculated using the function <code>lambda_1</code> given below.</p>
 <p>This is the <code>Python</code> implementation of the admittance of the uniform halfspace, <span class="math inline">\(\lambda_1\)</span>:</p>
-<div id="449e987c" class="cell" data-execution_count="2">
+<div id="edfd044a" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lambda_1(lam, sigma, mu, f):</span>
@@ -464,7 +464,7 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 <p>Given these definitions, we are now able to evaluate the complete integrand functions in <a href="#eq-fields-in-air" class="quarto-xref"><span>11.1</span></a>.</p>
 <p>To this end, we first illustrate the integrand graphically:</p>
-<div id="f2a092cd" class="cell" data-execution_count="3">
+<div id="30d61a5c" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nlam <span class="op">=</span> <span class="dv">801</span></span>
@@ -497,7 +497,7 @@ e^{-\lambda h}e^{\lambda z}
 </div>
 <p>As we see from the above illustration, the behaviour of <span class="math inline">\(f(\lambda,z)\)</span> itself does not impose any numerical problems to the integration.</p>
 <p>The following graphs show the real and imaginary part of the <em>complete integrand</em>:</p>
-<div id="b1d6f486" class="cell" data-execution_count="4">
+<div id="e8dbb313" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> j0</span>
@@ -554,6 +554,159 @@ g(r) = \int_0^\infty f(\lambda, z) J_\nu(\lambda r)\, \dd\lambda, \qquad \nu &gt
 <p><span class="math display">\[\begin{equation}
 G(x) = \int_{-\infty}^\infty F(y) H(x - y) \dd y.
 \end{equation}\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Derivation">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Derivation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Start from the Hankel transform</p>
+<p><span class="math display">\[
+g(r) = \int_0^\infty f(\lambda)\, J_0(\lambda r)\, \dd\lambda .
+\]</span></p>
+<p>Introduce logarithmic variables</p>
+<p><span class="math display">\[
+x = \log\left(\frac{r}{r_0}\right),
+\qquad
+y = -\log(\lambda r_0).
+\]</span></p>
+<p>From the definition of <span class="math inline">\(x\)</span>,</p>
+<p><span class="math display">\[
+r = r_0 e^x .
+\]</span></p>
+<section id="transform-the-variables" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="transform-the-variables">Transform the variables</h4>
+<p>From the definition of <span class="math inline">\(y\)</span>,</p>
+<p><span class="math display">\[
+\lambda r_0 = e^{-y},
+\]</span></p>
+<p>hence</p>
+<p><span class="math display">\[
+\lambda = \frac{e^{-y}}{r_0}.
+\]</span></p>
+<p>Now compute the argument of the Bessel function:</p>
+<p><span class="math display">\[
+\lambda r =
+\left(\frac{e^{-y}}{r_0}\right)
+(r_0 e^x) =
+e^{x-y}.
+\]</span></p>
+<p>Therefore</p>
+<p><span class="math display">\[
+J_0(\lambda r)
+=
+J_0(e^{x-y}).
+\]</span></p>
+</section>
+<section id="transform-the-differential" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="transform-the-differential">Transform the differential</h4>
+<p>Since</p>
+<p><span class="math display">\[
+\lambda = \frac{e^{-y}}{r_0},
+\]</span></p>
+<p>we differentiate with respect to <span class="math inline">\(y\)</span>:</p>
+<p><span class="math display">\[
+\frac{\dd\lambda}{\dd y}
+=
+-\frac{e^{-y}}{r_0}.
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+\dd\lambda
+=
+-\frac{e^{-y}}{r_0}\, \dd y.
+\]</span></p>
+</section>
+<section id="transformation-of-the-integration-limits" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="transformation-of-the-integration-limits">Transformation of the integration limits</h4>
+<p>Original limits:</p>
+<p><span class="math display">\[
+\lambda \in (0,\infty).
+\]</span></p>
+<p>Now examine the transformed variable:</p>
+<ul>
+<li>If <span class="math inline">\(\lambda \to 0^+\)</span>,</li>
+</ul>
+<p><span class="math display">\[
+y = -\log(\lambda r_0) \to +\infty.
+\]</span></p>
+<ul>
+<li>If <span class="math inline">\(\lambda \to \infty\)</span>,</li>
+</ul>
+<p><span class="math display">\[
+y \to -\infty.
+\]</span></p>
+<p>So the interval transforms as</p>
+<p><span class="math display">\[
+\lambda \in (0,\infty)
+\quad\Longrightarrow\quad
+y \in (+\infty,-\infty).
+\]</span></p>
+</section>
+<section id="substitute-into-the-integral" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="substitute-into-the-integral">Substitute into the integral</h4>
+<p><span class="math display">\[
+g(r_0 e^x)
+=
+\int_{+\infty}^{-\infty}
+f\left(\frac{e^{-y}}{r_0}\right)
+J_0(e^{x-y})
+\left(
+-\frac{e^{-y}}{r_0}
+\right)
+\,\dd y.
+\]</span></p>
+<p>Now reverse the limits to remove the minus sign:</p>
+<p><span class="math display">\[
+g(r_0 e^x)
+=
+\int_{-\infty}^{+\infty}
+\frac{e^{-y}}{r_0}
+f\left(\frac{e^{-y}}{r_0}\right)
+J_0(e^{x-y})
+\,\dd y.
+\]</span></p>
+</section>
+<section id="identify-the-convolution-structure" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="identify-the-convolution-structure">Identify the convolution structure</h4>
+<p>Define</p>
+<p><span class="math display">\[
+G(x) := g(r_0 e^x),
+\]</span></p>
+<p><span class="math display">\[
+F(y)
+:=
+\frac{e^{-y}}{r_0}
+f\left(\frac{e^{-y}}{r_0}\right),
+\]</span></p>
+<p>and the kernel</p>
+<p><span class="math display">\[
+H(x-y)
+:=
+J_0(e^{x-y}).
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+G(x)
+=
+\int_{-\infty}^{+\infty}
+F(y)\,H(x-y)\,\dd y.
+\]</span></p>
+<p>This is a convolution in logarithmic coordinates. The key point is that the kernel depends only on the difference</p>
+<p><span class="math display">\[
+x-y,
+\]</span></p>
+<p>which enables FFT-based acceleration in the Fast Hankel Transform.</p>
+</section>
+</div>
+</div>
+</div>
 <p>For discrete values of <span class="math inline">\(F\)</span> with <span class="math inline">\(F_n := F(y_n)\)</span> this integral becomes a <em>discrete convolution</em></p>
 <p><span class="math display">\[\begin{equation}
 G_m = \sum_{n=-\infty} ^\infty F_n H_{m-n} = \sum_{n=-\infty} ^\infty F_{m-n} H_{n}
@@ -573,7 +726,7 @@ G_m = \sum_{n=n_1} ^{n_2} F_n \overline H_{m-n} = \sum_{n=n_1} ^{n_2} F_{m-n} \o
 <section id="numerical-implementation-of-the-convolution" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="numerical-implementation-of-the-convolution"><span class="header-section-number">11.3</span> Numerical implementation of the convolution</h2>
 <p>We implement a <code>Python</code> function that computes the convolution:</p>
-<div id="05ff2189" class="cell" data-execution_count="5">
+<div id="fc18733e" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convolve(fc, kernel, style<span class="op">=</span><span class="st">"valid"</span>):</span>
@@ -610,7 +763,7 @@ Note
 </div>
 <p>The following example confirms that our code is correct.</p>
 <p>The convolution of two rectangular sequences results in a triangular sequence:</p>
-<div id="adc95550" class="cell" data-execution_count="6">
+<div id="629e1aa6" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>]</span>
@@ -626,7 +779,7 @@ Note
 [1 2 3 4 5 4 3 2 1]</code></pre>
 </div>
 </div>
-<div id="472303f2" class="cell" data-execution_count="7">
+<div id="765e51de" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>))</span>
@@ -643,7 +796,7 @@ Note
 </div>
 </div>
 </div>
-<div id="bc7a143c" class="cell" data-execution_count="8">
+<div id="6f9a0eef" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">2</span>))</span>
@@ -664,7 +817,7 @@ Note
 <h3 data-number="11.3.1" class="anchored" data-anchor-id="example-calculation-of-b_z"><span class="header-section-number">11.3.1</span> Example: Calculation of <span class="math inline">\(B_z\)</span></h3>
 <p>For the calculation of <span class="math inline">\(B_z\)</span> we need the kernel <span class="math inline">\(F\)</span> and the filter coefficients <span class="math inline">\(H\)</span>.</p>
 <p>The filter coefficients are provided by the function <code>gethankelfcJ0</code>.</p>
-<div id="58ea8697" class="cell" data-execution_count="9">
+<div id="ec28cf82" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gethankelfcJ0():</span>
@@ -702,7 +855,7 @@ Note
 </div>
 <p>The function returns 100 filter coefficients.</p>
 <p>Let’s have a closer look at the coefficients:</p>
-<div id="ebbb0545" class="cell" data-execution_count="10">
+<div id="32a34153" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fc, nc, nc0 <span class="op">=</span> gethankelfcJ0()</span>
@@ -726,7 +879,7 @@ Note
 <p>The kernel function <span class="math inline">\(F_n\)</span> is calculated as a function of the length <span class="math inline">\(n_c\)</span> of the filter coefficients <span class="math inline">\(H\)</span> and the number <span class="math inline">\(n_r\)</span> of distances <span class="math inline">\(r\)</span>.</p>
 <p>The number of required function evaluations of <span class="math inline">\(f\)</span> is <span class="math inline">\(n_c + n_r - 1\)</span>. The location of the discrete <span class="math inline">\(\lambda_n\)</span> depends on the minimum spacing <span class="math inline">\(r_{min}\)</span>.</p>
 <p>We set <span class="math inline">\(r=100\)</span> m, such that <span class="math inline">\(n_r = 1\)</span>.</p>
-<div id="de33ef73" class="cell" data-execution_count="11">
+<div id="0671604f" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rmin <span class="op">=</span> <span class="fl">100.0</span></span>
@@ -751,7 +904,7 @@ Note
 <p>The discrete distances <span class="math inline">\(r_i\)</span> would then grow exponentially with 10 grid points per decade.</p>
 </div>
 </div>
-<div id="cbbe47dd" class="cell" data-execution_count="12">
+<div id="4ccc5277" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="fl">0.0</span></span>
@@ -763,7 +916,7 @@ Note
 </div>
 <p>We calculate the field values for several logarithmically equidistant frequencies at once. For our example we choose <span class="math inline">\(0.1 &lt; f &lt; 10^5\)</span> Hz.</p>
 <p>The next loop provides the discrete wavenumbers <span class="math inline">\(\lambda_n\)</span> and from them the kernel function <span class="math inline">\(F_n(\lambda_n, z)\)</span>.</p>
-<div id="2dad63cc" class="cell" data-execution_count="13">
+<div id="aa896566" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nf <span class="op">=</span> <span class="dv">61</span></span>
@@ -790,7 +943,7 @@ Note
 <span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    Bz[k] <span class="op">=</span> mu_0 <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> np.pi) <span class="op">*</span> (Bz0 <span class="op">-</span> hankelint[<span class="dv">0</span>] <span class="op">/</span> rr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="757b4d16" class="cell" data-execution_count="14">
+<div id="f6c521da" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pos(data):</span>
@@ -820,7 +973,7 @@ Note
 <section id="comparison-to-the-analytical-solution" class="level3" data-number="11.3.2">
 <h3 data-number="11.3.2" class="anchored" data-anchor-id="comparison-to-the-analytical-solution"><span class="header-section-number">11.3.2</span> Comparison to the analytical solution</h3>
 <p>For the purpose of comparison we use the function <code>Bz_analytical(r, omega, sigma)</code> that computes <span class="math inline">\(B_z\)</span> using the closed form expression derived for <span class="math inline">\(z=h=0\)</span> (see <a href="explicit.html#sec-H" class="quarto-xref"><span>Section 10.6</span></a>).</p>
-<div id="c3ecd57b" class="cell" data-execution_count="15">
+<div id="b0403851" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Bz_analytical(r, omega, sigma):</span>
@@ -833,7 +986,7 @@ Note
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>Bz_ana <span class="op">=</span> [Bz_analytical(R, <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> v, sigma) <span class="cf">for</span> v <span class="kw">in</span> f]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="acf26922" class="cell" data-execution_count="16">
+<div id="9d7dfe42" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
@@ -855,7 +1008,7 @@ Note
 </div>
 <p>As expected, the function plot matches the previous one.</p>
 <p>The relative norm of the residual is</p>
-<div id="6c8f570c" class="cell" data-execution_count="17">
+<div id="9a29a38d" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> Bz_ana <span class="op">-</span> Bz</span>
