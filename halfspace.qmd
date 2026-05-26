@@ -553,8 +553,20 @@ $$
 $$
 :::
 
+## Interactive playground
+
+You can play with the following _marimo_ notebook:
+
+<iframe src="https://molab.marimo.io/notebooks/nb_4SoYVKj8niJgEE3P3QeC7n/app"
+sandbox="allow-scripts allow-same-origin  allow-popups"
+  width="100%"
+  height="800"
+  style="border: 1px solid #ddd; border-radius: 8px;">
+</iframe>
+
 ::: {.callout-tip title="Outlook"}
 In the multi-layered case, we will simply replace $\lambda_1$ by a function defined by the conductivities, thicknesses, frequencies, and $\lambda$.
 
 We will call this function `B₁` and refer to it as the *admittance of the layered halfspace*.
 :::
+
