@@ -24,7 +24,7 @@
     "href": "index.html#code",
     "title": "Theory of Electromagnetic Methods",
     "section": "Code",
-    "text": "Code\nThe website’s course material includes sections with embedded Python code.\nYou can easily copy the code and execute it in a compatible Python runtime environment.\nFor an optimal experience, we recommend installing Python via miniforge.\nMoreover, you have the freedom to explore your own concepts and delve deeper into the course content by creating your personalized Jupyter notebooks. You can utilize any of the following platforms:\n\nVisual Studio Code\nJupyterlab\nQuarto\nmystMD.\n\nWorking with Jupyter Notebooks in Visual Studio Code is exceptionally straightforward.",
+    "text": "Code\nThe website’s course material includes sections with embedded Python code.\nYou can easily copy the code and execute it in a compatible Python runtime environment.\nFor an optimal experience, we recommend installing Python via miniforge.\nMoreover, you have the freedom to explore your own concepts and delve deeper into the course content by creating your personalized Jupyter notebooks. You can utilize any of the following platforms:\n\nVisual Studio Code\nJupyterlab\nQuarto. \n\nWorking with Jupyter Notebooks in Visual Studio Code is exceptionally straightforward.",
     "crumbs": [
       "Prerequisites"
     ]
