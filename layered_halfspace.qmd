@@ -500,7 +500,7 @@ The Federal Institute for Geosciences and Natural Resources (BGR Hannover) opera
 
 The 5 frequencies used by the *DIGHEM* system are between $10^{2}$ and $10^{5}$ Hz. The distance between transmitter and receilver coils are 8 m. The instrument is contained in a tube (bird), which is towed by a 45 m long cable about 30-40 m above ground.
 
-![Sketch of the BGR airborne geophysical system, Source: BGR (www.bgr.bund.de)](https://www.bgr.bund.de/EN/Themen/GG_Geophysik/Aerogeophysik/Bilder/prinzipskizze_hem_g.jpg?__blob=normal&v=3)
+![Sketch of the BGR airborne geophysical system, Source: BGR (www.bgr.bund.de)](images/aero-em-skizze.gif)
 
 ```{python}
 freq = np.array([387, 1820, 8225, 41550, 133200])

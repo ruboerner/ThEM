@@ -556,11 +556,14 @@ $$
 ## Interactive playground
 
 You can play with the following _marimo_ notebook:
+<!-- <iframe src="https://molab.marimo.io/notebooks/nb_4SoYVKj8niJgEE3P3QeC7n/app" -->
+<!-- sandbox="allow-scripts allow-same-origin  allow-popups" -->
 
 <iframe src="https://molab.marimo.io/notebooks/nb_4SoYVKj8niJgEE3P3QeC7n/app"
-sandbox="allow-scripts allow-same-origin  allow-popups"
+sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-forms"
   width="100%"
   height="800"
+  loading="lazy"
   style="border: 1px solid #ddd; border-radius: 8px;">
 </iframe>
 

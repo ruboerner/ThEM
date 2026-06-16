@@ -417,7 +417,7 @@
     "href": "halfspace.html#interactive-playground",
     "title": "9  Dipole sources above a uniform halfspace",
     "section": "9.3 Interactive playground",
-    "text": "9.3 Interactive playground\nYou can play with the following marimo notebook:\n\n\n\n\n\n\n\n\nTipOutlook\n\n\n\nIn the multi-layered case, we will simply replace \\(\\lambda_1\\) by a function defined by the conductivities, thicknesses, frequencies, and \\(\\lambda\\).\nWe will call this function B₁ and refer to it as the admittance of the layered halfspace.",
+    "text": "9.3 Interactive playground\nYou can play with the following marimo notebook:  \n\n\n\n\n\n\n\n\nTipOutlook\n\n\n\nIn the multi-layered case, we will simply replace \\(\\lambda_1\\) by a function defined by the conductivities, thicknesses, frequencies, and \\(\\lambda\\).\nWe will call this function B₁ and refer to it as the admittance of the layered halfspace.",
     "crumbs": [
       "Dipole induction",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Dipole sources above a uniform halfspace</span>"
