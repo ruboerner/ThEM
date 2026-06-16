@@ -710,60 +710,6 @@
     ]
   },
   {
-    "objectID": "python_problems.html",
-    "href": "python_problems.html",
-    "title": "14  Exercises in Python",
-    "section": "",
-    "text": "14.1 Preparation\nWe prepare a working environment with Python and some essential packages. Make sure that the following packages are installed:\nFurther, we will use empymod to generate reference responses. It can be installed with the following commands:",
-    "crumbs": [
-      "Exercises",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Exercises in Python</span>"
-    ]
-  },
-  {
-    "objectID": "python_problems.html#preparation",
-    "href": "python_problems.html#preparation",
-    "title": "14  Exercises in Python",
-    "section": "",
-    "text": "numpy\nmatplotlib\nscipy\nsympy\n\n\nconda install pip\npip install --upgrade empymod",
-    "crumbs": [
-      "Exercises",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Exercises in Python</span>"
-    ]
-  },
-  {
-    "objectID": "python_problems.html#empymod",
-    "href": "python_problems.html#empymod",
-    "title": "14  Exercises in Python",
-    "section": "14.2 empymod",
-    "text": "14.2 empymod\nWhen in doubt, see the documentation.\nThe coordinate system is either\n\nleft-handed, where \\(x\\) points to East, \\(y\\) points to North, and \\(z\\) points downwards, angle \\(\\theta\\) between E and N, \\(\\phi\\) down\nright-handed, where \\(x\\) points to East, \\(y\\) points to North, and \\(z\\) points upwards, angle \\(\\theta\\) between E and N, \\(\\phi\\) up\n\n\n14.2.1 VMD in full-space\n\n\nShow the code\nimport empymod\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\nSurvey paramaters:\n\nConductivity \\(\\sigma = 0.01\\) S/m\nTX at origin, \\(z\\)-directed\nRX (magnetic) with offset of \\(100\\) m, \\(z\\)-directed\n\n\n\nShow the code\nfreq = np.logspace(-1, 5, 301)\nsrc = [0, 0, 0, 0, 90]    # z-dir. source at the origin [x, y, z, azimuth, dip]\nrec = [100, 0, 0, 0, 90]  # z-dir. receiver 100 m away from source\ncond = 0.01\n\n\nComputation using empymod:\n\n\nShow the code\ninp = {'src': src, 'rec': rec, 'depth': [], 'res': 1/cond, 'verb': 1}\n\ninp['freqtime'] = freq\ninp['mrec'] = True\nfmm_dip_dip = empymod.loop(**inp)\n\n\n\n\nShow the code\nfs = 12\nfig = plt.figure(figsize=(8, 6), constrained_layout=True)\nplt.plot(freq, fmm_dip_dip.real, 'C0-', label='Real')\nplt.plot(freq, -fmm_dip_dip.real, 'C0--')\nplt.plot(freq, fmm_dip_dip.imag, 'C1-', label='Imag')\nplt.plot(freq, -fmm_dip_dip.imag, 'C1--')\nplt.xscale('log')\nplt.yscale('log')\nplt.xlabel('Frequency (Hz)', fontsize=fs-2)\nplt.ylabel('Amplitude (A/m)', fontsize=fs-2)\nplt.legend()\n\n\n\n\n\n\n\n\n\n\n\n14.2.2 VMD over layered half-space\nSurvey parameters for a 3-layer model:\n\nFrequency range \\(10^2\\) to \\(10^5\\) Hz\nTX-RX offset range \\(1\\) to \\(10^3\\) m\nElectrical conductivities: \\([10^{-2}, 1, 10^{-2}]\\) S/m\nLayer thicknesses \\([10, 10]\\) m\n\nMake plots for\n\namplitude vs. frequency\namplitude vs. offset\nall three components of \\(\\mathbf B\\)\nall three components of \\(\\mathbf E\\)\nfor all three possible directions of the magnetic dipole\n\nNotes:\n\nUse mrec=False to force the calculation of electric fields\nDefine the orientation of TX and RX with the appropriate choice of the angles \\(\\theta\\) and \\(\\phi\\) (parameters 4 and 5 of src and rec, resp.)\n\n\n\n14.2.3 HEM example\nSurvey parameters for the 5-layer model after Siemon et al. (2009):\n\nTX-RX offset \\(8\\) m\nFrequencies: \\([387, 1820, 8225, 41550, 133200]\\) Hz\nBird height: \\(30\\) m above ground\nResistivities: \\([200, 100, 5, 1000]\\) \\(\\Omega \\cdot\\)m\nThicknesses: \\([20, 30, 10]\\) m\n\nCalculate the HEM responses in terms of real part \\(R\\) and quadrature part \\(Q\\) in ppm!",
-    "crumbs": [
-      "Exercises",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Exercises in Python</span>"
-    ]
-  },
-  {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "15  Summary",
-    "section": "",
-    "text": "What were the most important insights?\n\nUnderstanding of Maxwell’s equations\nDerivation of the curl-curl equation of electromagnetics\nDipole sources\nIncremental modifications of the underlying model: From uniform full-space to layered half-space\nUnderstanding time-domain induction\nImplementation of Hankel integrals\nExcurse to 2D and 3D modelling applications\n\nWhy is the lecture on the Theory of EM important?\n\nAll EM geophysics - from magnetotellurics (MT) to controlled-source EM (CSEM) - relies on solving Maxwell’s equations under specific boundary conditions\nKnowing how fields decay, diffuse, or reflect allows for optimal sensor placement, source design, and noise mitigation\nUnderstanding the theory is essential for developing accurate forward solvers and stable, regularized inverse algorithms\nTime-domain EM, airborne EM, and marine EM all evolved from theoretical insights",
-    "crumbs": [
-      "Summary",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Summary</span>"
-    ]
-  },
-  {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
-    "section": "",
-    "text": "Abramowitz, M. & Stegun, I.A., 1972. Handbook of mathematical\nfunctions with formulas, graphs, and mathematical tables, Tenth.,\nDover Publications.\n\n\nAnderson, W.L., 1982. Fast Hankel transforms using related\nand lagged convolutions. ACM Transactions on Mathematical Software\n(TOMS), 8, 344–368, ACM.\n\n\nChristensen, N.B., 1990. Optimized fast Hankel transform\nfilters. Geophysical Prospecting, 38, 545–568.\ndoi:10.1111/j.1365-2478.1990.tb01861.x\n\n\nGhosh, D.P., 1971. The application of linear filter theory to the direct\ninterpretation of geoelectrical resistivity sounding measurements.\nGeophysical Prospecting, 19, 192–217. doi:10.1111/j.1365-2478.1971.tb00593.x\n\n\nJohansen, H.K. & Sørensen, K., 1979. Fast hankel transforms.\nGeophysical Prospecting, 27, 876–901. doi:10.1111/j.1365-2478.1979.tb01005.x\n\n\nWard, S.H. & Hohmann, G.W., 1988. Electromagnetic theory for\ngeophysical applications. Electromagnetic methods in applied\ngeophysics, Vol. 1, pp. 131–311.",
-    "crumbs": [
-      "References"
-    ]
-  },
-  {
     "objectID": "processing.html",
     "href": "processing.html",
     "title": "14  Stacking of noisy TEM data",
@@ -783,6 +729,60 @@
     "crumbs": [
       "Data Processing",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Stacking of noisy TEM data</span>"
+    ]
+  },
+  {
+    "objectID": "python_problems.html",
+    "href": "python_problems.html",
+    "title": "15  Exercises in Python",
+    "section": "",
+    "text": "15.1 Preparation\nWe prepare a working environment with Python and some essential packages. Make sure that the following packages are installed:\nFurther, we will use empymod to generate reference responses. It can be installed with the following commands:",
+    "crumbs": [
+      "Exercises",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Exercises in Python</span>"
+    ]
+  },
+  {
+    "objectID": "python_problems.html#preparation",
+    "href": "python_problems.html#preparation",
+    "title": "15  Exercises in Python",
+    "section": "",
+    "text": "numpy\nmatplotlib\nscipy\nsympy\n\n\nconda install pip\npip install --upgrade empymod",
+    "crumbs": [
+      "Exercises",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Exercises in Python</span>"
+    ]
+  },
+  {
+    "objectID": "python_problems.html#empymod",
+    "href": "python_problems.html#empymod",
+    "title": "15  Exercises in Python",
+    "section": "15.2 empymod",
+    "text": "15.2 empymod\nWhen in doubt, see the documentation.\nThe coordinate system is either\n\nleft-handed, where \\(x\\) points to East, \\(y\\) points to North, and \\(z\\) points downwards, angle \\(\\theta\\) between E and N, \\(\\phi\\) down\nright-handed, where \\(x\\) points to East, \\(y\\) points to North, and \\(z\\) points upwards, angle \\(\\theta\\) between E and N, \\(\\phi\\) up\n\n\n15.2.1 VMD in full-space\n\n\nShow the code\nimport empymod\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\nSurvey paramaters:\n\nConductivity \\(\\sigma = 0.01\\) S/m\nTX at origin, \\(z\\)-directed\nRX (magnetic) with offset of \\(100\\) m, \\(z\\)-directed\n\n\n\nShow the code\nfreq = np.logspace(-1, 5, 301)\nsrc = [0, 0, 0, 0, 90]    # z-dir. source at the origin [x, y, z, azimuth, dip]\nrec = [100, 0, 0, 0, 90]  # z-dir. receiver 100 m away from source\ncond = 0.01\n\n\nComputation using empymod:\n\n\nShow the code\ninp = {'src': src, 'rec': rec, 'depth': [], 'res': 1/cond, 'verb': 1}\n\ninp['freqtime'] = freq\ninp['mrec'] = True\nfmm_dip_dip = empymod.loop(**inp)\n\n\n\n\nShow the code\nfs = 12\nfig = plt.figure(figsize=(8, 6), constrained_layout=True)\nplt.plot(freq, fmm_dip_dip.real, 'C0-', label='Real')\nplt.plot(freq, -fmm_dip_dip.real, 'C0--')\nplt.plot(freq, fmm_dip_dip.imag, 'C1-', label='Imag')\nplt.plot(freq, -fmm_dip_dip.imag, 'C1--')\nplt.xscale('log')\nplt.yscale('log')\nplt.xlabel('Frequency (Hz)', fontsize=fs-2)\nplt.ylabel('Amplitude (A/m)', fontsize=fs-2)\nplt.legend()\n\n\n\n\n\n\n\n\n\n\n\n15.2.2 VMD over layered half-space\nSurvey parameters for a 3-layer model:\n\nFrequency range \\(10^2\\) to \\(10^5\\) Hz\nTX-RX offset range \\(1\\) to \\(10^3\\) m\nElectrical conductivities: \\([10^{-2}, 1, 10^{-2}]\\) S/m\nLayer thicknesses \\([10, 10]\\) m\n\nMake plots for\n\namplitude vs. frequency\namplitude vs. offset\nall three components of \\(\\mathbf B\\)\nall three components of \\(\\mathbf E\\)\nfor all three possible directions of the magnetic dipole\n\nNotes:\n\nUse mrec=False to force the calculation of electric fields\nDefine the orientation of TX and RX with the appropriate choice of the angles \\(\\theta\\) and \\(\\phi\\) (parameters 4 and 5 of src and rec, resp.)\n\n\n\n15.2.3 HEM example\nSurvey parameters for the 5-layer model after Siemon et al. (2009):\n\nTX-RX offset \\(8\\) m\nFrequencies: \\([387, 1820, 8225, 41550, 133200]\\) Hz\nBird height: \\(30\\) m above ground\nResistivities: \\([200, 100, 5, 1000]\\) \\(\\Omega \\cdot\\)m\nThicknesses: \\([20, 30, 10]\\) m\n\nCalculate the HEM responses in terms of real part \\(R\\) and quadrature part \\(Q\\) in ppm!",
+    "crumbs": [
+      "Exercises",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Exercises in Python</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "16  Summary",
+    "section": "",
+    "text": "What were the most important insights?\n\nUnderstanding of Maxwell’s equations\nDerivation of the curl-curl equation of electromagnetics\nDipole sources\nIncremental modifications of the underlying model: From uniform full-space to layered half-space\nUnderstanding time-domain induction\nImplementation of Hankel integrals\nExcurse to 2D and 3D modelling applications\n\nWhy is the lecture on the Theory of EM important?\n\nAll EM geophysics - from magnetotellurics (MT) to controlled-source EM (CSEM) - relies on solving Maxwell’s equations under specific boundary conditions\nKnowing how fields decay, diffuse, or reflect allows for optimal sensor placement, source design, and noise mitigation\nUnderstanding the theory is essential for developing accurate forward solvers and stable, regularized inverse algorithms\nTime-domain EM, airborne EM, and marine EM all evolved from theoretical insights",
+    "crumbs": [
+      "Summary",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Abramowitz, M. & Stegun, I.A., 1972. Handbook of mathematical\nfunctions with formulas, graphs, and mathematical tables, Tenth.,\nDover Publications.\n\n\nAnderson, W.L., 1982. Fast Hankel transforms using related\nand lagged convolutions. ACM Transactions on Mathematical Software\n(TOMS), 8, 344–368, ACM.\n\n\nChristensen, N.B., 1990. Optimized fast Hankel transform\nfilters. Geophysical Prospecting, 38, 545–568.\ndoi:10.1111/j.1365-2478.1990.tb01861.x\n\n\nGhosh, D.P., 1971. The application of linear filter theory to the direct\ninterpretation of geoelectrical resistivity sounding measurements.\nGeophysical Prospecting, 19, 192–217. doi:10.1111/j.1365-2478.1971.tb00593.x\n\n\nJohansen, H.K. & Sørensen, K., 1979. Fast hankel transforms.\nGeophysical Prospecting, 27, 876–901. doi:10.1111/j.1365-2478.1979.tb01005.x\n\n\nWard, S.H. & Hohmann, G.W., 1988. Electromagnetic theory for\ngeophysical applications. Electromagnetic methods in applied\ngeophysics, Vol. 1, pp. 131–311.",
+    "crumbs": [
+      "References"
     ]
   }
 ]
