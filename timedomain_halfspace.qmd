@@ -434,3 +434,17 @@ ax.set_ylabel(r'$db_z(t)/dt$ in V/$m^2$')
 ax.set_title('Impulse response')
 ax.grid(True)
 ```
+
+
+::: {.callout-caution}
+
+All equations above result from a theoretical viewpoint.
+
+Real-world data look considerably different.
+
+The following practical limitations change the look of the transient:
+
+- Finite ramp times, often approximated by a linear ramp for $t>0$
+- Frequency characteristic of the receiver system (including amplifier and coil).
+
+:::
